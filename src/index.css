@@ -1,0 +1,177 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-cream font-sans text-ink antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display text-espresso;
+    text-wrap: balance;
+    font-optical-sizing: auto;
+    font-variation-settings: 'SOFT' 0, 'WONK' 0;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    @apply bg-gold/30 text-espresso;
+  }
+
+  /* Accessible focus ring: gold, follows each element's radius */
+  :focus-visible {
+    @apply outline-none ring-2 ring-gold ring-offset-2 ring-offset-cream;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-container px-5 sm:px-8;
+  }
+
+  /* Print-style hairline rules */
+  .rule {
+    @apply border-t border-espresso/15;
+  }
+  .rule-dark {
+    @apply border-t border-cream/15;
+  }
+
+  /* Small-caps annotation label (captions, nav meta, spec rows) */
+  .cap-label {
+    @apply text-xs font-medium uppercase tracking-[0.14em] text-taupe;
+  }
+  .cap-label-dark {
+    @apply text-xs font-medium uppercase tracking-[0.14em] text-cream/60;
+  }
+
+  /* Tabular figures for anything numeric */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ------- Buttons: print-block with a soft radius, no shimmer, no lift ------- */
+  .btn {
+    @apply inline-flex cursor-pointer select-none items-center justify-center gap-2 overflow-hidden rounded-md text-[15px] font-semibold leading-none transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+  .btn-sm {
+    @apply px-5 py-3 text-sm;
+  }
+  .btn-md {
+    @apply px-6 py-3.5;
+  }
+  .btn-lg {
+    @apply px-7 py-4 text-base;
+  }
+  /* espresso block; hover = walnut. A gold underline slides in via ::after. */
+  .btn-primary {
+    @apply relative bg-espresso text-cream hover:bg-walnut;
+  }
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 100%;
+    background: theme('colors.gold.DEFAULT');
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .btn-primary:hover::after {
+    transform: scaleX(1);
+  }
+  .btn-outline {
+    @apply border border-espresso/25 bg-transparent text-espresso hover:border-espresso hover:bg-sand-light;
+  }
+  /* on espresso bands */
+  .btn-light {
+    @apply bg-cream text-espresso hover:bg-sand;
+  }
+  .btn-gold {
+    @apply bg-gold-deep text-cream hover:bg-gold-dark;
+  }
+  .btn-ghost-light {
+    @apply border border-cream/25 text-cream hover:border-cream/60 hover:bg-cream/10;
+  }
+
+  /* Underlined text link: 2px espresso underline grows/recolors gold on hover */
+  .u-link {
+    @apply relative inline-flex items-center gap-1.5 pb-0.5 font-semibold text-espresso;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 100% 2px;
+    transition: background-size 0.3s cubic-bezier(0.22, 1, 0.36, 1), color 0.2s ease;
+  }
+  .u-link:hover {
+    @apply text-gold-deep;
+    background-size: 100% 3px;
+  }
+  .u-link-dark {
+    @apply text-cream;
+  }
+  .u-link-dark:hover {
+    @apply text-gold-bright;
+  }
+
+  /* Masking-tape chip: the ONLY element on the site allowed to rotate */
+  .tape {
+    @apply inline-block bg-sand px-3 py-1 text-xs font-medium uppercase tracking-[0.14em] text-espresso-700;
+    transform: rotate(-1.5deg);
+  }
+  .tape-alt {
+    transform: rotate(1.2deg);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Outlined numeral: transparent fill, 1px gold stroke. The ONE permitted
+     outline-text use (service rows / step numbers); never whole words. */
+  .num-outline {
+    color: transparent;
+    -webkit-text-stroke: 1px theme('colors.gold.DEFAULT');
+  }
+  .num-outline-dark {
+    color: transparent;
+    -webkit-text-stroke: 1px theme('colors.gold.bright');
+  }
+
+  /* PhotoSlot / section bleeds to the viewport edge (use on one side per section) */
+  .bleed-right {
+    margin-right: calc(50% - 50vw);
+  }
+  .bleed-left {
+    margin-left: calc(50% - 50vw);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
