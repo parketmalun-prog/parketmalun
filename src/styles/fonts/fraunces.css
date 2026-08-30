@@ -1,0 +1,23 @@
+/**
+ * Fraunces, the display face, cut down to what the site actually renders.
+ *
+ * Fontsource ships this as three unicode-range slices (latin 65.7 kB,
+ * latin-ext 58.0 kB, vietnamese 19.2 kB). Icelandic lives in latin and
+ * Polish in latin-ext, so a Polish visitor paid for two files and 124 kB
+ * before a heading painted, and nobody ever needed the Vietnamese slice.
+ *
+ * This is that face with the optical-size axis pinned to the display end
+ * the site renders at, the weight axis kept variable (medium, semibold and
+ * bold are all in use), and the character set reduced to Basic Latin plus
+ * the Icelandic and Polish letters: one 23.7 kB request, all three
+ * languages, no second round trip.
+ *
+ * Regenerate with scripts/build-font-subsets.py.
+ */
+@font-face {
+  font-family: 'Fraunces Variable';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('./fraunces-subset.woff2') format('woff2');
+}

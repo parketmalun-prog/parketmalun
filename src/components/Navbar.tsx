@@ -1,37 +1,42 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-import { Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { site } from '@/data/site'
 import { NAV_KEYS } from '@/i18n/config'
 import { useLang, useUi } from '@/i18n/context'
 import { LanguageSwitcher } from '@/i18n/LanguageSwitcher'
-import { Logo } from './Logo'
+import { LogoMark } from './Logo'
+import { lockScroll } from '@/lib/smoothScroll'
 
 /**
- * PLANKI masthead: a print-style cream header. A hairline-bounded dateline
- * strip on top (text only, no icons), then the main row with a live Fraunces
- * wordmark and numbered nav links. Mobile opens a full-screen espresso
- * overlay with large Fraunces links.
+ * Masthead in the reference's three-part cut (client, 2026-08-30, after
+ * elicyon.com): MENU on the left, the mark alone in the centre, contact on
+ * the right, the same on every width. The menu itself is one espresso
+ * curtain that slides DOWN from the top edge (the same move as the client's
+ * bpe-cleaning site), carrying the page links, the language switcher, the
+ * phone and the quote button; it closes on Escape, on the dimmed page
+ * behind it, and on any navigation.
+ *
+ * The curtain lives UNDER the bar (z-40 vs z-50) so it appears to unroll
+ * from behind the cream row. `inert` is set imperatively: this React
+ * version renders inert="false" as a present boolean attribute.
  */
 export function Navbar() {
   const [open, setOpen] = useState(false)
   const location = useLocation()
-  const overlayRef = useRef<HTMLDivElement>(null)
+  const panelRef = useRef<HTMLDivElement>(null)
   const { path } = useLang()
   const t = useUi()
 
-  const navItems = NAV_KEYS.filter((k) => k !== 'home').map((key, i) => ({
+  const navItems = NAV_KEYS.map((key, i) => ({
     key,
     n: String(i + 1).padStart(2, '0'),
     label: t.nav[key],
     to: path(key),
   }))
 
-  // `inert` set imperatively: this React version renders inert="false" as a
-  // present (thus active) boolean attribute if passed via JSX.
   useEffect(() => {
-    if (overlayRef.current) overlayRef.current.inert = !open
+    if (panelRef.current) panelRef.current.inert = !open
   }, [open])
 
   useEffect(() => {
@@ -39,153 +44,106 @@ export function Navbar() {
   }, [location.pathname])
 
   useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : ''
-    return () => {
-      document.body.style.overflow = ''
-    }
+    lockScroll(open)
+    return () => lockScroll(false)
   }, [open])
 
-  // Auto-close the overlay if the viewport crosses into desktop while open.
   useEffect(() => {
     if (!open) return
-    const mq = window.matchMedia('(min-width: 1024px)')
-    const onChange = () => {
-      if (mq.matches) setOpen(false)
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setOpen(false)
     }
-    mq.addEventListener('change', onChange)
-    return () => mq.removeEventListener('change', onChange)
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
   }, [open])
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-espresso/15 bg-cream">
-      {/* Dateline strip: newspaper-style single caps line, no icons */}
-      <div className="hidden border-b border-espresso/10 md:block">
-        <div className="container-x flex h-9 items-center justify-between gap-6">
-          <p className="cap-label tnum truncate">{t.topbar.dateline}</p>
-          <div className="flex shrink-0 items-center gap-5">
-            <a
-              href={`mailto:${site.email}`}
-              className="cap-label hidden normal-case tracking-normal transition-colors hover:text-espresso lg:inline"
+    <>
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-espresso/10 bg-cream">
+        <div className="container-x grid h-[64px] grid-cols-3 items-center md:h-[72px]">
+          <div className="justify-self-start">
+            <button
+              type="button"
+              onClick={() => setOpen((v) => !v)}
+              aria-expanded={open}
+              aria-controls="valmynd"
+              className="text-[11px] font-semibold uppercase tracking-[0.12em] text-espresso transition-colors hover:text-gold-deep sm:text-[13px] sm:tracking-[0.14em]"
             >
-              {site.email}
-            </a>
-            <a
-              href={site.facebook}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="cap-label transition-colors hover:text-espresso"
-            >
-              Facebook
-            </a>
+              {open ? t.quick.close : 'Menu'}
+            </button>
           </div>
-        </div>
-      </div>
 
-      {/* Main masthead row */}
-      <div className="container-x flex h-[64px] items-center justify-between gap-4 md:h-[72px]">
-        <Link to={path('home')} aria-label={t.a11y.logoHome} className="shrink-0">
-          <Logo className="h-11 w-auto md:h-[52px]" />
-        </Link>
-
-        <nav className="hidden items-center gap-6 lg:flex" aria-label={t.a11y.menuMain}>
-          {navItems.map((item) => (
-            <NavLink
-              key={item.key}
-              to={item.to}
-              className={({ isActive }) =>
-                cn(
-                  'group flex items-baseline gap-1.5 text-[13px] font-medium uppercase tracking-[0.1em] transition-colors',
-                  isActive ? 'text-espresso' : 'text-taupe hover:text-espresso',
-                )
-              }
-            >
-              {({ isActive }) => (
-                <>
-                  <span className={cn('tnum text-[11px] font-semibold', isActive ? 'text-gold-deep' : 'text-gold/70')}>
-                    {item.n}
-                  </span>
-                  <span
-                    className={cn(
-                      'pb-0.5',
-                      isActive
-                        ? 'underline decoration-gold decoration-2 underline-offset-4'
-                        : 'group-hover:underline group-hover:decoration-espresso/30 group-hover:decoration-2 group-hover:underline-offset-4',
-                    )}
-                  >
-                    {item.label}
-                  </span>
-                </>
-              )}
-            </NavLink>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-5">
-          <LanguageSwitcher variant="bar" className="hidden sm:flex" />
-          <a
-            href={`tel:${site.phoneRaw}`}
-            className="tnum hidden font-display text-lg font-bold text-espresso transition-colors hover:text-gold-deep sm:block"
-            aria-label={`${t.common.callPrefix} ${site.phone}`}
-          >
-            {site.phone}
-          </a>
-          <Link to={path('contact')} className="btn btn-sm btn-primary hidden lg:inline-flex">
-            {t.common.getQuote}
+          <Link to={path('home')} aria-label={t.a11y.logoHome} className="justify-self-center">
+            <LogoMark className="h-11 md:h-[52px]" sizes="(min-width: 768px) 90px, 76px" priority />
           </Link>
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-espresso/20 text-espresso lg:hidden"
-            aria-label={open ? t.a11y.closeMenu : t.a11y.openMenu}
-            aria-expanded={open}
-            aria-controls="farsima-valmynd"
-          >
-            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
-      </div>
 
-      {/* Full-screen espresso overlay (mobile). Inert while closed. */}
+          <Link
+            to={path('contact')}
+            className="justify-self-end whitespace-nowrap text-[11px] font-semibold uppercase tracking-[0.12em] text-espresso transition-colors hover:text-gold-deep sm:text-[13px] sm:tracking-[0.14em]"
+          >
+            {t.nav.contact}
+          </Link>
+        </div>
+      </header>
+
+      {/* dimmed page behind the curtain; click closes */}
       <div
-        id="farsima-valmynd"
-        ref={overlayRef}
         className={cn(
-          // top matches the real header height: 64px masthead on mobile,
-          // plus the 37px dateline strip and taller masthead from md up.
-          'fixed inset-x-0 bottom-0 top-[64px] z-40 flex flex-col bg-espresso transition-opacity duration-300 md:top-[110px] lg:hidden',
+          'fixed inset-0 z-30 bg-espresso/40 transition-opacity duration-300',
           open ? 'opacity-100' : 'pointer-events-none opacity-0',
         )}
+        aria-hidden
+        onClick={() => setOpen(false)}
+      />
+
+      {/* the curtain: slides down from behind the bar */}
+      <div
+        id="valmynd"
+        ref={panelRef}
+        className={cn(
+          'fixed inset-x-0 top-0 z-40 max-h-[100dvh] overflow-y-auto overscroll-contain bg-espresso pt-[64px] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:pt-[72px]',
+          open ? 'translate-y-0' : '-translate-y-full',
+        )}
       >
-        <nav className="container-x flex flex-1 flex-col justify-center gap-1 py-8" aria-label={t.a11y.menuMobile}>
+        <nav
+          className="container-x flex flex-col gap-1 py-10 [padding-bottom:calc(2.5rem+env(safe-area-inset-bottom))]"
+          aria-label={t.a11y.menuMain}
+        >
           {navItems.map((item, i) => (
             <NavLink
               key={item.key}
               to={item.to}
               className={({ isActive }) =>
                 cn(
-                  'flex items-baseline gap-4 border-b border-cream/10 py-4 transition-all duration-300',
+                  'flex items-baseline gap-5 py-3 transition-all duration-300 sm:py-3.5',
                   open ? 'translate-y-0 opacity-100' : 'translate-y-3 opacity-0',
-                  isActive ? 'text-gold-bright' : 'text-cream',
+                  isActive ? 'text-gold-bright' : 'text-cream hover:text-gold-bright',
                 )
               }
-              style={{ transitionDelay: open ? `${80 + i * 55}ms` : '0ms' }}
+              style={{ transitionDelay: open ? `${120 + i * 50}ms` : '0ms' }}
             >
               <span className="tnum text-sm font-semibold text-gold/80">{item.n}</span>
-              <span className="font-display text-3xl font-bold leading-tight">{item.label}</span>
+              <span className="font-display text-3xl font-bold leading-tight sm:text-4xl">{item.label}</span>
             </NavLink>
           ))}
-          <div className="mt-8 flex items-center justify-between">
+
+          <div className="mt-10 flex flex-wrap items-center justify-between gap-6">
             <LanguageSwitcher variant="panel" />
-            <a
-              href={`tel:${site.phoneRaw}`}
-              className="tnum font-display text-2xl font-bold text-gold-bright"
-              aria-label={`${t.common.callPrefix} ${site.phone}`}
-            >
-              {site.phone}
-            </a>
+            <div className="flex items-center gap-6">
+              <a
+                href={`tel:${site.phoneRaw}`}
+                className="tnum font-display text-2xl font-bold text-gold-bright transition-colors hover:text-cream"
+                aria-label={`${t.common.callPrefix} ${site.phone}`}
+              >
+                {site.phone}
+              </a>
+              <Link to={path('contact')} className="btn btn-sm bg-gold text-espresso hover:bg-gold-bright">
+                {t.common.getQuote}
+              </Link>
+            </div>
           </div>
         </nav>
       </div>
-    </header>
+    </>
   )
 }

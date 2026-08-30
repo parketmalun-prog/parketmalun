@@ -14,14 +14,16 @@ const is = {
     services: 'Þjónusta',
     portfolio: 'Verkefni',
     catalog: 'Vöruúrval',
+    blog: 'Fréttir',
     about: 'Um okkur',
     contact: 'Hafðu samband',
   },
   topbar: {
     hours: 'Mán til Fös 08:00 til 18:00',
-    dateline: 'Reykjavík og nágrenni · Mán til Fös 08:00 til 18:00',
   },
   a11y: {
+    pagination: 'Síður',
+    pageN: 'Síða {n}',
     menuMain: 'Aðalvalmynd',
     menuMobile: 'Farsímavalmynd',
     logoHome: 'Expert Parket og Mál, heim',
@@ -34,7 +36,6 @@ const is = {
   },
   common: {
     callPrefix: 'Hringdu í',
-    callNow: 'Hringdu núna',
     skipToContent: 'Fara beint í efni',
     readMore: 'Lesa meira',
     viewAllServices: 'Skoða alla þjónustu',
@@ -62,13 +63,25 @@ const is = {
   serviceNames: { parket: 'Parket', slipun: 'Slípun', malun: 'Málun' },
   serviceFull: { parket: 'Parketlögn', slipun: 'Parketslípun', malun: 'Málun' },
   catalog: {
-    spec: { thickness: 'Þykkt', finish: 'Áferð', bestFor: 'Hentar fyrir', price: 'Verð' },
     ctaTitle: 'Við útvegum fleira en hér sést',
     ctaSubtitle:
       'Fleiri gerðir, litir og mynstur eru í boði en hér eru sýnd. Segðu okkur hvað þig vantar og við finnum rétta parketið á rétta verðinu.',
   },
   portfolio: {
     note: 'Þetta er aðeins úrval. Nýtt myndasafn með fleiri verkefnum er í vinnslu. Hafðu samband til að sjá dæmi sem líkjast þínu verki.',
+  },
+  blog: {
+    title: 'Fréttir og fróðleikur',
+    lead: 'Stuttar greinar um parket, slípun og málun. Það sem við lendum í á verkstað og það sem við mælum með.',
+    seoTitle: 'Fréttir | Expert Parket og Mál',
+    seoDescription: 'Greinar um parketlögn, parketslípun og málun frá Expert Parket og Mál.',
+    readMore: 'Lesa greinina',
+    back: 'Til baka í fréttir',
+    empty: 'Engar greinar hafa verið birtar ennþá.',
+    minutes: '{n} mín lestur',
+    published: 'Birt',
+    more: 'Fleiri greinar',
+    notFound: 'Þessi grein fannst ekki',
   },
   contact: {
     labelPhone: 'Sími',
@@ -83,8 +96,6 @@ const is = {
     mailtoProduct: 'Vara',
   },
   footer: {
-    tagline:
-      'Við sköpum falleg gólf. Parketlögn, slípun og málun af fagmennsku á höfuðborgarsvæðinu í meira en 25 ár.',
     hoursTitle: 'Opnunartími',
     hoursWeek: 'Mán til Fös: 08:00 til 18:00',
     hoursWeekend: 'Lau og Sun: lokað',
@@ -92,11 +103,9 @@ const is = {
     colContact: 'Samskipti',
     linkCatalog: 'Vöruúrval & verð',
     rights: 'Allur réttur áskilinn.',
-    areaLine: 'Höfuðborgarsvæðið og nágrenni',
     privacyLabel: 'Persónuverndarstefna',
   },
   closer: {
-    label: 'Hafðu samband',
     line1: 'Segðu okkur frá',
     line2: 'gólfinu þínu.',
     support:
@@ -118,14 +127,16 @@ const en: Ui = {
     services: 'Services',
     portfolio: 'Projects',
     catalog: 'Flooring',
+    blog: 'Blog',
     about: 'About us',
     contact: 'Contact',
   },
   topbar: {
     hours: 'Mon to Fri 08:00 to 18:00',
-    dateline: 'Reykjavík area · Mon to Fri 08:00 to 18:00',
   },
   a11y: {
+    pagination: 'Pagination',
+    pageN: 'Page {n}',
     menuMain: 'Main menu',
     menuMobile: 'Mobile menu',
     logoHome: 'Expert Parket og Mál, home',
@@ -138,7 +149,6 @@ const en: Ui = {
   },
   common: {
     callPrefix: 'Call',
-    callNow: 'Call now',
     skipToContent: 'Skip to content',
     readMore: 'Read more',
     viewAllServices: 'View all services',
@@ -166,13 +176,25 @@ const en: Ui = {
   serviceNames: { parket: 'Parquet', slipun: 'Sanding', malun: 'Painting' },
   serviceFull: { parket: 'Parquet laying', slipun: 'Floor sanding', malun: 'Painting' },
   catalog: {
-    spec: { thickness: 'Thickness', finish: 'Finish', bestFor: 'Best for', price: 'Price' },
     ctaTitle: 'We supply more than shown here',
     ctaSubtitle:
       'More types, colours and patterns are available than shown here. Tell us what you need and we will find the right flooring at the right price.',
   },
   portfolio: {
     note: 'This is only a selection. A new gallery with more projects is in the works. Get in touch to see examples similar to yours.',
+  },
+  blog: {
+    title: 'News and know-how',
+    lead: 'Short articles about parquet, sanding and painting. What we run into on site and what we recommend.',
+    seoTitle: 'Blog | Expert Parket og Mál',
+    seoDescription: 'Articles about parquet laying, floor sanding and painting from Expert Parket og Mál.',
+    readMore: 'Read the article',
+    back: 'Back to the blog',
+    empty: 'No articles have been published yet.',
+    minutes: '{n} min read',
+    published: 'Published',
+    more: 'More articles',
+    notFound: 'This article was not found',
   },
   contact: {
     labelPhone: 'Phone',
@@ -187,8 +209,6 @@ const en: Ui = {
     mailtoProduct: 'Product',
   },
   footer: {
-    tagline:
-      'We create beautiful floors. Professional parquet laying, sanding and painting across the capital region for more than 25 years.',
     hoursTitle: 'Opening hours',
     hoursWeek: 'Mon to Fri: 08:00 to 18:00',
     hoursWeekend: 'Sat and Sun: closed',
@@ -196,11 +216,9 @@ const en: Ui = {
     colContact: 'Contact',
     linkCatalog: 'Flooring & prices',
     rights: 'All rights reserved.',
-    areaLine: 'The capital region and surroundings',
     privacyLabel: 'Privacy policy',
   },
   closer: {
-    label: 'Get in touch',
     line1: 'Tell us about',
     line2: 'your floor.',
     support:
@@ -220,14 +238,16 @@ const pl: Ui = {
     services: 'Usługi',
     portfolio: 'Realizacje',
     catalog: 'Parkiety',
+    blog: 'Blog',
     about: 'O nas',
     contact: 'Kontakt',
   },
   topbar: {
     hours: 'Pon do Pt 08:00 do 18:00',
-    dateline: 'Rejon Reykjavíku · Pon do Pt 08:00 do 18:00',
   },
   a11y: {
+    pagination: 'Paginacja',
+    pageN: 'Strona {n}',
     menuMain: 'Menu główne',
     menuMobile: 'Menu mobilne',
     logoHome: 'Expert Parket og Mál, strona główna',
@@ -240,7 +260,6 @@ const pl: Ui = {
   },
   common: {
     callPrefix: 'Zadzwoń pod',
-    callNow: 'Zadzwoń teraz',
     skipToContent: 'Przejdź do treści',
     readMore: 'Czytaj więcej',
     viewAllServices: 'Zobacz wszystkie usługi',
@@ -268,13 +287,25 @@ const pl: Ui = {
   serviceNames: { parket: 'Parkiet', slipun: 'Cyklinowanie', malun: 'Malowanie' },
   serviceFull: { parket: 'Układanie parkietu', slipun: 'Cyklinowanie parkietu', malun: 'Malowanie' },
   catalog: {
-    spec: { thickness: 'Grubość', finish: 'Wykończenie', bestFor: 'Najlepsze do', price: 'Cena' },
     ctaTitle: 'Oferujemy więcej, niż widać tutaj',
     ctaSubtitle:
       'Dostępnych jest więcej rodzajów, kolorów i wzorów niż pokazano tutaj. Powiedz nam, czego potrzebujesz, a znajdziemy odpowiedni parkiet w odpowiedniej cenie.',
   },
   portfolio: {
     note: 'To tylko wybór. Nowa galeria z większą liczbą realizacji jest w przygotowaniu. Skontaktuj się, aby zobaczyć przykłady podobne do Twojego.',
+  },
+  blog: {
+    title: 'Aktualności i porady',
+    lead: 'Krótkie artykuły o parkiecie, cyklinowaniu i malowaniu. To, na co trafiamy na budowie i to, co polecamy.',
+    seoTitle: 'Blog | Expert Parket og Mál',
+    seoDescription: 'Artykuły o układaniu parkietu, cyklinowaniu i malowaniu od Expert Parket og Mál.',
+    readMore: 'Przeczytaj artykuł',
+    back: 'Powrót do bloga',
+    empty: 'Nie opublikowano jeszcze żadnych artykułów.',
+    minutes: '{n} min czytania',
+    published: 'Opublikowano',
+    more: 'Więcej artykułów',
+    notFound: 'Nie znaleziono tego artykułu',
   },
   contact: {
     labelPhone: 'Telefon',
@@ -289,8 +320,6 @@ const pl: Ui = {
     mailtoProduct: 'Produkt',
   },
   footer: {
-    tagline:
-      'Tworzymy piękne podłogi. Profesjonalne układanie parkietu, cyklinowanie i malowanie w regionie stołecznym od ponad 25 lat.',
     hoursTitle: 'Godziny otwarcia',
     hoursWeek: 'Pon do Pt: 08:00 do 18:00',
     hoursWeekend: 'Sob i Niedz: nieczynne',
@@ -298,11 +327,9 @@ const pl: Ui = {
     colContact: 'Kontakt',
     linkCatalog: 'Parkiety i ceny',
     rights: 'Wszelkie prawa zastrzeżone.',
-    areaLine: 'Region stołeczny i okolice',
     privacyLabel: 'Polityka prywatności',
   },
   closer: {
-    label: 'Kontakt',
     line1: 'Opowiedz nam o',
     line2: 'swojej podłodze.',
     support:

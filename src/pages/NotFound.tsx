@@ -2,7 +2,7 @@ import { site } from '@/data/site'
 import { useLang, useUi } from '@/i18n/context'
 import { Seo } from '@/components/Seo'
 import { TextLink } from '@/components/TextLink'
-import { LineReveal, DrawRule } from '@/components/motionPrimitives'
+import { LineReveal } from '@/components/motionPrimitives'
 
 export default function NotFound() {
   const { path } = useLang()
@@ -11,7 +11,6 @@ export default function NotFound() {
     <>
       <Seo title={t.notFound.seoTitle} noindex />
       <section className="container-x flex min-h-[70vh] flex-col justify-center py-20">
-        <DrawRule />
         <LineReveal
           as="h1"
           lines={['404']}
@@ -27,9 +26,6 @@ export default function NotFound() {
           >
             {site.phone}
           </a>
-        </div>
-        <div className="pt-10">
-          <DrawRule delay={0.1} />
         </div>
       </section>
     </>

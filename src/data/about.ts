@@ -9,7 +9,7 @@ type About = {
   lead: string
   story: { label: string; photoCaption: string; paragraphs: string[] }
   values: { label: string; items: TitleText[] }
-  why: { label: string; titleLines: string[]; photoCaption: string; items: TitleText[] }
+  why: { label: string; titleLines: string[]; items: TitleText[] }
   faq: { label: string; support: string; items: QA[] }
 }
 
@@ -68,7 +68,6 @@ export const about: Record<Lang, About> = {
     why: {
       label: 'Af hverju okkur',
       titleLines: ['Af hverju', 'Expert Parket'],
-      photoCaption: 'Kópavogur · 2024 · Slípun og lökkun',
       items: [
         {
           title: 'Allt í sömu hendi',
@@ -155,7 +154,6 @@ export const about: Record<Lang, About> = {
     why: {
       label: 'Why us',
       titleLines: ['Why', 'Expert Parket'],
-      photoCaption: 'Kópavogur · 2024 · Sanding and lacquer',
       items: [
         {
           title: 'One pair of hands',
@@ -242,7 +240,6 @@ export const about: Record<Lang, About> = {
     why: {
       label: 'Dlaczego my',
       titleLines: ['Dlaczego', 'Expert Parket'],
-      photoCaption: 'Kópavogur · 2024 · Cyklinowanie i lakier',
       items: [
         {
           title: 'Wszystko w jednych rękach',

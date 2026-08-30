@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils'
+import { imgSources } from '@/lib/img'
 import { IconPhoto } from './icons'
 
 type Aspect = '4/5' | '4/3' | '3/2' | '16/9' | '1/1' | '21/9' | '1/3' | '3/4'
@@ -39,8 +40,18 @@ type Props = {
   caption?: string
   /** Tiny corner mark inside the slot. Defaults to "Mynd". */
   label?: string
+  /** Set when the slot sits on a dark ground, so the print caption stays legible. */
+  captionDark?: boolean
   /** Future real photo. When provided, renders the image instead of the grey block. */
   src?: string
+  /**
+   * The `sizes` hint, i.e. how wide this slot renders at each breakpoint.
+   * Getting it wrong only costs bytes, never correctness, but the default
+   * assumes a full-width-on-phone, half-width-on-desktop plate.
+   */
+  sizes?: string
+  /** Set on the one image that is the page's largest contentful paint. */
+  priority?: boolean
   alt?: string
   className?: string
 }
@@ -50,14 +61,37 @@ type Props = {
  * standing in for photography the client has not supplied yet; passing `src`
  * later swaps in the real image with zero layout change.
  */
-export function PhotoSlot({ aspect = '4/3', tone = 'sand', caption, label = 'Mynd', src, alt = '', className }: Props) {
+export function PhotoSlot({
+  aspect = '4/3',
+  tone = 'sand',
+  caption,
+  captionDark = false,
+  label = 'Mynd',
+  src,
+  sizes = '(min-width: 1024px) 50vw, 100vw',
+  priority = false,
+  alt = '',
+  className,
+}: Props) {
   const dark = isDarkTone(tone)
+  const webp = imgSources(src)
 
   return (
     <figure className={cn('m-0', className)}>
       <div className={cn('relative w-full overflow-hidden rounded-lg border', aspectClass[aspect], toneClass[tone])}>
         {src ? (
-          <img src={src} alt={alt} className="absolute inset-0 h-full w-full object-cover" loading="lazy" decoding="async" />
+          <img
+            src={webp.src}
+            srcSet={webp.srcSet || undefined}
+            sizes={webp.srcSet ? sizes : undefined}
+            alt={alt}
+            width={webp.width}
+            height={webp.height}
+            className="absolute inset-0 h-full w-full object-cover"
+            loading={priority ? 'eager' : 'lazy'}
+            fetchpriority={priority ? 'high' : undefined}
+            decoding="async"
+          />
         ) : (
           <>
             {/* soft light gradient so the block reads as a surface, not flat fill */}
@@ -87,7 +121,9 @@ export function PhotoSlot({ aspect = '4/3', tone = 'sand', caption, label = 'Myn
           </>
         )}
       </div>
-      {caption ? <figcaption className="cap-label tnum pt-2">{caption}</figcaption> : null}
+      {caption ? (
+        <figcaption className={cn('tnum pt-2', captionDark ? 'cap-label-dark' : 'cap-label')}>{caption}</figcaption>
+      ) : null}
     </figure>
   )
 }

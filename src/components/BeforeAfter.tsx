@@ -2,6 +2,7 @@ import { useCallback, useId, useRef, useState } from 'react'
 import { MoveHorizontal } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useUi } from '@/i18n/context'
+import { imgSources } from '@/lib/img'
 
 type Props = {
   /** Real "before" photo URL. Until the client supplies photos, omit both and
@@ -12,7 +13,8 @@ type Props = {
 }
 
 /**
- * Interactive before/after comparison. Rounded-lg container, a square gold
+ * Interactive before/after comparison. Softly rounded, borderless card
+ * (the visible frame read as templated; client, 2026-08-29), a square gold
  * grip on a 2px cream rule, masking-tape labels (the only rotated elements on
  * the site). With no photos yet it renders two neutral grey placeholder
  * surfaces (deliberately grey, not the brown palette, so they read as pending
@@ -24,6 +26,8 @@ export function BeforeAfter({ beforeSrc, afterSrc, className }: Props) {
   const dragging = useRef(false)
   const t = useUi()
   const id = useId()
+  const beforeImg = imgSources(beforeSrc)
+  const afterImg = imgSources(afterSrc)
 
   const update = useCallback((clientX: number) => {
     const el = ref.current
@@ -37,7 +41,10 @@ export function BeforeAfter({ beforeSrc, afterSrc, className }: Props) {
     <div
       ref={ref}
       className={cn(
-        'relative aspect-[4/3] w-full select-none overflow-hidden rounded-lg border border-espresso/15 focus-within:ring-2 focus-within:ring-gold focus-within:ring-offset-2 focus-within:ring-offset-cream',
+        // touch-action pan-y hands vertical swipes back to the page. Without
+        // it the invisible range input below swallowed them and scrolling
+        // past this block read as the page being stuck.
+        'relative aspect-[4/3] w-full touch-pan-y select-none overflow-hidden rounded-3xl focus-within:ring-2 focus-within:ring-gold focus-within:ring-offset-2 focus-within:ring-offset-cream',
         className,
       )}
       onPointerDown={(e) => {
@@ -52,8 +59,12 @@ export function BeforeAfter({ beforeSrc, afterSrc, className }: Props) {
       {/* AFTER: finished floor (base layer) */}
       {afterSrc ? (
         <img
-          src={afterSrc}
+          src={afterImg.src}
+          srcSet={afterImg.srcSet || undefined}
+          sizes={afterImg.srcSet ? '(min-width: 1024px) 66vw, 100vw' : undefined}
           alt={t.common.alt.beforeAfterAfter}
+          width={afterImg.width}
+          height={afterImg.height}
           className="absolute inset-0 h-full w-full object-cover"
           draggable={false}
           decoding="async"
@@ -78,8 +89,12 @@ export function BeforeAfter({ beforeSrc, afterSrc, className }: Props) {
       <div className="absolute inset-0 overflow-hidden" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
         {beforeSrc ? (
           <img
-            src={beforeSrc}
+            src={beforeImg.src}
+            srcSet={beforeImg.srcSet || undefined}
+            sizes={beforeImg.srcSet ? '(min-width: 1024px) 66vw, 100vw' : undefined}
             alt={t.common.alt.beforeAfterBefore}
+            width={beforeImg.width}
+            height={beforeImg.height}
             className="absolute inset-0 h-full w-full object-cover"
             draggable={false}
             decoding="async"
@@ -119,7 +134,7 @@ export function BeforeAfter({ beforeSrc, afterSrc, className }: Props) {
         max={97}
         value={pos}
         onChange={(e) => setPos(Number(e.target.value))}
-        className="absolute inset-x-0 bottom-0 h-full w-full cursor-ew-resize opacity-0"
+        className="absolute inset-x-0 bottom-0 h-full w-full cursor-ew-resize touch-pan-y opacity-0"
         aria-label={t.a11y.sliderCompare}
         aria-valuetext={t.a11y.sliderValueText.replace('{n}', String(Math.round(pos)))}
       />

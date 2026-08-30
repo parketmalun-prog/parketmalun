@@ -2,13 +2,17 @@ import { useEffect, useRef, useState } from 'react'
 import { X } from 'lucide-react'
 import { site } from '@/data/site'
 import { useUi } from '@/i18n/context'
-import { IconChatBubble, IconMail, IconPhoneRing, IconWhatsApp } from './icons'
+import { IconMail, IconPhoneRing, IconWhatsApp } from './icons'
 
 /**
- * Persistent quick contact, desktop and mobile alike: one round espresso
- * launcher pinned bottom right. Tapping it fans out three labelled channels,
- * WhatsApp, phone and email, so the visitor picks how to reach us. Closes on
- * Escape, on outside click and after choosing a channel.
+ * Persistent quick contact, desktop and mobile alike: one small round gold
+ * launcher pinned bottom right, icon only. The phone NUMBER lives in the
+ * masthead and the footer already; printing it a third time here read as
+ * repetition (client, 2026-08-26). The launcher appears five seconds after
+ * arrival and breathes with a barely-there scale pulse (see .qc-pulse in
+ * index.css) so the eye finds it without being shouted at. Tapping it fans
+ * out three labelled channels, WhatsApp, phone and email. Closes on Escape,
+ * on outside click and after choosing a channel.
  *
  * DOM order is launcher first, then the menu, inside flex-col-reverse: the
  * visual stack is unchanged but Tab flows launcher -> WhatsApp -> call ->
@@ -21,11 +25,10 @@ export function QuickContact() {
   const launcherRef = useRef<HTMLButtonElement>(null)
   const t = useUi()
 
+  // Five quiet seconds first; the visitor has just arrived.
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 320)
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    const id = window.setTimeout(() => setVisible(true), 5000)
+    return () => window.clearTimeout(id)
   }, [])
 
   // Close on outside click / tap; Escape also hands focus back to the launcher.
@@ -78,7 +81,9 @@ export function QuickContact() {
   return (
     <div
       ref={rootRef}
-      className={`fixed bottom-5 right-5 z-40 flex flex-col-reverse items-end gap-3 transition-all duration-300 sm:bottom-6 sm:right-6 ${
+      // The bottom offset clears the iPhone home indicator, which otherwise
+      // sits on top of the one control that dials the company.
+      className={`fixed bottom-5 right-5 z-40 flex flex-col-reverse items-end gap-3 transition-all duration-300 [bottom:calc(1.25rem+env(safe-area-inset-bottom))] sm:right-6 sm:[bottom:calc(1.5rem+env(safe-area-inset-bottom))] ${
         visible ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-3 opacity-0'
       }`}
       aria-hidden={!visible}
@@ -92,9 +97,11 @@ export function QuickContact() {
         aria-expanded={open}
         aria-controls="quick-contact-menu"
         aria-label={open ? t.quick.close : t.quick.open}
-        className="flex h-14 w-14 items-center justify-center rounded-full border border-gold/40 bg-espresso text-gold-bright transition-colors hover:bg-walnut"
+        className={`flex h-14 w-14 items-center justify-center rounded-full bg-gold text-espresso transition-colors hover:bg-gold-bright ${
+          open ? '' : 'qc-pulse'
+        }`}
       >
-        {open ? <X className="h-6 w-6" /> : <IconChatBubble className="h-7 w-7" />}
+        {open ? <X className="h-5 w-5" /> : <IconPhoneRing className="qc-ring h-6 w-6" />}
       </button>
 
       {/* fan-out: one row per channel, label chip + round icon button */}
@@ -115,11 +122,11 @@ export function QuickContact() {
             className="group flex items-center gap-3"
             style={{ transitionDelay: open ? `${i * 40}ms` : '0ms' }}
           >
-            <span className="rounded-md border border-cream/15 bg-espresso px-3 py-1.5 text-[13px] font-semibold text-cream">
+            <span className="rounded-full bg-espresso px-4 py-2 text-[13px] font-semibold text-cream">
               {c.label}
             </span>
             <span
-              className={`flex h-12 w-12 items-center justify-center rounded-full transition-transform group-hover:scale-105 ${c.circle}`}
+              className={`flex h-11 w-11 items-center justify-center rounded-full transition-transform group-hover:scale-105 ${c.circle}`}
             >
               {c.icon}
             </span>

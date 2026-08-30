@@ -9,7 +9,3 @@ export function formatIsk(n: number): string {
     .replace(/\B(?=(\d{3})+(?!\d))/g, '.')
   return `${grouped} kr.`
 }
-
-export function scrollToTop(): void {
-  if (typeof window !== 'undefined') window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
-}

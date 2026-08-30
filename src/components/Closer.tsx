@@ -1,11 +1,12 @@
 import { useEffect, useRef } from 'react'
 import type { FormEvent } from 'react'
-import { site } from '@/data/site'
+import { Link } from 'react-router-dom'
 import { contact as contactByLang } from '@/data/contact'
-import { useContent, useUi } from '@/i18n/context'
+import { photos } from '@/data/photos'
+import { imgSources } from '@/lib/img'
+import { useContent, useLang, useUi } from '@/i18n/context'
 import { useEnquiry, enquiryFieldClass } from '@/lib/enquiry'
 import { Button } from './Button'
-import { SectionIndex } from './SectionIndex'
 import { LineReveal } from './motionPrimitives'
 
 /**
@@ -15,8 +16,9 @@ import { LineReveal } from './motionPrimitives'
  * job without hunting for the contact page. The contact page itself passes
  * `withForm={false}` since its own full form sits right above.
  */
-export function Closer({ n = '05', withForm = true }: { n?: string; withForm?: boolean }) {
+export function Closer({ withForm = true }: { withForm?: boolean }) {
   const t = useUi()
+  const { path } = useLang()
   const c = useContent(contactByLang)
   const { status, submit, reset } = useEnquiry()
   const doneRef = useRef<HTMLHeadingElement>(null)
@@ -39,25 +41,31 @@ export function Closer({ n = '05', withForm = true }: { n?: string; withForm?: b
     if (ok) formEl.reset()
   }
 
+  // The big gold phone number left this band on 2026-08-26 (the footer's
+  // CALL NOW sits one scroll below), and on 2026-08-29 the flat espresso
+  // ground became a photograph under a dark filter: the empty left half
+  // read as a hole, so the statement is now centred against the form.
   return (
-    <section className="bg-espresso text-cream">
-      <div className="container-x pb-20 pt-16 sm:pb-24 sm:pt-20">
-        <SectionIndex n={n} label={t.closer.label} dark />
-        <div className="grid grid-cols-12 gap-x-4 gap-y-10 pt-10 md:gap-x-6">
+    <section className="relative overflow-hidden bg-espresso text-cream">
+      <img
+        src={imgSources(photos.contact).src}
+        srcSet={imgSources(photos.contact).srcSet || undefined}
+        sizes="100vw"
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover"
+        loading="lazy"
+        decoding="async"
+      />
+      <div className="absolute inset-0 bg-espresso/75" aria-hidden />
+      <div className="container-x relative z-10 pb-12 pt-10 sm:pb-14 sm:pt-12">
+        <div className="grid grid-cols-12 items-center gap-x-4 gap-y-8 pt-8 md:gap-x-6">
           <div className="col-span-12 lg:col-span-6">
             <LineReveal
               as="h2"
               lines={[t.closer.line1, t.closer.line2]}
               className="font-display text-[clamp(2.25rem,5.5vw,4.25rem)] font-bold leading-[0.98] tracking-[-0.02em] text-cream"
             />
-            <a
-              href={`tel:${site.phoneRaw}`}
-              className="tnum mt-8 inline-block font-display text-[clamp(2rem,4vw,3rem)] font-bold leading-none text-gold-bright transition-colors hover:text-cream"
-              aria-label={`${t.common.callPrefix} ${site.phone}`}
-            >
-              {site.phone}
-            </a>
-            <p className="mt-4 max-w-[36ch] text-sm leading-relaxed text-cream/70">{t.closer.support}</p>
+            <p className="mt-5 max-w-[36ch] text-sm leading-relaxed text-cream/70">{t.closer.support}</p>
           </div>
 
           {/* Compact enquiry form: cream panel on the espresso band */}
@@ -135,6 +143,14 @@ export function Closer({ n = '05', withForm = true }: { n?: string; withForm?: b
                     <button type="submit" disabled={status === 'sending'} className="btn btn-md btn-primary w-full">
                       {status === 'sending' ? f.sendingLabel : f.submitLabel}
                     </button>
+                    {/* GDPR notice: sending implies agreeing to the privacy policy */}
+                    <p className="!mt-3 text-xs leading-relaxed text-taupe">
+                      {f.consentPrefix}{' '}
+                      <Link to={path('privacy')} className="underline underline-offset-2 hover:text-espresso">
+                        {f.consentLink}
+                      </Link>
+                      .
+                    </p>
                   </form>
                 </>
               )}

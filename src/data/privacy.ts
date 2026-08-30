@@ -19,7 +19,7 @@ export const privacy: Record<Lang, PrivacyContent> = {
     },
     titleLines: ['Persónuvernd'],
     lead: 'Hér er útskýrt hvaða upplýsingum þessi vefur safnar, í hvaða tilgangi og hver réttindi þín eru samkvæmt lögum nr. 90/2018 og persónuverndarreglugerðinni (GDPR).',
-    updated: 'Síðast uppfært: 31. júlí 2026',
+    updated: 'Síðast uppfært: 30. ágúst 2026',
     sections: [
       {
         heading: 'Ábyrgðaraðili',
@@ -33,7 +33,8 @@ export const privacy: Record<Lang, PrivacyContent> = {
           'Við söfnum aðeins þeim upplýsingum sem þú sendir okkur að eigin frumkvæði og þeim tæknilegu lágmarksupplýsingum sem fylgja notkun vefsins:',
         ],
         bullets: [
-          'Fyrirspurnarform: nafn, símanúmer, netfang (valfrjálst), valin þjónusta og skilaboðin þín.',
+          'Fyrirspurnarform: nafn, símanúmer, netfang (valfrjálst), valin þjónusta og skilaboðin þín. Fyrirspurnin er líka geymd í stjórnborði vefsins svo hægt sé að svara henni og fylgja henni eftir.',
+          'Heimsóknartalning: slóð síðunnar, tungumál, tækjagerð og hvaðan þú komst inn á vefinn. Talningin notar engar vafrakökur og geymir hvorki IP tölu né neitt sem tengir heimsóknina við þig.',
           'Tæknilegar upplýsingar: hýsingaraðili vefsins skráir sjálfkrafa IP tölur og tæknilegar færslur (e. server logs) í öryggis- og rekstrarskyni.',
         ],
       },
@@ -86,6 +87,12 @@ export const privacy: Record<Lang, PrivacyContent> = {
           'Við kunnum að uppfæra þessa stefnu ef vinnsla eða virkni vefsins breytist. Nýjasta útgáfan er ávallt birt á þessari síðu ásamt dagsetningu síðustu uppfærslu.',
         ],
       },
+          {
+        heading: 'Myndir á vefnum',
+        paragraphs: [
+          'Myndefni á vefnum er af tvennum toga: okkar eigin verkmyndir og aðkeypt safnmyndir. Safnmyndirnar eru notaðar samkvæmt leyfisskilmálum Unsplash og Pexels, sem heimila birtingu á vefsíðum án frekari merkingar. Safnmyndir eru til skýringar og sýna ekki alltaf verk fyrirtækisins sjálfs.',
+        ],
+      },
     ],
   },
   en: {
@@ -96,7 +103,7 @@ export const privacy: Record<Lang, PrivacyContent> = {
     },
     titleLines: ['Privacy policy'],
     lead: 'This page explains what data this website collects, for what purpose, and what your rights are under Icelandic Act No. 90/2018 and the General Data Protection Regulation (GDPR).',
-    updated: 'Last updated: 31 July 2026',
+    updated: 'Last updated: 30 August 2026',
     sections: [
       {
         heading: 'Data controller',
@@ -110,7 +117,8 @@ export const privacy: Record<Lang, PrivacyContent> = {
           'We only collect the information you send us yourself, plus the minimal technical data that comes with using any website:',
         ],
         bullets: [
-          'Contact form: name, phone number, email (optional), chosen service and your message.',
+          'Contact form: name, phone number, email (optional), chosen service and your message. The enquiry is also stored in the site admin so it can be answered and followed up.',
+          'Visit counting: the page path, language, device class and where you arrived from. The counting uses no cookies and stores neither an IP address nor anything that ties the visit to you.',
           'Technical data: our hosting provider automatically keeps technical server logs, including IP addresses, for security and operational purposes.',
         ],
       },
@@ -163,6 +171,12 @@ export const privacy: Record<Lang, PrivacyContent> = {
           'We may update this policy if the processing or functionality of the website changes. The latest version is always published on this page together with the date of the last update.',
         ],
       },
+          {
+        heading: 'Images on this site',
+        paragraphs: [
+          'The imagery on this site is of two kinds: our own project photography and licensed stock photography. Stock images are used under the Unsplash and Pexels licences, which permit publication on websites without further attribution. Stock images are illustrative and do not always show the company\'s own work.',
+        ],
+      },
     ],
   },
   pl: {
@@ -173,7 +187,7 @@ export const privacy: Record<Lang, PrivacyContent> = {
     },
     titleLines: ['Polityka', 'prywatności'],
     lead: 'Ta strona wyjaśnia, jakie dane zbiera ten serwis, w jakim celu oraz jakie masz prawa zgodnie z islandzką ustawą nr 90/2018 i ogólnym rozporządzeniem o ochronie danych (RODO).',
-    updated: 'Ostatnia aktualizacja: 31 lipca 2026',
+    updated: 'Ostatnia aktualizacja: 30 sierpnia 2026',
     sections: [
       {
         heading: 'Administrator danych',
@@ -187,7 +201,8 @@ export const privacy: Record<Lang, PrivacyContent> = {
           'Zbieramy wyłącznie informacje, które samodzielnie nam przekazujesz, oraz minimalne dane techniczne związane z korzystaniem z każdej strony internetowej:',
         ],
         bullets: [
-          'Formularz kontaktowy: imię i nazwisko, numer telefonu, e-mail (opcjonalnie), wybrana usługa i treść wiadomości.',
+          'Formularz kontaktowy: imię i nazwisko, numer telefonu, e-mail (opcjonalnie), wybrana usługa i treść wiadomości. Zapytanie jest też przechowywane w panelu administracyjnym strony, żeby można było na nie odpowiedzieć i je obsłużyć.',
+          'Zliczanie wizyt: adres strony, język, rodzaj urządzenia i miejsce, z którego trafiłeś na stronę. Zliczanie nie używa plików cookie i nie zapisuje ani adresu IP, ani niczego, co wiąże wizytę z Tobą.',
           'Dane techniczne: dostawca hostingu automatycznie zapisuje adresy IP i techniczne logi serwera ze względów bezpieczeństwa oraz w celach związanych z utrzymaniem strony.',
         ],
       },
@@ -238,6 +253,12 @@ export const privacy: Record<Lang, PrivacyContent> = {
         heading: 'Zmiany polityki',
         paragraphs: [
           'Możemy aktualizować tę politykę, jeśli zmieni się sposób przetwarzania danych lub funkcjonalność strony. Najnowsza wersja jest zawsze publikowana na tej stronie wraz z datą ostatniej aktualizacji.',
+        ],
+      },
+          {
+        heading: 'Zdjęcia w serwisie',
+        paragraphs: [
+          'Materiał zdjęciowy w serwisie jest dwojakiego rodzaju: nasze własne zdjęcia z realizacji oraz licencjonowane zdjęcia stockowe. Zdjęcia stockowe wykorzystujemy zgodnie z licencjami Unsplash i Pexels, które pozwalają na publikację na stronach internetowych bez dodatkowego oznaczania. Zdjęcia stockowe mają charakter poglądowy i nie zawsze przedstawiają realizacje firmy.',
         ],
       },
     ],

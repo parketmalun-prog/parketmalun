@@ -26,11 +26,28 @@ export const HTML_LANG: Record<Lang, string> = { is: 'is', en: 'en', pl: 'pl' }
 export const OG_LOCALE: Record<Lang, string> = { is: 'is_IS', en: 'en_US', pl: 'pl_PL' }
 
 /** Stable page identifiers, decoupled from the (per-language) URL slug. */
-export type RouteKey = 'home' | 'services' | 'portfolio' | 'catalog' | 'about' | 'contact' | 'privacy'
-export const ROUTE_KEYS: RouteKey[] = ['home', 'services', 'portfolio', 'catalog', 'about', 'contact', 'privacy']
+export type RouteKey =
+  | 'home'
+  | 'services'
+  | 'portfolio'
+  | 'catalog'
+  | 'blog'
+  | 'about'
+  | 'contact'
+  | 'privacy'
+export const ROUTE_KEYS: RouteKey[] = [
+  'home',
+  'services',
+  'portfolio',
+  'catalog',
+  'blog',
+  'about',
+  'contact',
+  'privacy',
+]
 
 /** Pages shown in the main navigation (privacy lives only in the footer). */
-export const NAV_KEYS = ['home', 'services', 'portfolio', 'catalog', 'about', 'contact'] as const
+export const NAV_KEYS = ['home', 'services', 'portfolio', 'catalog', 'blog', 'about', 'contact'] as const
 export type NavKey = (typeof NAV_KEYS)[number]
 
 /** The URL slug for each page in each language. Home is the empty slug (index). */
@@ -39,9 +56,15 @@ export const SLUGS: Record<RouteKey, Record<Lang, string>> = {
   services: { is: 'thjonusta', en: 'services', pl: 'uslugi' },
   portfolio: { is: 'verkefni', en: 'projects', pl: 'realizacje' },
   catalog: { is: 'parket', en: 'flooring', pl: 'parkiety' },
+  blog: { is: 'frettir', en: 'blog', pl: 'blog' },
   about: { is: 'um-okkur', en: 'about', pl: 'o-nas' },
   contact: { is: 'hafdu-samband', en: 'contact', pl: 'kontakt' },
   privacy: { is: 'personuvernd', en: 'privacy', pl: 'polityka-prywatnosci' },
+}
+
+/** Path of a single article: the blog slug for the language plus the post slug. */
+export function blogPostPath(lang: Lang, slug: string): string {
+  return `${pathFor('blog', lang)}/${slug}`
 }
 
 /** Canonical production origin (no trailing slash): used for hreflang/canonical. */

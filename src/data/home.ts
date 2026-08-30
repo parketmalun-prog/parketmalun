@@ -16,11 +16,12 @@ type HomeContent = {
     lead: string
     cta: string
     photoCaption: string
-    strip: Array<{ value: string; label: string }>
   }
   services: {
     label: string
     title: string
+    /** One quiet line for the cream interlude that introduces the gallery. */
+    lead: string
     items: Array<{ key: ServiceKey; name: string; line: string }>
   }
   why: {
@@ -31,7 +32,9 @@ type HomeContent = {
   beforeAfter: {
     label: string
     title: string
-    lines: string[]
+    /** One search-friendly line naming the service and the region. */
+    lead: string
+    facts: Array<{ k: string; v: string }>
   }
   interlude: { before: string; italic: string }
   process: {
@@ -73,16 +76,11 @@ const is: HomeContent = {
     lead: 'Við leggjum, slípum og málum gólf á höfuðborgarsvæðinu. Sami eigandi og sama símanúmer í meira en 25 ár.',
     cta: 'Fáðu frítt tilboð',
     photoCaption: 'Eikarparket · Höfuðborgarsvæðið',
-    strip: [
-      { value: '25+', label: 'ára reynsla' },
-      { value: 'Höfuðborgarsvæðið', label: 'þjónustusvæði' },
-      { value: 'Parket · Slípun · Málun', label: 'þrjár sérgreinar' },
-      { value: '785 7079', label: 'síminn okkar' },
-    ],
   },
   services: {
     label: 'Þjónusta',
     title: 'Þrjár sérgreinar',
+    lead: 'Parketlögn, parketslípun og málun. Sama teymið frá fyrstu skoðun að verklokum.',
     items: [
       {
         key: 'parket',
@@ -122,10 +120,11 @@ const is: HomeContent = {
   beforeAfter: {
     label: 'Slípun í verki',
     title: 'Slitið gólf, slípað og olíuborið',
-    lines: [
-      'Slípað í þremur umferðum, 40, 80 og 120 korn.',
-      'Rykfrí slípivél með beinu sogi, heimilið helst hreint.',
-      'Olíuborið tvisvar og gengið frá á 2 til 3 dögum.',
+    lead: 'Parketslípun á höfuðborgarsvæðinu: gamalt eikargólf verður eins og nýtt, rykfrítt og á föstum verktíma.',
+    facts: [
+      { k: 'Þrjár umferðir', v: '40, 80 og 120 korn, þrep fyrir þrep.' },
+      { k: 'Rykfrí vinna', v: 'Slípivélin tengd beint við sog, heimilið helst hreint.' },
+      { k: '2 til 3 dagar', v: 'Olíuborið tvisvar og verkinu skilað frágengnu.' },
     ],
   },
   interlude: { before: 'Gólf sem eldast ', italic: 'fallega.' },
@@ -182,7 +181,7 @@ const is: HomeContent = {
   },
   area: {
     label: 'Þjónustusvæði',
-    title: 'Við mætum um allt höfuðborgarsvæðið',
+    title: 'Um allt höfuðborgarsvæðið',
     lead: 'Sami bíll, sömu vélar og sami fagmaður, hvort sem verkið er í Vesturbænum eða uppi í Mosfellsbæ.',
     places: [
       'Reykjavík',
@@ -230,16 +229,11 @@ const en: HomeContent = {
     lead: 'We lay, sand and paint floors across the capital region. Same owner and same phone number for more than 25 years.',
     cta: 'Get a free quote',
     photoCaption: 'Oak parquet · Reykjavík area',
-    strip: [
-      { value: '25+', label: 'years of experience' },
-      { value: 'Capital region', label: 'service area' },
-      { value: 'Parquet · Sanding · Painting', label: 'three trades' },
-      { value: '785 7079', label: 'our phone' },
-    ],
   },
   services: {
     label: 'Services',
     title: 'Three trades',
+    lead: 'Parquet laying, floor sanding and painting. The same team from the first visit to handover.',
     items: [
       {
         key: 'parket',
@@ -279,10 +273,11 @@ const en: HomeContent = {
   beforeAfter: {
     label: 'Sanding shown',
     title: 'A worn floor, sanded and oiled',
-    lines: [
-      'Sanded in three passes, 40, 80 and 120 grit.',
-      'Dust-free sander with direct extraction, the home stays clean.',
-      'Oiled twice and handed over within 2 to 3 days.',
+    lead: 'Floor sanding across the Reykjavík capital region: a worn oak floor brought back like new, dust free and on a fixed schedule.',
+    facts: [
+      { k: 'Three passes', v: '40, 80 and 120 grit, step by step.' },
+      { k: 'Dust free', v: 'The sander runs on direct extraction, the home stays clean.' },
+      { k: '2 to 3 days', v: 'Oiled twice and handed over finished.' },
     ],
   },
   interlude: { before: 'Floors that age ', italic: 'beautifully.' },
@@ -339,7 +334,7 @@ const en: HomeContent = {
   },
   area: {
     label: 'Service area',
-    title: 'We come out across the whole capital region',
+    title: 'Across the whole capital region',
     lead: 'Same van, same machines and the same craftsman, whether the job is in Vesturbær or up in Mosfellsbær.',
     places: [
       'Reykjavík',
@@ -387,16 +382,11 @@ const pl: HomeContent = {
     lead: 'Układamy, cyklinujemy i malujemy podłogi w rejonie stołecznym. Ten sam właściciel i ten sam numer telefonu od ponad 25 lat.',
     cta: 'Darmowa wycena',
     photoCaption: 'Parkiet dębowy · Rejon Reykjavíku',
-    strip: [
-      { value: '25+', label: 'lat doświadczenia' },
-      { value: 'Rejon stołeczny', label: 'obszar usług' },
-      { value: 'Parkiet · Cyklinowanie · Malowanie', label: 'trzy specjalności' },
-      { value: '785 7079', label: 'nasz telefon' },
-    ],
   },
   services: {
     label: 'Usługi',
     title: 'Trzy specjalności',
+    lead: 'Układanie parkietu, cyklinowanie i malowanie. Ten sam zespół od pierwszych oględzin po odbiór.',
     items: [
       {
         key: 'parket',
@@ -436,10 +426,11 @@ const pl: HomeContent = {
   beforeAfter: {
     label: 'Cyklinowanie w praktyce',
     title: 'Zużyta podłoga, wycyklinowana i olejowana',
-    lines: [
-      'Szlifowana w trzech przejściach, ziarno 40, 80 i 120.',
-      'Szlifierka bezpyłowa z bezpośrednim odsysaniem, dom zostaje czysty.',
-      'Dwukrotnie olejowana i oddana w 2 do 3 dni.',
+    lead: 'Cyklinowanie parkietu w rejonie Reykjavíku: zużyta dębowa podłoga wraca jak nowa, bez pyłu i w ustalonym terminie.',
+    facts: [
+      { k: 'Trzy przejścia', v: 'Ziarno 40, 80 i 120, krok po kroku.' },
+      { k: 'Bez pyłu', v: 'Szlifierka z bezpośrednim odsysaniem, dom zostaje czysty.' },
+      { k: '2 do 3 dni', v: 'Dwukrotnie olejowana, oddana wykończona.' },
     ],
   },
   interlude: { before: 'Podłogi, które starzeją się ', italic: 'pięknie.' },
@@ -496,7 +487,7 @@ const pl: HomeContent = {
   },
   area: {
     label: 'Obszar usług',
-    title: 'Dojeżdżamy w całym rejonie stołecznym',
+    title: 'Cały region stołeczny',
     lead: 'Ten sam samochód, te same maszyny i ten sam fachowiec, czy praca jest w Vesturbær, czy w Mosfellsbær.',
     places: [
       'Reykjavík',

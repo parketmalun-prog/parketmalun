@@ -16,7 +16,6 @@ export type Service = {
   /** Label for the per-service quote link. */
   cta: string
   /** Caption for the sticky photo slot while this service is active. */
-  photoCaption: string
 }
 
 type Intro = {
@@ -26,8 +25,6 @@ type Intro = {
   lead: string
 }
 type SeoText = { title: string; description: string }
-/** Copy for the espresso contact band sitting under the last service block. */
-type Band = { line: string; italic: string }
 
 export const servicesIntro: Record<Lang, Intro> = {
   is: {
@@ -44,25 +41,6 @@ export const servicesIntro: Record<Lang, Intro> = {
     title: 'Usługi',
     label: 'Specjalności',
     lead: 'Trzy specjalności pod jednym dachem: układanie parkietu, cyklinowanie i malowanie. Ten sam zespół prowadzi pracę od oględzin do odbioru.',
-  },
-}
-
-/**
- * The one full-bleed espresso band on the Services page: a single Fraunces
- * statement with the phone set large beside it. Contact intent, concrete.
- */
-export const servicesBand: Record<Lang, Band> = {
-  is: {
-    line: 'Segðu okkur fermetrana, við mælum og gerum tilboð innan ',
-    italic: 'vikunnar.',
-  },
-  en: {
-    line: 'Tell us the square metres, we measure and quote within the ',
-    italic: 'week.',
-  },
-  pl: {
-    line: 'Podaj metraż, mierzymy i wyceniamy w ciągu ',
-    italic: 'tygodnia.',
   },
 }
 
@@ -84,12 +62,6 @@ export const servicesSeo: Record<Lang, SeoText> = {
   },
 }
 
-export const servicesPriceNote: Record<Lang, string> = {
-  is: 'Verð fer eftir fermetrum og ástandi gólfsins. Skoðun er frí og verðtilboðið er skriflegt. Það sem stendur í tilboðinu gildir.',
-  en: 'Pricing depends on square metres and the condition of the floor. The visit is free and the quote is written. What the quote says is what applies.',
-  pl: 'Cena zależy od metrażu i stanu podłogi. Oględziny są darmowe, a wycena pisemna. To, co jest w wycenie, obowiązuje.',
-}
-
 export const services: Record<Lang, Service[]> = {
   is: [
     {
@@ -108,7 +80,6 @@ export const services: Record<Lang, Service[]> = {
         'Gólflistar og þröskuldar settir upp',
       ],
       cta: 'Fáðu tilboð í parketlögn',
-      photoCaption: 'Parketlögn · Síldarbein · Eik',
     },
     {
       key: 'slipun',
@@ -126,7 +97,6 @@ export const services: Record<Lang, Service[]> = {
         'Lakk, olía eða hvíttun, matt eða silkimatt',
       ],
       cta: 'Fáðu tilboð í slípun',
-      photoCaption: 'Parketslípun · 120 korn · Olía',
     },
     {
       key: 'malun',
@@ -144,7 +114,6 @@ export const services: Record<Lang, Service[]> = {
         'Þrif og frágangur eftir verkið',
       ],
       cta: 'Fáðu tilboð í málun',
-      photoCaption: 'Málun · Innimálning · Hrein lína',
     },
   ],
   en: [
@@ -164,7 +133,6 @@ export const services: Record<Lang, Service[]> = {
         'Skirting boards and thresholds fitted',
       ],
       cta: 'Get a quote for parquet laying',
-      photoCaption: 'Parquet laying · Herringbone · Oak',
     },
     {
       key: 'slipun',
@@ -182,7 +150,6 @@ export const services: Record<Lang, Service[]> = {
         'Lacquer, oil or whitening, matt or silk',
       ],
       cta: 'Get a quote for sanding',
-      photoCaption: 'Floor sanding · 120 grit · Oil',
     },
     {
       key: 'malun',
@@ -200,7 +167,6 @@ export const services: Record<Lang, Service[]> = {
         'Cleanup and finish after the job',
       ],
       cta: 'Get a quote for painting',
-      photoCaption: 'Painting · Interior · Clean line',
     },
   ],
   pl: [
@@ -220,7 +186,6 @@ export const services: Record<Lang, Service[]> = {
         'Montaż listew i progów',
       ],
       cta: 'Wycena układania parkietu',
-      photoCaption: 'Układanie parkietu · Jodełka · Dąb',
     },
     {
       key: 'slipun',
@@ -238,7 +203,6 @@ export const services: Record<Lang, Service[]> = {
         'Lakier, olej lub bielenie, mat lub półmat',
       ],
       cta: 'Wycena cyklinowania',
-      photoCaption: 'Cyklinowanie · Ziarno 120 · Olej',
     },
     {
       key: 'malun',
@@ -256,7 +220,6 @@ export const services: Record<Lang, Service[]> = {
         'Sprzątanie i wykończenie po pracy',
       ],
       cta: 'Wycena malowania',
-      photoCaption: 'Malowanie · Wnętrza · Czysta linia',
     },
   ],
 }

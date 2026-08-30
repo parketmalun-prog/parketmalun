@@ -1,19 +1,17 @@
 import { useEffect, useRef, useState } from 'react'
-import { site } from '@/data/site'
 import {
   services as servicesByLang,
   servicesIntro as servicesIntroByLang,
   servicesSeo as servicesSeoByLang,
-  servicesPriceNote as priceNoteByLang,
-  servicesBand as servicesBandByLang,
 } from '@/data/services'
 import { useContent, useLang, useUi } from '@/i18n/context'
 import { Seo } from '@/components/Seo'
-import { SectionIndex } from '@/components/SectionIndex'
 import { PhotoSlot } from '@/components/PhotoSlot'
+import { photos } from '@/data/photos'
+import { imgSources } from '@/lib/img'
 import { TextLink } from '@/components/TextLink'
 import { Closer } from '@/components/Closer'
-import { LineReveal, Wipe, DrawRule } from '@/components/motionPrimitives'
+import { Wipe } from '@/components/motionPrimitives'
 
 /**
  * One tone per trade so the sticky column changes surface as you scroll:
@@ -26,8 +24,6 @@ export default function Services() {
   const services = useContent(servicesByLang)
   const intro = useContent(servicesIntroByLang)
   const seo = useContent(servicesSeoByLang)
-  const priceNote = useContent(priceNoteByLang)
-  const band = useContent(servicesBandByLang)
   const { path } = useLang()
   const t = useUi()
 
@@ -54,49 +50,56 @@ export default function Services() {
     return () => io.disconnect()
   }, [])
 
-  const folio = `${String(active + 1).padStart(2, '0')} / ${String(services.length).padStart(2, '0')}`
 
   return (
     <>
       <Seo title={seo.title} description={seo.description} />
 
-      {/* ============ ARTICLE OPENER ============ */}
-      <section className="container-x pt-10 md:pt-16">
-        <LineReveal
-          as="h1"
-          lines={[intro.title]}
-          className="font-display text-[clamp(2.75rem,7vw,6rem)] font-bold leading-[0.94] tracking-[-0.02em] text-espresso"
+      {/* ============ OPENER: the photograph band ============
+          Big centred title on the craft photograph under a dark filter, one
+          short line beneath it, nothing else: you see at once which section
+          you are in (client, 2026-08-30). */}
+      <section className="relative flex min-h-[46vh] items-center overflow-hidden bg-espresso text-cream md:min-h-[54vh]">
+        <img
+          src={imgSources(photos.services.parket).src}
+          srcSet={imgSources(photos.services.parket).srcSet || undefined}
+          sizes="100vw"
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover"
+          fetchpriority="high"
+          decoding="async"
         />
-        <div className="grid grid-cols-12 gap-x-4 pb-14 pt-6 md:gap-x-6">
-          <p className="col-span-12 max-w-[52ch] text-lg leading-relaxed text-espresso-700 md:col-span-7 lg:col-span-6 lg:col-start-2">
-            {intro.lead}
-          </p>
+        <div className="absolute inset-0 bg-espresso/60" aria-hidden />
+        <div className="container-x relative z-10 py-20 text-center">
+          <h1 className="font-display text-[clamp(3rem,7.5vw,6.5rem)] font-bold leading-[0.94] tracking-[-0.02em] text-cream">
+            {intro.title}
+          </h1>
+          <p className="mx-auto mt-6 max-w-[46ch] text-lg leading-relaxed text-cream/85">{intro.lead}</p>
         </div>
       </section>
 
       {/* ============ 01 STICKY SERVICE LEDGER ============ */}
       <section className="container-x pb-16 lg:pb-24">
-        <SectionIndex n="01" label={intro.label} />
         <div className="grid grid-cols-12 gap-x-4 pt-10 md:gap-x-6 lg:pt-14">
-          {/* sticky tonal column: the surface changes with the active trade */}
-          <div className="hidden lg:col-span-4 lg:block">
+          {/* sticky tonal column: the surface changes with the active trade.
+              Just the photograph, larger, no caption and no counter row
+              (client, 2026-08-30). */}
+          <div className="hidden lg:col-span-5 lg:block">
             <div className="sticky top-[130px]">
               <Wipe from="left">
                 <PhotoSlot
                   aspect="3/4"
                   tone={SERVICE_TONES[active % SERVICE_TONES.length]}
-                  caption={services[active]?.photoCaption}
+                  src={services[active] ? photos.craft[services[active].key] : undefined}
+                  alt={services[active]?.title ?? ''}
+                  sizes="(min-width: 1024px) 40vw, 100vw"
                 />
               </Wipe>
-              <div className="mt-5 flex items-baseline justify-between gap-4 border-t border-espresso/15 pt-3">
-                <span className="cap-label truncate">{services[active]?.title}</span>
-                <span className="cap-label tnum shrink-0">{folio}</span>
-              </div>
             </div>
           </div>
 
           {/* scrolling service blocks */}
-          <div className="col-span-12 lg:col-span-7 lg:col-start-6">
+          <div className="col-span-12 lg:col-span-6 lg:col-start-7">
             {services.map((s, i) => (
               <article
                 key={s.key}
@@ -104,7 +107,7 @@ export default function Services() {
                 ref={(el) => {
                   blockRefs.current[i] = el
                 }}
-                className="border-b border-espresso/15 py-14 first:pt-0 lg:py-20"
+                className="border-b border-espresso/15 py-16 first:pt-0 lg:py-24"
               >
                 <span
                   className="num-outline tnum block font-display text-[3.75rem] font-bold leading-[0.85] lg:text-[5rem]"
@@ -120,7 +123,13 @@ export default function Services() {
                 {/* tonal block inline on mobile where the sticky column is hidden */}
                 <div className="pt-8 lg:hidden">
                   <Wipe>
-                    <PhotoSlot aspect="4/3" tone={SERVICE_TONES[i % SERVICE_TONES.length]} caption={s.photoCaption} />
+                    <PhotoSlot
+                    aspect="4/3"
+                    tone={SERVICE_TONES[i % SERVICE_TONES.length]}
+                    src={photos.craft[s.key]}
+                    alt={s.title}
+                    sizes="100vw"
+                  />
                   </Wipe>
                 </div>
 
@@ -154,52 +163,7 @@ export default function Services() {
         </div>
       </section>
 
-      {/* ============ CONTACT BAND ============ */}
-      <section className="bg-espresso text-cream">
-        <div className="container-x py-16 lg:py-24">
-          <DrawRule dark />
-          <div className="grid grid-cols-12 items-end gap-x-4 gap-y-10 pt-12 md:gap-x-6 lg:pt-16">
-            <div className="col-span-12 lg:col-span-7">
-              <LineReveal
-                as="p"
-                lines={[
-                  <span key="band">
-                    {band.line}
-                    <em className="font-medium italic text-gold-bright">{band.italic}</em>
-                  </span>,
-                ]}
-                className="font-display text-[clamp(1.9rem,4.2vw,3.5rem)] font-bold leading-[1.06] tracking-[-0.02em] text-cream"
-              />
-            </div>
-            <div className="col-span-12 flex flex-col items-start gap-3 lg:col-span-4 lg:col-start-9 lg:items-end">
-              <a
-                href={`tel:${site.phoneRaw}`}
-                className="tnum font-display text-[clamp(2.5rem,4.6vw,3.5rem)] font-bold leading-none text-cream transition-colors hover:text-gold-bright"
-                aria-label={`${t.common.callPrefix} ${site.phone}`}
-              >
-                {site.phone}
-              </a>
-              <p className="cap-label-dark lg:text-right">{t.topbar.hours}</p>
-            </div>
-          </div>
-          <div className="pt-12 lg:pt-16">
-            <DrawRule dark delay={0.1} />
-          </div>
-        </div>
-      </section>
-
-      {/* ============ PRICE NOTE ============ */}
-      <section className="bg-sand-light">
-        <div className="container-x py-14 lg:py-16">
-          <div className="grid grid-cols-12 gap-x-4 md:gap-x-6">
-            <p className="tnum col-span-12 max-w-[62ch] text-base leading-relaxed text-espresso-700 lg:col-span-8 lg:col-start-2">
-              {priceNote}
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <Closer n="02" />
+      <Closer />
     </>
   )
 }

@@ -6,11 +6,10 @@ import { contact as contactByLang, contactSeo as contactSeoByLang } from '@/data
 import { useContent, useLang, useUi } from '@/i18n/context'
 import { useEnquiry, enquiryFieldClass } from '@/lib/enquiry'
 import { Seo } from '@/components/Seo'
-import { SectionIndex } from '@/components/SectionIndex'
-import { PhotoSlot } from '@/components/PhotoSlot'
+import { photos } from '@/data/photos'
+import { imgSources } from '@/lib/img'
 import { Button } from '@/components/Button'
-import { Closer } from '@/components/Closer'
-import { LineReveal, Wipe, DrawRule, FadeIn } from '@/components/motionPrimitives'
+import { Wipe, FadeIn } from '@/components/motionPrimitives'
 
 const inputClass = enquiryFieldClass
 
@@ -48,21 +47,17 @@ export default function Contact() {
       <Seo title={seo.title} description={seo.description} />
 
       {/* Article opener: huge title, one concrete lead sentence, quick contact strip */}
-      <section className="container-x pb-14 pt-14 sm:pt-24">
-        <LineReveal
-          as="h1"
-          lines={c.titleLines}
-          className="font-display text-[clamp(2.75rem,7vw,6rem)] font-bold leading-[0.94] tracking-[-0.02em] text-espresso"
-        />
-        <div className="grid grid-cols-12 gap-x-4 pt-8 md:gap-x-6">
-          <FadeIn delay={0.25} className="col-span-12 md:col-span-8 lg:col-span-6 lg:col-start-2">
-            <p className="max-w-[44ch] text-lg leading-relaxed text-ink/80">{c.lead}</p>
-          </FadeIn>
-        </div>
+      {/* One line, big, centred (client, 2026-08-29). */}
+      <section className="container-x pb-14 pt-14 text-center sm:pt-24">
+        <h1 className="font-display text-[clamp(2.5rem,6.2vw,5.5rem)] font-bold leading-[0.96] tracking-[-0.02em] text-espresso">
+          {c.titleLines.join(' ')}
+        </h1>
+        <FadeIn delay={0.25}>
+          <p className="mx-auto max-w-[44ch] pt-6 text-lg leading-relaxed text-ink/80">{c.lead}</p>
+        </FadeIn>
 
         {/* Quick contact strip: the three things a visitor needs before scrolling */}
-        <div className="mt-12 lg:mt-16">
-          <DrawRule />
+        <div className="mt-12 text-left lg:mt-16">
           <dl className="grid grid-cols-1 sm:grid-cols-3">
             <div className="py-5 sm:pr-6">
               <dt className="cap-label">{t.contact.labelPhone}</dt>
@@ -94,21 +89,33 @@ export default function Contact() {
               </dd>
             </div>
           </dl>
-          <DrawRule delay={0.15} />
         </div>
       </section>
 
       {/* Form on plinth: cream panel overlapping a full width espresso strip */}
       <section className="pt-4">
-        <div className="container-x">
-          <SectionIndex n="01" label={c.indexLabel} />
-        </div>
-        <div className="relative mt-12">
-          <div className="absolute inset-x-0 bottom-0 top-[35%] bg-espresso" aria-hidden />
+        <div className="relative mt-8">
+          {/* The plinth is a photograph under a dark filter now; the bare
+              espresso slab read as an empty hole (client, 2026-08-29), and
+              the bare-floor shot read as murky, so it is the styled stock
+              living room instead (client, 2026-08-30). */}
+          <div className="absolute inset-x-0 bottom-0 top-[35%] overflow-hidden" aria-hidden>
+            <img
+              src={imgSources(photos.pano[2]).src}
+              srcSet={imgSources(photos.pano[2]).srcSet || undefined}
+              sizes="100vw"
+              alt=""
+              className="h-full w-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+            <div className="absolute inset-0 bg-espresso/55" />
+          </div>
           <div className="container-x relative pb-20 sm:pb-28">
             <div className="grid grid-cols-12 gap-x-4 gap-y-14 md:gap-x-6">
               {/* The order form panel */}
-              <div className="col-span-12 lg:col-span-6 lg:col-start-2">
+              {/* The form alone, centred and a touch wider (client, 2026-08-30). */}
+              <div className="col-span-12 lg:col-span-8 lg:col-start-3">
                 <Wipe>
                   <div className="rounded-xl border border-espresso/15 bg-cream p-6 sm:p-10">
                     {/* Always-mounted live region so the outcome is announced */}
@@ -231,81 +238,11 @@ export default function Contact() {
                 </Wipe>
               </div>
 
-              {/* Contact ledger: dark column that grows out of the plinth strip */}
-              <div className="col-span-12 bg-espresso py-8 text-cream lg:col-span-4 lg:col-start-9 lg:self-end">
-                <h2 className="font-display text-[clamp(1.35rem,2.2vw,1.75rem)] font-bold leading-tight text-cream">
-                  {c.info.title}
-                </h2>
-
-                <p className="cap-label-dark pt-7">{t.contact.labelPhone}</p>
-                <a
-                  href={`tel:${site.phoneRaw}`}
-                  aria-label={`${t.common.callPrefix} ${site.phone}`}
-                  className="tnum mt-2 inline-block font-display text-[clamp(2.5rem,4.6vw,3.5rem)] font-bold leading-none text-cream transition-colors hover:text-gold-bright"
-                >
-                  {site.phone}
-                </a>
-
-                <dl className="m-0 mt-9">
-                  <div className="border-t border-cream/15 py-4">
-                    <dt className="cap-label-dark">{t.contact.labelEmail}</dt>
-                    <dd className="m-0 pt-1">
-                      <a
-                        href={`mailto:${site.email}`}
-                        className="break-all text-base text-cream transition-colors hover:text-gold-bright"
-                      >
-                        {site.email}
-                      </a>
-                    </dd>
-                  </div>
-                  <div className="border-t border-cream/15 py-4">
-                    <dt className="cap-label-dark">{t.footer.hoursTitle}</dt>
-                    <dd className="tnum m-0 space-y-1 pt-1 text-base text-cream/90">
-                      {c.info.hours.map((line) => (
-                        <span key={line} className="block">
-                          {line}
-                        </span>
-                      ))}
-                    </dd>
-                  </div>
-                  <div className="border-t border-cream/15 py-4">
-                    <dt className="cap-label-dark">{t.contact.labelArea}</dt>
-                    <dd className="m-0 pt-1 text-base leading-relaxed text-cream/90">{c.info.areaValue}</dd>
-                  </div>
-                  <div className="border-t border-cream/15 py-4">
-                    <dt className="cap-label-dark">{c.info.facebookLabel}</dt>
-                    <dd className="m-0 pt-1">
-                      <a
-                        href={site.facebook}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-base text-cream underline decoration-cream/30 underline-offset-4 transition-colors hover:text-gold-bright"
-                      >
-                        {c.info.facebookValue}
-                      </a>
-                    </dd>
-                  </div>
-                  <div className="border-b border-t border-cream/15 py-4">
-                    <dt className="cap-label-dark">{c.info.responseLabel}</dt>
-                    <dd className="m-0 max-w-[40ch] pt-1 text-[15px] leading-relaxed text-cream/70">
-                      {c.info.responseNote}
-                    </dd>
-                  </div>
-                </dl>
-
-                {/* Mounted print: cream mat holds the dark slot off the espresso ground */}
-                <Wipe delay={0.1} className="mt-10">
-                  <div className="rounded-xl border border-cream/20 bg-cream p-3.5">
-                    <PhotoSlot aspect="4/3" tone="espresso" caption={c.info.photoCaption} />
-                  </div>
-                </Wipe>
-              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <Closer n="02" withForm={false} />
     </>
   )
 }

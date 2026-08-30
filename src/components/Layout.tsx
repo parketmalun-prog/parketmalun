@@ -1,11 +1,13 @@
-import { Suspense } from 'react'
+import { Suspense, useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
 import { Navbar } from './Navbar'
 import { Footer } from './Footer'
 import { QuickContact } from './QuickContact'
 import { GrainOverlay } from './GrainOverlay'
 import { ScrollToTop } from './ScrollToTop'
+import { Tracker } from './Tracker'
 import { useUi } from '@/i18n/context'
+import { startSmoothScroll } from '@/lib/smoothScroll'
 
 /** Minimal, layout-stable placeholder while a lazily-loaded route chunk arrives. */
 function PageFallback() {
@@ -18,6 +20,7 @@ function PageFallback() {
 
 export function Layout() {
   const t = useUi()
+  useEffect(startSmoothScroll, [])
   return (
     <div className="flex min-h-dvh flex-col">
       <a
@@ -27,9 +30,10 @@ export function Layout() {
         {t.common.skipToContent}
       </a>
       <ScrollToTop />
+      <Tracker />
       <GrainOverlay />
       <Navbar />
-      <main id="efni" tabIndex={-1} className="flex-1 pt-[64px] outline-none md:pt-[110px]">
+      <main id="efni" tabIndex={-1} className="flex-1 pt-[64px] outline-none md:pt-[72px]">
         <Suspense fallback={<PageFallback />}>
           <Outlet />
         </Suspense>

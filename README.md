@@ -1,7 +1,8 @@
 # Expert Parket og Mál ehf — vefsíða
 
 Fjöltyngd, marg-síðu vefsíða fyrir parket-, slípunar- og málningarþjónustu á höfuðborgarsvæðinu.
-Öll framsetning er á **íslensku**. Byggt með Vite + React + TypeScript + Tailwind CSS + Framer Motion.
+Öll framsetning er á **íslensku**. Byggt með Vite + React + TypeScript + Tailwind CSS.
+Allar opinberar síður eru forbyggðar í statískt HTML við build.
 
 > Website for an Icelandic parquet / floor-sanding / painting company. This README is bilingual for the developer.
 
@@ -24,8 +25,19 @@ npm run preview  # forskoða build
 | `/thjonusta` | Þjónusta | Parketlögn, Parketslípun, Málun — ítarlegt |
 | `/verkefni` | Verkefni | Verkefnasafn með síu eftir þjónustu |
 | `/parket` | Vöruúrval | Parketgerðir + **verð á m²** |
+| `/frettir` | Fréttir | Greinar úr stjórnborðinu, á öllum tungumálum |
+| `/frettir/:slug` | Grein | Ein grein |
 | `/um-okkur` | Um okkur | Saga, gildi, þjónustusvæði, algengar spurningar |
 | `/hafdu-samband` | Hafðu samband | Fyrirspurnarform + samskiptaupplýsingar |
+| `/l/:code` | Hlekkur | Telur smell og vísar áfram |
+| `/admin` | Stjórnborð | Tölfræði, hlekkir, greinar |
+
+## 🔐 Stjórnborð (admin)
+
+Fyrirspurnir úr öllum formum vefsins, tölfræði um heimsóknir, hlekkir fyrir
+auglýsingar og bloggið eru á `/admin` (lykilorð `expert2026`, því er breytt í
+stillingum). Stjórnborðið er á íslensku, ensku eða rúmensku. Uppsetning,
+Supabase-tenging og sjálfvirk þýðing: **[docs/ADMIN.md](docs/ADMIN.md)**.
 
 ## ✏️ Að breyta texta og verði
 
@@ -82,27 +94,35 @@ Skilgreint í `tailwind.config.js`:
 - **Espresso / valhnota** (dökkir brúnir) — fyrirsagnir, dökkir kaflar, footer.
 - **Gull / karamella** (`gold`) — hnappar, áherslur.
 - **Krem / sandur** — bakgrunnur og mjúkir kaflar.
-- Letur: **Fraunces** (fyrirsagnir) + **Inter** (meginmál).
+- Letur: **Archivo** (fyrirsagnir, breið iðnaðarleg grotesk) + **Space Grotesk** (meginmál og viðmót).
 - **Sérteiknuð tákn** (`src/components/icons.tsx`): einstakt „craft“ táknasett teiknað fyrir þetta vörumerki — parket-chevron, slípivél, málningarrúlla, demantur o.fl. Ekki staðlað safn.
 - Skreytingar: fiskibeina-mynstur (`.pattern-herringbone-*`), útlínu-vatnsmerki (`.text-ghost`), borði (Marquee), teljarar (Stat).
 
-## 🔒 Öryggi & SEO
+## ⚡ Hraði, SEO og öryggi
 
-- Öryggishausar í `vercel.json` (nosniff, X-Frame-Options, HSTS, Referrer-Policy, Permissions-Policy, COOP/CORP, hert CSP með `object-src 'none'` og `upgrade-insecure-requests`).
-- Honeypot-reitur í fyrirspurnarforminu gegn ruslpósti + hámarkslengdir á reitum.
-- `robots.txt`, þrítyngt `sitemap.xml` (með hreflang) og JSON-LD (LocalBusiness) fyrir leitarvélar.
+Allar opinberar síður eru forbyggðar (prerender) í raunverulegt HTML, svo fyrsta
+skjámyndin birtist án þess að bíða eftir JavaScript. Nánar, ásamt öryggislögunum
+og því sem eftir stendur fyrir eigandann: **[docs/PERFORMANCE-SEO-SECURITY.md](docs/PERFORMANCE-SEO-SECURITY.md)**.
+
+Í stuttu máli:
+
+- Öryggishausar í `vercel.json` (nosniff, X-Frame-Options, HSTS, Referrer-Policy, Permissions-Policy, COOP/CORP, hert CSP).
+- Honeypot, lágmarks útfyllingartími og hámarkslengdir á öllum formum.
+- Hraðatakmörkun og upprunaathugun á `/api/translate`; bið eftir röng lykilorð í stjórnborði.
+- `robots.txt`, sjálfgenerað þrítyngt `sitemap.xml` með hreflang, og JSON-LD á hverri síðu.
 
 ## ⚖️ Persónuvernd (GDPR)
 
 - Persónuverndarstefna á þremur tungumálum: `/personuvernd`, `/en/privacy`, `/pl/polityka-prywatnosci` (efni í `src/data/privacy.ts`).
-- Vefurinn notar **engar vafrakökur og enga greiningu** — því þarf ekki vafraköku-borða.
+- Vefurinn notar **engar vafrakökur**. Heimsóknartalningin er okkar eigin, án vafrakaka og án IP talna, svo ekki þarf vafraköku-borða. Fyrirspurnir eru geymdar í stjórnborðinu og það kemur fram í persónuverndarstefnunni.
 - **TODO fyrir eiganda:** bæta kennitölu (og skráðu heimilisfangi ef vill) fyrirtækisins í persónuverndarstefnuna/footer þegar hún er staðfest — æskilegt fyrir viðskiptavef á Íslandi.
 
 ## ☁️ Útgáfa (deploy) á Vercel
 
 1. Ýttu verkefninu á GitHub.
 2. „Import Project" á [vercel.com](https://vercel.com) — Vite greinist sjálfkrafa.
-3. `vercel.json` sér um SPA-beiningar (allar slóðir → `index.html`).
+3. `vercel.json` beinir því sem ekki er forbyggt á `app.html`; forbyggðu síðurnar
+   eru bornar fram beint af skráakerfinu.
 
 ---
 

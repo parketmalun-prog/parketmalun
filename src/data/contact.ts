@@ -21,6 +21,9 @@ type ContactContent = {
     messagePlaceholder: string
     submitLabel: string
     sendingLabel: string
+    /** GDPR notice under the submit button; the privacy link follows it. */
+    consentPrefix: string
+    consentLink: string
     successTitle: string
     successText: string
     mailtoTitle: string
@@ -29,17 +32,6 @@ type ContactContent = {
     privacyNote: string
   }
   /** The contact ledger on the espresso plinth. */
-  info: {
-    title: string
-    areaValue: string
-    /** Opening hours, one line per row. Ranges written out, never dashes. */
-    hours: string[]
-    responseLabel: string
-    responseNote: string
-    facebookLabel: string
-    facebookValue: string
-    photoCaption: string
-  }
 }
 
 export const contactSeo: Record<Lang, SeoText> = {
@@ -78,6 +70,8 @@ export const contact: Record<Lang, ContactContent> = {
       messagePlaceholder: 'Til dæmis: 60 m² stofa í Kópavogi, slípun og lökkun, laus í ágúst.',
       submitLabel: 'Senda verkbeiðni',
       sendingLabel: 'Sendi …',
+      consentPrefix: 'Með því að senda samþykkir þú',
+      consentLink: 'persónuverndarstefnu okkar',
       successTitle: 'Móttekið, takk fyrir',
       successText:
         'Skilaboðin þín eru komin til okkar. Við hringjum eða skrifum til baka samdægurs á virkum dögum.',
@@ -87,17 +81,6 @@ export const contact: Record<Lang, ContactContent> = {
       errorText: 'Sendingin mistókst. Hringdu í 785 7079 eða reyndu aftur eftir smástund.',
       privacyNote:
         'Upplýsingarnar eru aðeins notaðar til að svara fyrirspurninni og fara aldrei til þriðja aðila.',
-    },
-    info: {
-      title: 'Samskiptaupplýsingar',
-      areaValue: 'Reykjavík, Kópavogur, Garðabær, Hafnarfjörður og allt höfuðborgarsvæðið',
-      hours: ['Mánudaga til föstudaga 08:00 til 18:00', 'Laugardaga og sunnudaga lokað'],
-      responseLabel: 'Svartími',
-      responseNote:
-        'Við svörum símanum á vinnutíma. Séum við á gólfi með vélarnar í gangi hringjum við til baka sama dag.',
-      facebookLabel: 'Facebook',
-      facebookValue: 'Expert Parket og Mál',
-      photoCaption: 'Hafnarfjörður · 2025 · Eik',
     },
   },
   en: {
@@ -117,6 +100,8 @@ export const contact: Record<Lang, ContactContent> = {
       messagePlaceholder: 'For example: 60 m² living room in Kópavogur, sanding and lacquer, free in August.',
       submitLabel: 'Send the enquiry',
       sendingLabel: 'Sending …',
+      consentPrefix: 'By sending you agree to our',
+      consentLink: 'privacy policy',
       successTitle: 'Received, thank you',
       successText:
         'Your message has reached us. We call or write back the same working day.',
@@ -126,17 +111,6 @@ export const contact: Record<Lang, ContactContent> = {
       errorText: 'The message did not go through. Call 785 7079 or try again in a moment.',
       privacyNote:
         'Your details are used only to answer the enquiry and never go to a third party.',
-    },
-    info: {
-      title: 'Contact details',
-      areaValue: 'Reykjavík, Kópavogur, Garðabær, Hafnarfjörður and the whole capital region',
-      hours: ['Monday to Friday 08:00 to 18:00', 'Saturday and Sunday closed'],
-      responseLabel: 'Response time',
-      responseNote:
-        'We answer the phone during working hours. If we are on a floor with the machines running, we call back the same day.',
-      facebookLabel: 'Facebook',
-      facebookValue: 'Expert Parket og Mál',
-      photoCaption: 'Hafnarfjörður · 2025 · Oak',
     },
   },
   pl: {
@@ -155,6 +129,8 @@ export const contact: Record<Lang, ContactContent> = {
       messageLabel: 'Wiadomość',
       messagePlaceholder: 'Na przykład: salon 60 m² w Kópavogur, cyklinowanie i lakierowanie, termin w sierpniu.',
       submitLabel: 'Wyślij zapytanie',
+      consentPrefix: 'Wysyłając zapytanie akceptujesz naszą',
+      consentLink: 'politykę prywatności',
       sendingLabel: 'Wysyłanie …',
       successTitle: 'Otrzymaliśmy, dziękujemy',
       successText:
@@ -165,17 +141,6 @@ export const contact: Record<Lang, ContactContent> = {
       errorText: 'Wysyłka nie powiodła się. Zadzwoń pod 785 7079 lub spróbuj ponownie za chwilę.',
       privacyNote:
         'Twoje dane służą wyłącznie do odpowiedzi na zapytanie i nigdy nie trafiają do osób trzecich.',
-    },
-    info: {
-      title: 'Dane kontaktowe',
-      areaValue: 'Reykjavík, Kópavogur, Garðabær, Hafnarfjörður i cały region stołeczny',
-      hours: ['Poniedziałek do piątku 08:00 do 18:00', 'Sobota i niedziela nieczynne'],
-      responseLabel: 'Czas odpowiedzi',
-      responseNote:
-        'Odbieramy telefon w godzinach pracy. Jeśli jesteśmy przy pracy z maszynami, oddzwaniamy tego samego dnia.',
-      facebookLabel: 'Facebook',
-      facebookValue: 'Expert Parket og Mál',
-      photoCaption: 'Hafnarfjörður · 2025 · Dąb',
     },
   },
 }

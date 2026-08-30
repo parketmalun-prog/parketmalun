@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react'
 import type { FormEvent } from 'react'
 import { X } from 'lucide-react'
 import { contact as contactByLang } from '@/data/contact'
+import { lockScroll } from '@/lib/smoothScroll'
 import { useContent, useUi } from '@/i18n/context'
 import { useEnquiry, enquiryFieldClass } from '@/lib/enquiry'
 import { Button } from './Button'
@@ -42,8 +43,9 @@ export function QuickRequestDialog({ product, onClose }: Props) {
     }
     const trigger = document.activeElement instanceof HTMLElement ? document.activeElement : null
     nameRef.current?.focus()
-    const prev = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
+    // Body overflow alone does not hold under Lenis: html is the scrollport
+    // and Lenis writes it every frame, so the page would scroll behind this.
+    lockScroll(true)
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         onClose()
@@ -71,7 +73,7 @@ export function QuickRequestDialog({ product, onClose }: Props) {
     }
     document.addEventListener('keydown', onKey)
     return () => {
-      document.body.style.overflow = prev
+      lockScroll(false)
       document.removeEventListener('keydown', onKey)
       trigger?.focus()
     }

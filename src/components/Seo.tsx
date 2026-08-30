@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useLang } from '@/i18n/context'
+import type { Lang } from '@/i18n/config'
 import { LANGS, DEFAULT_LANG, HTML_LANG, OG_LOCALE, SITE_URL, parsePath, pathFor } from '@/i18n/config'
 
 function upsertMeta(attr: 'name' | 'property', key: string, content: string) {
@@ -23,12 +24,25 @@ function upsertCanonical(href: string) {
   el.setAttribute('href', href)
 }
 
+type Props = {
+  title: string
+  description?: string
+  noindex?: boolean
+  /**
+   * Overrides the canonical path. Needed by pages whose URL carries a segment
+   * the route table does not know about, such as a blog post slug.
+   */
+  canonicalPath?: string
+  /** Per-language paths for the hreflang alternates, same reason. */
+  alternates?: Partial<Record<Lang, string>>
+}
+
 /**
  * Sets per-page metadata: document title, description, <html lang>, canonical,
  * Open Graph locale/url, and hreflang alternates for every language so each
  * language version is discoverable and correctly linked for search engines.
  */
-export function Seo({ title, description, noindex }: { title: string; description?: string; noindex?: boolean }) {
+export function Seo({ title, description, noindex, canonicalPath, alternates }: Props) {
   const { lang } = useLang()
   const { pathname } = useLocation()
 
@@ -42,7 +56,8 @@ export function Seo({ title, description, noindex }: { title: string; descriptio
     if (description) upsertMeta('property', 'og:description', description)
 
     const { key } = parsePath(pathname)
-    const canonical = SITE_URL + pathFor(key, lang)
+    const pathIn = (l: Lang) => alternates?.[l] ?? pathFor(key, l)
+    const canonical = SITE_URL + (canonicalPath ?? pathIn(lang))
     upsertCanonical(canonical)
     upsertMeta('property', 'og:url', canonical)
 
@@ -53,16 +68,16 @@ export function Seo({ title, description, noindex }: { title: string; descriptio
         const link = document.createElement('link')
         link.setAttribute('rel', 'alternate')
         link.setAttribute('hreflang', HTML_LANG[l])
-        link.setAttribute('href', SITE_URL + pathFor(key, l))
+        link.setAttribute('href', SITE_URL + pathIn(l))
         document.head.appendChild(link)
       }
       const xDefault = document.createElement('link')
       xDefault.setAttribute('rel', 'alternate')
       xDefault.setAttribute('hreflang', 'x-default')
-      xDefault.setAttribute('href', SITE_URL + pathFor(key, DEFAULT_LANG))
+      xDefault.setAttribute('href', SITE_URL + pathIn(DEFAULT_LANG))
       document.head.appendChild(xDefault)
     }
-  }, [title, description, lang, pathname, noindex])
+  }, [title, description, lang, pathname, noindex, canonicalPath, alternates])
 
   return null
 }

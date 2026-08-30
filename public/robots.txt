@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /l/
+Disallow: /api/
 
 Sitemap: https://expertparketogmal.is/sitemap.xml

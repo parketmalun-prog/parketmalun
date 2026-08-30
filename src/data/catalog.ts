@@ -63,7 +63,7 @@ export const catalog: Record<Lang, CatalogContent> = {
       {
         name: 'Reykjavík Eik',
         category: 'hardparket',
-        woodTone: 'Ljóst eik',
+        woodTone: 'Ljós eik',
         description:
           'Slitsterkt harðparket sem líkir fullkomlega eftir ljósri eik. Auðvelt í umhirðu og hentar vel þar sem mikið er gengið.',
         pricePerM2: 4290,
@@ -77,7 +77,7 @@ export const catalog: Record<Lang, CatalogContent> = {
       {
         name: 'Katla Hnota',
         category: 'hardparket',
-        woodTone: 'Dökkt hnota',
+        woodTone: 'Dökk hnota',
         description: 'Hlýlegt harðparket í djúpum hnotutón sem gefur rýminu notalega og heimilislega áferð.',
         pricePerM2: 5690,
         thickness: '10 mm',
@@ -103,7 +103,7 @@ export const catalog: Record<Lang, CatalogContent> = {
       {
         name: 'Askja Eik',
         category: 'vinyl',
-        woodTone: 'Ljóst eik',
+        woodTone: 'Ljós eik',
         description:
           'Þægilegt vínylparket með mjúkri áferð og hljóðdempandi undirlagi sem gerir heimilið hljóðlátara.',
         pricePerM2: 8290,
@@ -116,7 +116,7 @@ export const catalog: Record<Lang, CatalogContent> = {
       {
         name: 'Þingvellir Eik',
         category: 'gegnheilt',
-        woodTone: 'Náttúrulegt eik',
+        woodTone: 'Náttúruleg eik',
         description:
           'Gegnheilt eikarparket úr völdum viði sem má slípa upp á nýtt aftur og aftur. Gólf sem endist kynslóðir.',
         pricePerM2: 13900,
@@ -129,7 +129,7 @@ export const catalog: Record<Lang, CatalogContent> = {
       {
         name: 'Snæfell Hvítolíu Eik',
         category: 'gegnheilt',
-        woodTone: 'Ljóst hvítolíuborið eik',
+        woodTone: 'Ljós hvítolíuborin eik',
         description:
           'Ljóst gegnheilt eikarparket með hvítolíu sem heldur birtu og undirstrikar náttúrulega áferð viðarins.',
         pricePerM2: 14900,
@@ -142,7 +142,7 @@ export const catalog: Record<Lang, CatalogContent> = {
       {
         name: 'Hekla Fiskibein Eik',
         category: 'fiskibein',
-        woodTone: 'Ljóst eik',
+        woodTone: 'Ljós eik',
         description:
           'Klassískt fiskibeinamynstur í ljósri eik sem setur glæsilegan og tímalausan svip á rýmið.',
         pricePerM2: 15900,
@@ -156,7 +156,7 @@ export const catalog: Record<Lang, CatalogContent> = {
       {
         name: 'Vatnajökull Fiskibein Hnota',
         category: 'fiskibein',
-        woodTone: 'Dökkt hnota',
+        woodTone: 'Dökk hnota',
         description: 'Fiskibein úr dökkri hnotu sem skapar dramatíska, glæsilega og tímalausa umgjörð.',
         pricePerM2: 16900,
         thickness: '14 mm',

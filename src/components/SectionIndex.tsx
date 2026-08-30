@@ -1,34 +1,12 @@
 import type { ReactNode } from 'react'
-import { cn } from '@/lib/utils'
-import { DrawRule } from './motionPrimitives'
-
-type Props = {
-  /** Two-digit print index, e.g. "01". */
-  n: string
-  /** Small-caps label sitting next to the number on the rule. */
-  label: string
-  /** Optional right-aligned slot (a TextLink, a short support line). */
-  right?: ReactNode
-  dark?: boolean
-  className?: string
-}
 
 /**
- * PLANKI section opener: a full-width hairline rule carrying the gold index
- * number + small-caps label, with an optional right-aligned slot. The only
- * permitted way to open a section. Headings follow as siblings.
+ * What is left of the PLANKI section opener: an optional right-aligned slot
+ * (a TextLink, a short support line) and nothing else. The index numbers and
+ * labels went 2026-08-26, the hairline rule 2026-08-29, both at the client's
+ * request; call sites that passed only those were removed with them.
  */
-export function SectionIndex({ n, label, right, dark = false, className }: Props) {
-  return (
-    <div className={className}>
-      <DrawRule dark={dark} />
-      <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 pt-3">
-        <p className={cn('flex items-baseline gap-2.5', dark ? 'text-cream' : 'text-espresso')}>
-          <span className="tnum font-display text-base font-bold text-gold-deep">{n}</span>
-          <span className={dark ? 'cap-label-dark' : 'cap-label'}>{label}</span>
-        </p>
-        {right ? <div className="flex items-baseline gap-4">{right}</div> : null}
-      </div>
-    </div>
-  )
+export function SectionIndex({ right, className }: { right?: ReactNode; className?: string }) {
+  if (!right) return null
+  return <div className={className ? className + ' flex justify-end' : 'flex justify-end'}>{right}</div>
 }

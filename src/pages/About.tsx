@@ -1,12 +1,12 @@
 import { about as aboutByLang, aboutSeo as aboutSeoByLang } from '@/data/about'
 import { useContent } from '@/i18n/context'
 import { Seo } from '@/components/Seo'
-import { SectionIndex } from '@/components/SectionIndex'
 import { PhotoSlot } from '@/components/PhotoSlot'
-import { Stamp } from '@/components/Stamp'
+import { photos } from '@/data/photos'
+import { imgSources } from '@/lib/img'
 import { FaqAccordion } from '@/components/FaqAccordion'
 import { Closer } from '@/components/Closer'
-import { LineReveal, Wipe, DrawRule } from '@/components/motionPrimitives'
+import { LineReveal, Wipe } from '@/components/motionPrimitives'
 
 export default function About() {
   const a = useContent(aboutByLang)
@@ -16,40 +16,37 @@ export default function About() {
     <>
       <Seo title={seo.title} description={seo.description} />
 
-      {/* ============ ARTICLE OPENER ============ */}
-      <section className="container-x pt-10 md:pt-16">
-        <LineReveal
-          as="h1"
-          lines={a.titleLines}
-          className="font-display text-[clamp(2.75rem,7vw,6rem)] font-bold leading-[0.94] tracking-[-0.02em] text-espresso"
-        />
-        <div className="grid grid-cols-12 gap-x-4 pb-12 pt-6 md:gap-x-6">
-          <p className="col-span-12 max-w-[52ch] text-lg leading-relaxed text-espresso-700 md:col-span-7 lg:col-span-6 lg:col-start-2">
-            {a.lead}
-          </p>
-        </div>
-      </section>
-
-      {/* ============ STORY ============ */}
-      <section className="container-x relative py-4 lg:py-8">
-        <div className="relative">
-          <SectionIndex n="01" label={a.story.label} />
-          {/* experience stamp overlapping the rule, desktop only */}
-          <div className="absolute -top-14 right-8 hidden lg:block">
-            <Stamp value="25+" ringText="ÁR Í FAGINU · EXPERT PARKET · " size={140} />
+      {/* ============ OPENER + STORY: one grid ============
+          Title, lead and paragraphs run down the left; the photograph starts
+          UP TOP, level with the title, so the right half never sits empty
+          (client, 2026-08-30). */}
+      <section className="container-x pb-14 pt-10 md:pt-16">
+        <div className="grid grid-cols-12 items-start gap-x-4 gap-y-10 md:gap-x-6">
+          <div className="col-span-12 lg:col-span-6">
+            <LineReveal
+              as="h1"
+              lines={a.titleLines}
+              className="font-display text-[clamp(2.5rem,4.6vw,4.25rem)] font-bold leading-[0.96] tracking-[-0.02em] text-espresso"
+            />
+            <p className="max-w-[52ch] pt-6 text-lg leading-relaxed text-espresso-700">{a.lead}</p>
+            <div className="space-y-5 pt-10">
+              {a.story.paragraphs.map((p, i) => (
+                <p key={i} className="max-w-[62ch] leading-relaxed text-ink/80">
+                  {p}
+                </p>
+              ))}
+            </div>
           </div>
-        </div>
-        <div className="grid grid-cols-12 gap-x-4 gap-y-10 pt-10 md:gap-x-6">
-          <div className="col-span-12 space-y-5 lg:col-span-6 lg:col-start-2">
-            {a.story.paragraphs.map((p, i) => (
-              <p key={i} className="max-w-[62ch] leading-relaxed text-ink/80">
-                {p}
-              </p>
-            ))}
-          </div>
-          <div className="col-span-12 lg:col-span-4 lg:col-start-9">
+          <div className="col-span-12 lg:col-span-5 lg:col-start-8">
             <Wipe from="right">
-              <PhotoSlot aspect="4/5" tone="espresso" caption={a.story.photoCaption} />
+              <PhotoSlot
+                aspect="4/5"
+                tone="espresso"
+                src={photos.aboutOwner}
+                alt={a.story.photoCaption}
+                caption={a.story.photoCaption}
+                sizes="(min-width: 1024px) 40vw, 100vw"
+              />
             </Wipe>
           </div>
         </div>
@@ -57,15 +54,17 @@ export default function About() {
 
       {/* ============ VALUES LEDGER ============ */}
       <section className="container-x py-14 lg:py-20">
-        <SectionIndex n="02" label={a.values.label} />
-        <div className="mt-10">
+        <h2 className="pb-10 font-display text-[clamp(1.75rem,3.6vw,2.75rem)] font-bold leading-[1.04] tracking-[-0.015em] text-espresso">
+          {a.values.label}
+        </h2>
+        <div>
           {a.values.items.map((v, i) => (
             <div
               key={v.title}
               className="grid grid-cols-12 gap-x-4 border-t border-espresso/15 py-6 last:border-b last:border-espresso/15 md:gap-x-6"
             >
-              <span className="tnum col-span-3 font-display text-sm font-bold text-gold-deep sm:col-span-2">
-                {String(i + 1).padStart(2, '0')} / {String(a.values.items.length).padStart(2, '0')}
+              <span className="tnum col-span-3 pt-1 text-sm font-semibold tracking-[0.1em] text-gold-deep sm:col-span-2">
+                {String(i + 1).padStart(2, '0')}
               </span>
               <span className="col-span-9 sm:col-span-3">
                 <span className="font-display text-xl font-bold text-espresso">{v.title}</span>
@@ -78,10 +77,22 @@ export default function About() {
         </div>
       </section>
 
-      {/* ============ WHY US: espresso band ============ */}
-      <section className="bg-espresso text-cream">
-        <div className="container-x py-16 lg:py-24">
-          <SectionIndex n="03" label={a.why.label} dark />
+      {/* ============ WHY US: the photograph band ============
+          The flat espresso ground and the outlined numerals went 2026-08-29;
+          the worksite shot read as unclear and became the calm stock oak
+          hallway (client, 2026-08-30). Numerals are plain gold sans digits. */}
+      <section className="relative overflow-hidden bg-espresso text-cream">
+        <img
+          src={imgSources(photos.pano[0]).src}
+          srcSet={imgSources(photos.pano[0]).srcSet || undefined}
+          sizes="100vw"
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover"
+          loading="lazy"
+          decoding="async"
+        />
+        <div className="absolute inset-0 bg-espresso/75" aria-hidden />
+        <div className="container-x relative z-10 py-16 lg:py-24">
           <LineReveal
             as="h2"
             lines={a.why.titleLines}
@@ -93,7 +104,7 @@ export default function About() {
                 key={w.title}
                 className="grid grid-cols-12 gap-x-4 border-t border-cream/15 py-6 last:border-b last:border-cream/15 md:gap-x-6"
               >
-                <span className="num-outline-dark tnum col-span-3 font-display text-4xl font-bold sm:col-span-2" aria-hidden>
+                <span className="tnum col-span-3 pt-1 text-sm font-semibold tracking-[0.1em] text-gold-bright sm:col-span-2" aria-hidden>
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <span className="col-span-9 sm:col-span-3">
@@ -108,29 +119,15 @@ export default function About() {
         </div>
       </section>
 
-      {/* ============ WORK PLATE: light counterweight to the espresso band ============ */}
-      <section className="container-x pt-14 lg:pt-20">
-        <div className="grid grid-cols-12 gap-x-4 md:gap-x-6">
-          <div className="col-span-12 lg:col-span-8">
-            <Wipe from="left">
-              <PhotoSlot aspect="16/9" tone="sand" caption={a.why.photoCaption} className="lg:bleed-left" />
-            </Wipe>
-          </div>
-        </div>
-      </section>
-
       {/* ============ FAQ ============ */}
       <section className="container-x py-14 lg:py-20">
-        <SectionIndex n="04" label={a.faq.label} right={<span className="cap-label tnum">{a.faq.support}</span>} />
-        <div className="pt-10">
-          <FaqAccordion items={a.faq.items} />
-        </div>
-        <div className="pt-14">
-          <DrawRule />
-        </div>
+        <h2 className="pb-10 font-display text-[clamp(1.75rem,3.6vw,2.75rem)] font-bold leading-[1.04] tracking-[-0.015em] text-espresso">
+          {a.faq.label}
+        </h2>
+        <FaqAccordion items={a.faq.items} />
       </section>
 
-      <Closer n="05" />
+      <Closer />
     </>
   )
 }

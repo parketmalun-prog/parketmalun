@@ -1,0 +1,22 @@
+/**
+ * Fraunces italic, cut down to what the site actually renders.
+ *
+ * The italic face serves display ACCENT WORDS only: the hero's third word,
+ * the interlude accent and the services band accent, in is/en/pl. Shipping
+ * the full variable italic cost 79.6 kB for the latin range alone, plus
+ * another 69.8 kB of latin-ext the moment a Polish page rendered.
+ *
+ * This file is that face instanced at the axis values the site uses
+ * (opsz 144, wght 600) and subset to Basic Latin plus the Icelandic and
+ * Polish letters: 14.6 kB, one request, every language covered.
+ *
+ * Regenerate with scripts/build-italic-subset.py after changing the accent
+ * copy to a character outside that set.
+ */
+@font-face {
+  font-family: 'Fraunces Variable';
+  font-style: italic;
+  font-display: swap;
+  font-weight: 100 900;
+  src: url('./fraunces-italic-subset.woff2') format('woff2');
+}

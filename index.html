@@ -3,45 +3,57 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#2B1C10" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light" />
+    <!-- The home page opens on this photograph: it is the largest contentful
+         paint, so it is fetched alongside the document rather than after it. -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      href="/photos/hero-herringbone-sun-640.webp"
+      imagesrcset="/photos/hero-herringbone-sun-320.webp 320w, /photos/hero-herringbone-sun-640.webp 640w, /photos/hero-herringbone-sun-960.webp 960w, /photos/hero-herringbone-sun-1100.webp 1100w"
+      imagesizes="100vw"
+      media="(max-width: 767px)"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      href="/photos/hero-herringbone-wide-1440.webp"
+      imagesrcset="/photos/hero-herringbone-wide-320.webp 320w, /photos/hero-herringbone-wide-640.webp 640w, /photos/hero-herringbone-wide-960.webp 960w, /photos/hero-herringbone-wide-1440.webp 1440w"
+      imagesizes="100vw"
+      media="(min-width: 768px)"
+      fetchpriority="high"
+    />
+    <meta name="theme-color" content="#272019" />
+    <!-- Everything between the seo markers is replaced per page by
+         scripts/prerender.mjs. What is here is the fallback the SPA shell uses
+         for routes that are not prerendered, and what the dev server shows. -->
+    <!--seo-->
     <title>Expert Parket og Mál ehf | Parketlögn, slípun og málun á höfuðborgarsvæðinu</title>
     <meta
       name="description"
       content="Fagmenn með yfir 25 ára reynslu í parketlögn, parketslípun og málun á höfuðborgarsvæðinu. Vönduð vinnubrögð og áreiðanleg þjónusta. Fáðu frítt verðtilboð í síma 785 7079."
     />
-    <meta property="og:title" content="Expert Parket og Mál ehf" />
-    <meta property="og:description" content="Parketlögn, parketslípun og málun á höfuðborgarsvæðinu. Yfir 25 ára reynsla." />
+    <!--/seo-->
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="is_IS" />
     <meta property="og:site_name" content="Expert Parket og Mál ehf" />
-    <meta property="og:image" content="https://expertparketogmal.is/logo.webp" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Expert Parket og Mál ehf" />
-    <meta name="twitter:description" content="Parketlögn, parketslípun og málun á höfuðborgarsvæðinu. Yfir 25 ára reynsla." />
-    <meta name="twitter:image" content="https://expertparketogmal.is/logo.webp" />
-    <!-- canonical + og:url are injected per-route by <Seo> (src/components/Seo.tsx),
-         so each language/page gets its own correct URL. Deliberately NOT hardcoded
-         here: a static root value would mislabel /en and /pl for non-JS crawlers. -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "LocalBusiness",
-        "name": "Expert Parket og Mál ehf",
-        "description": "Parketlögn, parketslípun og málun á höfuðborgarsvæðinu. Yfir 25 ára reynsla.",
-        "telephone": "+354 785 7079",
-        "email": "expertparket2024@gmail.com",
-        "url": "https://expertparketogmal.is",
-        "logo": "https://expertparketogmal.is/logo.webp",
-        "image": "https://expertparketogmal.is/logo.webp",
-        "areaServed": "Höfuðborgarsvæðið",
-        "address": { "@type": "PostalAddress", "addressRegion": "Höfuðborgarsvæðið", "addressCountry": "IS" },
-        "openingHours": ["Mo-Fr 08:00-18:00"],
-        "priceRange": "$$",
-        "sameAs": ["https://www.facebook.com/share/14mSWnaktqV/"]
-      }
-    </script>
-    <!-- Fraunces + Space Grotesk are self-hosted via @fontsource (imported in main.tsx), no third-party font request. -->
+    <!-- Share card: the logo on cream, opaque and 1200x630. The logo file
+         itself is transparent, which is right in the page and wrong here:
+         scrapers flatten alpha onto their own ground and the dark half of the
+         mark vanishes in dark mode. JPEG because LinkedIn skips WebP. -->
+    <meta property="og:image" content="https://expertparketogmal.is/og-card.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Expert Parket og Mál ehf" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://expertparketogmal.is/og-card.jpg" />
+    <!-- Fraunces (display) and Space Grotesk (body) are self-hosted and
+         imported in main.tsx, so there is no third-party font request. The
+         display cuts are our own subsets: see src/styles/fonts. -->
   </head>
   <body>
     <div id="root"></div>
