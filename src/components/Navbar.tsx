@@ -35,16 +35,31 @@ export function Navbar() {
     to: path(key),
   }))
 
+  // The curtain is a modal: while it is open the rest of the page goes
+  // inert, so Tab cannot walk out of the menu onto the links and form
+  // fields hidden behind the scrim. <main> and <footer> are siblings of
+  // the header in Layout, so marking them covers everything behind it.
   useEffect(() => {
     if (panelRef.current) panelRef.current.inert = !open
+    const behind = document.querySelectorAll<HTMLElement>('main, footer')
+    behind.forEach((el) => (el.inert = open))
+    return () => behind.forEach((el) => (el.inert = false))
   }, [open])
 
+  // Keyed on location.key, not pathname: tapping the link for the page you
+  // are already on is a replace-navigation to the same URL, so the pathname
+  // never changes and the curtain stayed open with the page scroll-locked.
+  // Every link also closes on click, so this holds even if the router
+  // swallows a same-URL navigation entirely.
   useEffect(() => {
     setOpen(false)
-  }, [location.pathname])
+  }, [location.key, location.pathname])
 
   useEffect(() => {
     lockScroll(open)
+    // Reopening kept the panel's old scroll offset, so on a short screen the
+    // menu came back already scrolled past its first links.
+    if (open) panelRef.current?.scrollTo({ top: 0 })
     return () => lockScroll(false)
   }, [open])
 
@@ -67,9 +82,9 @@ export function Navbar() {
               onClick={() => setOpen((v) => !v)}
               aria-expanded={open}
               aria-controls="valmynd"
-              className="text-[11px] font-semibold uppercase tracking-[0.12em] text-espresso transition-colors hover:text-gold-deep sm:text-[13px] sm:tracking-[0.14em]"
+              className="-ml-2 flex h-11 items-center px-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-espresso transition-colors hover:text-gold-deep sm:text-[13px] sm:tracking-[0.14em]"
             >
-              {open ? t.quick.close : 'Menu'}
+              {open ? t.quick.close : t.common.menu}
             </button>
           </div>
 
@@ -79,7 +94,8 @@ export function Navbar() {
 
           <Link
             to={path('contact')}
-            className="justify-self-end whitespace-nowrap text-[11px] font-semibold uppercase tracking-[0.12em] text-espresso transition-colors hover:text-gold-deep sm:text-[13px] sm:tracking-[0.14em]"
+            onClick={() => setOpen(false)}
+            className="-mr-2 flex h-11 items-center whitespace-nowrap px-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-espresso transition-colors hover:text-gold-deep sm:text-[13px] sm:tracking-[0.14em]"
           >
             {t.nav.contact}
           </Link>
@@ -113,6 +129,8 @@ export function Navbar() {
             <NavLink
               key={item.key}
               to={item.to}
+              end={item.key === 'home'}
+              onClick={() => setOpen(false)}
               className={({ isActive }) =>
                 cn(
                   'flex items-baseline gap-5 py-3 transition-all duration-300 sm:py-3.5',
@@ -137,7 +155,11 @@ export function Navbar() {
               >
                 {site.phone}
               </a>
-              <Link to={path('contact')} className="btn btn-sm bg-gold text-espresso hover:bg-gold-bright">
+              <Link
+                to={path('contact')}
+                onClick={() => setOpen(false)}
+                className="btn btn-sm bg-gold text-espresso hover:bg-gold-bright"
+              >
                 {t.common.getQuote}
               </Link>
             </div>

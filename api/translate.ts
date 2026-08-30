@@ -14,8 +14,9 @@ import Anthropic from '@anthropic-ai/sdk'
  *
  * Environment:
  *   ANTHROPIC_API_KEY  required, from console.anthropic.com
- *   ADMIN_API_TOKEN    optional shared token; when set, requests must carry it
- *                      in the x-admin-token header. A speed bump against
+ *   ADMIN_API_TOKEN    REQUIRED shared token; requests must carry it in the
+ *                      x-admin-token header, and without it configured the
+ *                      endpoint refuses every call. A speed bump against
  *                      strangers spending the key, not real authentication.
  *   ALLOWED_ORIGIN     optional extra origin allowed to call this endpoint,
  *                      on top of the deployment's own host.
@@ -152,8 +153,12 @@ export default async function handler(req: Req, res: Res): Promise<void> {
     })
   }
 
+  // Fail closed. This endpoint spends an Anthropic key, so a deployment that
+  // forgot ADMIN_API_TOKEN used to be an open, unauthenticated spend endpoint
+  // for anyone who omitted an Origin header. No token configured now means no
+  // translation at all.
   const expectedToken = process.env.ADMIN_API_TOKEN
-  if (expectedToken && header(req, 'x-admin-token') !== expectedToken) {
+  if (!expectedToken || header(req, 'x-admin-token') !== expectedToken) {
     return send(res, 401, { error: 'unauthorized' })
   }
 
@@ -237,6 +242,8 @@ export default async function handler(req: Req, res: Res): Promise<void> {
     const detail = error instanceof Error ? error.message : String(error)
     // eslint-disable-next-line no-console
     console.error('translate failed:', detail)
-    return send(res, 502, { error: 'translate_failed', message: detail })
+    // The detail goes to the server log above, not to the caller: it can
+    // carry upstream provider text and internal failure shape.
+    return send(res, 502, { error: 'translate_failed' })
   }
 }

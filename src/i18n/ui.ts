@@ -35,6 +35,7 @@ const is = {
     switcher: 'Velja tungumál',
   },
   common: {
+    menu: 'Valmynd',
     callPrefix: 'Hringdu í',
     skipToContent: 'Fara beint í efni',
     readMore: 'Lesa meira',
@@ -148,6 +149,7 @@ const en: Ui = {
     switcher: 'Choose language',
   },
   common: {
+    menu: 'Menu',
     callPrefix: 'Call',
     skipToContent: 'Skip to content',
     readMore: 'Read more',
@@ -259,6 +261,7 @@ const pl: Ui = {
     switcher: 'Wybierz język',
   },
   common: {
+    menu: 'Menu',
     callPrefix: 'Zadzwoń pod',
     skipToContent: 'Przejdź do treści',
     readMore: 'Czytaj więcej',

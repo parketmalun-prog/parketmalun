@@ -10,7 +10,12 @@ note.
 |---|---|
 | Local | http://localhost:5180/admin |
 | Live | https://expertparketogmal.is/admin |
-| Password | `expert2026` (change it, see below) |
+| Password | set by `VITE_ADMIN_PASSWORD_HASH`, see below |
+
+This repository is PUBLIC, so no password is written down here or anywhere
+else in the tree. Until `VITE_ADMIN_PASSWORD_HASH` is set in the hosting
+environment the live panel has no working password at all and cannot be
+opened; that is deliberate.
 
 The panel is in Icelandic by default. The IS / EN / RO switch at the bottom of
 the sidebar changes the panel language and is remembered per browser. It does

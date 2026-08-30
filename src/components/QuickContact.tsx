@@ -83,8 +83,14 @@ export function QuickContact() {
       ref={rootRef}
       // The bottom offset clears the iPhone home indicator, which otherwise
       // sits on top of the one control that dials the company.
-      className={`fixed bottom-5 right-5 z-40 flex flex-col-reverse items-end gap-3 transition-all duration-300 [bottom:calc(1.25rem+env(safe-area-inset-bottom))] sm:right-6 sm:[bottom:calc(1.5rem+env(safe-area-inset-bottom))] ${
-        visible ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-3 opacity-0'
+      // pointer-events-none lives on the WRAPPER permanently: it is a
+      // transparent ~170x224 box (the collapsed fan-out still takes layout)
+      // and while it hit-tested it swallowed every click landing in the
+      // bottom-right corner of the page, including the open menu's quote
+      // button and phone link. Only the launcher and the open fan-out take
+      // pointer events back.
+      className={`pointer-events-none fixed bottom-5 right-5 z-40 flex flex-col-reverse items-end gap-3 transition-all duration-300 [bottom:calc(1.25rem+env(safe-area-inset-bottom))] sm:right-6 sm:[bottom:calc(1.5rem+env(safe-area-inset-bottom))] ${
+        visible ? 'translate-y-0 opacity-100' : 'translate-y-3 opacity-0'
       }`}
       aria-hidden={!visible}
     >
@@ -98,8 +104,8 @@ export function QuickContact() {
         aria-controls="quick-contact-menu"
         aria-label={open ? t.quick.close : t.quick.open}
         className={`flex h-14 w-14 items-center justify-center rounded-full bg-gold text-espresso transition-colors hover:bg-gold-bright ${
-          open ? '' : 'qc-pulse'
-        }`}
+          visible ? 'pointer-events-auto' : ''
+        } ${open ? '' : 'qc-pulse'}`}
       >
         {open ? <X className="h-5 w-5" /> : <IconPhoneRing className="qc-ring h-6 w-6" />}
       </button>
@@ -108,7 +114,7 @@ export function QuickContact() {
       <div
         id="quick-contact-menu"
         className={`flex flex-col items-end gap-3 transition-all duration-200 ${
-          open ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-2 opacity-0'
+          open ? 'pointer-events-auto translate-y-0 opacity-100' : 'translate-y-2 opacity-0'
         }`}
         aria-hidden={!open}
       >

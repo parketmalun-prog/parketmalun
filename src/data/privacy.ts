@@ -47,7 +47,7 @@ export const privacy: Record<Lang, PrivacyContent> = {
       {
         heading: 'Vafrakökur og greiningartæki',
         paragraphs: [
-          'Þessi vefsíða notar hvorki vafrakökur (e. cookies), greiningartæki né aðra rakningartækni. Engin auglýsinga- eða greiningarforrit þriðju aðila eru keyrð á vefnum. Leturgerðir eru hýstar á vefnum sjálfum svo engin beiðni fer til utanaðkomandi leturveitna.',
+          'Þessi vefsíða notar engar vafrakökur og engin greiningar- eða auglýsingaforrit þriðju aðila. Vefurinn telur þó heimsóknir sjálfur, eins og lýst er hér að ofan: talningin er nafnlaus, notar engar vafrakökur og geymir hvorki IP tölu né neitt sem tengir heimsóknina við þig. Leturgerðir eru hýstar á vefnum sjálfum svo engin beiðni fer til utanaðkomandi leturveitna.',
         ],
       },
       {
@@ -90,7 +90,7 @@ export const privacy: Record<Lang, PrivacyContent> = {
           {
         heading: 'Myndir á vefnum',
         paragraphs: [
-          'Myndefni á vefnum er af tvennum toga: okkar eigin verkmyndir og aðkeypt safnmyndir. Safnmyndirnar eru notaðar samkvæmt leyfisskilmálum Unsplash og Pexels, sem heimila birtingu á vefsíðum án frekari merkingar. Safnmyndir eru til skýringar og sýna ekki alltaf verk fyrirtækisins sjálfs.',
+          'Myndefni á vefnum er af tvennum toga: okkar eigin verkmyndir og aðkeyptar safnmyndir. Safnmyndirnar eru notaðar samkvæmt leyfisskilmálum Unsplash og Pexels, sem heimila birtingu á vefsíðum án frekari merkingar. Safnmyndir eru til skýringar og sýna ekki alltaf verk fyrirtækisins sjálfs.',
         ],
       },
     ],
@@ -131,7 +131,7 @@ export const privacy: Record<Lang, PrivacyContent> = {
       {
         heading: 'Cookies and analytics',
         paragraphs: [
-          'This website uses no cookies, no analytics and no other tracking technology. No third-party advertising or analytics scripts run on the site. Fonts are self-hosted, so no requests are sent to external font providers.',
+          'This website uses no cookies and runs no third-party analytics or advertising scripts. It does keep its own visit count, as described above: that count is anonymous, uses no cookies, and stores neither your IP address nor anything that ties a visit to you. Fonts are self-hosted, so no requests are sent to external font providers.',
         ],
       },
       {
@@ -215,7 +215,7 @@ export const privacy: Record<Lang, PrivacyContent> = {
       {
         heading: 'Pliki cookie i analityka',
         paragraphs: [
-          'Ta strona nie używa plików cookie, narzędzi analitycznych ani innych technologii śledzących. Na stronie nie działają żadne skrypty reklamowe ani analityczne firm trzecich. Czcionki są hostowane lokalnie, więc żadne zapytania nie trafiają do zewnętrznych dostawców czcionek.',
+          'Ta strona nie używa plików cookie ani zewnętrznych narzędzi analitycznych i reklamowych. Prowadzi natomiast własne, anonimowe zliczanie odwiedzin opisane powyżej: bez plików cookie, bez zapisywania adresu IP i bez czegokolwiek, co wiązałoby wizytę z Tobą. Czcionki są hostowane lokalnie, więc żadne zapytania nie trafiają do zewnętrznych dostawców czcionek.',
         ],
       },
       {
