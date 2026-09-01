@@ -9,7 +9,25 @@ import { Link } from 'react-router-dom'
  * It renders React elements rather than HTML strings, so a pasted post can
  * never inject markup into the page. Anything the parser does not recognise
  * stays visible as plain text instead of disappearing.
+ *
+ * Hrefs are the one place a post can still reach outside the text, so they are
+ * filtered rather than trusted. `javascript:` and `data:` are refused
+ * outright, and an internal link has to be a single leading slash: `//host`
+ * and `/\host` both leave the site, and the backslash form is exactly the
+ * shape of the open redirect the installed react-router is advised against
+ * (GHSA-wrjc-x8rr-h8h6). Only an author can write a post, so this is defence
+ * in depth rather than a hole being closed, but it costs one regexp.
  */
+
+/** An in-site path: one slash, and nothing that can be read as a host. */
+function internalPath(href: string): boolean {
+  return /^\/(?![/\\])/.test(href)
+}
+
+/** http(s) only, so no javascript: or data: URL ever reaches an element. */
+function externalUrl(href: string): boolean {
+  return /^https?:\/\//i.test(href)
+}
 
 const INLINE = /(\*\*[^*]+\*\*|\*[^*\n]+\*|`[^`]+`|\[[^\]]+\]\([^)\s]+\))/g
 
@@ -41,18 +59,22 @@ function inline(text: string, keyPrefix: string): ReactNode[] {
     const link = /^\[([^\]]+)\]\(([^)\s]+)\)$/.exec(part)
     if (link) {
       const [, label, href] = link
-      if (href.startsWith('/')) {
+      if (internalPath(href)) {
         return (
           <Link key={key} to={href} className="u-link">
             {label}
           </Link>
         )
       }
-      return (
-        <a key={key} href={href} target="_blank" rel="noopener noreferrer" className="u-link">
-          {label}
-        </a>
-      )
+      if (externalUrl(href)) {
+        return (
+          <a key={key} href={href} target="_blank" rel="noopener noreferrer" className="u-link">
+            {label}
+          </a>
+        )
+      }
+      // Anything else stays as the words it was written with, never a link.
+      return <Fragment key={key}>{label}</Fragment>
     }
     return <Fragment key={key}>{part}</Fragment>
   })
@@ -90,7 +112,7 @@ function parse(body: string): Block[] {
       continue
     }
     const image = /^!\[([^\]]*)\]\(([^)\s]+)\)$/.exec(trimmed)
-    if (image) {
+    if (image && (internalPath(image[2]) || externalUrl(image[2]))) {
       flush()
       blocks.push({ type: 'img', alt: image[1], src: image[2] })
       continue

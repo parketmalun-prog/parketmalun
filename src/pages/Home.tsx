@@ -11,6 +11,7 @@ import { FaqAccordion } from '@/components/FaqAccordion'
 import { Panorama } from '@/components/Panorama'
 import { LineReveal, Wipe } from '@/components/motionPrimitives'
 import { TradesShowcase } from '@/components/TradesShowcase'
+import { ParallaxPhoto } from '@/components/ParallaxPhoto'
 
 /** Tonal rhythm for the portfolio panorama so the row reads as a composition. */
 const STRIP_TONES = ['espresso', 'sand', 'walnut', 'cream', 'espresso'] as const
@@ -274,18 +275,15 @@ export default function Home() {
       {/* ============ SERVICE AREA: on the photograph ============
           The break picture and the area block were merged (client,
           2026-08-29: the standalone text read as too much). One full-bleed
-          band: the short title and the towns, over the picture. */}
+          band: the short title and the towns, over the picture, which now
+          drifts against the scroll. On a phone the wide empty-room shot
+          kept nothing recognisable in its narrow crop (client, 2026-09-01),
+          so below md the band shows our own geometric parquet hallway
+          instead, under a lighter scrim since the floor carries its own
+          contrast. */}
       <section className="relative flex min-h-[48vh] items-center overflow-hidden md:min-h-[60vh]">
-        <img
-          src={imgSources(photos.homeBreak).src}
-          srcSet={imgSources(photos.homeBreak).srcSet || undefined}
-          sizes="100vw"
-          alt=""
-          className="absolute inset-0 h-full w-full object-cover"
-          loading="lazy"
-          decoding="async"
-        />
-        <div className="absolute inset-0 bg-espresso/60" aria-hidden />
+        <ParallaxPhoto src={photos.homeBreak} mobileSrc={photos.work.parket[1]} />
+        <div className="absolute inset-0 bg-espresso/45 md:bg-espresso/60" aria-hidden />
         <div className="container-x relative z-10 py-20 text-center">
           <h2 className="font-display text-[clamp(1.75rem,3.4vw,2.5rem)] font-bold leading-[1.04] tracking-[-0.015em] text-cream">
             {content.area.title}

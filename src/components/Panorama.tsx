@@ -17,8 +17,13 @@ import { subscribeScroll } from '@/lib/smoothScroll'
  * embedded preview pane never fires it), no React state per frame.
  *
  * The matchMedia gate in the effect and the motion-safe:lg: classes on the
- * markup must describe the same condition or CSS and JS disagree. HEADER_PX
- * is the fixed masthead height and mirrors lg:top-[72px] below.
+ * markup must describe the same condition or CSS and JS disagree, and it is
+ * re-read on every measure rather than once at mount. Reading it once was a
+ * real bug: a window opened wide and then narrowed past lg kept the runway
+ * height the pinned mode had written, while the CSS had already dropped to
+ * the carousel, so the section ended in a screen and a half of empty ground
+ * under the strip. HEADER_PX is the fixed masthead height and mirrors
+ * lg:top-[72px] below.
  *
  * The track is moved from the shared scroll source rather than from a raw
  * scroll listener: when Lenis is driving, its own tick is the only signal
@@ -44,20 +49,45 @@ export function Panorama({
     const section = sectionRef.current
     const track = trackRef.current
     if (!section || !track) return
-    // Same gate as the motion-safe:lg: classes. Checked once at mount; a
-    // tablet rotating past 1024px mid-session stays in carousel mode.
-    if (!window.matchMedia('(min-width: 1024px)').matches || reducedMotion()) return
+    if (reducedMotion()) return
 
+    const mq = window.matchMedia('(min-width: 1024px)')
+    let pinned = false
     let start = 0
     let maxX = 0
 
+    // Hand the section back to the carousel: drop the runway height and the
+    // track offset this effect wrote, so the layout is the one the classes
+    // describe on their own.
+    const release = () => {
+      pinned = false
+      maxX = 0
+      section.style.height = ''
+      track.style.transform = ''
+    }
+
     const frame = () => {
+      if (!pinned) return
       const x = Math.min(maxX, Math.max(0, window.scrollY - start))
       track.style.transform = `translate3d(${-x}px, 0, 0)`
     }
 
     const measure = () => {
-      maxX = Math.max(0, track.scrollWidth - window.innerWidth)
+      // Same gate as the motion-safe:lg: classes, re-read every time: the
+      // window can cross the breakpoint long after mount.
+      if (!mq.matches) {
+        if (pinned) release()
+        return
+      }
+      // innerWidth reads 0 inside some embedded preview panes, which would
+      // make the runway the whole track wide and open a hole under it.
+      const viewportW = window.innerWidth || document.documentElement.clientWidth
+      if (!viewportW) {
+        if (pinned) release()
+        return
+      }
+      pinned = true
+      maxX = Math.max(0, track.scrollWidth - viewportW)
       // Runway: the pinned viewport is (100svh minus header) tall, so the
       // section keeps it pinned for exactly maxX pixels of scroll.
       section.style.height = `${window.innerHeight - HEADER_PX + maxX}px`
@@ -68,14 +98,15 @@ export function Panorama({
     measure()
     const unsubscribe = subscribeScroll(frame)
     window.addEventListener('resize', measure)
+    mq.addEventListener('change', measure)
     // The display face swapping in changes the track width; measure again.
     document.fonts?.ready.then(measure).catch(() => {})
 
     return () => {
       unsubscribe()
       window.removeEventListener('resize', measure)
-      section.style.height = ''
-      track.style.transform = ''
+      mq.removeEventListener('change', measure)
+      release()
     }
   }, [])
 

@@ -9,13 +9,31 @@ import { LogoMark } from './Logo'
 import { lockScroll } from '@/lib/smoothScroll'
 
 /**
- * Masthead in the reference's three-part cut (client, 2026-08-30, after
- * elicyon.com): MENU on the left, the mark alone in the centre, contact on
- * the right, the same on every width. The menu itself is one espresso
- * curtain that slides DOWN from the top edge (the same move as the client's
- * bpe-cleaning site), carrying the page links, the language switcher, the
- * phone and the quote button; it closes on Escape, on the dimmed page
- * behind it, and on any navigation.
+ * Two mastheads in one bar, cut at lg (1024px), on the client's call
+ * (2026-08-31):
+ *
+ * - Phone and tablet keep the reference's three-part cut (after elicyon.com):
+ *   MENU on the left, the mark alone in the centre, contact on the right. The
+ *   menu is one espresso curtain that slides DOWN from the top edge, carrying
+ *   the page links and the language switcher, every one of them centred in a
+ *   single column and none of them numbered (client, 2026-08-31). It closes
+ *   on Escape, on the dimmed page behind it, and on any navigation.
+ * - Desktop goes back to the print masthead it had before: the mark on the
+ *   left, the numbered links inline, then the language switcher and the phone
+ *   on the right. The bar text stays in the grotesk, not the display serif.
+ *   Matching the logo's serif was tried on 2026-08-31 and rejected the same
+ *   day: the shipped Fraunces subset has its optical-size axis pinned to the
+ *   display end, whose hairlines thin out to nothing at a 13px cap, so the
+ *   labels stopped reading. The serif carries the headlines, the grotesk
+ *   carries the navigation, and it is set a weight heavier than the medium
+ *   it began at so the bar still holds its own beside the wordmark. No curtain, no burger. The quote pill that row used to end
+ *   on is gone: the nav has grown a sixth link since, and with the pill the
+ *   parts touched at the 1280px measure. Contact is still the last link, and
+ *   the phone beside it dials.
+ *
+ * The bar stays 64px / 72px tall at every width. That height is hard-coded in
+ * Layout, Home's hero, Panorama and the pinned gallery in index.css, so it is
+ * not a free number to change here.
  *
  * The curtain lives UNDER the bar (z-40 vs z-50) so it appears to unroll
  * from behind the cream row. `inert` is set imperatively: this React
@@ -28,7 +46,15 @@ export function Navbar() {
   const { path } = useLang()
   const t = useUi()
 
-  const navItems = NAV_KEYS.map((key, i) => ({
+  const navItems = NAV_KEYS.map((key) => ({
+    key,
+    label: t.nav[key],
+    to: path(key),
+  }))
+
+  // The desktop row carries no Home link: the mark on its left already is
+  // one, so the numbering starts at the first real page.
+  const barItems = NAV_KEYS.filter((k) => k !== 'home').map((key, i) => ({
     key,
     n: String(i + 1).padStart(2, '0'),
     label: t.nav[key],
@@ -72,40 +98,112 @@ export function Navbar() {
     return () => document.removeEventListener('keydown', onKey)
   }, [open])
 
+  // Widening past the desktop cut takes the burger away with it. Without
+  // this, a curtain opened on a phone-width window stayed open and left
+  // <main> inert behind a desktop masthead that has no way to close it.
+  useEffect(() => {
+    if (!open) return
+    const mq = window.matchMedia('(min-width: 1024px)')
+    const onChange = () => {
+      if (mq.matches) setOpen(false)
+    }
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [open])
+
   return (
     <>
       <header className="fixed inset-x-0 top-0 z-50 border-b border-espresso/10 bg-cream">
-        <div className="container-x grid h-[64px] grid-cols-3 items-center md:h-[72px]">
-          <div className="justify-self-start">
-            <button
-              type="button"
-              onClick={() => setOpen((v) => !v)}
-              aria-expanded={open}
-              aria-controls="valmynd"
-              className="-ml-2 flex h-11 items-center px-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-espresso transition-colors hover:text-gold-deep sm:text-[13px] sm:tracking-[0.14em]"
+        <div className="container-x flex h-[64px] items-center md:h-[72px]">
+          {/* Phone and tablet: MENU | mark | contact */}
+          <div className="grid w-full grid-cols-3 items-center lg:hidden">
+            <div className="justify-self-start">
+              <button
+                type="button"
+                onClick={() => setOpen((v) => !v)}
+                aria-expanded={open}
+                aria-controls="valmynd"
+                className="-ml-2 flex h-11 items-center px-2 text-[12px] font-bold uppercase tracking-[0.13em] text-espresso transition-colors hover:text-gold-deep sm:text-[13px]"
+              >
+                {open ? t.quick.close : t.common.menu}
+              </button>
+            </div>
+
+            <Link to={path('home')} aria-label={t.a11y.logoHome} className="justify-self-center">
+              <LogoMark className="h-11 md:h-[52px]" sizes="(min-width: 768px) 90px, 76px" priority />
+            </Link>
+
+            <Link
+              to={path('contact')}
+              onClick={() => setOpen(false)}
+              className="-mr-2 flex h-11 items-center justify-self-end whitespace-nowrap px-2 text-[12px] font-bold uppercase tracking-[0.13em] text-espresso transition-colors hover:text-gold-deep sm:text-[13px]"
             >
-              {open ? t.quick.close : t.common.menu}
-            </button>
+              {t.nav.contact}
+            </Link>
           </div>
 
-          <Link to={path('home')} aria-label={t.a11y.logoHome} className="justify-self-center">
-            <LogoMark className="h-11 md:h-[52px]" sizes="(min-width: 768px) 90px, 76px" priority />
-          </Link>
+          {/* Desktop: mark left, numbered links inline, contact block right */}
+          <div className="hidden w-full items-center justify-between gap-6 lg:flex">
+            <Link to={path('home')} aria-label={t.a11y.logoHome} className="shrink-0">
+              <LogoMark className="h-[52px]" sizes="90px" priority />
+            </Link>
 
-          <Link
-            to={path('contact')}
-            onClick={() => setOpen(false)}
-            className="-mr-2 flex h-11 items-center whitespace-nowrap px-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-espresso transition-colors hover:text-gold-deep sm:text-[13px] sm:tracking-[0.14em]"
-          >
-            {t.nav.contact}
-          </Link>
+            <nav className="flex items-center gap-5 xl:gap-6" aria-label={t.a11y.menuMain}>
+              {barItems.map((item) => (
+                <NavLink
+                  key={item.key}
+                  to={item.to}
+                  className={({ isActive }) =>
+                    cn(
+                      'group flex items-baseline gap-1.5 whitespace-nowrap text-[12px] font-semibold uppercase tracking-[0.1em] transition-colors xl:text-[13px]',
+                      isActive ? 'text-espresso' : 'text-taupe hover:text-espresso',
+                    )
+                  }
+                >
+                  {({ isActive }) => (
+                    <>
+                      <span
+                        className={cn(
+                          'tnum hidden text-[11px] font-semibold xl:inline',
+                          isActive ? 'text-gold-deep' : 'text-gold/70',
+                        )}
+                      >
+                        {item.n}
+                      </span>
+                      <span
+                        className={cn(
+                          'pb-0.5',
+                          isActive
+                            ? 'underline decoration-gold decoration-2 underline-offset-4'
+                            : 'group-hover:underline group-hover:decoration-espresso/30 group-hover:decoration-2 group-hover:underline-offset-4',
+                        )}
+                      >
+                        {item.label}
+                      </span>
+                    </>
+                  )}
+                </NavLink>
+              ))}
+            </nav>
+
+            <div className="flex shrink-0 items-center gap-5">
+              <LanguageSwitcher variant="bar" />
+              <a
+                href={`tel:${site.phoneRaw}`}
+                className="tnum font-display text-lg font-bold text-espresso transition-colors hover:text-gold-deep"
+                aria-label={`${t.common.callPrefix} ${site.phone}`}
+              >
+                {site.phone}
+              </a>
+            </div>
+          </div>
         </div>
       </header>
 
       {/* dimmed page behind the curtain; click closes */}
       <div
         className={cn(
-          'fixed inset-0 z-30 bg-espresso/40 transition-opacity duration-300',
+          'fixed inset-0 z-30 bg-espresso/40 transition-opacity duration-300 lg:hidden',
           open ? 'opacity-100' : 'pointer-events-none opacity-0',
         )}
         aria-hidden
@@ -117,13 +215,13 @@ export function Navbar() {
         id="valmynd"
         ref={panelRef}
         className={cn(
-          'fixed inset-x-0 top-0 z-40 max-h-[100dvh] overflow-y-auto overscroll-contain bg-espresso pt-[64px] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:pt-[72px]',
+          'fixed inset-x-0 top-0 z-40 max-h-[100dvh] overflow-y-auto overscroll-contain bg-espresso pt-[64px] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:pt-[72px] lg:hidden',
           open ? 'translate-y-0' : '-translate-y-full',
         )}
       >
         <nav
-          className="container-x flex flex-col gap-1 py-10 [padding-bottom:calc(2.5rem+env(safe-area-inset-bottom))]"
-          aria-label={t.a11y.menuMain}
+          className="container-x flex flex-col items-center gap-1 py-10 text-center [padding-bottom:calc(2.5rem+env(safe-area-inset-bottom))]"
+          aria-label={t.a11y.menuMobile}
         >
           {navItems.map((item, i) => (
             <NavLink
@@ -133,36 +231,24 @@ export function Navbar() {
               onClick={() => setOpen(false)}
               className={({ isActive }) =>
                 cn(
-                  'flex items-baseline gap-5 py-3 transition-all duration-300 sm:py-3.5',
+                  'block py-3 font-display text-3xl font-bold leading-tight transition-all duration-300 sm:py-3.5 sm:text-4xl',
                   open ? 'translate-y-0 opacity-100' : 'translate-y-3 opacity-0',
                   isActive ? 'text-gold-bright' : 'text-cream hover:text-gold-bright',
                 )
               }
               style={{ transitionDelay: open ? `${120 + i * 50}ms` : '0ms' }}
             >
-              <span className="tnum text-sm font-semibold text-gold/80">{item.n}</span>
-              <span className="font-display text-3xl font-bold leading-tight sm:text-4xl">{item.label}</span>
+              {item.label}
             </NavLink>
           ))}
 
-          <div className="mt-10 flex flex-wrap items-center justify-between gap-6">
+          {/* Links and languages, nothing else. The number and the quote
+              button left the curtain (client, 2026-09-01): a phone already
+              carries the call pill at the foot of every page and the contact
+              link sits in the bar, so repeating both here only crowded the
+              menu. The menu says who we are; the contact comes after. */}
+          <div className="mt-10 flex flex-col items-center">
             <LanguageSwitcher variant="panel" />
-            <div className="flex items-center gap-6">
-              <a
-                href={`tel:${site.phoneRaw}`}
-                className="tnum font-display text-2xl font-bold text-gold-bright transition-colors hover:text-cream"
-                aria-label={`${t.common.callPrefix} ${site.phone}`}
-              >
-                {site.phone}
-              </a>
-              <Link
-                to={path('contact')}
-                onClick={() => setOpen(false)}
-                className="btn btn-sm bg-gold text-espresso hover:bg-gold-bright"
-              >
-                {t.common.getQuote}
-              </Link>
-            </div>
           </div>
         </nav>
       </div>

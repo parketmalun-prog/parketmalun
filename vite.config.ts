@@ -98,6 +98,14 @@ function previewCleanUrls(): Plugin {
 
 export default defineConfig(({ isSsrBuild }) => ({
   plugins: [react(), devApi(), preloadFonts(), previewCleanUrls()],
+  server: {
+    // The preview harness picks a free port and hands it over as PORT; Vite
+    // reads no such variable on its own, so without this it would bind its
+    // own default and the preview would point at nothing. 5180 stays the
+    // default for a plain `npm run dev`, which is the URL docs/ADMIN.md gives.
+    port: Number(process.env.PORT) || 5180,
+    strictPort: Boolean(process.env.PORT),
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

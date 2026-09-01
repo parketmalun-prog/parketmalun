@@ -97,6 +97,7 @@ const is = {
     mailtoProduct: 'Vara',
   },
   footer: {
+    blurb: 'Parketlögn, slípun og málun á höfuðborgarsvæðinu. Frítt verðtilboð.',
     hoursTitle: 'Opnunartími',
     hoursWeek: 'Mán til Fös: 08:00 til 18:00',
     hoursWeekend: 'Lau og Sun: lokað',
@@ -211,6 +212,7 @@ const en: Ui = {
     mailtoProduct: 'Product',
   },
   footer: {
+    blurb: 'Parquet laying, sanding and painting across the capital region. Free quote.',
     hoursTitle: 'Opening hours',
     hoursWeek: 'Mon to Fri: 08:00 to 18:00',
     hoursWeekend: 'Sat and Sun: closed',
@@ -323,6 +325,7 @@ const pl: Ui = {
     mailtoProduct: 'Produkt',
   },
   footer: {
+    blurb: 'Układanie, cyklinowanie i malowanie w regionie stołecznym. Bezpłatna wycena.',
     hoursTitle: 'Godziny otwarcia',
     hoursWeek: 'Pon do Pt: 08:00 do 18:00',
     hoursWeekend: 'Sob i Niedz: nieczynne',

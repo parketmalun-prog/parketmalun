@@ -3,8 +3,8 @@ import type { FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { contact as contactByLang } from '@/data/contact'
 import { photos } from '@/data/photos'
-import { imgSources } from '@/lib/img'
 import { useContent, useLang, useUi } from '@/i18n/context'
+import { ParallaxPhoto } from './ParallaxPhoto'
 import { useEnquiry, enquiryFieldClass } from '@/lib/enquiry'
 import { Button } from './Button'
 import { LineReveal } from './motionPrimitives'
@@ -47,15 +47,8 @@ export function Closer({ withForm = true }: { withForm?: boolean }) {
   // read as a hole, so the statement is now centred against the form.
   return (
     <section className="relative overflow-hidden bg-espresso text-cream">
-      <img
-        src={imgSources(photos.contact).src}
-        srcSet={imgSources(photos.contact).srcSet || undefined}
-        sizes="100vw"
-        alt=""
-        className="absolute inset-0 h-full w-full object-cover"
-        loading="lazy"
-        decoding="async"
-      />
+      {/* The photograph drifts against the scroll (client, 2026-09-01). */}
+      <ParallaxPhoto src={photos.contact} />
       <div className="absolute inset-0 bg-espresso/75" aria-hidden />
       <div className="container-x relative z-10 pb-12 pt-10 sm:pb-14 sm:pt-12">
         <div className="grid grid-cols-12 items-center gap-x-4 gap-y-8 pt-8 md:gap-x-6">

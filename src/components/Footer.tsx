@@ -8,11 +8,17 @@ import { LogoMark } from './Logo'
 
 /**
  * Footer, the beige plate (client's sketch, 2026-08-29): sand ground after
- * the dark Closer, the logo plaque on the left, ONE vertical hairline, and
- * the three link columns beside it. The old tagline, area line and CALL NOW
- * phone block are gone: the masthead and the Closer already carry every way
- * to reach us, and here the email simply lives under the Facebook link.
- * No horizontal rules anywhere; the page ends in the signage line.
+ * the dark Closer, the mark on the left, ONE vertical hairline, and the link
+ * columns beside it. No horizontal rules anywhere; the page ends in the
+ * signage line.
+ *
+ * Re-cut on 2026-08-31 to the client's second sketch. The mark sits top left
+ * with one line of copy BESIDE it, and the columns below run two by two on a
+ * phone. There are FOUR of them now, not three: the opening hours and the
+ * Facebook/email pair used to share one box, which left three columns in a
+ * two-column grid and a hole the width of a column under the last one.
+ * Splitting them fills the grid exactly and gives the contact details the
+ * heading they never had.
  */
 export function Footer() {
   const year = new Date().getFullYear()
@@ -37,34 +43,54 @@ export function Footer() {
     <footer className="overflow-hidden bg-sand text-espresso">
       <div className="container-x">
         <div className="grid grid-cols-12 gap-x-6 gap-y-10 py-14">
-          <div className="col-span-12 lg:col-span-4">
-            {/* the artwork straight on the sand, no plaque (client, 2026-08-29) */}
-            <LogoMark className="h-24 sm:h-28" sizes="(min-width: 640px) 194px, 166px" />
+          {/* the artwork straight on the sand, no plaque (client, 2026-08-29),
+              with the one line of copy beside it and under it from lg */}
+          <div className="col-span-12 flex items-center gap-5 lg:col-span-3 lg:flex-col lg:items-start lg:gap-6">
+            <LogoMark className="h-16 shrink-0 sm:h-20 lg:h-24" sizes="(min-width: 1024px) 167px, (min-width: 640px) 139px, 111px" />
+            <p className="max-w-[34ch] text-[13px] leading-relaxed text-espresso/75 sm:text-sm">{t.footer.blurb}</p>
           </div>
 
           {/* the one beautiful line: vertical, running the height of the row */}
-          <div className="col-span-12 lg:col-span-8 lg:border-l lg:border-espresso/20 lg:pl-12">
-            <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3">
+          <div className="col-span-12 lg:col-span-9 lg:border-l lg:border-espresso/20 lg:pl-12">
+            <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-4">
               <div>
                 <h3 className="cap-label">{t.footer.hoursTitle}</h3>
                 <ul className="tnum mt-4 space-y-2 text-sm text-espresso/75">
                   <li>{t.footer.hoursWeek}</li>
                   <li>{t.footer.hoursWeekend}</li>
                 </ul>
-                <a
-                  href={site.facebook}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-5 block text-sm text-espresso/75 transition-colors hover:text-gold-deep"
-                >
-                  Facebook
-                </a>
-                <a
-                  href={`mailto:${site.email}`}
-                  className="mt-2 block break-all text-sm text-espresso/75 transition-colors hover:text-gold-deep"
-                >
-                  {site.email}
-                </a>
+              </div>
+
+              <div>
+                <h3 className="cap-label">{t.footer.colContact}</h3>
+                <ul className="mt-4 space-y-2">
+                  <li>
+                    <a
+                      href={`tel:${site.phoneRaw}`}
+                      className="tnum text-sm text-espresso/75 transition-colors hover:text-gold-deep"
+                    >
+                      {site.phone}
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={site.facebook}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-espresso/75 transition-colors hover:text-gold-deep"
+                    >
+                      Facebook
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href={`mailto:${site.email}`}
+                      className="block break-all text-[13px] text-espresso/75 transition-colors hover:text-gold-deep"
+                    >
+                      {site.email}
+                    </a>
+                  </li>
+                </ul>
               </div>
 
               <FooterCol title={t.nav.services} links={serviceLinks} />
@@ -147,20 +173,31 @@ function GiantWordmark() {
       <p className="flex justify-center whitespace-nowrap pb-[2.5vw] pt-[1vw] font-display text-[10.5vw] font-semibold uppercase leading-[0.9] tracking-[0.01em]">
         {(['EXPERT', 'PARKET'] as const).map((word, w) => (
           <span key={word} className={w === 0 ? 'text-espresso' : 'ml-[0.28em] text-gold-deep'}>
-            {[...word].map((c, k) => (
-              <span key={k} className="inline-block overflow-hidden align-bottom">
-                <span
-                  className="block will-change-transform"
-                  style={{
-                    transform: inView ? 'translate3d(0, 0, 0)' : 'translate3d(0, 105%, 0)',
-                    transition: 'transform 0.7s cubic-bezier(0.22, 1, 0.36, 1)',
-                    transitionDelay: `${letterIndex++ * 55}ms`,
-                  }}
-                >
-                  {c}
+            {[...word].map((c, k) => {
+              // The stagger is spent on the way IN only. Letting the exit
+              // animate too, delays and all, was the bug behind "EXPERT rises
+              // again but PARKET stays put" (client, 2026-09-01): scrolling
+              // back up and straight down again re-armed the line while the
+              // late letters were still sitting out their exit delay, so
+              // their transform never left 0 and there was nothing to rise.
+              // Dropping them back instantly costs nothing, the line is fully
+              // below the fold when it re-arms.
+              const delay = letterIndex++ * 55
+              return (
+                <span key={k} className="inline-block overflow-hidden align-bottom">
+                  <span
+                    className="block will-change-transform"
+                    style={{
+                      transform: inView ? 'translate3d(0, 0, 0)' : 'translate3d(0, 105%, 0)',
+                      transition: inView ? 'transform 0.7s cubic-bezier(0.22, 1, 0.36, 1)' : 'none',
+                      transitionDelay: inView ? `${delay}ms` : '0ms',
+                    }}
+                  >
+                    {c}
+                  </span>
                 </span>
-              </span>
-            ))}
+              )
+            })}
           </span>
         ))}
       </p>

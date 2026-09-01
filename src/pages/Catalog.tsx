@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { cn, formatIsk } from '@/lib/utils'
 import { catalog as catalogByLang, catalogSeo as seoByLang } from '@/data/catalog'
+import type { Product } from '@/data/catalog'
 import { useContent, useLang, useUi } from '@/i18n/context'
 import { Seo } from '@/components/Seo'
 import { Button } from '@/components/Button'
 import { PhotoSlot } from '@/components/PhotoSlot'
 import { photos } from '@/data/photos'
-import { ParquetSwatch } from '@/components/ParquetSwatch'
+import { imgSources } from '@/lib/img'
 import { QuickRequestDialog } from '@/components/QuickRequestDialog'
 import { Closer } from '@/components/Closer'
 import { LineReveal } from '@/components/motionPrimitives'
@@ -27,6 +28,32 @@ const WOOD_LABELS: Record<string, Record<(typeof SAMPLES)[number]['key'], string
   is: { Hnota: 'Hnota', Eik: 'Eik', Askur: 'Askur', Fura: 'Fura' },
   en: { Hnota: 'Walnut', Eik: 'Oak', Askur: 'Ash', Fura: 'Pine' },
   pl: { Hnota: 'Orzech', Eik: 'Dąb', Askur: 'Jesion', Fura: 'Sosna' },
+}
+
+/**
+ * The board itself, laid in the pattern the product is sold in.
+ *
+ * These used to be SVG drawn from a single hex colour, which read as a
+ * diagram of a floor rather than a floor. Each one is now a photograph of the
+ * manufacturer's own board composed into its pattern by
+ * scripts/build-parquet-swatches.py, so the picture and the name under it
+ * describe the same product.
+ */
+function ProductSwatch({ product }: { product: Product }) {
+  const img = imgSources(product.photo)
+  return (
+    <img
+      src={img.src}
+      srcSet={img.srcSet || undefined}
+      sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
+      alt={`${product.name}, ${product.woodTone}`}
+      width={img.width}
+      height={img.height}
+      className="absolute inset-0 h-full w-full object-cover"
+      loading="lazy"
+      decoding="async"
+    />
+  )
 }
 
 export default function Catalog() {
@@ -110,8 +137,8 @@ export default function Catalog() {
         <div className="grid grid-cols-12 gap-x-4 gap-y-12 md:gap-x-6">
           {visible.map((p) => (
             <article key={p.name} className="col-span-12 flex flex-col sm:col-span-6 lg:col-span-4">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
-                <ParquetSwatch tone={p.tone} pattern={p.pattern} className="absolute inset-0 h-full w-full" />
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-sand">
+                <ProductSwatch product={p} />
                 {p.badge ? <span className="tape absolute left-3 top-3">{p.badge}</span> : null}
               </div>
               <div className="flex items-baseline justify-between gap-x-4 pt-4">
@@ -148,13 +175,6 @@ export default function Catalog() {
       </section>
 
       <QuickRequestDialog product={requestFor} onClose={() => setRequestFor(null)} />
-
-      {/* ============ PRICE DISCLAIMER ============ */}
-      <section className="bg-sand-light">
-        <div className="container-x py-10">
-          <p className="tnum max-w-[62ch] text-base leading-relaxed text-espresso-700">{content.intro.priceNote}</p>
-        </div>
-      </section>
 
       <Closer />
     </>

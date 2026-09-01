@@ -51,6 +51,35 @@ const REVEAL_SPAN = 0.25 // next photo rises during [.75, 1]
  */
 const RUNWAY = 1.25
 
+/**
+ * Pre-roll, in frame heights: how much of the approach, before the frame
+ * pins, already belongs to the FIRST slide's gather.
+ *
+ * Without it slide 0's clock only started once the photograph had locked
+ * under the masthead, so the letters sat frozen through the whole approach
+ * and then set themselves in one go. The client read that stall as the
+ * picture standing still and the type jumping (2026-09-01). The letters now
+ * begin to lift once about half the picture is on screen and keep
+ * the same clock straight through the pin, so nothing ever waits. The gather
+ * still finishes exactly where it did, at GATHER_END, and the hold after it
+ * is untouched.
+ */
+const PRE_ROLL = 0.5
+
+/**
+ * Horizontal focal point per trade, for the narrow frames where cover has to
+ * throw most of a landscape photograph away. Only malun needs one: the
+ * roller sits right of centre in a 3:2 frame, so a phone's centre crop kept
+ * the bare wall and cut the roller at the edge, and the slide read as an
+ * empty grey panel (client, 2026-08-31). Shifting the window right brings
+ * the whole roller in.
+ *
+ * It MUST be applied to the photograph and to its cutout together: the two
+ * share one frame and one cover mapping, and the type only slips behind the
+ * roller while they register exactly.
+ */
+const FOCUS_X: Partial<Record<ServiceKey, string>> = { malun: '64%' }
+
 /** Deterministic pseudo-random in [0, 1), the classic sine hash. */
 function hash(seed: number): number {
   const s = Math.sin(seed * 12.9898 + 78.233) * 43758.5453
@@ -59,6 +88,18 @@ function hash(seed: number): number {
 
 function easeInOutCubic(t: number): number {
   return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
+}
+
+/**
+ * The letters' own curve. Cubic OUT, not in-out: a letter has to answer the
+ * very first turn of the wheel, or the rise reads as a stall however early
+ * its clock starts (client, 2026-09-01). In-out spent its first fifth
+ * covering three percent of the travel, which is invisible. This leaves at
+ * once and lands slowly, which is also how type settles. The curtain and the
+ * outgoing line keep easeInOutCubic; only the letters changed.
+ */
+function easeOutCubic(t: number): number {
+  return 1 - Math.pow(1 - t, 3)
 }
 
 const clamp01 = (v: number) => Math.min(1, Math.max(0, v))
@@ -72,7 +113,7 @@ const clamp01 = (v: number) => Math.min(1, Math.max(0, v))
 function scatter(i: number, k: number) {
   return {
     sy: 10 + hash(i * 131 + k * 7 + 2) * 46, // vh
-    delay: hash(i * 131 + k * 7 + 3) * 0.3, // stagger, fraction of the gather
+    delay: hash(i * 131 + k * 7 + 3) * 0.22, // stagger, fraction of the gather
   }
 }
 
@@ -114,13 +155,18 @@ export function TradesShowcase({
     let runwayPx = 0
     let pinStart = 0
     let frameH = 0
+    // Slide 0's gather, in absolute scroll px: it opens PRE_ROLL frames
+    // before the pin and still closes at GATHER_END of the pinned runway.
+    let gatherStart0 = 0
+    let gatherSpan0 = 1
     // Last written value per slide, so a settled frame writes nothing.
     const lastGather: number[] = items.map(() => -1)
     const lastReveal: number[] = items.map(() => -1)
     const lastRow: number[] = items.map(() => -1)
 
     const tick = () => {
-      const p = Math.min(n, Math.max(0, (window.scrollY - pinStart) / runwayPx))
+      const y = window.scrollY
+      const p = Math.min(n, Math.max(0, (y - pinStart) / runwayPx))
 
       for (let i = 0; i < n; i++) {
         // Each letter makes ONE continuous journey to its slot, staggered.
@@ -130,9 +176,10 @@ export function TradesShowcase({
         // starts: they arrive as a loose flock, never as a frozen block
         // shifted up (client, 2026-08-29). The curtain clips them until its
         // edge passes, so a letter can never appear over the old photo.
-        const start = i === 0 ? 0 : i - REVEAL_SPAN
-        const span = i === 0 ? GATHER_END : REVEAL_SPAN + GATHER_END
-        const journey = clamp01((p - start) / span)
+        const journey =
+          i === 0
+            ? clamp01((y - gatherStart0) / gatherSpan0)
+            : clamp01((p - (i - REVEAL_SPAN)) / (REVEAL_SPAN + GATHER_END))
         if (journey !== lastGather[i]) {
           lastGather[i] = journey
           const row = letterRefs.current[i] ?? []
@@ -140,7 +187,7 @@ export function TradesShowcase({
             const el = row[k]
             if (!el) continue
             const { sy, delay } = scatter(i, k)
-            const le = easeInOutCubic(clamp01((journey - delay) / (1 - delay)))
+            const le = easeOutCubic(clamp01((journey - delay) / (1 - delay)))
             const depth = i === 0 ? (sy / 100) * frameH : frameH * (0.45 + (sy / 100) * 1.15)
             el.style.transform = `translate3d(0, ${(depth * (1 - le)).toFixed(2)}px, 0)`
           }
@@ -176,6 +223,8 @@ export function TradesShowcase({
       frameH = frame.clientHeight
       runwayPx = frameH * RUNWAY
       pinStart = wrap.getBoundingClientRect().top + window.scrollY - stickyTop
+      gatherStart0 = pinStart - frameH * PRE_ROLL
+      gatherSpan0 = frameH * PRE_ROLL + GATHER_END * runwayPx
       tick()
     }
 
@@ -194,6 +243,7 @@ export function TradesShowcase({
       <div ref={frameRef} className="trades-frame bg-espresso">
         {items.map((s, i) => {
           const img = imgSources(photosByKey[s.key])
+          const focusX = FOCUS_X[s.key]
           const letters = [...s.name.toUpperCase()]
           const fontSize = letterFontSize(letters)
           return (
@@ -216,6 +266,7 @@ export function TradesShowcase({
                   width={img.width}
                   height={img.height}
                   className="absolute inset-0 h-full w-full object-cover"
+                  style={focusX ? { objectPosition: `${focusX} 50%` } : undefined}
                   decoding="async"
                 />
                 {/* One scrim, heavier at the foot for the caption, a breath at
@@ -266,6 +317,7 @@ export function TradesShowcase({
                     src={cutoutsByKey[s.key]}
                     alt=""
                     className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+                    style={focusX ? { objectPosition: `${focusX} 50%` } : undefined}
                     decoding="async"
                   />
                 ) : null}

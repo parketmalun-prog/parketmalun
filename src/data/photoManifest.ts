@@ -10,33 +10,30 @@ export type PhotoMeta = { w: number; h: number; widths: number[] }
 
 export const photoManifest: Record<string, PhotoMeta> = {
   "/photos/after-floor.jpg": {
-    "h": 933,
-    "w": 1400,
+    "h": 600,
+    "w": 900,
     "widths": [
       320,
       640,
-      960,
-      1400
+      900
     ]
   },
   "/photos/before-floor.jpg": {
-    "h": 1050,
-    "w": 1400,
+    "h": 675,
+    "w": 900,
     "widths": [
       320,
       640,
-      960,
-      1400
+      900
     ]
   },
   "/photos/break-room-wide.jpg": {
-    "h": 1100,
-    "w": 2400,
+    "h": 412,
+    "w": 900,
     "widths": [
       320,
       640,
-      960,
-      1440
+      900
     ]
   },
   "/photos/grain-askur.jpg": {
@@ -76,57 +73,70 @@ export const photoManifest: Record<string, PhotoMeta> = {
     ]
   },
   "/photos/hero-herringbone-sun.jpg": {
-    "h": 1650,
-    "w": 1100,
+    "h": 1350,
+    "w": 900,
     "widths": [
       320,
       640,
-      960,
-      1100
+      900
     ]
   },
   "/photos/hero-herringbone-wide.jpg": {
-    "h": 1350,
-    "w": 2400,
+    "h": 506,
+    "w": 900,
     "widths": [
       320,
       640,
-      960,
-      1440
+      900
     ]
   },
   "/photos/pano-1-gardabaer-eik.jpg": {
-    "h": 1800,
-    "w": 1200,
+    "h": 1350,
+    "w": 900,
     "widths": [
       320,
       640,
-      960,
-      1200
+      900
     ]
   },
   "/photos/pano-2-vesturbaer-sildarbein.jpg": {
-    "h": 800,
-    "w": 1200,
+    "h": 600,
+    "w": 900,
     "widths": [
       320,
       640,
-      960,
-      1200
+      900
     ]
   },
   "/photos/pano-3-karsnes-askur.jpg": {
-    "h": 879,
-    "w": 1200,
+    "h": 659,
+    "w": 900,
     "widths": [
       320,
       640,
-      960,
-      1200
+      900
     ]
   },
   "/photos/pano-4-mosfellsbaer-eik.jpg": {
-    "h": 633,
+    "h": 475,
+    "w": 900,
+    "widths": [
+      320,
+      640,
+      900
+    ]
+  },
+  "/photos/pano-5-grafarvogur-hnota.jpg": {
+    "h": 675,
+    "w": 900,
+    "widths": [
+      320,
+      640,
+      900
+    ]
+  },
+  "/photos/parket-classic-ash.jpg": {
+    "h": 900,
     "w": 1200,
     "widths": [
       320,
@@ -135,7 +145,77 @@ export const photoManifest: Record<string, PhotoMeta> = {
       1200
     ]
   },
-  "/photos/pano-5-grafarvogur-hnota.jpg": {
+  "/photos/parket-classic-latte.jpg": {
+    "h": 900,
+    "w": 1200,
+    "widths": [
+      320,
+      640,
+      960,
+      1200
+    ]
+  },
+  "/photos/parket-classic-mist.jpg": {
+    "h": 900,
+    "w": 1200,
+    "widths": [
+      320,
+      640,
+      960,
+      1200
+    ]
+  },
+  "/photos/parket-classic-mocha.jpg": {
+    "h": 900,
+    "w": 1200,
+    "widths": [
+      320,
+      640,
+      960,
+      1200
+    ]
+  },
+  "/photos/parket-design-taupe.jpg": {
+    "h": 900,
+    "w": 1200,
+    "widths": [
+      320,
+      640,
+      960,
+      1200
+    ]
+  },
+  "/photos/parket-eco-desert.jpg": {
+    "h": 900,
+    "w": 1200,
+    "widths": [
+      320,
+      640,
+      960,
+      1200
+    ]
+  },
+  "/photos/parket-eco-night.jpg": {
+    "h": 900,
+    "w": 1200,
+    "widths": [
+      320,
+      640,
+      960,
+      1200
+    ]
+  },
+  "/photos/parket-forest-bronze.jpg": {
+    "h": 900,
+    "w": 1200,
+    "widths": [
+      320,
+      640,
+      960,
+      1200
+    ]
+  },
+  "/photos/parket-royal-ridge.jpg": {
     "h": 900,
     "w": 1200,
     "widths": [
@@ -146,312 +226,147 @@ export const photoManifest: Record<string, PhotoMeta> = {
     ]
   },
   "/photos/real-about-owner.jpg": {
-    "h": 1400,
-    "w": 1050,
+    "h": 1200,
+    "w": 900,
     "widths": [
       320,
       640,
-      960,
-      1050
+      900
     ]
   },
   "/photos/real-about-work.jpg": {
-    "h": 1600,
-    "w": 1200,
+    "h": 1200,
+    "w": 900,
     "widths": [
       320,
       640,
-      960,
-      1200
+      900
     ]
   },
   "/photos/real-after.jpg": {
-    "h": 1400,
-    "w": 1050,
+    "h": 1200,
+    "w": 900,
     "widths": [
       320,
       640,
-      960,
-      1050
-    ]
-  },
-  "/photos/real-before.jpg": {
-    "h": 1400,
-    "w": 1050,
-    "widths": [
-      320,
-      640,
-      960,
-      1050
+      900
     ]
   },
   "/photos/real-contact.jpg": {
-    "h": 1400,
-    "w": 1050,
+    "h": 1200,
+    "w": 900,
     "widths": [
       320,
       640,
-      960,
-      1050
-    ]
-  },
-  "/photos/real-hero-wide.jpg": {
-    "h": 900,
-    "w": 1600,
-    "widths": [
-      320,
-      640,
-      960,
-      1440
+      900
     ]
   },
   "/photos/real-hero.jpg": {
-    "h": 1600,
-    "w": 1200,
+    "h": 1200,
+    "w": 900,
     "widths": [
       320,
       640,
-      960,
-      1200
-    ]
-  },
-  "/photos/real-home-break.jpg": {
-    "h": 1600,
-    "w": 1200,
-    "widths": [
-      320,
-      640,
-      960,
-      1200
-    ]
-  },
-  "/photos/real-pano-1.jpg": {
-    "h": 1400,
-    "w": 1050,
-    "widths": [
-      320,
-      640,
-      960,
-      1050
-    ]
-  },
-  "/photos/real-pano-2.jpg": {
-    "h": 1400,
-    "w": 1050,
-    "widths": [
-      320,
-      640,
-      960,
-      1050
-    ]
-  },
-  "/photos/real-pano-3.jpg": {
-    "h": 1400,
-    "w": 1400,
-    "widths": [
-      320,
-      640,
-      960,
-      1400
-    ]
-  },
-  "/photos/real-pano-4.jpg": {
-    "h": 1400,
-    "w": 1050,
-    "widths": [
-      320,
-      640,
-      960,
-      1050
+      900
     ]
   },
   "/photos/real-pano-5.jpg": {
-    "h": 1400,
-    "w": 1400,
+    "h": 900,
+    "w": 900,
     "widths": [
       320,
       640,
-      960,
-      1400
+      900
     ]
   },
   "/photos/real-pf-1.jpg": {
-    "h": 1400,
-    "w": 1050,
+    "h": 1200,
+    "w": 900,
     "widths": [
       320,
       640,
-      960,
-      1050
-    ]
-  },
-  "/photos/real-pf-2.jpg": {
-    "h": 1400,
-    "w": 1050,
-    "widths": [
-      320,
-      640,
-      960,
-      1050
-    ]
-  },
-  "/photos/real-pf-3.jpg": {
-    "h": 1400,
-    "w": 1050,
-    "widths": [
-      320,
-      640,
-      960,
-      1050
-    ]
-  },
-  "/photos/real-pf-4.jpg": {
-    "h": 1400,
-    "w": 1400,
-    "widths": [
-      320,
-      640,
-      960,
-      1400
-    ]
-  },
-  "/photos/real-pf-5.jpg": {
-    "h": 1400,
-    "w": 1050,
-    "widths": [
-      320,
-      640,
-      960,
-      1050
-    ]
-  },
-  "/photos/real-pf-6.jpg": {
-    "h": 1400,
-    "w": 1050,
-    "widths": [
-      320,
-      640,
-      960,
-      1050
-    ]
-  },
-  "/photos/real-pf-7.jpg": {
-    "h": 1400,
-    "w": 1050,
-    "widths": [
-      320,
-      640,
-      960,
-      1050
-    ]
-  },
-  "/photos/real-pf-8.jpg": {
-    "h": 1400,
-    "w": 1050,
-    "widths": [
-      320,
-      640,
-      960,
-      1050
-    ]
-  },
-  "/photos/real-pf-9.jpg": {
-    "h": 1400,
-    "w": 1050,
-    "widths": [
-      320,
-      640,
-      960,
-      1050
+      900
     ]
   },
   "/photos/real-pf-break.jpg": {
-    "h": 1600,
-    "w": 1200,
+    "h": 1200,
+    "w": 900,
     "widths": [
       320,
       640,
-      960,
-      1200
+      900
     ]
   },
   "/photos/real-service-malun.jpg": {
-    "h": 1280,
-    "w": 960,
+    "h": 1200,
+    "w": 900,
     "widths": [
       320,
       640,
-      960
+      900
     ]
   },
   "/photos/real-service-parket.jpg": {
-    "h": 1600,
-    "w": 1200,
+    "h": 1200,
+    "w": 900,
     "widths": [
       320,
       640,
-      960,
-      1200
+      900
     ]
   },
   "/photos/real-service-slipun.jpg": {
-    "h": 1600,
-    "w": 1200,
+    "h": 1200,
+    "w": 900,
     "widths": [
       320,
       640,
-      960,
-      1200
+      900
     ]
   },
   "/photos/real-work-malun-2.jpg": {
-    "h": 1400,
-    "w": 1050,
+    "h": 1200,
+    "w": 900,
     "widths": [
       320,
       640,
-      960,
-      1050
+      900
     ]
   },
   "/photos/real-work-malun-3.jpg": {
-    "h": 1600,
-    "w": 1200,
+    "h": 1200,
+    "w": 900,
     "widths": [
       320,
       640,
-      960,
-      1200
+      900
     ]
   },
   "/photos/service-malun.jpg": {
-    "h": 1067,
-    "w": 1600,
+    "h": 600,
+    "w": 900,
     "widths": [
       320,
       640,
-      960,
-      1440
+      900
     ]
   },
   "/photos/service-parket.jpg": {
-    "h": 1067,
-    "w": 1600,
+    "h": 600,
+    "w": 900,
     "widths": [
       320,
       640,
-      960,
-      1440
+      900
     ]
   },
   "/photos/service-slipun.jpg": {
-    "h": 1067,
-    "w": 1600,
+    "h": 600,
+    "w": 900,
     "widths": [
       320,
       640,
-      960,
-      1440
+      900
     ]
   }
 }

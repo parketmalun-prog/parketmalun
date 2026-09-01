@@ -14,14 +14,19 @@ export default {
         paper: '#F4EEE4',
         // Sand / beige: flat panels, hover rows, PhotoSlot captions
         sand: { light: '#E0D6C5', DEFAULT: '#D3C6B0', dark: '#BFAE92' },
-        // Espresso: dark bands, footer, deep text
+        // Espresso: dark bands, footer, deep text. Lightened on 2026-08-31
+        // (client: the dark brown read as too heavy): the ground moved from
+        // #272019 (L* 13) to #3A3127 (L* 21), and the ladder re-spaced above
+        // it. Cream on the new ground still measures 9.8:1, gold-bright
+        // 5.7:1, both comfortably over WCAG AA. 950 stays the darkest ink
+        // for the few places that want true depth (badges, scrim feet).
         espresso: {
-          DEFAULT: '#272019',
+          DEFAULT: '#3A3127',
           950: '#100D09',
-          900: '#1A1510',
-          800: '#272019',
-          700: '#3B3226',
-          600: '#524634',
+          900: '#241D15',
+          800: '#3A3127',
+          700: '#4A3F31',
+          600: '#5A4D3C',
         },
         // Walnut: brown headings / hover states on espresso
         walnut: { DEFAULT: '#5C4A31', light: '#7D6446' },

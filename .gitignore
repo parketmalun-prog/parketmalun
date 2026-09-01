@@ -34,3 +34,8 @@ dist-ssr
 
 # Local safety snapshots taken before big refactors; not part of the site
 backup-*.zip
+
+# Raw manufacturer board photographs (Real Dutch Floor): licence confirmation
+# still pending from the client, and the repo is public. Only the composed
+# pattern images in public/photos ship.
+photos-library/parket-source/
