@@ -5,14 +5,31 @@ import { Footer } from './Footer'
 import { QuickContact } from './QuickContact'
 import { GrainOverlay } from './GrainOverlay'
 import { ScrollToTop } from './ScrollToTop'
+import { RoutePrefetch } from './RoutePrefetch'
+import { NavProgress } from './NavProgress'
 import { Tracker } from './Tracker'
 import { useUi } from '@/i18n/context'
 import { startSmoothScroll } from '@/lib/smoothScroll'
 
-/** Minimal, layout-stable placeholder while a lazily-loaded route chunk arrives. */
+/**
+ * Placeholder for a route chunk that is still arriving.
+ *
+ * Navigation runs inside a React transition, so this is now the exception
+ * rather than the rule: the previous page stays painted while the next one
+ * loads, and this only appears where there is no previous page to keep, which
+ * in practice means a cold deep link into a route that was never prerendered.
+ *
+ * It fills the viewport under the fixed masthead rather than the old 70vh.
+ * At 70vh the document was shorter than the page it replaced, so the footer
+ * climbed into view and was shoved back down a moment later, and those two
+ * reflows were most of what made the wait read as a glitch.
+ */
 function PageFallback() {
   return (
-    <div className="flex min-h-[70vh] items-center justify-center bg-cream" aria-hidden>
+    <div
+      className="flex min-h-[calc(100dvh-64px)] items-center justify-center bg-cream md:min-h-[calc(100dvh-72px)]"
+      aria-hidden
+    >
       <span className="cap-label animate-pulse">···</span>
     </div>
   )
@@ -30,6 +47,8 @@ export function Layout() {
         {t.common.skipToContent}
       </a>
       <ScrollToTop />
+      <RoutePrefetch />
+      <NavProgress />
       <Tracker />
       <GrainOverlay />
       <Navbar />

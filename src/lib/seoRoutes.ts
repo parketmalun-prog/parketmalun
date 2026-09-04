@@ -1,5 +1,6 @@
 import { LANGS, HTML_LANG, OG_LOCALE, SITE_URL, blogPostPath, pathFor } from '@/i18n/config'
 import type { Lang, RouteKey } from '@/i18n/config'
+import type { PageKey } from '@/routes'
 import { ui } from '@/i18n/ui'
 import { site } from '@/data/site'
 import { home } from '@/data/home'
@@ -23,6 +24,13 @@ import { plainText } from '@/lib/markdown'
 export type PrerenderRoute = {
   /** URL path, e.g. `/en/services` */
   path: string
+  /**
+   * Which page component renders this route. The prerender step uses it to
+   * look the route's JavaScript chunk up in the build manifest, so the
+   * finished HTML can preload its own code instead of leaving the browser to
+   * discover it after the entry bundle has parsed.
+   */
+  page: PageKey
   lang: Lang
   title: string
   description: string
@@ -162,6 +170,7 @@ export const PRERENDER_ROUTES: PrerenderRoute[] = [
       const seo = seoFor(key, lang)
       return {
         path,
+        page: key as PageKey,
         lang,
         title: seo.title,
         description: seo.description,
@@ -180,6 +189,7 @@ export const PRERENDER_ROUTES: PrerenderRoute[] = [
         const path = blogPostPath(lang, tr.slug)
         return {
           path,
+          page: 'blogPost' as PageKey,
           lang,
           title: tr.seoTitle || `${tr.title} | ${site.name}`,
           description: tr.seoDescription || tr.excerpt || plainText(tr.body),
@@ -238,6 +248,8 @@ export function headTags(route: PrerenderRoute): string {
     `<meta property="og:url" content="${canonical}">`,
     `<meta property="og:locale" content="${OG_LOCALE[route.lang]}">`,
     ...otherLocales,
+    `<meta property="og:image" content="${SHARE_CARD}">`,
+    `<meta name="twitter:image" content="${SHARE_CARD}">`,
     `<meta name="twitter:title" content="${esc(route.title)}">`,
     `<meta name="twitter:description" content="${esc(route.description)}">`,
     ...route.jsonLd.map(

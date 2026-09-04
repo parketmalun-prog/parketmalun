@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
+import { imgSources } from '@/lib/img'
 
 /**
  * A small Markdown subset for blog bodies: headings, paragraphs, lists,
@@ -214,13 +215,29 @@ export function Markdown({ body }: { body: string }) {
                 ))}
               </ol>
             )
-          case 'img':
+          case 'img': {
+            // Same responsive path as every other photograph on the site. The
+            // intrinsic size matters most here: without it the figure is only
+            // as tall as its border until the image decodes, and then every
+            // paragraph below it is shoved down the page mid-read.
+            const img = imgSources(block.src)
             return (
               <figure key={key} className="my-8 overflow-hidden rounded-lg border border-line">
-                <img src={block.src} alt={block.alt} loading="lazy" className="w-full" />
+                <img
+                  src={img.src}
+                  srcSet={img.srcSet || undefined}
+                  sizes={img.srcSet ? '(min-width: 1024px) 68ch, 100vw' : undefined}
+                  alt={block.alt}
+                  width={img.width}
+                  height={img.height}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-auto w-full"
+                />
                 {block.alt ? <figcaption className="cap-label px-4 py-3">{block.alt}</figcaption> : null}
               </figure>
             )
+          }
           case 'hr':
             return <hr key={key} className="rule" />
           default:

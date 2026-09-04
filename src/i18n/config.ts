@@ -67,8 +67,22 @@ export function blogPostPath(lang: Lang, slug: string): string {
   return `${pathFor('blog', lang)}/${slug}`
 }
 
-/** Canonical production origin (no trailing slash): used for hreflang/canonical. */
-export const SITE_URL = 'https://expertparketogmal.is'
+/**
+ * Canonical production origin, no trailing slash. Everything absolute derives
+ * from it: canonical links, hreflang, the sitemap, robots.txt, the share card
+ * and the structured data.
+ *
+ * TEMPORARY (4 Sep 2026). It used to read https://expertparketogmal.is, which
+ * is not a registered domain: the .is registry answers NXDOMAIN for it. Every
+ * page was therefore telling Google that its real address was somewhere that
+ * does not exist, which is enough on its own to keep the site out of the
+ * index. Pointing it at the Vercel address makes the site indexable today.
+ *
+ * When the client buys the real domain and it is attached in Vercel, change
+ * this ONE line back and rebuild. Nothing else in the codebase holds the
+ * origin: prerender.mjs imports it, and robots.txt is generated from it.
+ */
+export const SITE_URL = 'https://expert-parket.vercel.app'
 
 /** URL prefix for a language: '' for the default (is), otherwise '/en', '/pl'. */
 export function langPrefix(lang: Lang): string {

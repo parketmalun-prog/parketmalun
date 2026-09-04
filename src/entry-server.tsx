@@ -53,3 +53,6 @@ export function render(url: string): string {
 }
 
 export { PRERENDER_ROUTES, headTags } from './lib/seoRoutes'
+// Re-exported so scripts/prerender.mjs writes the sitemap and robots.txt
+// against the same origin the pages themselves declare.
+export { SITE_URL } from './i18n/config'

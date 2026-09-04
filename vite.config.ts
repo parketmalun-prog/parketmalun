@@ -115,6 +115,12 @@ export default defineConfig(({ isSsrBuild }) => ({
     target: 'es2020',
     reportCompressedSize: false,
     chunkSizeWarningLimit: 700,
+    // The manifest is how scripts/prerender.mjs finds which hashed chunk
+    // belongs to which route, so a prerendered page can preload its own
+    // JavaScript instead of leaving the browser to discover it only after the
+    // entry bundle has downloaded and parsed. It is a build-time file, never
+    // served. The SSR build has no need of it.
+    manifest: !isSsrBuild,
     rollupOptions: {
       output: isSsrBuild
         ? // The prerender bundle runs in Node and is never shipped, so it keeps

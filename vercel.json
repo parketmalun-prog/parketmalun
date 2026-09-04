@@ -71,7 +71,7 @@
       ]
     },
     {
-      "source": "/logo.webp",
+      "source": "/logo(.*)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -80,7 +80,7 @@
       ]
     },
     {
-      "source": "/((?!assets/|photos/|api/).*)",
+      "source": "/((?!assets/|photos/|api/|logo).*)",
       "headers": [
         {
           "key": "Cache-Control",

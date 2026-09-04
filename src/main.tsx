@@ -44,7 +44,16 @@ async function start() {
 
   const app = (
     <React.StrictMode>
-      <BrowserRouter>
+      {/*
+        v7_startTransition makes the router set its location inside a React
+        transition. That is what stops a page change from blanking the screen:
+        when the next page's chunk is not in memory yet, React keeps the
+        current page rendered instead of tearing it down for the Suspense
+        placeholder, and swaps only once the new page can actually paint.
+        Together with the prefetching in RoutePrefetch, most navigations then
+        have nothing left to wait for.
+      */}
+      <BrowserRouter future={{ v7_startTransition: true }}>
         <App pages={pages} />
       </BrowserRouter>
     </React.StrictMode>
