@@ -177,7 +177,11 @@ export default async function handler(req: Req, res: Res): Promise<void> {
     return send(res, 405, { error: 'method_not_allowed' })
   }
 
-  const apiKey = process.env.RESEND_API_KEY
+  // Trimmed on purpose. A key pasted into a hosting dashboard picks up a
+  // trailing space or newline more often than anyone admits, and Resend
+  // answers that with a flat "API key is invalid" that looks like a wrong key
+  // rather than a stray character.
+  const apiKey = process.env.RESEND_API_KEY?.trim()
   if (!apiKey) {
     // Not an error the visitor caused. The browser reads this and falls back
     // to opening a mail client instead of showing a failure.
@@ -266,6 +270,11 @@ export default async function handler(req: Req, res: Res): Promise<void> {
     // the function log when a domain is not verified yet.
     const detail = await response.text().catch(() => '')
     console.error('resend rejected the enquiry', response.status, detail.slice(0, 500))
+    // Worth naming, because the two look identical from the visitor's side and
+    // are fixed in completely different places.
+    if (response.status === 401 || detail.includes('API key is invalid')) {
+      console.error('RESEND_API_KEY is set but rejected. Check for a stray space in the hosting environment, or issue a new key.')
+    }
     return send(res, 502, { error: 'send_failed' })
   }
 
