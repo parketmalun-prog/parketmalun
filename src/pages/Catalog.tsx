@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { cn, formatIsk } from '@/lib/utils'
+import { cn } from '@/lib/utils'
 import { catalog as catalogByLang, catalogSeo as seoByLang } from '@/data/catalog'
 import type { Product } from '@/data/catalog'
 import { useContent, useLang, useUi } from '@/i18n/context'
@@ -129,10 +129,11 @@ export default function Catalog() {
 
       {/* ============ SPECIMEN SHEETS ============ */}
       {/* Shop shelf (client, 2026-08-29, reference the big fashion shops):
-          every card identical in shape and rhythm, image, name, tone, price,
-          one button, all bottoms on the same line. The description and the
-          spec ledger with its hairlines left the card; the quote dialog and
-          the service pages carry the detail. */}
+          every card identical in shape and rhythm, image, name, tone, one
+          button, all bottoms on the same line. The description and the spec
+          ledger with its hairlines left the card; the quote dialog and the
+          service pages carry the detail. The per-m2 figure left too (client,
+          2026-09-04): the price comes from the visit, not the shelf. */}
       <section className="container-x py-12 lg:py-16">
         <div className="grid grid-cols-12 gap-x-4 gap-y-12 md:gap-x-6">
           {visible.map((p) => (
@@ -145,9 +146,6 @@ export default function Catalog() {
                 <h2 className="font-display text-lg font-bold leading-tight text-espresso">{p.name}</h2>
                 <span className="cap-label shrink-0">{p.woodTone}</span>
               </div>
-              <p className="tnum pt-1.5 text-[15px] font-semibold text-espresso">
-                {formatIsk(p.pricePerM2)} {t.common.perM2}
-              </p>
               <div className="mt-auto pt-5">
                 <button
                   type="button"

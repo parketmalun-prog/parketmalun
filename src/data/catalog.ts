@@ -7,7 +7,6 @@ export type Product = {
   category: string
   woodTone: string
   description: string
-  pricePerM2: number
   thickness: string
   finish: string
   bestFor: string
@@ -34,24 +33,27 @@ type CatalogContent = {
  * patterns here are the manufacturer's own, and every card carries a
  * photograph of that board laid in the pattern it is sold in.
  *
- * PRICES ARE PLACEHOLDERS. They keep the shape of the ladder the page had and
- * must be replaced with Planki's real list before this goes live.
+ * NO PRICES. The cards used to carry a per-m2 figure, but those numbers were
+ * placeholders shaped like the old ladder and Planki's real list never
+ * arrived; the client asked for them off the page (2026-09-04). Every card
+ * ends at the quote button, so the written quote after the free visit is the
+ * only price the visitor is ever given.
  */
 export const catalogSeo: Record<Lang, SeoText> = {
   is: {
-    title: 'Vöruúrval | Parket og verð á m² | Expert Parket og Mál',
+    title: 'Vöruúrval | Eikarparket, fiskibein og chevron | Expert Parket og Mál',
     description:
-      'Hollenskt eikarparket frá Real Dutch Floor: plankar, fiskibein og chevron. Viðmiðunarverð á fermetra og skriflegt tilboð eftir fría skoðun.',
+      'Hollenskt eikarparket frá Real Dutch Floor: plankar, fiskibein og chevron. Frí skoðun á staðnum og skriflegt tilboð sem stendur.',
   },
   en: {
-    title: 'Flooring | Parquet and prices per m² | Expert Parket og Mál',
+    title: 'Flooring | Oak parquet, herringbone and chevron | Expert Parket og Mál',
     description:
-      'Dutch oak parquet by Real Dutch Floor: planks, herringbone and chevron. Indicative prices per square metre and a written quote after a free visit.',
+      'Dutch oak parquet by Real Dutch Floor: planks, herringbone and chevron. A free visit to your home and a written quote that holds.',
   },
   pl: {
-    title: 'Parkiety | Parkiet i ceny za m² | Expert Parket og Mál',
+    title: 'Parkiety | Parkiet dębowy, jodełka i chevron | Expert Parket og Mál',
     description:
-      'Holenderski parkiet dębowy Real Dutch Floor: deski, jodełka i chevron. Ceny orientacyjne za metr kwadratowy i pisemna wycena po darmowych oględzinach.',
+      'Holenderski parkiet dębowy Real Dutch Floor: deski, jodełka i chevron. Darmowe oględziny na miejscu i pisemna wycena, która obowiązuje.',
   },
 }
 
@@ -74,7 +76,6 @@ export const catalog: Record<Lang, CatalogContent> = {
         woodTone: 'Ljós eik',
         description:
           'Eco línan er þynnri og léttari plata á vinsamlegra verði, með sama eikaryfirborði og dýrari línurnar. Desert er hlýr, ljós tónn sem opnar rýmið.',
-        pricePerM2: 8290,
         thickness: '8 mm',
         finish: 'Burstað og olíuborið',
         bestFor: 'Íbúðir og leiguhúsnæði þar sem verðið skiptir máli',
@@ -88,7 +89,6 @@ export const catalog: Record<Lang, CatalogContent> = {
         woodTone: 'Náttúruleg eik',
         description:
           'Classic línan er vandlega slípuð evrópsk eik með mjúku yfirborði. Latte heldur náttúrulegum lit eikarinnar og passar við nánast hvaða innréttingu sem er.',
-        pricePerM2: 13900,
         thickness: '15 mm',
         finish: 'Slípað og olíuborið',
         bestFor: 'Stofur og opin rými sem eiga að endast',
@@ -101,7 +101,6 @@ export const catalog: Record<Lang, CatalogContent> = {
         woodTone: 'Ljós hvítolíuborin eik',
         description:
           'Hvítolían dregur gula tóninn úr eikinni og heldur rýminu björtu allt árið. Mist er ljósasti tónninn í Classic línunni.',
-        pricePerM2: 14900,
         thickness: '15 mm',
         finish: 'Hvítolíuborið',
         bestFor: 'Björt rými og herbergi sem snúa í norður',
@@ -114,7 +113,6 @@ export const catalog: Record<Lang, CatalogContent> = {
         woodTone: 'Dökk eik',
         description:
           'Forest línan er reykt og burstuð þannig að æðarnar standa upp úr. Bronze er dýpsti tónninn, hlýr og dökkur án þess að verða svartur.',
-        pricePerM2: 15900,
         thickness: '15 mm',
         finish: 'Burstað, reykt og olíuborið',
         bestFor: 'Stór rými sem þola dökkt gólf',
@@ -127,7 +125,6 @@ export const catalog: Record<Lang, CatalogContent> = {
         woodTone: 'Djúpsvört eik',
         description:
           'Fiskibein í dökkasta tóninum úr Eco línunni. Mynstrið gefur rýminu takt og svarti tónninn dregur húsgögnin fram.',
-        pricePerM2: 12900,
         thickness: '8 mm',
         finish: 'Burstað og olíuborið',
         bestFor: 'Anddyri og rými sem eiga að hafa karakter',
@@ -141,7 +138,6 @@ export const catalog: Record<Lang, CatalogContent> = {
         woodTone: 'Gráleit eik',
         description:
           'Ash er mildur, gráleitur eikartónn sem gerir fiskibeinsmynstrið skýrt án þess að yfirgnæfa rýmið.',
-        pricePerM2: 16900,
         thickness: '15 mm',
         finish: 'Slípað og olíuborið',
         bestFor: 'Stofur og borðstofur',
@@ -155,7 +151,6 @@ export const catalog: Record<Lang, CatalogContent> = {
         woodTone: 'Hlý miðbrún eik',
         description:
           'Mocha er hlýr miðtónn sem gefur fiskibeininu dýpt. Klassískt val þar sem gólfið á að vera aðalatriðið.',
-        pricePerM2: 16900,
         thickness: '15 mm',
         finish: 'Slípað og olíuborið',
         bestFor: 'Eldri íbúðir og rými með háum loftum',
@@ -168,7 +163,6 @@ export const catalog: Record<Lang, CatalogContent> = {
         woodTone: 'Grábrún eik',
         description:
           'Design línan er hefluð þannig að yfirborðið verður slétt og hreint. Taupe er grábrúnn tónn sem passar við nútímalegar innréttingar.',
-        pricePerM2: 18900,
         thickness: '15 mm',
         finish: 'Heflað og olíuborið',
         bestFor: 'Nútímaleg rými og skrifstofur',
@@ -181,7 +175,6 @@ export const catalog: Record<Lang, CatalogContent> = {
         woodTone: 'Dökk reykt eik',
         description:
           'Royal línan kemur með Royal Protect, hlífðarlagi sem þarf hvorki slípun né olíu. Ridge er dökkur, reyktur tónn í chevron mynstri.',
-        pricePerM2: 21900,
         thickness: '15 mm',
         finish: 'Royal Protect, viðhaldsfrítt',
         bestFor: 'Rými í mikilli notkun þar sem viðhald á að vera í lágmarki',
@@ -208,7 +201,6 @@ export const catalog: Record<Lang, CatalogContent> = {
         woodTone: 'Light oak',
         description:
           'The Eco line is a thinner, lighter board at a friendlier price, with the same oak surface as the dearer lines. Desert is a warm, light tone that opens a room up.',
-        pricePerM2: 8290,
         thickness: '8 mm',
         finish: 'Brushed and oiled',
         bestFor: 'Flats and rentals where the price matters',
@@ -222,7 +214,6 @@ export const catalog: Record<Lang, CatalogContent> = {
         woodTone: 'Natural oak',
         description:
           'The Classic line is meticulously sanded European oak with a velvety surface. Latte keeps the natural colour of the oak and sits well with almost any interior.',
-        pricePerM2: 13900,
         thickness: '15 mm',
         finish: 'Sanded and oiled',
         bestFor: 'Living rooms and open plans meant to last',
@@ -235,7 +226,6 @@ export const catalog: Record<Lang, CatalogContent> = {
         woodTone: 'Light white-oiled oak',
         description:
           'The white oil takes the yellow out of the oak and keeps a room bright the year round. Mist is the lightest tone in the Classic line.',
-        pricePerM2: 14900,
         thickness: '15 mm',
         finish: 'White oiled',
         bestFor: 'Bright rooms and north-facing spaces',
@@ -248,7 +238,6 @@ export const catalog: Record<Lang, CatalogContent> = {
         woodTone: 'Dark oak',
         description:
           'The Forest line is smoked and brushed so the grain stands proud. Bronze is the deepest tone, warm and dark without going black.',
-        pricePerM2: 15900,
         thickness: '15 mm',
         finish: 'Brushed, smoked and oiled',
         bestFor: 'Large rooms that can carry a dark floor',
@@ -261,7 +250,6 @@ export const catalog: Record<Lang, CatalogContent> = {
         woodTone: 'Deep black oak',
         description:
           'Herringbone in the darkest tone of the Eco line. The pattern gives a room its rhythm and the black throws the furniture forward.',
-        pricePerM2: 12900,
         thickness: '8 mm',
         finish: 'Brushed and oiled',
         bestFor: 'Hallways and rooms that need character',
@@ -275,7 +263,6 @@ export const catalog: Record<Lang, CatalogContent> = {
         woodTone: 'Greyed oak',
         description:
           'Ash is a soft, greyed oak that lets the herringbone read clearly without shouting over the room.',
-        pricePerM2: 16900,
         thickness: '15 mm',
         finish: 'Sanded and oiled',
         bestFor: 'Living and dining rooms',
@@ -289,7 +276,6 @@ export const catalog: Record<Lang, CatalogContent> = {
         woodTone: 'Warm mid-brown oak',
         description:
           'Mocha is a warm mid tone that gives the herringbone depth. The classic choice where the floor is meant to be the subject.',
-        pricePerM2: 16900,
         thickness: '15 mm',
         finish: 'Sanded and oiled',
         bestFor: 'Older flats and rooms with high ceilings',
@@ -302,7 +288,6 @@ export const catalog: Record<Lang, CatalogContent> = {
         woodTone: 'Grey-brown oak',
         description:
           'The Design line is planed to a clean, level surface. Taupe is a grey-brown tone that suits modern interiors.',
-        pricePerM2: 18900,
         thickness: '15 mm',
         finish: 'Planed and oiled',
         bestFor: 'Modern spaces and offices',
@@ -315,7 +300,6 @@ export const catalog: Record<Lang, CatalogContent> = {
         woodTone: 'Dark smoked oak',
         description:
           'The Royal line comes with Royal Protect, a protective layer that needs neither sanding nor oil. Ridge is a dark, smoked tone in a chevron pattern.',
-        pricePerM2: 21900,
         thickness: '15 mm',
         finish: 'Royal Protect, maintenance free',
         bestFor: 'Busy rooms where upkeep should be minimal',
@@ -342,7 +326,6 @@ export const catalog: Record<Lang, CatalogContent> = {
         woodTone: 'Jasny dąb',
         description:
           'Linia Eco to cieńsza i lżejsza deska w przyjaźniejszej cenie, z tą samą dębową powierzchnią co droższe linie. Desert to ciepły, jasny ton, który otwiera wnętrze.',
-        pricePerM2: 8290,
         thickness: '8 mm',
         finish: 'Szczotkowany i olejowany',
         bestFor: 'Mieszkania i lokale na wynajem, gdzie liczy się cena',
@@ -356,7 +339,6 @@ export const catalog: Record<Lang, CatalogContent> = {
         woodTone: 'Naturalny dąb',
         description:
           'Linia Classic to starannie szlifowany dąb europejski o aksamitnej powierzchni. Latte zachowuje naturalny kolor dębu i pasuje niemal do każdego wnętrza.',
-        pricePerM2: 13900,
         thickness: '15 mm',
         finish: 'Szlifowany i olejowany',
         bestFor: 'Salony i otwarte przestrzenie na lata',
@@ -369,7 +351,6 @@ export const catalog: Record<Lang, CatalogContent> = {
         woodTone: 'Jasny dąb bielony',
         description:
           'Biały olej wygasza żółty ton dębu i utrzymuje jasność wnętrza przez cały rok. Mist to najjaśniejszy odcień w linii Classic.',
-        pricePerM2: 14900,
         thickness: '15 mm',
         finish: 'Olejowany na biało',
         bestFor: 'Jasne wnętrza i pokoje od północy',
@@ -382,7 +363,6 @@ export const catalog: Record<Lang, CatalogContent> = {
         woodTone: 'Ciemny dąb',
         description:
           'Linia Forest jest wędzona i szczotkowana, dzięki czemu słoje wychodzą na wierzch. Bronze to najgłębszy odcień, ciepły i ciemny, ale nie czarny.',
-        pricePerM2: 15900,
         thickness: '15 mm',
         finish: 'Szczotkowany, wędzony i olejowany',
         bestFor: 'Duże wnętrza, które udźwigną ciemną podłogę',
@@ -395,7 +375,6 @@ export const catalog: Record<Lang, CatalogContent> = {
         woodTone: 'Głęboko czarny dąb',
         description:
           'Jodełka w najciemniejszym odcieniu linii Eco. Wzór nadaje wnętrzu rytm, a czerń wysuwa meble na pierwszy plan.',
-        pricePerM2: 12900,
         thickness: '8 mm',
         finish: 'Szczotkowany i olejowany',
         bestFor: 'Przedpokoje i wnętrza z charakterem',
@@ -409,7 +388,6 @@ export const catalog: Record<Lang, CatalogContent> = {
         woodTone: 'Szarawy dąb',
         description:
           'Ash to miękki, szarawy dąb, przy którym jodełka jest czytelna, ale nie krzyczy.',
-        pricePerM2: 16900,
         thickness: '15 mm',
         finish: 'Szlifowany i olejowany',
         bestFor: 'Salony i jadalnie',
@@ -423,7 +401,6 @@ export const catalog: Record<Lang, CatalogContent> = {
         woodTone: 'Ciepły brązowy dąb',
         description:
           'Mocha to ciepły średni ton, który dodaje jodełce głębi. Klasyczny wybór tam, gdzie podłoga ma być bohaterem.',
-        pricePerM2: 16900,
         thickness: '15 mm',
         finish: 'Szlifowany i olejowany',
         bestFor: 'Starsze mieszkania i wnętrza z wysokimi sufitami',
@@ -436,7 +413,6 @@ export const catalog: Record<Lang, CatalogContent> = {
         woodTone: 'Szarobrązowy dąb',
         description:
           'Linia Design jest strugana do czystej, równej powierzchni. Taupe to szarobrązowy ton pasujący do nowoczesnych wnętrz.',
-        pricePerM2: 18900,
         thickness: '15 mm',
         finish: 'Strugany i olejowany',
         bestFor: 'Nowoczesne wnętrza i biura',
@@ -449,7 +425,6 @@ export const catalog: Record<Lang, CatalogContent> = {
         woodTone: 'Ciemny wędzony dąb',
         description:
           'Linia Royal ma Royal Protect, warstwę ochronną, która nie wymaga cyklinowania ani olejowania. Ridge to ciemny, wędzony ton we wzorze chevron.',
-        pricePerM2: 21900,
         thickness: '15 mm',
         finish: 'Royal Protect, bezobsługowy',
         bestFor: 'Intensywnie używane wnętrza z minimalną konserwacją',
