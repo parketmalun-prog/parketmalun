@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect, useState } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { lockedFor, useAuth } from './auth'
 import { AdminProvider, useAdmin } from './context'
+import { LogoMark } from '@/components/Logo'
 import { AdminShell } from './components/AdminShell'
 import { Button, Card, Field, Input } from './components/kit'
 
@@ -61,8 +62,10 @@ function Login({
   return (
     <div className="flex min-h-dvh items-center justify-center bg-cream px-5 py-12">
       <div className="w-full max-w-sm">
-        <p className="pb-1 font-display text-2xl font-bold leading-none text-espresso">Expert Parket</p>
-        <p className="cap-label pb-6">{t.login.title}</p>
+        <div className="flex flex-col items-center pb-8 text-center">
+          <LogoMark className="h-16" sizes="111px" priority />
+          <p className="cap-label pt-5">{t.login.title}</p>
+        </div>
 
         <Card>
           <form onSubmit={submit} className="space-y-5">

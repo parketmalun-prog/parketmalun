@@ -1,12 +1,136 @@
+import type { ReactNode } from 'react'
 import { cn } from '@/lib/utils'
 import { formatNumber, percent } from '@/lib/format'
 import type { DayPoint, Slice } from '../lib/stats'
 
 /**
- * Two chart shapes cover everything the dashboard needs: a day column chart
- * for the trend and a ranked bar list for every breakdown. Both are plain
- * elements, so they reflow at any width and carry no charting dependency.
+ * The dashboard's shapes. Two charts cover every breakdown, a day column
+ * chart for the trend and a ranked bar list for the rest, and two containers
+ * carry the figures: an espresso band for the three numbers that matter and a
+ * flat strip for the rest. All plain elements, no charting dependency.
  */
+
+/* --------------------------------- band ---------------------------------- */
+
+/**
+ * The dark band at the top of the overview, cut like the site's own dark
+ * sections: a finished floor behind an espresso wash, the figures in gold
+ * serif on top. Three numbers, never more; anything that has to compete with
+ * them belongs in the strip below.
+ */
+export function HeadlineBand({
+  period,
+  title,
+  lead,
+  controls,
+  children,
+}: {
+  period: string
+  title: string
+  lead?: string
+  controls?: ReactNode
+  children: ReactNode
+}) {
+  return (
+    <section className="relative overflow-hidden rounded-2xl bg-espresso text-cream">
+      <img
+        src="/photos/after-floor-640.webp"
+        srcSet="/photos/after-floor-640.webp 640w, /photos/after-floor-900.webp 900w, /photos/after-floor-1400.webp 1400w"
+        sizes="(min-width: 1024px) 1100px, 100vw"
+        alt=""
+        decoding="async"
+        className="absolute inset-0 h-full w-full select-none object-cover opacity-30"
+        draggable={false}
+      />
+      <div aria-hidden className="absolute inset-0 bg-gradient-to-br from-espresso via-espresso/90 to-espresso/60" />
+
+      <div className="relative px-5 py-6 sm:px-8 sm:py-8">
+        <div className="flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
+          <div>
+            <p className="cap-label-dark">{period}</p>
+            {/* Explicit cream: a base rule paints every h1 espresso, which vanishes on this ground. */}
+            <h1 className="pt-2 font-display text-[clamp(2rem,4vw,2.75rem)] font-bold leading-none text-cream">
+              {title}
+            </h1>
+            {lead ? <p className="max-w-[52ch] pt-3 text-[14px] leading-relaxed text-cream/65">{lead}</p> : null}
+          </div>
+          {controls}
+        </div>
+
+        <div className="mt-7 grid gap-6 border-t border-cream/15 pt-6 sm:grid-cols-3 sm:gap-0 sm:divide-x sm:divide-cream/15">
+          {children}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+/** One of the three figures in the band. */
+export function HeadlineFigure({
+  label,
+  value,
+  delta,
+  deltaNote,
+  note,
+}: {
+  label: string
+  value: string
+  delta?: number | null
+  deltaNote?: string
+  note?: string
+}) {
+  return (
+    <div className="sm:px-6 sm:first:pl-0 sm:last:pr-0">
+      <p className="cap-label-dark">{label}</p>
+      <p className="tnum pt-2 font-display text-[clamp(2.75rem,7vw,4rem)] font-bold leading-none text-gold-bright">
+        {value}
+      </p>
+      <p className="flex items-baseline gap-2 pt-2.5 text-[13px] text-cream/55">
+        {delta !== undefined && delta !== null ? (
+          <>
+            <span className={cn('tnum font-bold', delta > 0 ? 'text-cream' : delta < 0 ? 'text-gold-bright' : '')}>
+              {delta > 0 ? '+' : ''}
+              {delta}%
+            </span>
+            {deltaNote}
+          </>
+        ) : (
+          (note ?? ' ')
+        )}
+      </p>
+    </div>
+  )
+}
+
+/* --------------------------------- strip --------------------------------- */
+
+/**
+ * The secondary figures, one flat strip with hairlines between the cells
+ * instead of a field of boxes. The hairlines are the gaps of a grid painted
+ * on a line-coloured ground, so they stay right at every column count without
+ * a single border rule to keep in step.
+ */
+export function FigureStrip({ children }: { children: ReactNode }) {
+  return (
+    <div className="overflow-hidden rounded-2xl border border-line bg-line">
+      <div className="grid grid-cols-2 gap-px sm:grid-cols-3 lg:grid-cols-6">{children}</div>
+    </div>
+  )
+}
+
+/** One cell of the strip. Every cell holds the same three lines so the row keeps one height. */
+export function Figure({ label, value, note }: { label: string; value: string; note?: string }) {
+  return (
+    <div className="flex flex-col justify-between gap-2 bg-paper px-4 py-4 sm:px-5">
+      {/* Two lines reserved for the label, so a long one does not push its value below the others'. */}
+      <p className="cap-label min-h-[2.4em] leading-tight">{label}</p>
+      <p className="tnum font-display text-[1.75rem] font-bold leading-none text-espresso">{value}</p>
+      <p className="tnum text-[12px] leading-none text-taupe">{note ?? ' '}</p>
+    </div>
+  )
+}
+
+/* --------------------------------- charts -------------------------------- */
 
 export function DayChart({
   points,
@@ -44,7 +168,7 @@ export function DayChart({
                 <div
                   className={cn(
                     'w-full rounded-t-[3px] transition-colors',
-                    point.views ? 'bg-espresso/85 group-hover:bg-gold-deep' : 'bg-line',
+                    point.views ? 'bg-gold group-hover:bg-espresso' : 'bg-line',
                   )}
                   style={{ height: point.views ? `${Math.max(height, 3)}%` : '2px' }}
                 />
@@ -89,7 +213,7 @@ export function BarList({
         <li key={slice.key} className="relative overflow-hidden rounded-md">
           <div
             aria-hidden
-            className="absolute inset-y-0 left-0 bg-sand-light"
+            className="absolute inset-y-0 left-0 bg-gold/20"
             style={{ width: `${(slice.count / peak) * 100}%` }}
           />
           <div className="relative flex items-baseline justify-between gap-4 px-3 py-2">
@@ -117,44 +241,4 @@ export function BarList({
 export function changePercent(current: number, previous: number): number | null {
   if (!previous) return null
   return Math.round(((current - previous) / previous) * 100)
-}
-
-/** Headline number with a caption, used in the row of tiles up top. */
-export function StatTile({
-  label,
-  value,
-  note,
-  delta,
-  deltaNote,
-}: {
-  label: string
-  value: string
-  note?: string
-  delta?: number | null
-  deltaNote?: string
-}) {
-  return (
-    <div className="rounded-xl border border-line bg-paper px-5 py-4">
-      <p className="cap-label">{label}</p>
-      <p className="tnum pt-2 font-display text-[clamp(1.75rem,4vw,2.5rem)] font-bold leading-none text-espresso">
-        {value}
-      </p>
-      {delta !== undefined && delta !== null ? (
-        <p className="flex items-baseline gap-1.5 pt-2">
-          <span
-            className={cn(
-              'tnum text-[13px] font-bold',
-              delta > 0 ? 'text-positive' : delta < 0 ? 'text-danger' : 'text-taupe',
-            )}
-          >
-            {delta > 0 ? '+' : ''}
-            {delta}%
-          </span>
-          {deltaNote ? <span className="text-[12px] text-taupe">{deltaNote}</span> : null}
-        </p>
-      ) : note ? (
-        <p className="pt-1.5 text-[13px] text-taupe">{note}</p>
-      ) : null}
-    </div>
-  )
 }

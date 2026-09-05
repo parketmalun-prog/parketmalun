@@ -5,8 +5,16 @@ import { db } from '@/lib/db'
 import { useAsync } from '@/lib/useAsync'
 import { formatNumber, formatShortDate, percent } from '@/lib/format'
 import { cn } from '@/lib/utils'
-import { Button, Card, PageHeader } from '../components/kit'
-import { BarList, DayChart, StatTile, changePercent } from '../components/charts'
+import { Button, Card } from '../components/kit'
+import {
+  BarList,
+  DayChart,
+  Figure,
+  FigureStrip,
+  HeadlineBand,
+  HeadlineFigure,
+  changePercent,
+} from '../components/charts'
 import { buildStats } from '../lib/stats'
 import type { StatsInput } from '../lib/stats'
 import { useAdmin } from '../context'
@@ -14,13 +22,19 @@ import { useAdmin } from '../context'
 const RANGES = [7, 30, 90] as const
 type Range = (typeof RANGES)[number]
 
+/**
+ * The overview. Three numbers the client actually runs the business on sit
+ * in the dark band up top: how many people came, how many wrote in, and the
+ * ratio between the two. Everything else is a supporting figure in the flat
+ * strip below, then the trend and the breakdowns.
+ */
 export default function Dashboard() {
   const { t } = useAdmin()
   const [days, setDays] = useState<Range>(30)
 
   const { data, loading } = useAsync(
     async () => {
-      // Two windows are pulled at once so the tiles can compare this period
+      // Two windows are pulled at once so the figures can compare this period
       // with the one before it without a second round trip.
       const from = Date.now() - (days * 2 + 1) * 86_400_000
       const [visits, clicks, links, posts, enquiries] = await Promise.all([
@@ -83,80 +97,73 @@ export default function Dashboard() {
   const publishedCount = data ? data.posts.filter((p) => p.status === 'published').length : 0
   const activeLinks = data ? data.links.filter((l) => !l.archived).length : 0
 
+  const ranges = (
+    <div className="flex rounded-full border border-cream/20 p-1" role="group">
+      {RANGES.map((r) => (
+        <button
+          key={r}
+          type="button"
+          onClick={() => setDays(r)}
+          aria-pressed={days === r}
+          className={cn(
+            'rounded-full px-3.5 py-1.5 text-[12px] font-bold uppercase tracking-[0.1em] transition-colors',
+            days === r ? 'bg-cream text-espresso' : 'text-cream/60 hover:text-cream',
+          )}
+        >
+          {rangeLabel[r]}
+        </button>
+      ))}
+    </div>
+  )
+
   return (
-    <>
-      <PageHeader
-        title={t.dashboard.title}
-        lead={t.dashboard.lead}
-        actions={
-          <>
-            <div className="flex rounded-lg border border-line bg-paper p-1" role="group">
-              {RANGES.map((r) => (
-                <button
-                  key={r}
-                  type="button"
-                  onClick={() => setDays(r)}
-                  aria-pressed={days === r}
-                  className={cn(
-                    'rounded-md px-3 py-1.5 text-[13px] font-semibold transition-colors',
-                    days === r ? 'bg-espresso text-cream' : 'text-taupe hover:text-espresso',
-                  )}
-                >
-                  {rangeLabel[r]}
-                </button>
-              ))}
-            </div>
-            <Button onClick={exportCsv} disabled={!stats}>
-              <Download className="h-4 w-4" />
-              {t.dashboard.exportCsv}
-            </Button>
-          </>
-        }
-      />
+    <div className="space-y-5">
+      <HeadlineBand period={rangeLabel[days]} title={t.dashboard.title} lead={t.dashboard.lead} controls={ranges}>
+        <HeadlineFigure
+          label={t.dashboard.visitors}
+          value={stats ? formatNumber(stats.visits) : '0'}
+          delta={stats && previous ? changePercent(stats.visits, previous.visits) : null}
+          deltaNote={t.dashboard.vsPrevious}
+        />
+        <HeadlineFigure
+          label={t.dashboard.enquiries}
+          value={stats ? formatNumber(stats.enquiries) : '0'}
+          delta={stats && previous ? changePercent(stats.enquiries, previous.enquiries) : null}
+          deltaNote={t.dashboard.vsPrevious}
+        />
+        <HeadlineFigure
+          label={t.dashboard.conversion}
+          value={stats && stats.visits ? percent(stats.enquiries, stats.visits) : '0%'}
+          note={stats ? `${formatNumber(stats.enquiries)} / ${formatNumber(stats.visits)}` : undefined}
+        />
+      </HeadlineBand>
 
       {loading || !stats || !previous ? (
         <p className="cap-label animate-pulse">{t.common.loading}</p>
       ) : (
-        <div className="space-y-6">
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
-            <StatTile
-              label={t.dashboard.visits}
-              value={formatNumber(stats.views)}
-              delta={changePercent(stats.views, previous.views)}
-              deltaNote={t.dashboard.vsPrevious}
-              note={rangeLabel[days]}
-            />
-            <StatTile
-              label={t.dashboard.visitors}
-              value={formatNumber(stats.visits)}
-              delta={changePercent(stats.visits, previous.visits)}
-              deltaNote={t.dashboard.vsPrevious}
-            />
-            <StatTile
-              label={t.dashboard.enquiries}
-              value={formatNumber(stats.enquiries)}
-              delta={changePercent(stats.enquiries, previous.enquiries)}
-              deltaNote={t.dashboard.vsPrevious}
-            />
-            <StatTile
-              label={t.dashboard.conversion}
-              value={stats.visits ? percent(stats.enquiries, stats.visits) : '0%'}
-              note={`${formatNumber(stats.enquiries)} / ${formatNumber(stats.visits)}`}
-            />
-          </div>
-
-          <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
-            <StatTile label={t.dashboard.today} value={formatNumber(stats.today)} />
-            <StatTile label={t.dashboard.perDay} value={formatNumber(stats.perDay)} />
-            <StatTile
+        <>
+          <FigureStrip>
+            <Figure label={t.dashboard.visits} value={formatNumber(stats.views)} note={rangeLabel[days]} />
+            <Figure label={t.dashboard.today} value={formatNumber(stats.today)} />
+            <Figure label={t.dashboard.perDay} value={formatNumber(stats.perDay)} />
+            <Figure
               label={t.dashboard.campaignShare}
               value={percent(stats.campaignViews, stats.views)}
               note={`${formatNumber(stats.campaignViews)} / ${formatNumber(stats.views)}`}
             />
-            <StatTile label={t.dashboard.links} value={formatNumber(activeLinks)} />
-          </div>
+            <Figure label={t.dashboard.links} value={formatNumber(activeLinks)} />
+            <Figure label={t.dashboard.posts} value={formatNumber(publishedCount)} />
+          </FigureStrip>
 
-          <Card title={t.dashboard.chart}>
+          <Card
+            title={t.dashboard.chart}
+            right={
+              <Button size="sm" onClick={exportCsv}>
+                <Download className="h-4 w-4" />
+                {t.dashboard.exportCsv}
+              </Button>
+            }
+          >
             <DayChart
               points={stats.days}
               labelFor={(ts) => formatShortDate(ts)}
@@ -206,21 +213,16 @@ export default function Dashboard() {
             )}
           </Card>
 
-          <div className="grid gap-4 lg:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2">
             <Card title={t.dashboard.languages}>
               <BarList slices={stats.languages} emptyLabel={t.dashboard.empty} max={3} />
             </Card>
             <Card title={t.dashboard.devices}>
               <BarList slices={stats.devices} emptyLabel={t.dashboard.empty} max={3} />
             </Card>
-            <Card title={t.dashboard.posts}>
-              <p className="tnum font-display text-[clamp(1.75rem,4vw,2.5rem)] font-bold leading-none text-espresso">
-                {formatNumber(publishedCount)}
-              </p>
-            </Card>
           </div>
-        </div>
+        </>
       )}
-    </>
+    </div>
   )
 }
