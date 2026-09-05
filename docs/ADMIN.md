@@ -13,11 +13,20 @@ note.
 | Address | `verk@expertparket.is`, or whatever `VITE_ADMIN_EMAIL` is set to |
 | Password | set by `VITE_ADMIN_PASSWORD_HASH`, see below |
 
-Sign-in asks for an address and a password. Be clear about what the address
-is: it is built into the bundle like every other `VITE_` value, so it is a
-second thing to type rather than a second secret. It keeps a stranger who
-finds the panel from guessing passwords before they know which address it
-belongs to, and nothing more. Per-person sign-in comes with Supabase Auth.
+Sign-in asks for an address and a password, and what those are worth depends
+on whether Supabase is connected.
+
+Without Supabase the password is checked in this browser against a hash, and
+the address is built into the bundle like every other `VITE_` value: a second
+thing to type rather than a second secret.
+
+With `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` set, the same two fields
+become a real sign-in against Supabase Auth. The token that comes back is what
+the data layer sends, and the policies in `supabase/schema.sql` decide what it
+may touch. Two things must both be true for an address to get in: a user with
+that address exists under Authentication in the Supabase dashboard, and the
+address is listed in the `admin_emails` table. `VITE_ADMIN_PASSWORD_HASH` is
+then unused in production.
 
 This repository is PUBLIC, so no password is written down here or anywhere
 else in the tree. Until `VITE_ADMIN_PASSWORD_HASH` is set in the hosting

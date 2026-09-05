@@ -14,8 +14,20 @@ create table if not exists admin_emails (
   added_at timestamptz not null default now()
 );
 
--- Put the client's address here before switching the site over.
--- insert into admin_emails (email) values ('expertparket2024@gmail.com');
+-- Row level security with NO policy at all, and that is the point. This table
+-- decides who is an administrator, so nothing holding the anon key may read it
+-- and, far more importantly, nothing may write to it: a project created with
+-- "automatically expose new tables" left on would otherwise let any visitor
+-- add their own address here and become an admin. is_admin() below is
+-- security definer, so it still reads the table; the dashboard and the service
+-- role still manage it. Everyone else sees an empty table.
+alter table admin_emails enable row level security;
+
+-- The address that may sign in to /admin. It must also exist as a user under
+-- Authentication in the Supabase dashboard: this table says who is allowed,
+-- Supabase Auth says who they are, and both are required.
+insert into admin_emails (email) values ('verk@expertparket.is')
+  on conflict (email) do nothing;
 
 create or replace function is_admin()
 returns boolean
@@ -77,7 +89,7 @@ create table if not exists enquiries (
   ref text,
   path text not null default '/',
   lang text not null default 'is',
-  delivery text not null default 'formspree' check (delivery in ('formspree', 'mailto')),
+  delivery text not null default 'email' check (delivery in ('email', 'formspree', 'mailto')),
   status text not null default 'new' check (status in ('new', 'open', 'done')),
   note text not null default ''
 );
@@ -106,6 +118,16 @@ drop policy if exists "admins delete enquiries" on enquiries;
 create policy "admins delete enquiries"
   on enquiries for delete to authenticated
   using (is_admin());
+
+-- Re-running this file on a database created before the mail route existed
+-- has to widen the constraint too, or every enquiry the site sends is
+-- rejected by the check rather than by anything the visitor did.
+do $$
+begin
+  alter table enquiries drop constraint if exists enquiries_delivery_check;
+  alter table enquiries add constraint enquiries_delivery_check
+    check (delivery in ('email', 'formspree', 'mailto'));
+end $$;
 
 -- ------------------------------------------------------------ campaign links
 create table if not exists tracked_links (
