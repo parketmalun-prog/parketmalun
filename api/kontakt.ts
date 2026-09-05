@@ -27,8 +27,14 @@
  *                   top of the deployment's own host.
  */
 
-/** Where enquiries land when CONTACT_TO is not set. */
-const DEFAULT_TO = 'expertparket2024@gmail.com'
+/**
+ * Where enquiries land when CONTACT_TO is not set.
+ *
+ * Deliberately not the address printed on the site. That one is published for
+ * anyone to write to; this is the box the company actually works out of, so
+ * enquiries from the form land where they get answered.
+ */
+const DEFAULT_TO = 'parketmalun@gmail.com'
 
 /**
  * Default sender. A send subdomain is deliberate: verifying the apex in Resend

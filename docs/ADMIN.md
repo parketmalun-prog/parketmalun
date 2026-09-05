@@ -9,7 +9,7 @@ note.
 | | |
 |---|---|
 | Local | http://localhost:5180/admin |
-| Live | https://expertparketogmal.is/admin |
+| Live | https://expertparket.is/admin |
 | Password | set by `VITE_ADMIN_PASSWORD_HASH`, see below |
 
 This repository is PUBLIC, so no password is written down here or anywhere

@@ -149,7 +149,7 @@ feature that degrades quietly when it is missing, which is what keeps a plain
 | Variable | Switches on | Missing means |
 |----------|-------------|---------------|
 | `RESEND_API_KEY` | enquiry mail from `/api/kontakt` | the endpoint answers 503 and the form opens the visitor's mail client instead |
-| `CONTACT_TO` | inbox that receives enquiries | defaults to the address printed on the site |
+| `CONTACT_TO` | inbox that receives enquiries | defaults to `parketmalun@gmail.com`, the box the company works out of, not the published address |
 | `CONTACT_FROM` | sender address | defaults to `vefur@send.expertparket.is` |
 | `ANTHROPIC_API_KEY` | blog auto-translation | the editor reports "not connected" and translations are written by hand |
 | `ADMIN_API_TOKEN` | guards `/api/translate` | translation refuses every call, deliberately |
