@@ -91,7 +91,7 @@ export interface Enquiry {
   path: string
   lang: Lang
   /** how the message left the site, so a mailto that never sent is visible */
-  delivery: 'formspree' | 'mailto'
+  delivery: 'email' | 'formspree' | 'mailto'
   status: EnquiryStatus
   /** the client's own note, e.g. "called back, wants a quote for 60 m2" */
   note: string

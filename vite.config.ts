@@ -8,29 +8,34 @@ import path from 'path'
  * Serves the `api/` functions during `npm run dev`.
  *
  * Vercel runs those files itself in production; the dev server does not, so
- * without this the blog editor would only be able to translate after a deploy.
- * A missing dependency or key answers 503, which the editor reports as "not
- * connected" rather than as a crash.
+ * without this the blog editor could only translate after a deploy and the
+ * enquiry forms could only be tested there too. A missing dependency or key
+ * answers 503, which both callers report as "not connected" rather than as a
+ * crash.
  */
+const DEV_ROUTES = ['translate', 'kontakt']
+
 function devApi(): Plugin {
   return {
     name: 'epm-dev-api',
     apply: 'serve',
     configureServer(server) {
-      server.middlewares.use('/api/translate', (req, res, next) => {
-        server
-          .ssrLoadModule('/api/translate.ts')
-          .then((mod) => (mod.default as (q: unknown, s: unknown) => Promise<void>)(req, res))
-          .catch((error: unknown) => {
-            if (error instanceof Error && /Failed to (load|resolve)/i.test(error.message)) {
-              res.statusCode = 503
-              res.setHeader('Content-Type', 'application/json')
-              res.end(JSON.stringify({ error: 'not_configured', message: error.message }))
-              return
-            }
-            next(error)
-          })
-      })
+      for (const route of DEV_ROUTES) {
+        server.middlewares.use(`/api/${route}`, (req, res, next) => {
+          server
+            .ssrLoadModule(`/api/${route}.ts`)
+            .then((mod) => (mod.default as (q: unknown, s: unknown) => Promise<void>)(req, res))
+            .catch((error: unknown) => {
+              if (error instanceof Error && /Failed to (load|resolve)/i.test(error.message)) {
+                res.statusCode = 503
+                res.setHeader('Content-Type', 'application/json')
+                res.end(JSON.stringify({ error: 'not_configured', message: error.message }))
+                return
+              }
+              next(error)
+            })
+        })
+      }
     },
   }
 }

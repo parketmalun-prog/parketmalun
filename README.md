@@ -124,6 +124,57 @@ og því sem eftir stendur fyrir eigandann: **[docs/PERFORMANCE-SEO-SECURITY.md]
 3. `vercel.json` beinir því sem ekki er forbyggt á `app.html`; forbyggðu síðurnar
    eru bornar fram beint af skráakerfinu.
 
+### Lén (domain)
+
+The site answers on **https://expertparket.is**, registered at ISNIC. The zone
+is hosted by ISNIC itself, not by Vercel nameservers, because the company
+mailboxes live on Microsoft 365 and their MX and SPF records sit on the same
+zone. Two records point the site at Vercel, and nothing else in the zone may be
+touched:
+
+| Type | Name | Value |
+|------|------|-------|
+| A | @ | `216.198.79.1` |
+| CNAME | www | `cname.vercel-dns.com.` |
+
+`www` is attached in Vercel as a 308 redirect to the apex. `SITE_URL` in
+`src/i18n/config.ts` is the only place the origin is written in the code.
+
+### Umhverfisbreytur (environment variables)
+
+None of these are required for the site to render. Each one switches on a
+feature that degrades quietly when it is missing, which is what keeps a plain
+`npm run dev` usable with an empty environment.
+
+| Variable | Switches on | Missing means |
+|----------|-------------|---------------|
+| `RESEND_API_KEY` | enquiry mail from `/api/kontakt` | the endpoint answers 503 and the form opens the visitor's mail client instead |
+| `CONTACT_TO` | inbox that receives enquiries | defaults to the address printed on the site |
+| `CONTACT_FROM` | sender address | defaults to `vefur@send.expertparket.is` |
+| `ANTHROPIC_API_KEY` | blog auto-translation | the editor reports "not connected" and translations are written by hand |
+| `ADMIN_API_TOKEN` | guards `/api/translate` | translation refuses every call, deliberately |
+| `VITE_ADMIN_API_TOKEN` | the browser half of that token | must hold the same value as `ADMIN_API_TOKEN` |
+| `ALLOWED_ORIGIN` | one extra origin allowed to call the functions | only the deployment's own host may call them |
+| `VITE_ADMIN_PASSWORD_HASH` | the admin login | `/admin` cannot be opened at all in a production build |
+| `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` | shared storage | enquiries, posts and stats live only in the browser that typed them |
+
+### Resend
+
+Enquiries leave through Resend so the mail comes from the company's own domain
+and carries the visitor's address as Reply-To.
+
+1. Create an API key at [resend.com](https://resend.com) and add it to Vercel
+   as `RESEND_API_KEY`, for Production and Preview.
+2. Add the domain **`send.expertparket.is`** in Resend, not the apex. Resend
+   asks for its own MX and TXT records, and putting them on a subdomain keeps
+   them away from the Microsoft 365 records that carry the company mailboxes.
+   Verifying the apex would overwrite those and break the company's email.
+3. Copy the records Resend gives into the ISNIC zone for `expertparket.is`,
+   using the host names Resend states (`send`, `resend._domainkey.send`, and so
+   on). Leave every existing record alone.
+4. Redeploy. A 502 from `/api/kontakt` with `resend rejected the enquiry` in the
+   function log means the domain is not verified yet.
+
 ---
 
 © 2026 Expert Parket og Mál ehf.

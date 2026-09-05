@@ -100,6 +100,7 @@ const is = {
     call: 'Hringja',
     email: 'Svara í tölvupósti',
     viaMailto: 'Sent úr póstforriti',
+    viaEmail: 'Sent í pósthólfið',
     viaFormspree: 'Sent í gegnum formið',
     mailtoNote:
       'Formið opnaði póstforrit gestsins. Það er ekki hægt að staðfesta að hann hafi ýtt á senda, svo hafðu samband við hann.',
@@ -309,6 +310,7 @@ const en: AdminCopy = {
     call: 'Call',
     email: 'Reply by email',
     viaMailto: 'Sent from a mail client',
+    viaEmail: 'Delivered to the inbox',
     viaFormspree: 'Sent through the form',
     mailtoNote:
       'The form opened the visitor’s mail client. There is no way to confirm they pressed send, so get in touch with them.',
@@ -516,6 +518,7 @@ const ro: AdminCopy = {
     call: 'Sună',
     email: 'Răspunde pe email',
     viaMailto: 'Trimis din clientul de email',
+    viaEmail: 'Livrat in inbox',
     viaFormspree: 'Trimis prin formular',
     mailtoNote:
       'Formularul a deschis clientul de email al vizitatorului. Nu se poate confirma că a apăsat trimite, deci contactează-l tu.',

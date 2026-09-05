@@ -188,7 +188,11 @@ function EnquiryCard({
         <div className="flex gap-2">
           <dt className="cap-label">{LANG_NAME[enquiry.lang]}</dt>
           <dd className="text-taupe">
-            {enquiry.delivery === 'mailto' ? t.enquiries.viaMailto : t.enquiries.viaFormspree}
+            {enquiry.delivery === 'mailto'
+              ? t.enquiries.viaMailto
+              : enquiry.delivery === 'email'
+                ? t.enquiries.viaEmail
+                : t.enquiries.viaFormspree}
           </dd>
         </div>
       </dl>

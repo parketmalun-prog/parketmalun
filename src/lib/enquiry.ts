@@ -37,9 +37,13 @@ export type EnquiryLabels = {
 
 /**
  * Shared submission logic for every enquiry form on the site (contact page,
- * per-product quick request, page closer). Posts to Formspree when an endpoint
- * is configured; otherwise falls back to opening the visitor's email client
- * with a prefilled message. Returns true when the caller may reset the form.
+ * per-product quick request, page closer).
+ *
+ * Three routes, tried in order, each one a fallback for the one before it:
+ * the site's own /api/kontakt endpoint, which mails the enquiry from the
+ * company domain; Formspree, if an endpoint is still configured; and finally
+ * the visitor's own mail client with a prefilled message. Returns true when
+ * the caller may reset the form.
  */
 export function useEnquiry() {
   const [status, setStatus] = useState<EnquiryStatus>('idle')
@@ -55,7 +59,7 @@ export function useEnquiry() {
    */
   async function record(
     fields: { name: string; contact: string; service: string; message: string },
-    delivery: 'formspree' | 'mailto',
+    delivery: 'email' | 'formspree' | 'mailto',
   ) {
     try {
       await db.saveEnquiry({
@@ -91,6 +95,41 @@ export function useEnquiry() {
     const message = read('message')
     const fields = { name, contact, service, message }
 
+    setStatus('sending')
+
+    // Preferred route: the site's own endpoint, which mails the enquiry from
+    // the company domain with the visitor's address as Reply-To. It answers
+    // 503 while the mail key is unset, and that is a signal to fall back
+    // quietly rather than to fail in front of the visitor.
+    try {
+      const res = await fetch('/api/kontakt', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...fields,
+          path: location.pathname,
+          ref: currentRef(location.search),
+          lang,
+          elapsed: Date.now() - openedAt.current,
+        }),
+      })
+      if (res.ok) {
+        await record(fields, 'email')
+        setStatus('success')
+        return true
+      }
+      // Anything other than "not configured" is a real failure: the visitor
+      // should see it and retry, not be handed off to a mail client as if
+      // nothing had happened.
+      if (res.status !== 503) {
+        setStatus('error')
+        return false
+      }
+    } catch {
+      // Offline, blocked, or no function runtime. Fall through to the older
+      // routes below.
+    }
+
     if (!site.formspreeEndpoint) {
       // Fallback: open the visitor's email client with a prefilled message.
       // We cannot confirm the mail client actually opened or sent anything,
@@ -109,7 +148,6 @@ export function useEnquiry() {
       return false
     }
 
-    setStatus('sending')
     try {
       const res = await fetch(site.formspreeEndpoint, {
         method: 'POST',

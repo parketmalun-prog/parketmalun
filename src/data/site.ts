@@ -15,10 +15,13 @@ export const site = {
   facebook: 'https://www.facebook.com/share/14mSWnaktqV/?mibextid=wwXIfr',
   years: '25+',
   /**
-   * Formspree endpoint for the contact form.
-   * Create a free form at https://formspree.io (send to expertparket2024@gmail.com)
-   * and paste the endpoint id here, e.g. 'https://formspree.io/f/abcdwxyz'.
-   * Until it is set, the form falls back to opening the visitor's email client.
+   * Optional Formspree endpoint, kept only as a middle rung.
+   *
+   * Enquiries go through /api/kontakt now, which mails them from the company
+   * domain. This is tried when that endpoint is unavailable, and if it is
+   * empty too the form falls back to the visitor's own mail client. Leave it
+   * empty unless there is a reason not to: a form id here means enquiries
+   * leave through a third party on a free monthly quota.
    */
   formspreeEndpoint: '' as string,
 }
