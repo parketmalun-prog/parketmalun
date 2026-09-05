@@ -26,8 +26,13 @@ function useNoIndex() {
   }, [])
 }
 
-function Login({ onSubmit }: { onSubmit: (password: string) => Promise<boolean> }) {
+function Login({
+  onSubmit,
+}: {
+  onSubmit: (email: string, password: string) => Promise<boolean>
+}) {
   const { t } = useAdmin()
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(false)
   const [busy, setBusy] = useState(false)
@@ -44,7 +49,7 @@ function Login({ onSubmit }: { onSubmit: (password: string) => Promise<boolean> 
   async function submit(event: React.FormEvent) {
     event.preventDefault()
     setBusy(true)
-    const ok = await onSubmit(password)
+    const ok = await onSubmit(email, password)
     setBusy(false)
     if (!ok) {
       setError(true)
@@ -62,6 +67,19 @@ function Login({ onSubmit }: { onSubmit: (password: string) => Promise<boolean> 
         <Card>
           <form onSubmit={submit} className="space-y-5">
             <p className="text-[15px] leading-relaxed text-taupe">{t.login.lead}</p>
+            <Field label={t.login.email} htmlFor="admin-email">
+              <Input
+                id="admin-email"
+                type="email"
+                autoFocus
+                autoComplete="username"
+                value={email}
+                onChange={(e) => {
+                  setEmail(e.target.value)
+                  setError(false)
+                }}
+              />
+            </Field>
             <Field
               label={t.login.password}
               htmlFor="admin-password"
@@ -76,7 +94,6 @@ function Login({ onSubmit }: { onSubmit: (password: string) => Promise<boolean> 
               <Input
                 id="admin-password"
                 type="password"
-                autoFocus
                 autoComplete="current-password"
                 value={password}
                 onChange={(e) => {
@@ -89,7 +106,7 @@ function Login({ onSubmit }: { onSubmit: (password: string) => Promise<boolean> 
               type="submit"
               variant="primary"
               className="w-full"
-              disabled={busy || !password || wait > 0}
+              disabled={busy || !email || !password || wait > 0}
             >
               {t.login.submit}
             </Button>

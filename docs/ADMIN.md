@@ -10,7 +10,14 @@ note.
 |---|---|
 | Local | http://localhost:5180/admin |
 | Live | https://expertparket.is/admin |
+| Address | `verk@expertparket.is`, or whatever `VITE_ADMIN_EMAIL` is set to |
 | Password | set by `VITE_ADMIN_PASSWORD_HASH`, see below |
+
+Sign-in asks for an address and a password. Be clear about what the address
+is: it is built into the bundle like every other `VITE_` value, so it is a
+second thing to type rather than a second secret. It keeps a stranger who
+finds the panel from guessing passwords before they know which address it
+belongs to, and nothing more. Per-person sign-in comes with Supabase Auth.
 
 This repository is PUBLIC, so no password is written down here or anywhere
 else in the tree. Until `VITE_ADMIN_PASSWORD_HASH` is set in the hosting

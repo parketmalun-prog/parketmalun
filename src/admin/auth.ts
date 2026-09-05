@@ -29,6 +29,23 @@ const DEV_HASH = 'fb65b2ea87c5d87dc85d495ec9e9b0d6bffe7682b5f215b4cda957d2578c4d
 const PASSWORD_HASH: string =
   import.meta.env.VITE_ADMIN_PASSWORD_HASH || (import.meta.env.DEV ? DEV_HASH : '')
 
+/**
+ * The address the sign-in screen expects, alongside the password.
+ *
+ * Be honest about what this is. It ships in the bundle like everything else
+ * built with Vite, so anyone who wants to read it can. It is a second thing to
+ * type, not a second secret, and it buys exactly one thing: a stranger who
+ * finds the panel cannot try passwords until they also know which address it
+ * belongs to. Real per-person sign-in arrives with Supabase Auth, and that is
+ * the point at which this constant goes away.
+ */
+const ADMIN_EMAIL: string = import.meta.env.VITE_ADMIN_EMAIL || 'verk@expertparket.is'
+
+/** Addresses are compared case-insensitively; nobody types their own the same way twice. */
+function emailMatches(email: string): boolean {
+  return email.trim().toLowerCase() === ADMIN_EMAIL.trim().toLowerCase()
+}
+
 const SESSION_KEY = 'epm.admin.session'
 const ATTEMPTS_KEY = 'epm.admin.attempts'
 /** How long a sign-in lasts before the password is asked for again. */
@@ -147,9 +164,12 @@ export function useAuth() {
     setReady(true)
   }, [])
 
-  const signIn = useCallback(async (password: string) => {
+  const signIn = useCallback(async (email: string, password: string) => {
     if (lockedFor() > 0) return false
-    const ok = await checkPassword(password)
+    // Both are checked before anything is reported, and a wrong address costs
+    // the same failed attempt as a wrong password. Telling the visitor which
+    // half they got wrong would hand them the address for free.
+    const ok = emailMatches(email) && (await checkPassword(password))
     if (ok) {
       clearFailures()
       openSession()

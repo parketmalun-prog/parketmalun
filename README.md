@@ -156,6 +156,7 @@ feature that degrades quietly when it is missing, which is what keeps a plain
 | `VITE_ADMIN_API_TOKEN` | the browser half of that token | must hold the same value as `ADMIN_API_TOKEN` |
 | `ALLOWED_ORIGIN` | one extra origin allowed to call the functions | only the deployment's own host may call them |
 | `VITE_ADMIN_PASSWORD_HASH` | the admin login | `/admin` cannot be opened at all in a production build |
+| `VITE_ADMIN_EMAIL` | the address the sign-in screen expects | defaults to `verk@expertparket.is` |
 | `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY` | shared storage | enquiries, posts and stats live only in the browser that typed them |
 
 ### Resend
