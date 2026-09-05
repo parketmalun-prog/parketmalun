@@ -104,8 +104,13 @@ export function AdminShell({ children, onSignOut }: { children: ReactNode; onSig
       {/* ---------------------------------------------------------------- rail, desktop */}
       <aside className="fixed inset-y-0 left-0 z-40 hidden w-64 flex-col justify-between bg-espresso px-5 py-6 lg:flex">
         <div className="space-y-8">
-          <Link to="/admin" className="block rounded-xl bg-cream px-5 py-4" aria-label={t.nav.dashboard}>
-            <LogoMark className="mx-auto h-12" sizes="120px" />
+          {/* White, not cream. The mark is the client's own artwork on a
+              transparent ground, so the plaque behind it should read as paper
+              and nothing else; a tinted one put a second colour around a logo
+              that already carries three. Tight padding too, so the plaque is
+              the mark rather than a slab with a mark somewhere inside it. */}
+          <Link to="/admin" className="block rounded-xl bg-white px-3 py-3" aria-label={t.nav.dashboard}>
+            <LogoMark className="mx-auto h-[72px]" sizes="150px" />
           </Link>
 
           <nav className="flex flex-col gap-0.5" aria-label={t.nav.menu}>
