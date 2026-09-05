@@ -19,7 +19,7 @@
  * Environment:
  *   RESEND_API_KEY  required, from resend.com. Missing means 503, not 500.
  *   CONTACT_TO      optional, the inbox that receives enquiries. Defaults to
- *                   the address printed on the site.
+ *                   expertparket2024@gmail.com, the box the client reads.
  *   CONTACT_FROM    optional sender, must sit on a domain verified in Resend.
  *                   Defaults to a send subdomain so the company's own MX
  *                   records at the registry stay untouched.
@@ -28,13 +28,11 @@
  */
 
 /**
- * Where enquiries land when CONTACT_TO is not set.
- *
- * Deliberately not the address printed on the site. That one is published for
- * anyone to write to; this is the box the company actually works out of, so
- * enquiries from the form land where they get answered.
+ * Where enquiries land when CONTACT_TO is not set. Confirmed with the client:
+ * this is the box they read, and it is the same address printed on the site.
+ * CONTACT_TO overrides it without a code change if that ever moves.
  */
-const DEFAULT_TO = 'parketmalun@gmail.com'
+const DEFAULT_TO = 'expertparket2024@gmail.com'
 
 /**
  * Default sender. A send subdomain is deliberate: verifying the apex in Resend
