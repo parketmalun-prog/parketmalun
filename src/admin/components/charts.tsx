@@ -82,7 +82,12 @@ export function HeadlineFigure({
   return (
     <div className="sm:px-6 sm:first:pl-0 sm:last:pr-0">
       <p className="cap-label-dark">{label}</p>
-      <p className="tnum pt-2 font-display text-[clamp(2.75rem,7vw,4rem)] font-bold leading-none text-gold-bright">
+      {/* Grotesk, not the display serif. Fraunces ships here with its optical
+          size pinned to the display end, and at figure sizes its hairlines go
+          thin enough that a number stops reading as a number. The grotesk is
+          the other half of the site's own pair, so this stays in the family
+          and gains the weight these need. */}
+      <p className="tnum pt-2 font-sans text-[clamp(2.75rem,7vw,4rem)] font-bold leading-none tracking-tight text-gold-bright">
         {value}
       </p>
       <p className="flex items-baseline gap-2 pt-2.5 text-[13px] text-cream/55">
@@ -124,7 +129,7 @@ export function Figure({ label, value, note }: { label: string; value: string; n
     <div className="flex flex-col justify-between gap-2 bg-paper px-4 py-4 sm:px-5">
       {/* Two lines reserved for the label, so a long one does not push its value below the others'. */}
       <p className="cap-label min-h-[2.4em] leading-tight">{label}</p>
-      <p className="tnum font-display text-[1.75rem] font-bold leading-none text-espresso">{value}</p>
+      <p className="tnum font-sans text-[1.75rem] font-bold leading-none tracking-tight text-espresso">{value}</p>
       <p className="tnum text-[12px] leading-none text-taupe">{note ?? ' '}</p>
     </div>
   )

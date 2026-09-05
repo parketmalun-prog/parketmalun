@@ -147,13 +147,13 @@ export default function Links() {
                 <div className="flex items-center gap-6">
                   <div className="text-right">
                     <p className="cap-label">{t.links.clicks}</p>
-                    <p className="tnum font-display text-2xl font-bold leading-none text-espresso">
+                    <p className="tnum font-sans text-2xl font-bold leading-none tracking-tight text-espresso">
                       {formatNumber(clicks)}
                     </p>
                   </div>
                   <div className="text-right">
                     <p className="cap-label">{t.links.visits}</p>
-                    <p className="tnum font-display text-2xl font-bold leading-none text-taupe">
+                    <p className="tnum font-sans text-2xl font-bold leading-none tracking-tight text-taupe">
                       {formatNumber(views)}
                     </p>
                   </div>
