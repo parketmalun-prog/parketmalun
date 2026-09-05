@@ -11,10 +11,12 @@
  * is what keeps a plain `npm run dev` usable with nothing configured.
  *
  * This endpoint is public by nature: a stranger visiting the site must be able
- * to call it. It is not protected by a token, so four cheap layers stand in
- * for one: a honeypot field, a minimum fill time, a same-origin check and a
- * per-address rate limit. Field ceilings bound the size of anything that does
- * get through. None of this is authentication and none of it pretends to be.
+ * to call it. It is not protected by a token, so cheap layers stand in for
+ * one: a honeypot field, a minimum fill time, a mandatory matching Origin, a
+ * JSON-only body, a per-address rate limit and a per-hour ceiling on sends.
+ * Field ceilings bound the size of anything that does get through. None of
+ * this is authentication and none of it pretends to be; Vercel's firewall in
+ * front of the function is what handles volume.
  *
  * Environment:
  *   RESEND_API_KEY  required, from resend.com. Missing means 503, not 500.
@@ -127,17 +129,49 @@ const header = (req: Req, name: string): string => {
 }
 
 /**
- * Rejects calls made from another site. A browser always sends Origin on a
- * cross-origin POST, so a missing Origin means the request came from the same
- * site or from something that is not a browser at all; the rate limit and the
- * timing check cover that case.
+ * Rejects calls that did not come from a page on this site.
+ *
+ * Every current browser sends Origin on a POST, same-origin included, so a
+ * request with no Origin at all did not come from a browser: it came from
+ * curl, a script or a scanner. Those used to be let through on the theory
+ * that the rate limit would catch them; they are refused outright now, with
+ * Referer accepted as the fallback for the odd privacy browser that strips
+ * Origin but keeps Referer. A determined attacker can forge either header,
+ * so this is a fence, not a lock, but it is the fence that stops the
+ * thousand cheapest scripts that never bother.
  */
 function foreignOrigin(req: Req): boolean {
-  const origin = header(req, 'origin')
-  if (!origin) return false
   const host = header(req, 'host')
   const allowed = [host && `https://${host}`, host && `http://${host}`, process.env.ALLOWED_ORIGIN]
-  return !allowed.filter(Boolean).includes(origin)
+    .filter(Boolean)
+    .map((o) => String(o).replace(/\/$/, ''))
+  const origin = header(req, 'origin')
+  if (origin) return !allowed.includes(origin.replace(/\/$/, ''))
+  const referer = header(req, 'referer')
+  if (referer) return !allowed.some((o) => referer.startsWith(o + '/'))
+  return true
+}
+
+/**
+ * A ceiling on sends per instance-hour, on top of the per-address limit. The
+ * per-address limit stops one visitor; this stops a botnet from burning
+ * through the mail provider's daily quota with a hundred addresses, after
+ * which the real enquiries of the day would bounce. Fifty an hour is more
+ * than a parquet firm will ever legitimately receive; if it is ever hit, the
+ * log says so and the visitor gets the retry message rather than silence.
+ */
+const HOURLY_CAP = 50
+let hourStart = Date.now()
+let hourCount = 0
+
+function overHourlyCap(): boolean {
+  const now = Date.now()
+  if (now - hourStart > 3_600_000) {
+    hourStart = now
+    hourCount = 0
+  }
+  hourCount += 1
+  return hourCount > HOURLY_CAP
 }
 
 /* -------------------------------- composing -------------------------------- */
@@ -401,6 +435,18 @@ export default async function handler(req: Req, res: Res): Promise<void> {
   if (rateLimited(caller)) {
     res.setHeader('Retry-After', String(Math.ceil(WINDOW_MS / 1000)))
     return send(res, 429, { error: 'rate_limited' })
+  }
+
+  if (overHourlyCap()) {
+    console.error('enquiry hourly cap reached; a flood is in progress or the cap is too low')
+    res.setHeader('Retry-After', '900')
+    return send(res, 429, { error: 'rate_limited' })
+  }
+
+  // The form posts JSON and nothing else does. A plain form POST or a
+  // scanner's multipart body is refused before it is read.
+  if (!header(req, 'content-type').toLowerCase().startsWith('application/json')) {
+    return send(res, 415, { error: 'unsupported_media_type' })
   }
 
   let payload: Record<string, unknown>
