@@ -74,9 +74,14 @@ export function useEnquiry() {
         note: '',
       })
       emitChange('enquiries')
-    } catch {
+    } catch (error) {
       // The visitor's message still goes out by mail. A failed local copy must
       // never turn into a failed submission in front of them.
+      //
+      // It does leave a trace, though. Swallowing this silently once hid a
+      // storage rejection behind a cheerful "thank you", and the only way to
+      // find it was to go looking in the database.
+      console.warn('enquiry saved to the inbox failed', error)
     }
   }
 

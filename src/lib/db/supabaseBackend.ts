@@ -148,9 +148,16 @@ export function createSupabaseBackend(url: string, key: string): Backend {
       return rows.map((r) => ({ ...r, ts: ms(r.ts) }))
     },
     async saveEnquiry(enquiry) {
+      // Upsert only with a session behind it. PostgREST turns
+      // resolution=merge-duplicates into INSERT ... ON CONFLICT DO UPDATE, and
+      // Postgres then demands UPDATE rights on the table; the anonymous policy
+      // grants insert and nothing else, so an upsert from a visitor is refused
+      // outright. A visitor is always writing a brand new row anyway. The
+      // admin, editing a status or a note on an existing one, still needs the
+      // upsert and has the session that earns it.
       await request(ctx, 'enquiries', {
         method: 'POST',
-        headers: headers(ctx, upsert),
+        headers: headers(ctx, accessToken ? upsert : { Prefer: 'return=minimal' }),
         body: JSON.stringify({ ...enquiry, ts: iso(enquiry.ts) }),
       })
     },
