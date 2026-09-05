@@ -41,7 +41,10 @@ const DEFAULT_TO = 'parketmalun@gmail.com'
  * would mean touching the MX records that carry the company mailboxes, and a
  * marketing tool has no business owning those.
  */
-const DEFAULT_FROM = 'Expert Parket vefur <vefur@send.expertparket.is>'
+const DEFAULT_FROM = 'Expert Parket og Mál <vefur@send.expertparket.is>'
+
+/** Printed in the footer of the message, so the client sees their own number. */
+const COMPANY_PHONE = '785 7079'
 
 /** Field ceilings, mirroring the ones the browser applies before posting. */
 const LIMITS: Record<string, number> = {
@@ -169,6 +172,207 @@ function escapeHtml(text: string): string {
     .replace(/"/g, '&quot;')
 }
 
+/**
+ * A phone number the client can tap. Icelandic numbers arrive as "785 7079",
+ * sometimes with a country code or a dash, and a tel: link wants none of that.
+ * Returns undefined when the field is clearly not a number, so the template
+ * can fall back to the mail button instead of offering a dead call.
+ */
+function telHref(contact: string): string | undefined {
+  const digits = contact.replace(/[^\d+]/g, '')
+  if (contact.includes('@') || digits.replace(/\D/g, '').length < 7) return undefined
+  return digits.startsWith('+') ? digits : `+354${digits}`
+}
+
+/* --------------------------------- template -------------------------------- */
+
+/**
+ * The enquiry as it lands in the company inbox.
+ *
+ * Written as tables with inline styles because that is what mail clients
+ * actually render: Gmail strips <style> blocks in some views, Outlook renders
+ * through Word, and neither can be trusted with flexbox or a class attribute.
+ * The palette is the site's own, so the message reads as a document from the
+ * company rather than a raw form dump.
+ *
+ * The one job of this layout is speed of reply. The visitor's name and how to
+ * reach them sit above everything else, and the first thing under them is a
+ * button that dials or opens a reply. Everything the client does not need in
+ * the first two seconds, the page, the language, the campaign, sits at the
+ * bottom in small type.
+ */
+const BRAND = {
+  espresso: '#3A3127',
+  espressoDeep: '#241D15',
+  cream: '#E9E1D3',
+  paper: '#F4EEE4',
+  gold: '#C08E5C',
+  goldDeep: '#7A5329',
+  ink: '#221C15',
+  taupe: '#6E6150',
+  line: '#D2C6B2',
+}
+
+const SANS =
+  "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif"
+const SERIF = "Georgia,'Times New Roman',Times,serif"
+
+type Enquiry = {
+  name: string
+  contact: string
+  service: string
+  message: string
+  path: string
+  ref: string
+  lang: string
+}
+
+/** One bulletproof button. Nested tables, because a padded <a> alone collapses in Outlook. */
+function button(href: string, label: string, filled: boolean): string {
+  const bg = filled ? BRAND.espresso : BRAND.paper
+  const fg = filled ? BRAND.paper : BRAND.espresso
+  const border = filled ? BRAND.espresso : BRAND.line
+  return `<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="display:inline-block;margin:0 8px 8px 0;">
+      <tr><td align="center" bgcolor="${bg}" style="border-radius:4px;border:1px solid ${border};">
+        <a href="${href}" style="display:inline-block;padding:12px 22px;font-family:${SANS};font-size:15px;line-height:1;font-weight:600;letter-spacing:.01em;color:${fg};text-decoration:none;">${escapeHtml(label)}</a>
+      </td></tr>
+    </table>`
+}
+
+/** A small label over a value, the pattern used for every detail row. */
+function row(label: string, value: string): string {
+  return `<tr><td style="padding:0 0 14px;">
+      <div style="font-family:${SANS};font-size:11px;line-height:1.2;letter-spacing:.14em;text-transform:uppercase;color:${BRAND.taupe};padding-bottom:4px;">${escapeHtml(label)}</div>
+      <div style="font-family:${SANS};font-size:16px;line-height:1.45;color:${BRAND.ink};">${value}</div>
+    </td></tr>`
+}
+
+export function renderEmail(e: Enquiry, phone: string): { subject: string; text: string; html: string } {
+  const subject = e.service
+    ? `Ný fyrirspurn frá ${e.name} · ${e.service}`
+    : `Ný fyrirspurn frá ${e.name}`
+
+  const tel = telHref(e.contact)
+  const mail = e.contact.includes('@') ? e.contact : undefined
+  const contactHtml = tel
+    ? `<a href="tel:${escapeHtml(tel)}" style="color:${BRAND.goldDeep};text-decoration:none;font-weight:600;">${escapeHtml(e.contact)}</a>`
+    : mail
+      ? `<a href="mailto:${escapeHtml(mail)}" style="color:${BRAND.goldDeep};text-decoration:none;font-weight:600;">${escapeHtml(e.contact)}</a>`
+      : escapeHtml(e.contact)
+
+  const actions = [
+    tel ? button(`tel:${tel}`, `Hringja í ${e.contact}`, true) : '',
+    mail
+      ? button(
+          `mailto:${mail}?subject=${encodeURIComponent('Re: fyrirspurn til Expert Parket og Mál')}`,
+          'Svara í tölvupósti',
+          true,
+        )
+      : '',
+  ]
+    .filter(Boolean)
+    .join('')
+
+  // Reply-To only exists when the visitor left an address. Telling the client
+  // to hit reply when it does not would send the answer to a send-only
+  // mailbox, so the closing line follows what the message can actually do.
+  const closing = mail
+    ? 'Svaraðu þessum pósti og svarið fer beint til viðskiptavinarins.'
+    : 'Viðskiptavinurinn skildi eftir símanúmer, svo hringdu til að svara.'
+
+  const footNotes = [
+    e.path ? `Síða: ${e.path}` : '',
+    e.lang ? `Tungumál: ${e.lang}` : '',
+    e.ref ? `Herferð: ${e.ref}` : '',
+  ].filter(Boolean)
+
+  // Sits in the inbox preview line, next to the subject, and never renders.
+  const preheader = [e.contact, e.service, e.message.slice(0, 90)].filter(Boolean).join(' · ')
+
+  const html = `<!doctype html>
+<html lang="is">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light only">
+<title>${escapeHtml(subject)}</title>
+</head>
+<body style="margin:0;padding:0;background:${BRAND.cream};">
+<div style="display:none;font-size:1px;color:${BRAND.cream};line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden;">${escapeHtml(preheader)}</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:${BRAND.cream};">
+  <tr><td align="center" style="padding:28px 16px 40px;">
+
+    <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:600px;background:${BRAND.paper};border:1px solid ${BRAND.line};border-radius:6px;overflow:hidden;">
+
+      <tr><td bgcolor="${BRAND.espresso}" style="background:${BRAND.espresso};padding:26px 32px 24px;">
+        <div style="font-family:${SANS};font-size:11px;line-height:1.2;letter-spacing:.22em;text-transform:uppercase;color:${BRAND.gold};padding-bottom:8px;">Expert Parket og Mál</div>
+        <div style="font-family:${SERIF};font-size:25px;line-height:1.2;color:${BRAND.paper};">Ný fyrirspurn af vefnum</div>
+      </td></tr>
+
+      <tr><td style="padding:0;"><div style="height:3px;background:${BRAND.gold};line-height:3px;font-size:0;">&nbsp;</div></td></tr>
+
+      <tr><td style="padding:30px 32px 6px;">
+        <div style="font-family:${SERIF};font-size:27px;line-height:1.25;color:${BRAND.ink};padding-bottom:6px;">${escapeHtml(e.name)}</div>
+        ${
+          e.service
+            ? `<div style="font-family:${SANS};font-size:12px;line-height:1;letter-spacing:.1em;text-transform:uppercase;color:${BRAND.goldDeep};background:${BRAND.cream};border:1px solid ${BRAND.line};border-radius:999px;padding:7px 13px;display:inline-block;">${escapeHtml(e.service)}</div>`
+            : ''
+        }
+      </td></tr>
+
+      <tr><td style="padding:22px 32px 0;">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+          ${row('Samskipti', contactHtml)}
+        </table>
+      </td></tr>
+
+      <tr><td style="padding:2px 32px 4px;">${actions}</td></tr>
+
+      <tr><td style="padding:18px 32px 0;">
+        <div style="font-family:${SANS};font-size:11px;line-height:1.2;letter-spacing:.14em;text-transform:uppercase;color:${BRAND.taupe};padding-bottom:8px;">Skilaboð</div>
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+          <tr><td style="border-left:3px solid ${BRAND.gold};background:${BRAND.cream};padding:16px 18px;border-radius:0 4px 4px 0;">
+            <div style="font-family:${SANS};font-size:16px;line-height:1.6;color:${BRAND.ink};white-space:pre-wrap;">${escapeHtml(e.message)}</div>
+          </td></tr>
+        </table>
+      </td></tr>
+
+      ${
+        footNotes.length
+          ? `<tr><td style="padding:22px 32px 0;">
+              <div style="border-top:1px solid ${BRAND.line};padding-top:14px;font-family:${SANS};font-size:12px;line-height:1.7;color:${BRAND.taupe};">${footNotes.map(escapeHtml).join('<br>')}</div>
+            </td></tr>`
+          : ''
+      }
+
+      <tr><td style="padding:22px 32px 28px;">
+        <div style="font-family:${SANS};font-size:12px;line-height:1.6;color:${BRAND.taupe};">
+          Sent sjálfvirkt af fyrirspurnarforminu á <a href="https://expertparket.is" style="color:${BRAND.goldDeep};text-decoration:none;">expertparket.is</a>. ${escapeHtml(closing)}
+        </div>
+      </td></tr>
+
+    </table>
+
+    <div style="font-family:${SANS};font-size:11px;line-height:1.6;color:${BRAND.taupe};padding-top:16px;">Expert Parket og Mál ehf · ${escapeHtml(phone)}</div>
+
+  </td></tr>
+</table>
+</body>
+</html>`
+
+  // Built by pushing rather than filtering, so the blank lines that shape the
+  // plain text survive while the optional fields still drop out.
+  const textLines: string[] = ['NÝ FYRIRSPURN AF VEFNUM', '', `Nafn: ${e.name}`, `Samskipti: ${e.contact}`]
+  if (e.service) textLines.push(`Þjónusta: ${e.service}`)
+  textLines.push('', 'Skilaboð:', e.message, '')
+  if (footNotes.length) textLines.push('---', ...footNotes, '')
+  textLines.push(closing)
+  const text = textLines.join('\n')
+
+  return { subject, text, html }
+}
+
 /* --------------------------------- handler -------------------------------- */
 
 export default async function handler(req: Req, res: Res): Promise<void> {
@@ -227,22 +431,10 @@ export default async function handler(req: Req, res: Res): Promise<void> {
     return send(res, 400, { error: 'missing_fields' })
   }
 
-  const lines = [
-    `Nafn: ${name}`,
-    `Samskipti: ${contact}`,
-    service ? `Þjónusta: ${service}` : '',
-    '',
-    message,
-    '',
-    '---',
-    path ? `Síða: ${path}` : '',
-    lang ? `Tungumál: ${lang}` : '',
-    ref ? `Herferð: ${ref}` : '',
-  ].filter(Boolean)
-
-  const html = lines
-    .map((line) => (line === '---' ? '<hr>' : `<p>${escapeHtml(line) || '&nbsp;'}</p>`))
-    .join('\n')
+  const { subject, text, html } = renderEmail(
+    { name, contact, service, message, path, ref, lang },
+    COMPANY_PHONE,
+  )
 
   let response: Response
   try {
@@ -256,8 +448,8 @@ export default async function handler(req: Req, res: Res): Promise<void> {
         from: process.env.CONTACT_FROM || DEFAULT_FROM,
         to: [process.env.CONTACT_TO || DEFAULT_TO],
         reply_to: replyTo(contact),
-        subject: `Ný fyrirspurn frá ${name}`,
-        text: lines.join('\n'),
+        subject,
+        text,
         html,
       }),
     })
