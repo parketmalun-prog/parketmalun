@@ -1,61 +1,60 @@
 import type { ServiceKey } from './site'
 
 /**
- * Two kinds of photography, deliberately kept apart (client's call, 24.08):
+ * Every photograph on the site is Expert Parket's own work.
  *
- * - The HOME page stays on licensed stock: it is the editorial face of the
- *   site and the stock set is calmer and more composed than phone shots
- *   from a live worksite.
- * - REAL project photography (WhatsApp batches from 22.08, labelled by
- *   trade, EXIF and GPS stripped, re-encoded) carries the pages that exist
- *   to PROVE the work: the portfolio grouped by service, the Services page
- *   craft shots, About and Contact.
+ * It was not always so. Until 8 September 2026 the home page ran on licensed
+ * stock while the client's own photographs sat unused in photos-library, and
+ * the home strip captioned those stock frames "Gardabaer 2024 Eik" under the
+ * heading "Recent work". Two things were wrong with that at once: it claimed
+ * someone else's rooms as this company's jobs, and the licence behind most of
+ * those files could no longer be established. Thirteen of the seventeen stock
+ * files matched none of the Unsplash ids recovered from the July backup, and
+ * nothing in the repository recorded where they came from.
  *
- * Catalog grain slivers stay stock for a different reason: they must show
- * the named species (hnota/eik/askur/fura) and the client's jobs are oak.
+ * So the home page now runs on the WhatsApp batches of 22.08 like every other
+ * page: real rooms, EXIF and GPS stripped, re-encoded. What a caption claims
+ * is what the picture shows.
+ *
+ * The catalogue is the one place with no photograph at all. Its swatches are
+ * drawn (see ParquetSwatch): the board photographs they used to be composed
+ * from belong to Real Dutch Floor, and no licence for publishing them has been
+ * confirmed. They go back the day it is.
  */
 export const photos = {
-  /* ---------------- Home: stock, editorial ---------------- */
+  /* ---------------- Home ---------------- */
   /** Home hero, portrait file for phones. */
-  hero: '/photos/hero-herringbone-sun.jpg',
-  /** The same corner cropped landscape, used from md up. */
-  heroWide: '/photos/hero-herringbone-wide.jpg',
+  hero: '/photos/real-hero.jpg',
+  /** The wide frame used from md up. */
+  heroWide: '/photos/real-hero-wide.jpg',
   /** Home projects panorama, order matches portfolioStrip.captions. */
   pano: [
-    '/photos/pano-1-gardabaer-eik.jpg',
-    '/photos/pano-2-vesturbaer-sildarbein.jpg',
-    '/photos/pano-3-karsnes-askur.jpg',
-    '/photos/pano-4-mosfellsbaer-eik.jpg',
-    '/photos/pano-5-grafarvogur-hnota.jpg',
+    '/photos/real-pano-1.jpg',
+    '/photos/real-pano-2.jpg',
+    '/photos/real-pano-3.jpg',
+    '/photos/real-pano-4.jpg',
+    '/photos/real-pano-5.jpg',
   ],
-  /** Home service cards. */
+  /** Home service cards, the same craft shots the Services page carries. */
   services: {
-    parket: '/photos/service-parket.jpg',
-    slipun: '/photos/service-slipun.jpg',
-    malun: '/photos/service-malun.jpg',
+    parket: '/photos/real-service-parket.jpg',
+    slipun: '/photos/real-service-slipun.jpg',
+    malun: '/photos/real-service-malun.jpg',
   } satisfies Record<ServiceKey, string>,
   /**
-   * Foreground subject cutouts of the SAME frames (macOS Vision subject
-   * lift, tools in the session scratchpad), alpha WebP at the derivative
-   * aspect. The trades gallery layers them over the giant letters so the
-   * type slips BEHIND the subject. ONLY compact objects with clean edges
-   * qualify: a letter must enter at the object's edge and leave at its
-   * edge, whole (client, 2026-08-29). The craftsman's arms and boot
-   * chopped letters mid glyph, so parket runs with NO cutout. Malun keeps
-   * the ROLLER ONLY (no hand, no forearm): the client asked for letters
-   * passing behind the roller (2026-08-30). The discs keep their holes
-   * OPEN so a letter behind a disc peeks through them the way it would in
-   * the room. A missing key simply renders no depth layer.
+   * Foreground subject cutouts for the trades gallery, where the giant letters
+   * slip BEHIND the object. Empty since the home page moved to the real
+   * photographs: the two cutouts that existed were lifted from the stock
+   * frames that are gone, and a cutout only works when it is lifted from the
+   * exact frame behind it. A missing key simply renders no depth layer, so
+   * the gallery runs flat until the lifts are redone from the real shots.
    */
-  servicesFg: {
-    slipun: '/photos/service-slipun-fg.webp',
-    malun: '/photos/service-malun-fg.webp',
-  } satisfies Partial<Record<ServiceKey, string>>,
+  servicesFg: {} satisfies Partial<Record<ServiceKey, string>>,
   /** Home before/after slider. */
-  before: '/photos/before-floor.jpg',
-  after: '/photos/after-floor.jpg',
+  before: '/photos/real-before.jpg',
+  after: '/photos/real-after.jpg',
   /** Home full-bleed break band. */
-  homeBreak: '/photos/break-room-wide.jpg',
+  homeBreak: '/photos/real-home-break.jpg',
 
   /* ---------------- Real work: proof pages ---------------- */
   /** Services page: one craft shot per trade, branded shirts visible. */
@@ -91,11 +90,4 @@ export const photos = {
   aboutWork: '/photos/real-about-work.jpg',
   contact: '/photos/real-contact.jpg',
 
-  /** Catalog material strip, keyed by the SAMPLES wood names. Stock. */
-  grain: {
-    Hnota: '/photos/grain-hnota.jpg',
-    Eik: '/photos/grain-eik.jpg',
-    Askur: '/photos/grain-askur.jpg',
-    Fura: '/photos/grain-fura.jpg',
-  } as Record<string, string>,
 }

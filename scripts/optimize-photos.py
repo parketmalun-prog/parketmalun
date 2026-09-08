@@ -59,6 +59,18 @@ for name in sorted(os.listdir(SRC_DIR)):
 
     after = os.path.getsize(path)
     saved += before - after
+
+    # The JPEG is shrunk in place to the fallback width, so on a second run
+    # it can no longer seed the wide end of the ladder. Any derivative wider
+    # than the JPEG that already sits on disk came from the full-size
+    # original on an earlier run (or from photos-library, which keeps them)
+    # and stays listed; regenerating it from the small JPEG would only
+    # upscale.
+    for f in os.listdir(SRC_DIR):
+        m = re.fullmatch(re.escape(stem) + r'-(\d+)\.webp', f)
+        if m and int(m.group(1)) > w:
+            made.append(int(m.group(1)))
+    made = sorted(set(made))
     manifest[f'/photos/{name}'] = {'w': w, 'h': h, 'widths': made}
 
 lines = [

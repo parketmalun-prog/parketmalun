@@ -256,6 +256,7 @@ export default function Home() {
         <h2 className="pt-8 font-display text-[clamp(1.75rem,3.6vw,2.75rem)] font-bold leading-[1.04] tracking-[-0.015em] text-espresso">
           {content.testimonials.title}
         </h2>
+        <p className="mt-4 max-w-[52ch] text-sm leading-relaxed text-taupe">{content.testimonials.note}</p>
         <div className="mt-10 grid grid-cols-12 gap-x-4 md:gap-x-6">
           {content.testimonials.items.slice(0, 2).map((item) => (
             <figure key={item.name} className="col-span-12 m-0 border-t border-espresso/15 py-7 md:col-span-6">

@@ -21,7 +21,7 @@ const root = dirname(dirname(fileURLToPath(import.meta.url)))
 const dist = join(root, 'dist')
 
 const entry = pathToFileURL(join(root, 'dist-ssr', 'entry-server.js')).href
-const { render, PRERENDER_ROUTES, headTags, SITE_URL } = await import(entry)
+const { render, PRERENDER_ROUTES, headTags, SITE_URL, photos, photoManifest } = await import(entry)
 
 const template = await readFile(join(dist, 'index.html'), 'utf8')
 
@@ -30,6 +30,16 @@ if (!template.includes('<!--seo-->') || !template.includes('<!--/seo-->')) {
 }
 if (!template.includes('<!--hints-->') || !template.includes('<!--/hints-->')) {
   throw new Error('index.html lost its <!--hints--> markers; pages would ship without resource hints')
+}
+
+/** A high-priority preload for one photograph, matching what imgSources() emits. */
+function imagePreload(src, media) {
+  const meta = photoManifest[src]
+  if (!meta) throw new Error(`prerender: ${src} is not in photoManifest; run scripts/optimize-photos.py`)
+  const stem = src.replace(/\.jpe?g$/i, '')
+  const widest = meta.widths[meta.widths.length - 1]
+  const srcset = meta.widths.map((w) => `${stem}-${w}.webp ${w}w`).join(', ')
+  return `<link rel="preload" as="image" type="image/webp" href="${stem}-${widest}.webp" imagesrcset="${srcset}" imagesizes="100vw" media="${media}" fetchpriority="high">`
 }
 
 /* ------------------------------ resource hints ----------------------------- */
@@ -79,10 +89,12 @@ function headHints(route) {
   // paint, so it is fetched alongside the document rather than after it. It
   // used to sit in the shared template, which meant every other page also
   // spent its first high-priority connection on an image it never shows.
+  // The file and its ladder come from the photo table and manifest the page
+  // itself renders from, so the hint cannot outlive the photograph.
   if (route.page === 'home') {
     links.push(
-      '<link rel="preload" as="image" type="image/webp" href="/photos/hero-herringbone-sun-640.webp" imagesrcset="/photos/hero-herringbone-sun-320.webp 320w, /photos/hero-herringbone-sun-640.webp 640w, /photos/hero-herringbone-sun-960.webp 960w, /photos/hero-herringbone-sun-1100.webp 1100w" imagesizes="100vw" media="(max-width: 767px)" fetchpriority="high">',
-      '<link rel="preload" as="image" type="image/webp" href="/photos/hero-herringbone-wide-1440.webp" imagesrcset="/photos/hero-herringbone-wide-320.webp 320w, /photos/hero-herringbone-wide-640.webp 640w, /photos/hero-herringbone-wide-960.webp 960w, /photos/hero-herringbone-wide-1440.webp 1440w" imagesizes="100vw" media="(min-width: 768px)" fetchpriority="high">',
+      imagePreload(photos.hero, '(max-width: 767px)'),
+      imagePreload(photos.heroWide, '(min-width: 768px)'),
     )
   }
 

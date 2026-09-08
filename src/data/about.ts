@@ -15,31 +15,31 @@ type About = {
 
 export const aboutSeo: Record<Lang, SeoText> = {
   is: {
-    title: 'Um okkur | Expert Parket og Mál | Yfir 25 ár í parketi og málun',
+    title: 'Um okkur | Expert Parket og Mál | Eigandinn leggur gólfið sjálfur',
     description:
-      'Expert Parket og Mál ehf. er rekið af einum fagmanni sem hefur lagt parket, slípað gólf og málað á höfuðborgarsvæðinu í meira en 25 ár. Frí skoðun og skriflegt tilboð, sími 785 7079.',
+      'Expert Parket og Mál ehf. er rekið af einum fagmanni sem leggur parket, slípar gólf og málar á höfuðborgarsvæðinu sjálfur. Frí skoðun og skriflegt tilboð, sími 785 7079.',
   },
   en: {
-    title: 'About us | Expert Parket og Mál | Over 25 years of parquet and painting',
+    title: 'About us | Expert Parket og Mál | The owner lays the floor himself',
     description:
-      'Expert Parket og Mál ehf. is run by one craftsman who has laid parquet, sanded floors and painted across the capital region for more than 25 years. Free site visit and a written quote, phone 785 7079.',
+      'Expert Parket og Mál ehf. is run by one craftsman who lays parquet, sands floors and paints across the capital region himself. Free site visit and a written quote, phone 785 7079.',
   },
   pl: {
-    title: 'O nas | Expert Parket og Mál | Ponad 25 lat parkietów i malowania',
+    title: 'O nas | Expert Parket og Mál | Właściciel sam układa podłogę',
     description:
-      'Expert Parket og Mál ehf. prowadzi jeden fachowiec, który od ponad 25 lat układa parkiety, cyklinuje podłogi i maluje w regionie stołecznym. Bezpłatne oględziny i pisemna wycena, telefon 785 7079.',
+      'Expert Parket og Mál ehf. prowadzi jeden fachowiec, który sam układa parkiety, cyklinuje podłogi i maluje w regionie stołecznym. Bezpłatne oględziny i pisemna wycena, telefon 785 7079.',
   },
 }
 
 export const about: Record<Lang, About> = {
   is: {
     titleLines: ['Eigandinn leggur', 'gólfið sjálfur'],
-    lead: 'Expert Parket og Mál ehf. hefur lagt parket, slípað gólf og málað á höfuðborgarsvæðinu í meira en 25 ár, alltaf með sama fagmanninn í verkinu.',
+    lead: 'Expert Parket og Mál ehf. leggur parket, slípar gólf og málar á höfuðborgarsvæðinu, alltaf með sama fagmanninn í verkinu frá fyrstu skoðun að verklokum.',
     story: {
       label: 'Sagan',
       photoCaption: 'Eigandinn að störfum',
       paragraphs: [
-        'Fyrirtækið er rekið af einum eiganda sem hefur unnið við parket og málun í meira en 25 ár. Sá sem svarar í símann 785 7079 er sami maðurinn og mætir með vélarnar, leggur gólfið og gengur frá.',
+        'Fyrirtækið er rekið af einum eiganda sem vinnur sjálfur við parket og málun. Sá sem svarar í símann 785 7079 er sami maðurinn og mætir með vélarnar, leggur gólfið og gengur frá.',
         'Verkdagurinn byrjar klukkan átta. Slípivélin er tengd við ryksugu svo rykið endar í vélinni en ekki í skápunum, lakkað er í þremur umferðum og lakkið fær að þorna á milli. Áttatíu fermetra íbúð tekur yfirleitt tvo til fjóra daga.',
         'Verkin dreifast um allt svæðið: stofugólf í Kópavogi, stigahús í Hafnarfirði, nýtt eikarparket í Garðabæ. Tilboðið er skriflegt, upphæðin stendur og rýmið er þrifið áður en lyklunum er skilað.',
       ],
@@ -89,7 +89,7 @@ export const about: Record<Lang, About> = {
       items: [
         {
           q: 'Hvað kostar að leggja parket?',
-          a: 'Verðið ræðst af fermetrafjölda, gerð parketsins og ástandi undirlagsins. Algengt bil fyrir venjulega lögn er 2.500 til 4.500 kr. á fermetra. Við komum á staðinn og gerum frítt, skriflegt tilboð áður en verkið hefst.',
+          a: 'Verðið ræðst af fermetrafjölda, gerð parketsins og ástandi undirlagsins, svo ekkert eitt verð á fermetra segir alla söguna. Við komum á staðinn, mælum og gerum frítt, skriflegt tilboð með virðisaukaskatti áður en verkið hefst. Upphæðin í tilboðinu stendur.',
         },
         {
           q: 'Er hægt að slípa gamalt parket í stað þess að skipta um það?',
@@ -113,19 +113,19 @@ export const about: Record<Lang, About> = {
         },
         {
           q: 'Er ábyrgð á vinnunni og fæ ég frítt tilboð?',
-          a: 'Já. Skoðun og tilboðsgerð kostar ekkert og skuldbindur þig ekki. Við ábyrgjumst framkvæmdina, komi upp galli sem rekja má til vinnu okkar lögum við hann. Hringdu í 785 7079 eða sendu línu á expertparket2024@gmail.com.',
+          a: 'Já. Skoðun og tilboðsgerð kostar ekkert og skuldbindur þig ekki. Komi fram galli sem rekja má til vinnu okkar innan tveggja ára frá verklokum lögum við hann þér að kostnaðarlausu, til viðbótar við réttindi þín samkvæmt lögum um þjónustukaup. Skilmálarnir segja nánar frá því. Hringdu í 785 7079 eða sendu línu á expertparket2024@gmail.com.',
         },
       ],
     },
   },
   en: {
     titleLines: ['The owner lays', 'the floor himself'],
-    lead: 'Expert Parket og Mál ehf. has laid parquet, sanded floors and painted across the capital region for more than 25 years, always with the same craftsman on the job.',
+    lead: 'Expert Parket og Mál ehf. lays parquet, sands floors and paints across the capital region, always with the same craftsman on the job from the first visit to handover.',
     story: {
       label: 'The story',
       photoCaption: 'The owner at work',
       paragraphs: [
-        'The company is run by one owner who has worked with parquet and paint for more than 25 years. The man who answers the phone on 785 7079 is the same one who arrives with the machines, lays the floor and finishes the job.',
+        'The company is run by one owner who does the parquet and painting work himself. The man who answers the phone on 785 7079 is the same one who arrives with the machines, lays the floor and finishes the job.',
         'A working day starts at eight. The sander is hooked to a dust extractor so the dust ends up in the machine, not in your cupboards, lacquer goes on in three coats and each coat gets time to dry. An eighty square metre apartment usually takes two to four days.',
         'The jobs are spread across the region: a living room floor in Kópavogur, a stairwell in Hafnarfjörður, new oak parquet in Garðabær. The quote is written, the figure stands and the space is cleaned before the keys are handed back.',
       ],
@@ -175,7 +175,7 @@ export const about: Record<Lang, About> = {
       items: [
         {
           q: 'How much does it cost to lay parquet?',
-          a: 'The price depends on the square metres, the type of parquet and the condition of the subfloor. A common range for a standard installation is ISK 2,500 to 4,500 per square metre. We come out and give you a free written quote before the work begins.',
+          a: 'The price depends on the square metres, the type of parquet and the condition of the subfloor, so no single price per square metre tells the whole story. We come out, measure and give you a free written quote including VAT before the work begins. The figure in the quote holds.',
         },
         {
           q: 'Can old parquet be sanded instead of replaced?',
@@ -199,19 +199,19 @@ export const about: Record<Lang, About> = {
         },
         {
           q: 'Is the work guaranteed and is the quote free?',
-          a: 'Yes. The visit and the quote cost nothing and commit you to nothing. We stand behind the work: if a fault traceable to it appears, we fix it. Call 785 7079 or write to expertparket2024@gmail.com.',
+          a: 'Yes. The visit and the quote cost nothing and commit you to nothing. If a fault traceable to our work appears within two years of completion, we fix it at no cost to you, on top of your rights under the Service Purchases Act. Our terms spell it out. Call 785 7079 or write to expertparket2024@gmail.com.',
         },
       ],
     },
   },
   pl: {
     titleLines: ['Właściciel sam', 'układa podłogę'],
-    lead: 'Expert Parket og Mál ehf. od ponad 25 lat układa parkiety, cyklinuje podłogi i maluje w regionie stołecznym, zawsze z tym samym fachowcem na miejscu.',
+    lead: 'Expert Parket og Mál ehf. układa parkiety, cyklinuje podłogi i maluje w regionie stołecznym, zawsze z tym samym fachowcem na miejscu, od pierwszych oględzin do odbioru.',
     story: {
       label: 'Historia',
       photoCaption: 'Właściciel przy pracy',
       paragraphs: [
-        'Firmę prowadzi jeden właściciel, który od ponad 25 lat pracuje przy parkietach i malowaniu. Człowiek, który odbiera telefon pod numerem 785 7079, to ten sam, który przyjeżdża z maszynami, układa podłogę i kończy robotę.',
+        'Firmę prowadzi jeden właściciel, który sam wykonuje prace parkieciarskie i malarskie. Człowiek, który odbiera telefon pod numerem 785 7079, to ten sam, który przyjeżdża z maszynami, układa podłogę i kończy robotę.',
         'Dzień pracy zaczyna się o ósmej. Cykliniarka jest podłączona do odkurzacza, więc pył zostaje w maszynie, a nie w szafkach, lakier kładziemy w trzech warstwach i każda warstwa ma czas wyschnąć. Mieszkanie o powierzchni osiemdziesięciu metrów kwadratowych zajmuje zwykle dwa do czterech dni.',
         'Zlecenia rozkładają się po całym regionie: podłoga w salonie w Kópavogur, klatka schodowa w Hafnarfjörður, nowy dębowy parkiet w Garðabær. Wycena jest pisemna, kwota się nie zmienia, a wnętrze jest posprzątane przed oddaniem kluczy.',
       ],
@@ -261,7 +261,7 @@ export const about: Record<Lang, About> = {
       items: [
         {
           q: 'Ile kosztuje ułożenie parkietu?',
-          a: 'Cena zależy od liczby metrów kwadratowych, rodzaju parkietu i stanu podłoża. Typowy przedział przy standardowym układaniu to 2 500 do 4 500 ISK za metr kwadratowy. Przyjeżdżamy na miejsce i przygotowujemy bezpłatną pisemną wycenę przed rozpoczęciem prac.',
+          a: 'Cena zależy od liczby metrów kwadratowych, rodzaju parkietu i stanu podłoża, więc żadna pojedyncza cena za metr nie mówi wszystkiego. Przyjeżdżamy na miejsce, mierzymy i przygotowujemy bezpłatną pisemną wycenę z VAT przed rozpoczęciem prac. Kwota z wyceny obowiązuje.',
         },
         {
           q: 'Czy stary parkiet można cyklinować zamiast wymieniać?',
@@ -285,7 +285,7 @@ export const about: Record<Lang, About> = {
         },
         {
           q: 'Czy praca jest objęta gwarancją i czy wycena jest bezpłatna?',
-          a: 'Tak. Oględziny i wycena nic nie kosztują i do niczego nie zobowiązują. Stoimy za naszą pracą: jeśli pojawi się usterka z niej wynikająca, naprawiamy ją. Zadzwoń pod 785 7079 lub napisz na expertparket2024@gmail.com.',
+          a: 'Tak. Oględziny i wycena nic nie kosztują i do niczego nie zobowiązują. Jeśli w ciągu dwóch lat od zakończenia prac pojawi się usterka wynikająca z naszej pracy, naprawiamy ją bez kosztów dla Ciebie, niezależnie od Twoich praw z ustawy o zakupie usług. Szczegóły są w regulaminie. Zadzwoń pod 785 7079 lub napisz na expertparket2024@gmail.com.',
         },
       ],
     },

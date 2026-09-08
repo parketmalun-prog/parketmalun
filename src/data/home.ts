@@ -50,6 +50,12 @@ type HomeContent = {
   testimonials: {
     label: string
     title: string
+    /**
+     * Lög nr. 44/2026, 8. gr.: a trader who publishes consumer reviews must
+     * say whether and how it makes sure they come from people who actually
+     * bought the service. One sentence under the heading does that.
+     */
+    note: string
     items: Array<{ name: string; location: string; quote: string }>
   }
   area: {
@@ -69,11 +75,11 @@ const is: HomeContent = {
   seo: {
     title: 'Expert Parket og Mál | Parketlögn, slípun og málun á höfuðborgarsvæðinu',
     description:
-      'Leggjum, slípum og málum gólf á höfuðborgarsvæðinu. Sami eigandi og sama símanúmer í meira en 25 ár. Frítt verðtilboð í síma 785 7079.',
+      'Leggjum, slípum og málum gólf á höfuðborgarsvæðinu. Sami eigandi frá fyrstu skoðun að verklokum. Frítt verðtilboð í síma 785 7079.',
   },
   hero: {
     lines: ['Parket.', 'Slípun.', 'Málun.'],
-    lead: 'Við leggjum, slípum og málum gólf á höfuðborgarsvæðinu. Sami eigandi og sama símanúmer í meira en 25 ár.',
+    lead: 'Við leggjum, slípum og málum gólf á höfuðborgarsvæðinu. Sami eigandi frá fyrstu skoðun að verklokum.',
     cta: 'Fáðu frítt tilboð',
     photoCaption: 'Eikarparket · Höfuðborgarsvæðið',
   },
@@ -142,16 +148,17 @@ const is: HomeContent = {
     label: 'Verkefni',
     title: 'Nýleg verk',
     captions: [
-      'Garðabær · 2024 · Eik',
-      'Vesturbær · 2023 · Síldarbein',
-      'Kársnes · 2024 · Askur',
-      'Mosfellsbær · 2023 · Eik',
-      'Grafarvogur · 2025 · Hnota',
+      'Eik · Breiðir plankar',
+      'Ljós eik · Fiskibein',
+      'Eik · Mynstur',
+      'Eik · Fiskibein',
+      'Dökk eik · Mynstur',
     ],
   },
   testimonials: {
     label: 'Ummæli',
     title: 'Það sem viðskiptavinir segja',
+    note: 'Ummælin eru frá viðskiptavinum sem við höfum unnið verk fyrir. Við birtum aðeins ummæli sem berast okkur beint frá þeim.',
     items: [
       {
         name: 'Guðrún Halldórsdóttir',
@@ -222,11 +229,11 @@ const en: HomeContent = {
   seo: {
     title: 'Expert Parket og Mál | Parquet laying, sanding and painting in the Reykjavík area',
     description:
-      'We lay, sand and paint floors across the Reykjavík capital region. Same owner and same phone number for more than 25 years. Free quote on 785 7079.',
+      'We lay, sand and paint floors across the Reykjavík capital region. The same owner from the first visit to handover. Free quote on 785 7079.',
   },
   hero: {
     lines: ['Parquet.', 'Sanding.', 'Painting.'],
-    lead: 'We lay, sand and paint floors across the capital region. Same owner and same phone number for more than 25 years.',
+    lead: 'We lay, sand and paint floors across the capital region. The same owner from the first visit to handover.',
     cta: 'Get a free quote',
     photoCaption: 'Oak parquet · Reykjavík area',
   },
@@ -295,16 +302,17 @@ const en: HomeContent = {
     label: 'Projects',
     title: 'Recent work',
     captions: [
-      'Garðabær · 2024 · Oak',
-      'Vesturbær · 2023 · Herringbone',
-      'Kársnes · 2024 · Ash',
-      'Mosfellsbær · 2023 · Oak',
-      'Grafarvogur · 2025 · Walnut',
+      'Oak · Wide planks',
+      'Light oak · Herringbone',
+      'Oak · Pattern',
+      'Oak · Herringbone',
+      'Dark oak · Pattern',
     ],
   },
   testimonials: {
     label: 'Reviews',
     title: 'What our customers say',
+    note: 'These are from customers we have worked for. We publish only what reaches us directly from them.',
     items: [
       {
         name: 'Guðrún Halldórsdóttir',
@@ -375,11 +383,11 @@ const pl: HomeContent = {
   seo: {
     title: 'Expert Parket og Mál | Układanie parkietu, cyklinowanie i malowanie w rejonie Reykjavíku',
     description:
-      'Układamy, cyklinujemy i malujemy podłogi w rejonie stołecznym Reykjavíku. Ten sam właściciel i ten sam numer telefonu od ponad 25 lat. Darmowa wycena pod numerem 785 7079.',
+      'Układamy, cyklinujemy i malujemy podłogi w rejonie stołecznym Reykjavíku. Ten sam właściciel od pierwszych oględzin do odbioru. Darmowa wycena pod numerem 785 7079.',
   },
   hero: {
     lines: ['Parkiet.', 'Cyklinowanie.', 'Malowanie.'],
-    lead: 'Układamy, cyklinujemy i malujemy podłogi w rejonie stołecznym. Ten sam właściciel i ten sam numer telefonu od ponad 25 lat.',
+    lead: 'Układamy, cyklinujemy i malujemy podłogi w rejonie stołecznym. Ten sam właściciel od pierwszych oględzin do odbioru.',
     cta: 'Darmowa wycena',
     photoCaption: 'Parkiet dębowy · Rejon Reykjavíku',
   },
@@ -448,16 +456,17 @@ const pl: HomeContent = {
     label: 'Realizacje',
     title: 'Ostatnie prace',
     captions: [
-      'Garðabær · 2024 · Dąb',
-      'Vesturbær · 2023 · Jodełka',
-      'Kársnes · 2024 · Jesion',
-      'Mosfellsbær · 2023 · Dąb',
-      'Grafarvogur · 2025 · Orzech',
+      'Dąb · Szerokie deski',
+      'Jasny dąb · Jodełka',
+      'Dąb · Wzór',
+      'Dąb · Jodełka',
+      'Ciemny dąb · Wzór',
     ],
   },
   testimonials: {
     label: 'Opinie',
     title: 'Co mówią nasi klienci',
+    note: 'Opinie pochodzą od klientów, dla których pracowaliśmy. Publikujemy tylko te, które trafiają do nas bezpośrednio od nich.',
     items: [
       {
         name: 'Guðrún Halldórsdóttir',

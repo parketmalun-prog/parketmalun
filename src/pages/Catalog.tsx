@@ -5,22 +5,22 @@ import type { Product } from '@/data/catalog'
 import { useContent, useLang, useUi } from '@/i18n/context'
 import { Seo } from '@/components/Seo'
 import { Button } from '@/components/Button'
-import { PhotoSlot } from '@/components/PhotoSlot'
-import { photos } from '@/data/photos'
-import { imgSources } from '@/lib/img'
+import { ParquetSwatch } from '@/components/ParquetSwatch'
 import { QuickRequestDialog } from '@/components/QuickRequestDialog'
 import { Closer } from '@/components/Closer'
 import { LineReveal } from '@/components/motionPrimitives'
 
 /**
- * Material bench: four plank samples laid side by side. Tone follows the wood,
- * darkest first, so the row reads as physical offcuts rather than a grid.
+ * Material bench: four plank samples laid side by side, darkest first, so the
+ * row reads as physical offcuts rather than a grid. Drawn from a tone per
+ * species: the four grain photographs that used to sit here had no traceable
+ * licence and left with the legal pass of 8 September 2026.
  */
 const SAMPLES = [
-  { key: 'Hnota', tone: 'espresso' },
-  { key: 'Eik', tone: 'walnut' },
-  { key: 'Askur', tone: 'sand' },
-  { key: 'Fura', tone: 'cream' },
+  { key: 'Hnota', tone: '#6B4A32' },
+  { key: 'Eik', tone: '#C09461' },
+  { key: 'Askur', tone: '#D6C3A5' },
+  { key: 'Fura', tone: '#E0C79A' },
 ] as const
 
 /** Display names per language; the Icelandic word stays the photo key. */
@@ -31,27 +31,16 @@ const WOOD_LABELS: Record<string, Record<(typeof SAMPLES)[number]['key'], string
 }
 
 /**
- * The board itself, laid in the pattern the product is sold in.
- *
- * These used to be SVG drawn from a single hex colour, which read as a
- * diagram of a floor rather than a floor. Each one is now a photograph of the
- * manufacturer's own board composed into its pattern by
- * scripts/build-parquet-swatches.py, so the picture and the name under it
- * describe the same product.
+ * The board, drawn in the pattern the product is sold in. See the note at the
+ * top of ParquetSwatch for why this is a drawing and not the manufacturer's
+ * photograph.
  */
 function ProductSwatch({ product }: { product: Product }) {
-  const img = imgSources(product.photo)
   return (
-    <img
-      src={img.src}
-      srcSet={img.srcSet || undefined}
-      sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 90vw"
-      alt={`${product.name}, ${product.woodTone}`}
-      width={img.width}
-      height={img.height}
-      className="absolute inset-0 h-full w-full object-cover"
-      loading="lazy"
-      decoding="async"
+    <ParquetSwatch
+      tone={product.tone}
+      pattern={product.pattern}
+      className="absolute inset-0 h-full w-full"
     />
   )
 }
@@ -87,17 +76,12 @@ export default function Catalog() {
           {SAMPLES.map((sample, i) => {
             const label = WOOD_LABELS[lang][sample.key]
             return (
-              <div key={sample.key} className="w-28 shrink-0 sm:w-32 md:w-36">
-                <PhotoSlot
-                  aspect="1/3"
-                  tone={sample.tone}
-                  label={label}
-                  src={photos.grain[sample.key]}
-                  alt={label}
-                  sizes="144px"
-                  caption={`${String(i + 1).padStart(2, '0')} · ${label}`}
-                />
-              </div>
+              <figure key={sample.key} className="m-0 w-28 shrink-0 sm:w-32 md:w-36">
+                <div className="relative aspect-[1/3] w-full overflow-hidden rounded-lg border border-espresso/10">
+                  <ParquetSwatch tone={sample.tone} pattern="plank" className="absolute inset-0 h-full w-full" />
+                </div>
+                <figcaption className="tnum cap-label pt-2">{`${String(i + 1).padStart(2, '0')} · ${label}`}</figcaption>
+              </figure>
             )
           })}
         </div>

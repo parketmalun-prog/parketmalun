@@ -11,7 +11,18 @@ import BlogPost from './pages/BlogPost'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Privacy from './pages/Privacy'
+import Terms from './pages/Terms'
+import Cookies from './pages/Cookies'
+import Withdrawal from './pages/Withdrawal'
 import NotFound from './pages/NotFound'
+
+/**
+ * The prerender step preloads the home hero. It reads which file that is
+ * from here rather than carrying its own copy of the path, which is how the
+ * hint once kept pointing at a photograph the page had stopped showing.
+ */
+export { photos } from './data/photos'
+export { photoManifest } from './data/photoManifest'
 
 /**
  * Build-time rendering entry.
@@ -39,6 +50,9 @@ const pages: PageMap = {
   about: About,
   contact: Contact,
   privacy: Privacy,
+  terms: Terms,
+  cookies: Cookies,
+  withdrawal: Withdrawal,
   notFound: NotFound,
   go: Stub,
   admin: Stub,

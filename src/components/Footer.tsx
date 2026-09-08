@@ -39,6 +39,13 @@ export function Footer() {
     { to: path('contact'), label: t.nav.contact },
   ]
 
+  const legalLinks = [
+    { to: path('privacy'), label: t.footer.privacyLabel },
+    { to: path('terms'), label: t.footer.termsLabel },
+    { to: path('cookies'), label: t.footer.cookiesLabel },
+    { to: path('withdrawal'), label: t.footer.withdrawalLabel },
+  ]
+
   return (
     <footer className="overflow-hidden bg-sand text-espresso">
       <div className="container-x">
@@ -99,17 +106,31 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Identification line. Lög um rafræn viðskipti nr. 30/2002, 6. gr.,
+            requires name, address, kennitala and VSK number to be easy to find
+            on every page, and this is the one place every page shares. */}
+        <p className="tnum pb-3 text-xs leading-relaxed text-espresso/60">
+          {site.legalName} · {t.footer.kennitala} {site.kennitala} · {t.footer.vsk} {site.vsk} · {site.street},{' '}
+          {site.postal}
+        </p>
+
         {/* legal row, no rule above it */}
-        <div className="flex flex-col items-start justify-between gap-2 pb-6 text-xs text-espresso/60 sm:flex-row sm:items-center">
+        <div className="flex flex-col items-start justify-between gap-3 pb-6 text-xs text-espresso/60 sm:flex-row sm:items-center">
           <p className="tnum">
             © {year} {site.legalName} · {t.footer.rights}
           </p>
-          <Link
-            to={path('privacy')}
-            className="underline decoration-espresso/30 underline-offset-4 transition-colors hover:text-gold-deep"
-          >
-            {t.footer.privacyLabel}
-          </Link>
+          <ul className="flex flex-wrap gap-x-4 gap-y-1">
+            {legalLinks.map((l) => (
+              <li key={l.to}>
+                <Link
+                  to={l.to}
+                  className="underline decoration-espresso/30 underline-offset-4 transition-colors hover:text-gold-deep"
+                >
+                  {l.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 

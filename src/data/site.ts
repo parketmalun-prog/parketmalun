@@ -7,13 +7,27 @@ export const site = {
   name: 'Expert Parket og Mál',
   legalName: 'Expert Parket og Mál ehf.',
   short: 'Expert Parket',
+  /**
+   * Registration details, from fyrirtaekjaskra (skatturinn.is) and the ISNIC
+   * registrant record, both read on 8 September 2026. Lög um rafræn viðskipti
+   * nr. 30/2002, 6. gr., requires a service provider to keep its name,
+   * address, kennitala, VSK number and public register easy to find on the
+   * site, so these print in the footer of every page and on the legal pages.
+   */
+  kennitala: '500123-1250',
+  vsk: '159068',
+  street: 'Álfholti 10',
+  postal: '220 Hafnarfjörður',
+  /** The public register the company is entered in. */
+  register: 'Fyrirtækjaskrá Skattsins',
+  /** ÍSAT activity codes as registered, for the terms page. */
+  isat: '43.33.0 og 43.99.0',
   phone: '785 7079',
   phoneRaw: '+3547857079',
   email: 'expertparket2024@gmail.com',
   /** wa.me deep link: international number without "+" or spaces. */
   whatsapp: 'https://wa.me/3547857079',
   facebook: 'https://www.facebook.com/share/14mSWnaktqV/?mibextid=wwXIfr',
-  years: '25+',
   /**
    * Optional Formspree endpoint, kept only as a middle rung.
    *

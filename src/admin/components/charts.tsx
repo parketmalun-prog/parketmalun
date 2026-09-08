@@ -34,8 +34,8 @@ export function HeadlineBand({
   return (
     <section className="relative overflow-hidden rounded-2xl bg-espresso text-cream">
       <img
-        src="/photos/after-floor-640.webp"
-        srcSet="/photos/after-floor-640.webp 640w, /photos/after-floor-900.webp 900w, /photos/after-floor-1400.webp 1400w"
+        src="/photos/real-after-640.webp"
+        srcSet="/photos/real-after-320.webp 320w, /photos/real-after-640.webp 640w, /photos/real-after-900.webp 900w"
         sizes="(min-width: 1024px) 1100px, 100vw"
         alt=""
         decoding="async"

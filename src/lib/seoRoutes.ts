@@ -10,6 +10,7 @@ import { catalogSeo } from '@/data/catalog'
 import { about, aboutSeo } from '@/data/about'
 import { contactSeo } from '@/data/contact'
 import { privacy } from '@/data/privacy'
+import { terms, cookies, withdrawal } from '@/data/legal'
 import { blogSeed } from '@/data/blogSeed'
 import { isTranslated } from '@/lib/db'
 import { plainText } from '@/lib/markdown'
@@ -59,8 +60,14 @@ function organisation(): object {
     logo: LOGO,
     image: SHARE_CARD,
     areaServed: 'Höfuðborgarsvæðið',
+    // Registration details as entered in fyrirtaekjaskra, see site.ts.
+    taxID: site.kennitala,
+    vatID: site.vsk,
     address: {
       '@type': 'PostalAddress',
+      streetAddress: site.street,
+      postalCode: site.postal.split(' ')[0],
+      addressLocality: site.postal.split(' ').slice(1).join(' '),
       addressRegion: 'Höfuðborgarsvæðið',
       addressCountry: 'IS',
     },
@@ -112,7 +119,7 @@ function faqSchema(lang: Lang): object {
   }
 }
 
-/** Head data for the seven fixed pages, per language. */
+/** Head data for the fixed pages, per language. */
 function seoFor(key: RouteKey, lang: Lang): { title: string; description: string } {
   switch (key) {
     case 'home':
@@ -129,6 +136,12 @@ function seoFor(key: RouteKey, lang: Lang): { title: string; description: string
       return contactSeo[lang]
     case 'privacy':
       return privacy[lang].seo
+    case 'terms':
+      return terms[lang].seo
+    case 'cookies':
+      return cookies[lang].seo
+    case 'withdrawal':
+      return withdrawal[lang].seo
     case 'blog':
       return { title: ui[lang].blog.seoTitle, description: ui[lang].blog.seoDescription }
   }
@@ -143,6 +156,9 @@ const FIXED_KEYS: RouteKey[] = [
   'about',
   'contact',
   'privacy',
+  'terms',
+  'cookies',
+  'withdrawal',
 ]
 
 function extraSchema(key: RouteKey, lang: Lang, path: string): object[] {

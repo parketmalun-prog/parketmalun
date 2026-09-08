@@ -1,9 +1,10 @@
 import { useEffect, useRef } from 'react'
 import type { FormEvent } from 'react'
+import { Link } from 'react-router-dom'
 import { X } from 'lucide-react'
 import { contact as contactByLang } from '@/data/contact'
 import { lockScroll } from '@/lib/smoothScroll'
-import { useContent, useUi } from '@/i18n/context'
+import { useContent, useLang, useUi } from '@/i18n/context'
 import { useEnquiry, enquiryFieldClass } from '@/lib/enquiry'
 import { Button } from './Button'
 
@@ -23,6 +24,7 @@ type Props = {
 export function QuickRequestDialog({ product, onClose }: Props) {
   const c = useContent(contactByLang)
   const t = useUi()
+  const { path } = useLang()
   const { status, submit, reset } = useEnquiry()
   const panelRef = useRef<HTMLDivElement>(null)
   const nameRef = useRef<HTMLInputElement>(null)
@@ -204,6 +206,14 @@ export function QuickRequestDialog({ product, onClose }: Props) {
               <button type="submit" disabled={status === 'sending'} className="btn btn-lg btn-primary w-full">
                 {status === 'sending' ? f.sendingLabel : f.submitLabel}
               </button>
+              {/* Art. 13 GDPR: the notice belongs at the point of collection,
+                  and this dialog is one of three places the site collects. */}
+              <p className="!mt-3 text-xs leading-relaxed text-taupe">
+                {f.privacyNote}{' '}
+                <Link to={path('privacy')} className="underline underline-offset-2 hover:text-espresso">
+                  {t.footer.privacyLabel}
+                </Link>
+              </p>
             </form>
           </>
         )}

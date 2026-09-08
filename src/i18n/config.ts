@@ -35,6 +35,9 @@ export type RouteKey =
   | 'about'
   | 'contact'
   | 'privacy'
+  | 'terms'
+  | 'cookies'
+  | 'withdrawal'
 export const ROUTE_KEYS: RouteKey[] = [
   'home',
   'services',
@@ -44,9 +47,12 @@ export const ROUTE_KEYS: RouteKey[] = [
   'about',
   'contact',
   'privacy',
+  'terms',
+  'cookies',
+  'withdrawal',
 ]
 
-/** Pages shown in the main navigation (privacy lives only in the footer). */
+/** Pages shown in the main navigation (the legal pages live only in the footer). */
 export const NAV_KEYS = ['home', 'services', 'portfolio', 'catalog', 'blog', 'about', 'contact'] as const
 export type NavKey = (typeof NAV_KEYS)[number]
 
@@ -60,6 +66,9 @@ export const SLUGS: Record<RouteKey, Record<Lang, string>> = {
   about: { is: 'um-okkur', en: 'about', pl: 'o-nas' },
   contact: { is: 'hafdu-samband', en: 'contact', pl: 'kontakt' },
   privacy: { is: 'personuvernd', en: 'privacy', pl: 'polityka-prywatnosci' },
+  terms: { is: 'skilmalar', en: 'terms', pl: 'regulamin' },
+  cookies: { is: 'vefkokur', en: 'cookies', pl: 'pliki-cookie' },
+  withdrawal: { is: 'rettur-til-ad-falla-fra-samningi', en: 'right-of-withdrawal', pl: 'prawo-odstapienia' },
 }
 
 /** Path of a single article: the blog slug for the language plus the post slug. */

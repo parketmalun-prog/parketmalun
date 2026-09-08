@@ -80,7 +80,7 @@ export const contact: Record<Lang, ContactContent> = {
         'Við útbjuggum tölvupóst með skilaboðunum þínum. Ef pósthólfið opnaðist ekki, sendu okkur línu beint á expertparket2024@gmail.com eða hringdu í 785 7079.',
       errorText: 'Sendingin mistókst. Hringdu í 785 7079 eða reyndu aftur eftir smástund.',
       privacyNote:
-        'Upplýsingarnar eru aðeins notaðar til að svara fyrirspurninni og fara aldrei til þriðja aðila.',
+        'Upplýsingarnar eru aðeins notaðar til að svara fyrirspurninni, aldrei í markaðssetningu. Hvar þær eru geymdar og hver réttindi þín eru:',
     },
   },
   en: {
@@ -110,7 +110,7 @@ export const contact: Record<Lang, ContactContent> = {
         'We prepared an email with your message. If your email client did not open, write to us directly at expertparket2024@gmail.com or call 785 7079.',
       errorText: 'The message did not go through. Call 785 7079 or try again in a moment.',
       privacyNote:
-        'Your details are used only to answer the enquiry and never go to a third party.',
+        'Your details are used only to answer the enquiry, never for marketing. Where they are kept and what your rights are:',
     },
   },
   pl: {
@@ -140,7 +140,7 @@ export const contact: Record<Lang, ContactContent> = {
         'Przygotowaliśmy e-mail z Twoją wiadomością. Jeśli program pocztowy się nie otworzył, napisz do nas bezpośrednio na expertparket2024@gmail.com lub zadzwoń pod 785 7079.',
       errorText: 'Wysyłka nie powiodła się. Zadzwoń pod 785 7079 lub spróbuj ponownie za chwilę.',
       privacyNote:
-        'Twoje dane służą wyłącznie do odpowiedzi na zapytanie i nigdy nie trafiają do osób trzecich.',
+        'Twoje dane służą wyłącznie do odpowiedzi na zapytanie, nigdy do marketingu. Gdzie są przechowywane i jakie masz prawa:',
     },
   },
 }

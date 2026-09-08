@@ -24,6 +24,9 @@ export type PageKey =
   | 'about'
   | 'contact'
   | 'privacy'
+  | 'terms'
+  | 'cookies'
+  | 'withdrawal'
   | 'notFound'
   | 'go'
   | 'admin'
@@ -31,7 +34,18 @@ export type PageKey =
 export type PageMap = Record<PageKey, ComponentType>
 
 /** Pages that exist once per language, in navigation order. */
-const LANG_PAGES = ['services', 'portfolio', 'catalog', 'blog', 'about', 'contact', 'privacy'] as const
+const LANG_PAGES = [
+  'services',
+  'portfolio',
+  'catalog',
+  'blog',
+  'about',
+  'contact',
+  'privacy',
+  'terms',
+  'cookies',
+  'withdrawal',
+] as const
 
 function LangShell({ lang }: { lang: Lang }) {
   return (
