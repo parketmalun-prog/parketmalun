@@ -120,7 +120,7 @@ export const privacy: Record<Lang, PrivacyContent> = {
       {
         heading: 'Myndir á vefnum',
         paragraphs: [
-          'Allar ljósmyndir á vefnum eru af verkum Expert Parket og Mál ehf. Þær sýna rými sem við höfum unnið í og, á einstaka mynd, okkur sjálf við vinnu. Hvorki heimilisföng né fólk utan fyrirtækisins er sýnt. Teikningar af parketi í vöruúrvali eru okkar eigin.',
+          'Hluti ljósmyndanna á vefnum er af verkum Expert Parket og Mál ehf. Þær sýna rými sem við höfum unnið í og, á einstaka mynd, okkur sjálf við vinnu. Aðrar myndir, meðal annars á forsíðu og í vöruúrvali, eru til myndskreytingar: þær sýna viðartegundir og lagnamynstur en ekki tiltekin verk okkar. Hvorki heimilisföng né fólk utan fyrirtækisins er sýnt á neinni mynd.',
         ],
       },
       {
@@ -232,7 +232,7 @@ export const privacy: Record<Lang, PrivacyContent> = {
       {
         heading: 'Images on this site',
         paragraphs: [
-          'Every photograph on this site is of work by Expert Parket og Mál ehf. They show rooms we have worked in and, in a few frames, ourselves at work. Neither addresses nor people outside the company are shown. The parquet drawings in the catalogue are our own.',
+          'Part of the photographs on this site are of work by Expert Parket og Mál ehf. They show rooms we have worked in and, in a few frames, ourselves at work. The other pictures, on the home page and in the catalogue, are there to illustrate: they show wood types and laying patterns, not particular jobs of ours. No photograph on the site shows an address or a person outside the company.',
         ],
       },
       {
@@ -344,7 +344,7 @@ export const privacy: Record<Lang, PrivacyContent> = {
       {
         heading: 'Zdjęcia w serwisie',
         paragraphs: [
-          'Wszystkie zdjęcia w serwisie przedstawiają prace Expert Parket og Mál ehf. Pokazują pomieszczenia, w których pracowaliśmy, a na kilku ujęciach nas samych przy pracy. Nie pokazują adresów ani osób spoza firmy. Rysunki parkietu w katalogu są nasze własne.',
+          'Część zdjęć w serwisie przedstawia prace firmy Expert Parket og Mál ehf. Pokazują one pomieszczenia, w których pracowaliśmy, a na kilku ujęciach nas samych przy pracy. Pozostałe zdjęcia, na stronie głównej i w katalogu, mają charakter poglądowy: pokazują gatunki drewna i wzory układania, a nie konkretne nasze realizacje. Żadne zdjęcie w serwisie nie pokazuje adresu ani osoby spoza firmy.',
         ],
       },
       {

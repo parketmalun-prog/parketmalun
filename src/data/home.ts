@@ -148,11 +148,11 @@ const is: HomeContent = {
     label: 'Verkefni',
     title: 'Nýleg verk',
     captions: [
-      'Eik · Breiðir plankar',
-      'Ljós eik · Fiskibein',
-      'Eik · Mynstur',
-      'Eik · Fiskibein',
-      'Dökk eik · Mynstur',
+      'Ljós eik · Breiðir plankar',
+      'Síldarbein · Nærmynd',
+      'Ljós eik · Síldarbein',
+      'Eik · Plankar',
+      'Hnota · Dökk áferð',
     ],
   },
   testimonials: {
@@ -302,11 +302,11 @@ const en: HomeContent = {
     label: 'Projects',
     title: 'Recent work',
     captions: [
-      'Oak · Wide planks',
+      'Light oak · Wide planks',
+      'Herringbone · Close up',
       'Light oak · Herringbone',
-      'Oak · Pattern',
-      'Oak · Herringbone',
-      'Dark oak · Pattern',
+      'Oak · Planks',
+      'Walnut · Dark finish',
     ],
   },
   testimonials: {
@@ -456,11 +456,11 @@ const pl: HomeContent = {
     label: 'Realizacje',
     title: 'Ostatnie prace',
     captions: [
-      'Dąb · Szerokie deski',
+      'Jasny dąb · Szerokie deski',
+      'Jodełka · Zbliżenie',
       'Jasny dąb · Jodełka',
-      'Dąb · Wzór',
-      'Dąb · Jodełka',
-      'Ciemny dąb · Wzór',
+      'Dąb · Deski',
+      'Orzech · Ciemne wykończenie',
     ],
   },
   testimonials: {

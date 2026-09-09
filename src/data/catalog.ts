@@ -11,12 +11,9 @@ export type Product = {
   finish: string
   bestFor: string
   badge?: string
-  /**
-   * Hex tone the drawn swatch is built from (see ParquetSwatch). Chosen by
-   * eye from the manufacturer's colour name, not sampled from their pictures.
-   */
-  tone: string
-  /** How this product is laid. Decides which pattern the swatch is drawn in. */
+  /** Swatch in public/photos, built by scripts/build-parquet-swatches.py. */
+  photo: string
+  /** How this product is laid. Decides which swatch was composed for it. */
   pattern: ParquetPattern
 }
 
@@ -33,14 +30,13 @@ type CatalogContent = {
  * through Planki Parket ehf. in Kópavogur, who import them into Iceland
  * (client, 2026-09-01). It replaced eight invented products whose swatches
  * were drawn in SVG from one hex colour: the names, thicknesses, finishes and
- * patterns here are the manufacturer's own.
+ * patterns here are the manufacturer's own, and every card carries a
+ * photograph of that board laid in the pattern it is sold in.
  *
- * NO PHOTOGRAPHS. Each card used to carry the manufacturer's board photograph
- * composed into its pattern, sourced from realdutchfloor.com through Planki.
- * The note asking to confirm the licence before launch was never answered, so
- * on 8 September 2026 the cards went back to a drawn swatch from a tone. The
- * sources stay in photos-library/parket-source, unshipped, for the day the
- * permission arrives in writing.
+ * The board photographs come from realdutchfloor.com through Planki and are
+ * composed into their pattern by scripts/build-parquet-swatches.py. Written
+ * permission to publish them is still outstanding with Planki; the drawn
+ * fallback lives in ParquetSwatch if it is ever refused.
  *
  * NO PRICES. The cards used to carry a per-m2 figure, but those numbers were
  * placeholders shaped like the old ladder and Planki's real list never
@@ -89,7 +85,7 @@ export const catalog: Record<Lang, CatalogContent> = {
         finish: 'Burstað og olíuborið',
         bestFor: 'Íbúðir og leiguhúsnæði þar sem verðið skiptir máli',
         badge: 'Vinsælt',
-        tone: '#CBA57B',
+        photo: '/photos/parket-eco-desert.jpg',
         pattern: 'plank',
       },
       {
@@ -101,7 +97,7 @@ export const catalog: Record<Lang, CatalogContent> = {
         thickness: '15 mm',
         finish: 'Slípað og olíuborið',
         bestFor: 'Stofur og opin rými sem eiga að endast',
-        tone: '#BC9569',
+        photo: '/photos/parket-classic-latte.jpg',
         pattern: 'plank',
       },
       {
@@ -113,7 +109,7 @@ export const catalog: Record<Lang, CatalogContent> = {
         thickness: '15 mm',
         finish: 'Hvítolíuborið',
         bestFor: 'Björt rými og herbergi sem snúa í norður',
-        tone: '#D9CFC0',
+        photo: '/photos/parket-classic-mist.jpg',
         pattern: 'plank',
       },
       {
@@ -125,7 +121,7 @@ export const catalog: Record<Lang, CatalogContent> = {
         thickness: '15 mm',
         finish: 'Burstað, reykt og olíuborið',
         bestFor: 'Stór rými sem þola dökkt gólf',
-        tone: '#8A6438',
+        photo: '/photos/parket-forest-bronze.jpg',
         pattern: 'plank',
       },
       {
@@ -138,7 +134,7 @@ export const catalog: Record<Lang, CatalogContent> = {
         finish: 'Burstað og olíuborið',
         bestFor: 'Anddyri og rými sem eiga að hafa karakter',
         badge: 'Nýtt',
-        tone: '#3A302A',
+        photo: '/photos/parket-eco-night.jpg',
         pattern: 'herringbone',
       },
       {
@@ -151,7 +147,7 @@ export const catalog: Record<Lang, CatalogContent> = {
         finish: 'Slípað og olíuborið',
         bestFor: 'Stofur og borðstofur',
         badge: 'Vinsælt',
-        tone: '#A79B8C',
+        photo: '/photos/parket-classic-ash.jpg',
         pattern: 'herringbone',
       },
       {
@@ -163,7 +159,7 @@ export const catalog: Record<Lang, CatalogContent> = {
         thickness: '15 mm',
         finish: 'Slípað og olíuborið',
         bestFor: 'Eldri íbúðir og rými með háum loftum',
-        tone: '#9A6F45',
+        photo: '/photos/parket-classic-mocha.jpg',
         pattern: 'herringbone',
       },
       {
@@ -175,7 +171,7 @@ export const catalog: Record<Lang, CatalogContent> = {
         thickness: '15 mm',
         finish: 'Heflað og olíuborið',
         bestFor: 'Nútímaleg rými og skrifstofur',
-        tone: '#907F6D',
+        photo: '/photos/parket-design-taupe.jpg',
         pattern: 'chevron',
       },
       {
@@ -187,7 +183,7 @@ export const catalog: Record<Lang, CatalogContent> = {
         thickness: '15 mm',
         finish: 'Royal Protect, viðhaldsfrítt',
         bestFor: 'Rými í mikilli notkun þar sem viðhald á að vera í lágmarki',
-        tone: '#5E4632',
+        photo: '/photos/parket-royal-ridge.jpg',
         pattern: 'chevron',
       },
     ],
@@ -214,7 +210,7 @@ export const catalog: Record<Lang, CatalogContent> = {
         finish: 'Brushed and oiled',
         bestFor: 'Flats and rentals where the price matters',
         badge: 'Popular',
-        tone: '#CBA57B',
+        photo: '/photos/parket-eco-desert.jpg',
         pattern: 'plank',
       },
       {
@@ -226,7 +222,7 @@ export const catalog: Record<Lang, CatalogContent> = {
         thickness: '15 mm',
         finish: 'Sanded and oiled',
         bestFor: 'Living rooms and open plans meant to last',
-        tone: '#BC9569',
+        photo: '/photos/parket-classic-latte.jpg',
         pattern: 'plank',
       },
       {
@@ -238,7 +234,7 @@ export const catalog: Record<Lang, CatalogContent> = {
         thickness: '15 mm',
         finish: 'White oiled',
         bestFor: 'Bright rooms and north-facing spaces',
-        tone: '#D9CFC0',
+        photo: '/photos/parket-classic-mist.jpg',
         pattern: 'plank',
       },
       {
@@ -250,7 +246,7 @@ export const catalog: Record<Lang, CatalogContent> = {
         thickness: '15 mm',
         finish: 'Brushed, smoked and oiled',
         bestFor: 'Large rooms that can carry a dark floor',
-        tone: '#8A6438',
+        photo: '/photos/parket-forest-bronze.jpg',
         pattern: 'plank',
       },
       {
@@ -263,7 +259,7 @@ export const catalog: Record<Lang, CatalogContent> = {
         finish: 'Brushed and oiled',
         bestFor: 'Hallways and rooms that need character',
         badge: 'New',
-        tone: '#3A302A',
+        photo: '/photos/parket-eco-night.jpg',
         pattern: 'herringbone',
       },
       {
@@ -276,7 +272,7 @@ export const catalog: Record<Lang, CatalogContent> = {
         finish: 'Sanded and oiled',
         bestFor: 'Living and dining rooms',
         badge: 'Popular',
-        tone: '#A79B8C',
+        photo: '/photos/parket-classic-ash.jpg',
         pattern: 'herringbone',
       },
       {
@@ -288,7 +284,7 @@ export const catalog: Record<Lang, CatalogContent> = {
         thickness: '15 mm',
         finish: 'Sanded and oiled',
         bestFor: 'Older flats and rooms with high ceilings',
-        tone: '#9A6F45',
+        photo: '/photos/parket-classic-mocha.jpg',
         pattern: 'herringbone',
       },
       {
@@ -300,7 +296,7 @@ export const catalog: Record<Lang, CatalogContent> = {
         thickness: '15 mm',
         finish: 'Planed and oiled',
         bestFor: 'Modern spaces and offices',
-        tone: '#907F6D',
+        photo: '/photos/parket-design-taupe.jpg',
         pattern: 'chevron',
       },
       {
@@ -312,7 +308,7 @@ export const catalog: Record<Lang, CatalogContent> = {
         thickness: '15 mm',
         finish: 'Royal Protect, maintenance free',
         bestFor: 'Busy rooms where upkeep should be minimal',
-        tone: '#5E4632',
+        photo: '/photos/parket-royal-ridge.jpg',
         pattern: 'chevron',
       },
     ],
@@ -339,7 +335,7 @@ export const catalog: Record<Lang, CatalogContent> = {
         finish: 'Szczotkowany i olejowany',
         bestFor: 'Mieszkania i lokale na wynajem, gdzie liczy się cena',
         badge: 'Popularne',
-        tone: '#CBA57B',
+        photo: '/photos/parket-eco-desert.jpg',
         pattern: 'plank',
       },
       {
@@ -351,7 +347,7 @@ export const catalog: Record<Lang, CatalogContent> = {
         thickness: '15 mm',
         finish: 'Szlifowany i olejowany',
         bestFor: 'Salony i otwarte przestrzenie na lata',
-        tone: '#BC9569',
+        photo: '/photos/parket-classic-latte.jpg',
         pattern: 'plank',
       },
       {
@@ -363,7 +359,7 @@ export const catalog: Record<Lang, CatalogContent> = {
         thickness: '15 mm',
         finish: 'Olejowany na biało',
         bestFor: 'Jasne wnętrza i pokoje od północy',
-        tone: '#D9CFC0',
+        photo: '/photos/parket-classic-mist.jpg',
         pattern: 'plank',
       },
       {
@@ -375,7 +371,7 @@ export const catalog: Record<Lang, CatalogContent> = {
         thickness: '15 mm',
         finish: 'Szczotkowany, wędzony i olejowany',
         bestFor: 'Duże wnętrza, które udźwigną ciemną podłogę',
-        tone: '#8A6438',
+        photo: '/photos/parket-forest-bronze.jpg',
         pattern: 'plank',
       },
       {
@@ -388,7 +384,7 @@ export const catalog: Record<Lang, CatalogContent> = {
         finish: 'Szczotkowany i olejowany',
         bestFor: 'Przedpokoje i wnętrza z charakterem',
         badge: 'Nowość',
-        tone: '#3A302A',
+        photo: '/photos/parket-eco-night.jpg',
         pattern: 'herringbone',
       },
       {
@@ -401,7 +397,7 @@ export const catalog: Record<Lang, CatalogContent> = {
         finish: 'Szlifowany i olejowany',
         bestFor: 'Salony i jadalnie',
         badge: 'Popularne',
-        tone: '#A79B8C',
+        photo: '/photos/parket-classic-ash.jpg',
         pattern: 'herringbone',
       },
       {
@@ -413,7 +409,7 @@ export const catalog: Record<Lang, CatalogContent> = {
         thickness: '15 mm',
         finish: 'Szlifowany i olejowany',
         bestFor: 'Starsze mieszkania i wnętrza z wysokimi sufitami',
-        tone: '#9A6F45',
+        photo: '/photos/parket-classic-mocha.jpg',
         pattern: 'herringbone',
       },
       {
@@ -425,7 +421,7 @@ export const catalog: Record<Lang, CatalogContent> = {
         thickness: '15 mm',
         finish: 'Strugany i olejowany',
         bestFor: 'Nowoczesne wnętrza i biura',
-        tone: '#907F6D',
+        photo: '/photos/parket-design-taupe.jpg',
         pattern: 'chevron',
       },
       {
@@ -437,7 +433,7 @@ export const catalog: Record<Lang, CatalogContent> = {
         thickness: '15 mm',
         finish: 'Royal Protect, bezobsługowy',
         bestFor: 'Intensywnie używane wnętrza z minimalną konserwacją',
-        tone: '#5E4632',
+        photo: '/photos/parket-royal-ridge.jpg',
         pattern: 'chevron',
       },
     ],

@@ -9,6 +9,242 @@
 export type PhotoMeta = { w: number; h: number; widths: number[] }
 
 export const photoManifest: Record<string, PhotoMeta> = {
+  "/photos/after-floor.jpg": {
+    "h": 600,
+    "w": 900,
+    "widths": [
+      320,
+      640,
+      900,
+      960,
+      1400
+    ]
+  },
+  "/photos/before-floor.jpg": {
+    "h": 675,
+    "w": 900,
+    "widths": [
+      320,
+      640,
+      900,
+      960,
+      1400
+    ]
+  },
+  "/photos/break-room-wide.jpg": {
+    "h": 412,
+    "w": 900,
+    "widths": [
+      320,
+      640,
+      900,
+      960,
+      1440
+    ]
+  },
+  "/photos/grain-askur.jpg": {
+    "h": 663,
+    "w": 900,
+    "widths": [
+      320,
+      640,
+      900
+    ]
+  },
+  "/photos/grain-eik.jpg": {
+    "h": 1200,
+    "w": 900,
+    "widths": [
+      320,
+      640,
+      900
+    ]
+  },
+  "/photos/grain-fura.jpg": {
+    "h": 1600,
+    "w": 900,
+    "widths": [
+      320,
+      640,
+      900
+    ]
+  },
+  "/photos/grain-hnota.jpg": {
+    "h": 1440,
+    "w": 900,
+    "widths": [
+      320,
+      640,
+      900
+    ]
+  },
+  "/photos/hero-herringbone-sun.jpg": {
+    "h": 1350,
+    "w": 900,
+    "widths": [
+      320,
+      640,
+      900,
+      960,
+      1100
+    ]
+  },
+  "/photos/hero-herringbone-wide.jpg": {
+    "h": 506,
+    "w": 900,
+    "widths": [
+      320,
+      640,
+      900,
+      960,
+      1440
+    ]
+  },
+  "/photos/pano-1-gardabaer-eik.jpg": {
+    "h": 1350,
+    "w": 900,
+    "widths": [
+      320,
+      640,
+      900,
+      960,
+      1200
+    ]
+  },
+  "/photos/pano-2-vesturbaer-sildarbein.jpg": {
+    "h": 600,
+    "w": 900,
+    "widths": [
+      320,
+      640,
+      900,
+      960,
+      1200
+    ]
+  },
+  "/photos/pano-3-karsnes-askur.jpg": {
+    "h": 659,
+    "w": 900,
+    "widths": [
+      320,
+      640,
+      900,
+      960,
+      1200
+    ]
+  },
+  "/photos/pano-4-mosfellsbaer-eik.jpg": {
+    "h": 475,
+    "w": 900,
+    "widths": [
+      320,
+      640,
+      900,
+      960,
+      1200
+    ]
+  },
+  "/photos/pano-5-grafarvogur-hnota.jpg": {
+    "h": 675,
+    "w": 900,
+    "widths": [
+      320,
+      640,
+      900,
+      960,
+      1200
+    ]
+  },
+  "/photos/parket-classic-ash.jpg": {
+    "h": 900,
+    "w": 1200,
+    "widths": [
+      320,
+      640,
+      960,
+      1200
+    ]
+  },
+  "/photos/parket-classic-latte.jpg": {
+    "h": 900,
+    "w": 1200,
+    "widths": [
+      320,
+      640,
+      960,
+      1200
+    ]
+  },
+  "/photos/parket-classic-mist.jpg": {
+    "h": 900,
+    "w": 1200,
+    "widths": [
+      320,
+      640,
+      960,
+      1200
+    ]
+  },
+  "/photos/parket-classic-mocha.jpg": {
+    "h": 900,
+    "w": 1200,
+    "widths": [
+      320,
+      640,
+      960,
+      1200
+    ]
+  },
+  "/photos/parket-design-taupe.jpg": {
+    "h": 900,
+    "w": 1200,
+    "widths": [
+      320,
+      640,
+      960,
+      1200
+    ]
+  },
+  "/photos/parket-eco-desert.jpg": {
+    "h": 900,
+    "w": 1200,
+    "widths": [
+      320,
+      640,
+      960,
+      1200
+    ]
+  },
+  "/photos/parket-eco-night.jpg": {
+    "h": 900,
+    "w": 1200,
+    "widths": [
+      320,
+      640,
+      960,
+      1200
+    ]
+  },
+  "/photos/parket-forest-bronze.jpg": {
+    "h": 900,
+    "w": 1200,
+    "widths": [
+      320,
+      640,
+      960,
+      1200
+    ]
+  },
+  "/photos/parket-royal-ridge.jpg": {
+    "h": 900,
+    "w": 1200,
+    "widths": [
+      320,
+      640,
+      960,
+      1200
+    ]
+  },
   "/photos/real-about-owner.jpg": {
     "h": 1200,
     "w": 900,
@@ -226,6 +462,39 @@ export const photoManifest: Record<string, PhotoMeta> = {
       900,
       960,
       1200
+    ]
+  },
+  "/photos/service-malun.jpg": {
+    "h": 600,
+    "w": 900,
+    "widths": [
+      320,
+      640,
+      900,
+      960,
+      1440
+    ]
+  },
+  "/photos/service-parket.jpg": {
+    "h": 600,
+    "w": 900,
+    "widths": [
+      320,
+      640,
+      900,
+      960,
+      1440
+    ]
+  },
+  "/photos/service-slipun.jpg": {
+    "h": 600,
+    "w": 900,
+    "widths": [
+      320,
+      640,
+      900,
+      960,
+      1440
     ]
   }
 }
