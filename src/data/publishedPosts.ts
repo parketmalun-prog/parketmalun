@@ -6,10 +6,10 @@ export const publishedPosts: Post[] = [
     id: 'parketslipun-verd-timi-2026',
     status: 'published',
     sourceLang: 'is',
-    cover: '/photos/real-after.jpg',
+    cover: '/photos/blog-parketslipun-editorial-cover.jpg',
     tags: ['Parketslípun'],
     createdAt: Date.UTC(2026, 8, 16, 9),
-    updatedAt: Date.UTC(2026, 8, 16, 9),
+    updatedAt: Date.UTC(2026, 8, 16, 19, 33),
     publishedAt: Date.UTC(2026, 8, 16, 9),
     translations: {
       is: {
@@ -18,7 +18,7 @@ export const publishedPosts: Post[] = [
         excerpt: 'Fermetrarnir segja aðeins hálfa söguna. Hér sérðu hvað ræður verði á parketslípun, hvað á að vera í tilboðinu og hvernig þú undirbýrð heimilið fyrir verkið.',
         seoTitle: 'Parketslípun: verð, tími og undirbúningur | Expert Parket',
         seoDescription: 'Hvað kostar parketslípun? Lestu um verðþætti, lakk eða olíu, þurrktíma og undirbúning. Fáðu frítt tilboð á höfuðborgarsvæðinu hjá Expert Parket.',
-        coverAlt: 'Viðargólf eftir endurnýjun, úr verkefnasafni Expert Parket og Mál.',
+        coverAlt: 'Ljóst eikarparket í norrænu rými, með sýnishornum af viðaráferð. Hugmyndamynd.',
         body: `## Hvað kostar að slípa parket?
 
 **Verð á parketslípun fer eftir flatarmáli, ástandi viðarins, viðgerðum og yfirborðsmeðferð.** Til að bera tilboð saman þarftu heildarverð fyrir sama verkumfang. Fermetraverð eitt og sér segir ekki hvort kantslípun, efni, listar og frágangur séu innifalin.
@@ -53,7 +53,7 @@ Hver tæmir rýmið? Þarf að bera búnað upp stiga? Er aðgangur að rafmagni
 
 Samræmið hvort gólflistar verði fjarlægðir, varðveittir eða endurnýjaðir og hvernig gengið verði frá við önnur gólfefni. Einnig þarf að koma fram hver sér um hreinsun og förgun úrgangs. Það eru oft þessi atriði sem gera tvö tilboð ólík.
 
-![Slípun á síldarbeinsparketi með gólfslípivél. Ljósmynd úr verkum Expert Parket og Mál.](/photos/real-service-slipun.jpg)
+![Viðarsýni, pensill og slípiefni í samstilltri litasamsetningu. Hugmyndamynd.](/photos/blog-parketslipun-material-study.jpg)
 
 ## Hvað á að vera í tilboði í parketslípun?
 
@@ -96,7 +96,7 @@ Fyrir flutning er gagnlegt að telja aftur frá deginum þegar sófinn og rúmin
 
 Ef stofan liggur milli allra herbergja getur verkið haft meiri áhrif á daglegt líf en flatarmálið gefur til kynna. Ræddu slíkt við verktakann áður en byrjað er.
 
-![Unnið að viðargólfi með slípibúnaði og ryksogi. Úr verkefnasafni Expert Parket og Mál.](/photos/real-about-work.jpg)
+![Líkan af tómu rými með viðargólfi og einföld grunnmynd til að sýna undirbúning verks.](/photos/blog-parketslipun-room-planning.jpg)
 
 ## Gólfhiti og umhirða eftir slípun
 
@@ -136,7 +136,7 @@ Expert Parket og Mál sinnir parketslípun, parketlögn og málun í Reykjavík 
 
 [Hafðu samband og fáðu frítt verðtilboð](/hafdu-samband) eða hringdu í **785 7079**. Þá getum við rætt hvaða lausn hentar gólfinu þínu.
 
-*Ljósmyndirnar eru úr verkefnasafni Expert Parket og Mál. Leiðbeiningarnar eru almennar; mat á staðnum og fyrirmæli framleiðanda ráða útfærslu hvers verks.*`,
+*Myndefnið er búið til með gervigreind til skýringar og sýnir ekki tiltekin verk fyrirtækisins. Leiðbeiningarnar eru almennar; mat á staðnum og fyrirmæli framleiðanda ráða útfærslu hvers verks.*`,
       },
       en: {
         title: 'Floor sanding in Iceland: cost, timing and preparation',
@@ -144,7 +144,7 @@ Expert Parket og Mál sinnir parketslípun, parketlögn og málun í Reykjavík 
         excerpt: 'Floor area is only part of the price. Learn what affects a sanding quote, what should be included and how to prepare your home for the work.',
         seoTitle: 'Floor sanding in Iceland: cost & timing | Expert Parket',
         seoDescription: 'Planning floor sanding in Reykjavík? Understand costs, finishes, drying times and preparation. Request a free quote from Expert Parket in the capital area.',
-        coverAlt: 'A renewed wooden floor from the Expert Parket og Mál project portfolio.',
+        coverAlt: 'A Nordic interior with light oak parquet and a graphic study of wood textures. Editorial illustration.',
         body: `## How much does floor sanding cost in Iceland?
 
 **The cost depends on the floor area, timber condition, repairs and chosen finish.** Compare the total price for the same scope of work. A price per square metre does not tell you whether edges, materials, skirting and cleanup are included.
@@ -179,7 +179,7 @@ Who empties the rooms? Must equipment be carried upstairs? Are power and a suita
 
 Agree whether skirting will be removed, kept or replaced, and how transitions to other floors will be finished. Check who handles cleanup and waste. These details can account for differences between two quotations.
 
-![Sanding a herringbone wooden floor. Photograph from Expert Parket og Mál's own work.](/photos/real-service-slipun.jpg)
+![Oak samples, a finishing brush and abrasives arranged as an editorial material study.](/photos/blog-parketslipun-material-study.jpg)
 
 ## What should a floor sanding quote include?
 
@@ -222,7 +222,7 @@ For a move, work backwards from the day the sofa and beds arrive. Confirm the wa
 
 A living room connecting every bedroom can cause more disruption than its size suggests. Discuss the layout with your contractor before work starts.
 
-![Working on a wooden floor with sanding and extraction equipment. From the Expert Parket og Mál portfolio.](/photos/real-about-work.jpg)
+![An architectural model of an empty room and a simple floor plan illustrating preparation.](/photos/blog-parketslipun-room-planning.jpg)
 
 ## Underfloor heating and care after sanding
 
@@ -262,7 +262,7 @@ Include your municipality, approximate floor area, room count, floor condition a
 
 [Contact us for a free quote](/en/contact) or call **785 7079**. We can discuss the next step for your floor.
 
-*Photographs are from the Expert Parket og Mál portfolio. This is general guidance; the site assessment and product manufacturers' instructions determine the work.*`,
+*Images are AI-generated editorial illustrations, not photographs of completed company projects. This is general guidance; the site assessment and product manufacturers' instructions determine the work.*`,
       },
       pl: {
         title: 'Cyklinowanie parkietu na Islandii: cena, czas i przygotowanie',
@@ -270,7 +270,7 @@ Include your municipality, approximate floor area, room count, floor condition a
         excerpt: 'Metraż to tylko część wyceny. Sprawdź, co wpływa na cenę cyklinowania, co powinna obejmować oferta i jak przygotować mieszkanie do prac.',
         seoTitle: 'Cyklinowanie na Islandii: cena i czas | Expert Parket',
         seoDescription: 'Planujesz cyklinowanie w Reykjavíku? Poznaj składniki ceny, rodzaje wykończenia i zasady przygotowania. Poproś Expert Parket o bezpłatną wycenę.',
-        coverAlt: 'Odnowiona drewniana podłoga z portfolio Expert Parket og Mál.',
+        coverAlt: 'Skandynawskie wnętrze z jasnym dębowym parkietem i graficznym zestawieniem faktur drewna. Wizualizacja poglądowa.',
         body: `## Ile kosztuje cyklinowanie parkietu na Islandii?
 
 **Cena zależy od powierzchni, stanu drewna, napraw i wybranego wykończenia.** Porównuj całkowity koszt tego samego zakresu prac. Sama stawka za metr kwadratowy nie mówi, czy obejmuje krawędzie, materiały, listwy i sprzątanie.
@@ -305,7 +305,7 @@ Kto opróżnia pomieszczenia? Czy sprzęt trzeba wnosić po schodach? Czy jest d
 
 Ustal, czy listwy będą zdejmowane, zachowane czy wymieniane oraz jak zostaną wykończone styki z innymi posadzkami. Sprawdź też, kto odpowiada za sprzątanie i odpady. Te szczegóły często tłumaczą różnice między ofertami.
 
-![Szlifowanie drewnianej podłogi w jodełkę. Zdjęcie z prac Expert Parket og Mál.](/photos/real-service-slipun.jpg)
+![Próbki dębu, pędzel i materiały ścierne w kompozycji pokazującej dobór wykończenia.](/photos/blog-parketslipun-material-study.jpg)
 
 ## Co powinna zawierać oferta?
 
@@ -348,7 +348,7 @@ Przy przeprowadzce zacznij planowanie od dnia dostawy kanapy i łóżek. Potwier
 
 Salon łączący wszystkie sypialnie może utrudnić codzienne życie bardziej, niż sugeruje jego wielkość. Omów układ mieszkania z wykonawcą przed rozpoczęciem prac.
 
-![Praca przy drewnianej podłodze ze sprzętem do szlifowania i odciągiem pyłu. Portfolio Expert Parket og Mál.](/photos/real-about-work.jpg)
+![Model pustego pomieszczenia i prosty rzut ilustrujący przygotowanie do renowacji.](/photos/blog-parketslipun-room-planning.jpg)
 
 ## Ogrzewanie podłogowe i pielęgnacja po renowacji
 
@@ -388,7 +388,7 @@ W zapytaniu podaj miejscowość, przybliżony metraż, liczbę pomieszczeń, sta
 
 [Skontaktuj się z nami po bezpłatną wycenę](/pl/kontakt) lub zadzwoń pod **785 7079**. Omówimy następny krok dla Twojej podłogi.
 
-*Zdjęcia pochodzą z portfolio Expert Parket og Mál. Poradnik ma charakter ogólny; sposób wykonania prac zależy od oceny na miejscu i instrukcji producentów.*`,
+*Ilustracje zostały wygenerowane przy użyciu AI i nie przedstawiają realizacji firmy. Poradnik ma charakter ogólny; sposób wykonania prac zależy od oceny na miejscu i instrukcji producentów.*`,
       },
     },
   },

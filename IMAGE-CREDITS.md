@@ -7,10 +7,12 @@ our own work") can be checked file by file. Update it whenever a file in
 
 Last audit: 8 September 2026. Revised 9 September 2026, when the client
 asked for the stock photography back on the home page and the catalogue.
+Revised 16 September 2026 with generated illustrations for the sanding guide.
 
 ## Photographs in `public/photos` (shipped)
 
-The site ships two kinds of photograph, and the split is deliberate.
+The site uses company photographs, licensed stock and clearly identified
+editorial illustrations.
 
 ### The company's own work (`real-*.jpg`)
 
@@ -34,12 +36,27 @@ company's own.
 Further real photographs that no page uses sit in `photos-library/`, same
 origin and rights.
 
-The floor-sanding cost guide published on 16 September 2026 also uses
-`real-after.jpg` (cover), `real-service-slipun.jpg` and `real-about-work.jpg`,
-with their existing responsive WebP derivatives. All three were visually
-checked against their captions. They illustrate separate work stages, not
-a claimed before/after sequence or a priced case study. No new stock or
-generated photographs were introduced for this article.
+### AI-generated editorial illustrations, 16 September 2026
+
+At the client's request, the floor-sanding guide now uses three original
+AI-generated illustrations instead of its initial company photographs:
+
+| file | what it shows | used on |
+|---|---|---|
+| blog-parketslipun-editorial-cover.jpg | Nordic oak interior with a graphic material panel | article cover, archive card, social sharing |
+| blog-parketslipun-material-study.jpg | oak samples, brush and abrasives | article, all three languages |
+| blog-parketslipun-room-planning.jpg | architectural room model and floor plan | article, all three languages |
+
+Generated with the built-in image generation tool. No client project or
+third-party photograph was supplied as an input. Captions describe the
+illustrations, and every article translation explicitly discloses that they
+are AI-generated and do not show completed company projects. Responsive
+WebP variants at 320, 640, 960 and 1440 px accompany the JPEGs. Original PNG
+masters are preserved outside the deployment; full prompts and paths are
+recorded in `docs/BLOG-IMAGE-PROMPTS-2026-09-16.md`.
+
+The previous `real-after.jpg`, `real-service-slipun.jpg` and
+`real-about-work.jpg` remain available for the site’s other pages.
 
 ### Stock, restored 9 September 2026
 

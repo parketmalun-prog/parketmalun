@@ -31,6 +31,36 @@ export const photoManifest: Record<string, PhotoMeta> = {
       1400
     ]
   },
+  "/photos/blog-parketslipun-editorial-cover.jpg": {
+    "h": 900,
+    "w": 1600,
+    "widths": [
+      320,
+      640,
+      960,
+      1440
+    ]
+  },
+  "/photos/blog-parketslipun-material-study.jpg": {
+    "h": 1024,
+    "w": 1536,
+    "widths": [
+      320,
+      640,
+      960,
+      1440
+    ]
+  },
+  "/photos/blog-parketslipun-room-planning.jpg": {
+    "h": 1024,
+    "w": 1536,
+    "widths": [
+      320,
+      640,
+      960,
+      1440
+    ]
+  },
   "/photos/break-room-wide.jpg": {
     "h": 412,
     "w": 900,

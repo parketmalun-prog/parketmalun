@@ -40,8 +40,11 @@ volumes, ranking guarantees or fabricated client cases are included.
 
 The article paraphrases guidance and separates general advice from
 manufacturer-specific limits. It does not imply the company is certified
-by or necessarily uses any of the cited brands. Photos are existing
-company-owned project images; see IMAGE-CREDITS.md.
+by or necessarily uses any of the cited brands. The article uses three AI-generated editorial illustrations in the site’s
+cream-and-oak palette, replacing the initial company photographs at the
+client’s request on 16 September 2026. All three language versions clearly
+disclose their illustrative origin. See IMAGE-CREDITS.md and
+docs/BLOG-IMAGE-PROMPTS-2026-09-16.md.
 
 ## Publication
 
