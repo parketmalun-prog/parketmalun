@@ -34,6 +34,13 @@ company's own.
 Further real photographs that no page uses sit in `photos-library/`, same
 origin and rights.
 
+The floor-sanding cost guide published on 16 September 2026 also uses
+`real-after.jpg` (cover), `real-service-slipun.jpg` and `real-about-work.jpg`,
+with their existing responsive WebP derivatives. All three were visually
+checked against their captions. They illustrate separate work stages, not
+a claimed before/after sequence or a priced case study. No new stock or
+generated photographs were introduced for this article.
+
 ### Stock, restored 9 September 2026
 
 The home page and the catalogue run on stock again. They had been swapped to

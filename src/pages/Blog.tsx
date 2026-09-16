@@ -5,8 +5,8 @@ import { Closer } from '@/components/Closer'
 import { LineReveal } from '@/components/motionPrimitives'
 import { useLang, useUi } from '@/i18n/context'
 import { blogPostPath } from '@/i18n/config'
-import { db, publishedIn } from '@/lib/db'
-import { blogSeed } from '@/data/blogSeed'
+import { publishedIn } from '@/lib/db'
+import { listPublicPosts, publicPostSeed } from '@/lib/publicPosts'
 import { useAsync } from '@/lib/useAsync'
 import { formatDate } from '@/lib/format'
 import { readingMinutes } from '@/lib/markdown'
@@ -24,7 +24,7 @@ const PAGE_SIZE = 6
  * admin can override any of it by setting a real cover in the editor.
  */
 function coverFor(key: string, cover: string | null) {
-  if (cover) return { src: cover, srcSet: undefined as string | undefined }
+  if (cover) return imgSources(cover)
   const pick = photos.pano[Math.abs(hashCode(key)) % photos.pano.length]
   const img = imgSources(pick)
   return { src: img.src, srcSet: img.srcSet || undefined }
@@ -42,7 +42,7 @@ export default function Blog() {
   const [page, setPage] = useState(0)
   const listRef = useRef<HTMLUListElement>(null)
   // Seeded so the page prerenders with real articles instead of a spinner.
-  const { data, loading } = useAsync(() => db.listPosts(), [], 'posts', blogSeed)
+  const { data, loading } = useAsync(listPublicPosts, [], 'posts', publicPostSeed)
   const posts = publishedIn(data ?? [], lang)
 
   const pageCount = Math.max(1, Math.ceil(posts.length / PAGE_SIZE))

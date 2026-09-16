@@ -160,7 +160,7 @@ const urls = PRERENDER_ROUTES.map((route) => {
   return [
     '  <url>',
     `    <loc>${abs(route.path)}</loc>`,
-    `    <lastmod>${today}</lastmod>`,
+    `    <lastmod>${route.lastModified ?? today}</lastmod>`,
     `    <priority>${priority(route.path)}</priority>`,
     alternates,
     `    <xhtml:link rel="alternate" hreflang="x-default" href="${abs(route.alternates.is ?? '/')}"/>`,

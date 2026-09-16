@@ -11,7 +11,8 @@ import { about, aboutSeo } from '@/data/about'
 import { contactSeo } from '@/data/contact'
 import { privacy } from '@/data/privacy'
 import { terms, cookies, withdrawal } from '@/data/legal'
-import { blogSeed } from '@/data/blogSeed'
+import { publicPostSeed } from '@/lib/publicPosts'
+import { photoManifest } from '@/data/photoManifest'
 import { isTranslated } from '@/lib/db'
 import { plainText } from '@/lib/markdown'
 
@@ -39,6 +40,9 @@ export type PrerenderRoute = {
   alternates: Partial<Record<Lang, string>>
   /** Structured data blocks, serialised into script tags */
   jsonLd: object[]
+  image?: string
+  imageAlt?: string
+  lastModified?: string
 }
 
 /** Absolute URL. The root keeps its slash so canonical and sitemap agree. */
@@ -197,7 +201,7 @@ export const PRERENDER_ROUTES: PrerenderRoute[] = [
   ),
   // Published articles. Only the languages an article is actually translated
   // into get a file: a half-translated post must not exist as a URL.
-  ...blogSeed
+  ...publicPostSeed
     .filter((post) => post.status === 'published')
     .flatMap((post) =>
       LANGS.filter((lang) => isTranslated(post, lang)).map((lang) => {
@@ -209,28 +213,17 @@ export const PRERENDER_ROUTES: PrerenderRoute[] = [
           lang,
           title: tr.seoTitle || `${tr.title} | ${site.name}`,
           description: tr.seoDescription || tr.excerpt || plainText(tr.body),
+          image: post.cover ?? undefined,
+          imageAlt: tr.coverAlt,
+          lastModified: new Date(post.updatedAt).toISOString().slice(0, 10),
           alternates: Object.fromEntries(
             LANGS.map((l) => [
               l,
               isTranslated(post, l) ? blogPostPath(l, post.translations[l].slug) : pathFor('blog', l),
             ]),
           ),
-          jsonLd: [
-            breadcrumb(lang, tr.title, path),
-            {
-              '@context': 'https://schema.org',
-              '@type': 'Article',
-              headline: tr.title,
-              description: tr.excerpt,
-              inLanguage: HTML_LANG[lang],
-              datePublished: new Date(post.publishedAt ?? post.createdAt).toISOString(),
-              dateModified: new Date(post.updatedAt).toISOString(),
-              author: { '@id': `${SITE_URL}/#business` },
-              publisher: { '@id': `${SITE_URL}/#business` },
-              image: post.cover ?? LOGO,
-              mainEntityOfPage: abs(path),
-            },
-          ],
+          // BlogPost renders its schema in the article for SSR and in-app visits.
+          jsonLd: [],
         }
       }),
     ),
@@ -239,6 +232,8 @@ export const PRERENDER_ROUTES: PrerenderRoute[] = [
 /** The `<head>` markup for one route, shared by the prerender script. */
 export function headTags(route: PrerenderRoute): string {
   const canonical = abs(route.path)
+  const image = route.image ? new URL(route.image, SITE_URL).href : SHARE_CARD
+  const dimensions = route.image ? photoManifest[route.image] : { w: 1200, h: 630 }
   const esc = (value: string) =>
     value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
@@ -264,8 +259,16 @@ export function headTags(route: PrerenderRoute): string {
     `<meta property="og:url" content="${canonical}">`,
     `<meta property="og:locale" content="${OG_LOCALE[route.lang]}">`,
     ...otherLocales,
-    `<meta property="og:image" content="${SHARE_CARD}">`,
-    `<meta name="twitter:image" content="${SHARE_CARD}">`,
+    `<meta property="og:type" content="${route.page === 'blogPost' ? 'article' : 'website'}">`,
+    `<meta property="og:image" content="${esc(image)}">`,
+    `<meta property="og:image:alt" content="${esc(route.imageAlt || site.legalName)}">`,
+    ...(dimensions ? [
+      `<meta property="og:image:width" content="${dimensions.w}">`,
+      `<meta property="og:image:height" content="${dimensions.h}">`,
+    ] : []),
+    ...(/\.jpe?g$/i.test(image) ? ['<meta property="og:image:type" content="image/jpeg">'] : []),
+    `<meta name="twitter:image" content="${esc(image)}">`,
+    `<meta name="twitter:image:alt" content="${esc(route.imageAlt || site.legalName)}">`,
     `<meta name="twitter:title" content="${esc(route.title)}">`,
     `<meta name="twitter:description" content="${esc(route.description)}">`,
     ...route.jsonLd.map(

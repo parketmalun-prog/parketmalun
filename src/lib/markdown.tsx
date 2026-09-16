@@ -166,6 +166,10 @@ function parse(body: string): Block[] {
   return blocks
 }
 
+export function articleHeadings(body: string): { id: string; text: string }[] {
+  return parse(body).flatMap((block, i) => block.type === 'h2' ? [{ id: `section-${i}`, text: block.text }] : [])
+}
+
 export function Markdown({ body }: { body: string }) {
   const blocks = parse(body)
   return (
@@ -175,7 +179,7 @@ export function Markdown({ body }: { body: string }) {
         switch (block.type) {
           case 'h2':
             return (
-              <h2 key={key} className="pt-4 font-display text-[clamp(1.5rem,3vw,2rem)] font-bold leading-tight">
+              <h2 key={key} id={`section-${i}`} className="scroll-mt-28 pt-4 font-display text-[clamp(1.5rem,3vw,2rem)] font-bold leading-tight">
                 {inline(block.text, key)}
               </h2>
             )
