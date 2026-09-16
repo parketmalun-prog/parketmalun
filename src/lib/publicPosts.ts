@@ -1,4 +1,3 @@
-import { blogSeed } from '@/data/blogSeed'
 import { publishedPosts } from '@/data/publishedPosts'
 import { db } from '@/lib/db'
 import type { Post } from '@/lib/db/types'
@@ -9,9 +8,14 @@ export function withPublishedPosts(stored: Post[]): Post[] {
   return [...publishedPosts, ...stored.filter((post) => !ids.has(post.id))]
 }
 
-export const publicPostSeed = withPublishedPosts(blogSeed)
+/** Browser-local starter posts belong to the admin, not the public website. */
+export const publicPostSeed = withPublishedPosts([])
 
 export async function listPublicPosts(): Promise<Post[]> {
+  // Without shared storage, keep the hydrated page identical to its
+  // prerendered HTML instead of exposing browser-specific starter posts.
+  if (db.kind === 'local') return publicPostSeed
+
   try {
     return withPublishedPosts(await db.listPosts())
   } catch {
