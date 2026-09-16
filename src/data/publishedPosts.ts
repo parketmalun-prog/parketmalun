@@ -9,7 +9,7 @@ export const publishedPosts: Post[] = [
     cover: '/photos/blog-parketslipun-editorial-cover.jpg',
     tags: ['Parketslípun'],
     createdAt: Date.UTC(2026, 8, 16, 9),
-    updatedAt: Date.UTC(2026, 8, 16, 19, 33),
+    updatedAt: Date.UTC(2026, 8, 16, 19, 48),
     publishedAt: Date.UTC(2026, 8, 16, 9),
     translations: {
       is: {
@@ -73,7 +73,7 @@ Gott tilboð gerir þér kleift að sjá hvað þú færð og hvað þarf að á
 
 Gegnheilt parket og sumar gerðir af marglaga viðarparketi má endurnýja með slípun. Það ræðst þó af byggingu, ástandi og því hversu mikill viður er eftir ofan við samskeytin eða burðarlagið. Heildarþykkt borðsins segir ekki ein og sér til um slípunarmöguleikana.
 
-**Harðparket og vínilparket eru ekki slípuð niður eins og viðarparket.** Þau þurfa aðrar viðgerðarleiðir. Bona fjallar um þennan mun í [leiðbeiningum um gólfgerðir](https://www.bona.com/en-us/homeowner/how-to/hardwood-floor-types/).
+**Harðparket og vínilparket eru ekki slípuð niður eins og viðarparket.** Þau þurfa aðrar viðgerðarleiðir.
 
 Ef aðeins yfirborðsvörnin er slitin getur stundum nægt önnur viðhaldsmeðferð. Djúpar skemmdir, laus borð eða raki geta hins vegar kallað á meiri vinnu. Láttu meta gólfið áður en þú pantar vél eða ákveður að skipta öllu út.
 
@@ -81,7 +81,7 @@ Ef aðeins yfirborðsvörnin er slitin getur stundum nægt önnur viðhaldsmeðf
 
 Verkáætlunin þarf að taka mið af stærð, viðgerðum, efnum og aðstæðum á staðnum. Ferlið skiptist í undirbúning, slípun, yfirborðsmeðferð og bið áður en gólfið þolir fyrirhugaða notkun. Litun eða viðgerðir geta bætt við skrefum.
 
-**Þurrt viðkomu er ekki það sama og fullhert.** Spurðu hvenær má ganga á gólfinu, setja húsgögn inn, leggja teppi niður og þrífa með raka. Tímarnir fara eftir vörunni og aðstæðum. Bona útskýrir muninn á þornun og hörðnun í [leiðbeiningum fyrir húseigendur](https://www.bona.com.au/homeowners/home-owner-info/homeowners-faq).
+**Þurrt viðkomu er ekki það sama og fullhert.** Spurðu hvenær má ganga á gólfinu, setja húsgögn inn, leggja teppi niður og þrífa með raka. Tímarnir fara eftir vörunni og aðstæðum.
 
 Fyrir flutning er gagnlegt að telja aftur frá deginum þegar sófinn og rúmin eiga að fara inn. Fáðu staðfestan biðtíma fyrir valið efni áður en flutningadagurinn er ákveðinn.
 
@@ -102,9 +102,9 @@ Ef stofan liggur milli allra herbergja getur verkið haft meiri áhrif á dagleg
 
 Á upphituðum heimilum skiptir stöðugt inniloft máli. Viðargólf bregðast við breytingum á raka og hita. Fylgdu leiðbeiningum framleiðanda gólfsins og yfirborðsefnisins við stillingu gólfhita.
 
-Til dæmis tilgreinir Kährs hámarkið **27°C á yfirborði** og **30 til 60% loftraka** fyrir viðargólf sín með gólfhita. Þetta eru viðmið þess framleiðanda; staðfestu hvað gildir um þitt gólf í [leiðbeiningum Kährs](https://www.kahrs.com/en/how-to/underfloor-heating-and-wood-flooring/).
+Biddu verktakann um að staðfesta hvaða stillingar á gólfhita og innilofti henta þínu gólfi fyrir verkið, meðan á því stendur og eftir það. Viðmiðin ráðast af gólfefninu, hitakerfinu og þeirri yfirborðsmeðferð sem verður notuð.
 
-Þegar gólfið er tilbúið til notkunar hjálpa mottur við inngang og hlífar undir húsgögnum til við að draga úr sliti. Fjarlægðu sand og óhreinindi reglulega. Notaðu hreinsiefni sem hentar yfirborðinu og lítið vatn. Fyrir olíuborin gólf lýsir Osmo þrifum með rakri, en ekki blautri moppu, í [leiðbeiningum um umhirðu](https://www.osmo.com/finishes/interior-finishes/finishes-for-windows/wash-and-care).
+Þegar gólfið er tilbúið til notkunar hjálpa mottur við inngang og hlífar undir húsgögnum til við að draga úr sliti. Fjarlægðu sand og óhreinindi reglulega. Notaðu hreinsiefni sem hentar yfirborðinu og lítið vatn. Fáðu leiðbeiningar um þrif og viðhald sem eiga við um þá yfirborðsmeðferð sem var notuð á þínu gólfi. Staðfestu einnig hvenær má byrja að þrífa með raka.
 
 ## Algengar spurningar um parketslípun
 
@@ -199,7 +199,7 @@ A useful quote shows what you are buying and which decisions remain. Use this ch
 
 Solid wood and some engineered wood floors can be renewed by sanding. Suitability depends on their construction, condition and remaining timber above the joints or backing layer. Overall board thickness alone does not answer the question.
 
-**Laminate and vinyl are not sanded back like wooden parquet.** They need different repair approaches. Bona explains the distinction in its [guide to flooring types](https://www.bona.com/en-us/homeowner/how-to/hardwood-floor-types/).
+**Laminate and vinyl are not sanded back like wooden parquet.** They need different repair approaches.
 
 If only the protective finish is worn, a maintenance treatment may sometimes be sufficient. Deep damage, loose boards or moisture may require more work. Have the floor assessed before hiring a machine or deciding to replace everything.
 
@@ -207,7 +207,7 @@ If only the protective finish is worn, a maintenance treatment may sometimes be 
 
 The schedule depends on area, repairs, products and site conditions. Allow for preparation, sanding, finishing and the wait before the floor can handle its intended use. Staining or repairs may add stages.
 
-**Dry to the touch does not mean fully cured.** Ask when you may walk on the floor, return furniture, put down rugs and damp-clean it. Timing depends on the product and conditions. Bona discusses drying and curing in its [homeowner guidance](https://www.bona.com.au/homeowners/home-owner-info/homeowners-faq).
+**Dry to the touch does not mean fully cured.** Ask when you may walk on the floor, return furniture, put down rugs and damp-clean it. Timing depends on the product and conditions.
 
 For a move, work backwards from the day the sofa and beds arrive. Confirm the waiting period for the selected finish before booking the moving date.
 
@@ -228,9 +228,9 @@ A living room connecting every bedroom can cause more disruption than its size s
 
 A stable indoor climate matters in heated homes. Wood responds to changes in humidity and temperature. Follow the flooring and finish manufacturers' instructions when adjusting underfloor heating.
 
-For example, Kährs specifies a maximum **surface temperature of 27°C** and **30 to 60% relative humidity** for its wooden floors with underfloor heating. These are that manufacturer's limits; check what applies to your floor in the [Kährs guidance](https://www.kahrs.com/en/how-to/underfloor-heating-and-wood-flooring/).
+Ask your contractor to confirm suitable heating settings and indoor conditions before, during and after the work. The requirements depend on your flooring, heating system and the finish being applied.
 
-Once the floor is ready for use, entrance mats and furniture pads help reduce wear. Remove grit regularly. Use a cleaner suited to the finish and avoid excess water. For oiled flooring, Osmo describes damp rather than wet mopping in its [care instructions](https://www.osmo.com/finishes/interior-finishes/finishes-for-windows/wash-and-care).
+Once the floor is ready for use, entrance mats and furniture pads help reduce wear. Remove grit regularly. Use a cleaner suited to the finish and avoid excess water. Request cleaning and maintenance instructions for the finish actually applied to your floor, including when damp cleaning can begin.
 
 ## Frequently asked questions
 
@@ -325,7 +325,7 @@ Dobra oferta pokazuje, za co płacisz i co trzeba ustalić przed rozpoczęciem. 
 
 Parkiet lity i niektóre podłogi warstwowe można odnawiać przez szlifowanie. Decydują konstrukcja, stan i ilość drewna pozostała nad złączami lub warstwą nośną. Sama całkowita grubość deski nie wystarcza do oceny.
 
-**Paneli laminowanych i winylowych nie cyklinuje się tak jak drewnianego parkietu.** Wymagają innych metod naprawy. Różnice opisuje Bona w [poradniku o rodzajach podłóg](https://www.bona.com/en-us/homeowner/how-to/hardwood-floor-types/).
+**Paneli laminowanych i winylowych nie cyklinuje się tak jak drewnianego parkietu.** Wymagają innych metod naprawy.
 
 Jeżeli zużyła się wyłącznie powłoka ochronna, czasem wystarczy zabieg konserwacyjny. Głębokie uszkodzenia, luźne deski lub wilgoć mogą wymagać szerszych prac. Zleć ocenę podłogi, zanim wynajmiesz maszynę albo zdecydujesz o wymianie całości.
 
@@ -333,7 +333,7 @@ Jeżeli zużyła się wyłącznie powłoka ochronna, czasem wystarczy zabieg kon
 
 Harmonogram zależy od powierzchni, napraw, produktów i warunków na miejscu. Obejmuje przygotowanie, szlifowanie, wykończenie oraz oczekiwanie, aż podłoga będzie gotowa do planowanego użytkowania. Barwienie i naprawy mogą dodać kolejne etapy.
 
-**Powierzchnia sucha w dotyku nie musi być w pełni utwardzona.** Zapytaj, kiedy można chodzić, wnieść meble, rozłożyć dywany i myć podłogę wilgotnym mopem. Terminy zależą od produktu i warunków. Bona omawia schnięcie i utwardzanie w [poradniku dla właścicieli domów](https://www.bona.com.au/homeowners/home-owner-info/homeowners-faq).
+**Powierzchnia sucha w dotyku nie musi być w pełni utwardzona.** Zapytaj, kiedy można chodzić, wnieść meble, rozłożyć dywany i myć podłogę wilgotnym mopem. Terminy zależą od produktu i warunków.
 
 Przy przeprowadzce zacznij planowanie od dnia dostawy kanapy i łóżek. Potwierdź czas oczekiwania dla wybranego wykończenia, zanim zamówisz transport.
 
@@ -354,9 +354,9 @@ Salon łączący wszystkie sypialnie może utrudnić codzienne życie bardziej, 
 
 W ogrzewanym domu ważne są stabilne warunki. Drewno reaguje na zmiany wilgotności i temperatury. Przy regulacji ogrzewania podłogowego przestrzegaj instrukcji producentów podłogi oraz wykończenia.
 
-Na przykład Kährs podaje dla swoich drewnianych podłóg z ogrzewaniem maksymalnie **27°C na powierzchni** i **30 do 60% wilgotności względnej powietrza**. To wymagania tego producenta; sprawdź zasady dotyczące własnej podłogi w [poradniku Kährs](https://www.kahrs.com/en/how-to/underfloor-heating-and-wood-flooring/).
+Poproś wykonawcę o potwierdzenie odpowiednich ustawień ogrzewania i warunków w pomieszczeniu przed pracami, w ich trakcie i po zakończeniu. Wymagania zależą od rodzaju podłogi, instalacji grzewczej i zastosowanej powłoki.
 
-Gdy podłoga jest gotowa do użytkowania, wycieraczki przy wejściu i podkładki pod meble pomagają ograniczyć zużycie. Regularnie usuwaj piasek. Dobieraj środki do rodzaju powłoki i unikaj nadmiaru wody. Przy podłogach olejowanych Osmo zaleca mop wilgotny, nie mokry, w [instrukcji pielęgnacji](https://www.osmo.com/finishes/interior-finishes/finishes-for-windows/wash-and-care).
+Gdy podłoga jest gotowa do użytkowania, wycieraczki przy wejściu i podkładki pod meble pomagają ograniczyć zużycie. Regularnie usuwaj piasek. Dobieraj środki do rodzaju powłoki i unikaj nadmiaru wody. Poproś o instrukcję czyszczenia i konserwacji dopasowaną do powłoki faktycznie zastosowanej na Twojej podłodze. Ustal też, od kiedy można rozpocząć mycie wilgotnym mopem.
 
 ## Najczęstsze pytania
 

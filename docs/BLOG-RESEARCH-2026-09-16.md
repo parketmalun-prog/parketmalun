@@ -31,20 +31,38 @@ furniture return, dust, water stains and colour changes. No competitor's
 prices were reused as Expert Parket prices. No savings percentages, search
 volumes, ranking guarantees or fabricated client cases are included.
 
-## Technical references linked in the article
+## Technical research and link correction
 
-- Bona flooring types: https://www.bona.com/en-us/homeowner/how-to/hardwood-floor-types/
-- Bona homeowner FAQ: https://www.bona.com.au/homeowners/home-owner-info/homeowners-faq
-- Kährs underfloor heating: https://www.kahrs.com/en/how-to/underfloor-heating-and-wood-flooring/
-- Osmo cleaning guidance: https://www.osmo.com/finishes/interior-finishes/finishes-for-windows/wash-and-care
+The initial research consulted manufacturer material about flooring types,
+drying, underfloor heating and cleaning. The original article linked to
+Bona homeowner pages, a Kährs underfloor-heating guide and Osmo Wash and Care.
 
-The article paraphrases guidance and separates general advice from
-manufacturer-specific limits. It does not imply the company is certified
-by or necessarily uses any of the cited brands. The article uses three AI-generated editorial illustrations in the site’s
+On 16 September 2026, the client reported that the Kährs link returned a
+404 and that the Osmo destination looked like a product recommendation.
+A fresh browser check confirmed that the old Kährs URL did not display the
+promised guide. The Osmo page is a specific branded cleaning-product page.
+Search results still quoted the old Kährs guide, illustrating why a search
+snippet alone was insufficient validation of the visitor experience.
+
+Correction in all three translations:
+
+- Removed all four external manufacturer links and all named brands from
+  the article. Manufacturer references must not suggest that Expert Parket
+  uses, recommends or is certified by those brands without confirmation.
+- Removed the example manufacturer's temperature and humidity figures.
+  The article now directs readers to confirm requirements for the actual
+  flooring, heating system and finish with their contractor.
+- Cleaning advice asks for care instructions for the applied finish and
+  confirmation of when damp cleaning can begin. It recommends no product.
+- Kept general guidance about assessing sanding suitability, drying versus
+  curing, quotation scope and preparation. No prices, fixed project times,
+  equipment ownership or case studies are invented.
+
+The article uses three AI-generated editorial illustrations in the site's
 cream-and-oak palette, replacing the initial company photographs at the
-client’s request on 16 September 2026. All three language versions clearly
-disclose their illustrative origin. See IMAGE-CREDITS.md and
-docs/BLOG-IMAGE-PROMPTS-2026-09-16.md.
+client's request on 16 September 2026. All three language versions disclose
+their illustrative origin. See IMAGE-CREDITS.md and
+BLOG-IMAGE-PROMPTS-2026-09-16.md.
 
 ## Publication
 
