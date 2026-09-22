@@ -29,6 +29,9 @@ export const OG_LOCALE: Record<Lang, string> = { is: 'is_IS', en: 'en_US', pl: '
 export type RouteKey =
   | 'home'
   | 'services'
+  | 'installation'
+  | 'sanding'
+  | 'painting'
   | 'portfolio'
   | 'catalog'
   | 'blog'
@@ -41,6 +44,9 @@ export type RouteKey =
 export const ROUTE_KEYS: RouteKey[] = [
   'home',
   'services',
+  'installation',
+  'sanding',
+  'painting',
   'portfolio',
   'catalog',
   'blog',
@@ -60,6 +66,9 @@ export type NavKey = (typeof NAV_KEYS)[number]
 export const SLUGS: Record<RouteKey, Record<Lang, string>> = {
   home: { is: '', en: '', pl: '' },
   services: { is: 'thjonusta', en: 'services', pl: 'uslugi' },
+  installation: { is: 'parketlogn', en: 'parquet-installation', pl: 'ukladanie-parkietu' },
+  sanding: { is: 'parketslipun', en: 'floor-sanding', pl: 'cyklinowanie' },
+  painting: { is: 'malun', en: 'interior-painting', pl: 'malowanie-wnetrz' },
   portfolio: { is: 'verkefni', en: 'projects', pl: 'realizacje' },
   catalog: { is: 'parket', en: 'flooring', pl: 'parkiety' },
   blog: { is: 'frettir', en: 'blog', pl: 'blog' },

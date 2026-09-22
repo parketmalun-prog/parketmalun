@@ -28,6 +28,7 @@ export const site = {
   /** wa.me deep link: international number without "+" or spaces. */
   whatsapp: 'https://wa.me/3547857079',
   facebook: 'https://www.facebook.com/share/14mSWnaktqV/?mibextid=wwXIfr',
+  instagram: 'https://www.instagram.com/expertparketogmalehf/',
   /**
    * Optional Formspree endpoint, kept only as a middle rung.
    *
@@ -42,3 +43,6 @@ export const site = {
 
 /** Service keys shared across the site. */
 export type ServiceKey = 'parket' | 'slipun' | 'malun'
+
+export const serviceRoute = { parket: 'installation', slipun: 'sanding', malun: 'painting' } as const
+export const serviceKeys: ServiceKey[] = ['parket', 'slipun', 'malun']

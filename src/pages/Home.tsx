@@ -289,6 +289,7 @@ export default function Home() {
           <h2 className="font-display text-[clamp(1.75rem,3.4vw,2.5rem)] font-bold leading-[1.04] tracking-[-0.015em] text-cream">
             {content.area.title}
           </h2>
+          <p className="mx-auto mt-6 max-w-[65ch] leading-relaxed text-cream/90">{content.area.lead}</p>
           <p className="tnum mx-auto mt-6 max-w-[54ch] font-display text-lg font-semibold leading-relaxed text-cream/90">
             {content.area.places.join(' · ')}
           </p>

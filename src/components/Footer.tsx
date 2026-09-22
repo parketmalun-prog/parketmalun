@@ -26,9 +26,9 @@ export function Footer() {
   const t = useUi()
 
   const serviceLinks = [
-    { to: path('services', 'parket'), label: t.serviceFull.parket },
-    { to: path('services', 'slipun'), label: t.serviceFull.slipun },
-    { to: path('services', 'malun'), label: t.serviceFull.malun },
+    { to: path('installation'), label: t.serviceFull.parket },
+    { to: path('sanding'), label: t.serviceFull.slipun },
+    { to: path('painting'), label: t.serviceFull.malun },
     { to: path('catalog'), label: t.footer.linkCatalog },
   ]
 

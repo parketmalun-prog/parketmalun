@@ -17,6 +17,9 @@ import { Layout } from './components/Layout'
 export type PageKey =
   | 'home'
   | 'services'
+  | 'installation'
+  | 'sanding'
+  | 'painting'
   | 'portfolio'
   | 'catalog'
   | 'blog'
@@ -36,6 +39,9 @@ export type PageMap = Record<PageKey, ComponentType>
 /** Pages that exist once per language, in navigation order. */
 const LANG_PAGES = [
   'services',
+  'installation',
+  'sanding',
+  'painting',
   'portfolio',
   'catalog',
   'blog',

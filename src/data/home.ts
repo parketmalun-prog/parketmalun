@@ -73,13 +73,13 @@ type HomeContent = {
 
 const is: HomeContent = {
   seo: {
-    title: 'Expert Parket og Mál | Parketlögn, slípun og málun á höfuðborgarsvæðinu',
+    title: 'Parketlögn, parketslípun og málun | Expert Parket á Íslandi',
     description:
-      'Leggjum, slípum og málum gólf á höfuðborgarsvæðinu. Sami eigandi frá fyrstu skoðun að verklokum. Frítt verðtilboð í síma 785 7079.',
+      'Parketlögn, parketslípun og málun innanhúss um allt Ísland. Skoðaðu verkefnin okkar og sendu staðsetningu og lýsingu á verkinu. Frítt tilboð í síma 785 7079.',
   },
   hero: {
     lines: ['Parket.', 'Slípun.', 'Málun.'],
-    lead: 'Við leggjum, slípum og málum gólf á höfuðborgarsvæðinu. Sami eigandi frá fyrstu skoðun að verklokum.',
+    lead: 'Við leggjum parket, slípum viðargólf og málum innanhúss um allt Ísland. Sami eigandi frá fyrstu skoðun að verklokum.',
     cta: 'Fáðu frítt tilboð',
     photoCaption: 'Eikarparket · Höfuðborgarsvæðið',
   },
@@ -188,8 +188,8 @@ const is: HomeContent = {
   },
   area: {
     label: 'Þjónustusvæði',
-    title: 'Um allt höfuðborgarsvæðið',
-    lead: 'Sami bíll, sömu vélar og sami fagmaður, hvort sem verkið er í Vesturbænum eða uppi í Mosfellsbæ.',
+    title: 'Parketvinna og málun um allt Ísland',
+    lead: 'Við komum til þín. Sendu staðsetningu, myndir og lýsingu á verkinu. Við ræðum tímasetningu, aðgengi og ferðakostnað ef við á áður en verkið er staðfest.',
     places: [
       'Reykjavík',
       'Kópavogur',
@@ -227,13 +227,13 @@ const is: HomeContent = {
 
 const en: HomeContent = {
   seo: {
-    title: 'Expert Parket og Mál | Parquet laying, sanding and painting in the Reykjavík area',
+    title: 'Parquet, Floor Sanding & Painting in Iceland | Expert Parket',
     description:
-      'We lay, sand and paint floors across the Reykjavík capital region. The same owner from the first visit to handover. Free quote on 785 7079.',
+      'Parquet installation, wood floor sanding and interior painting across Iceland. See our projects and send your location and job details. Free quote: 785 7079.',
   },
   hero: {
     lines: ['Parquet.', 'Sanding.', 'Painting.'],
-    lead: 'We lay, sand and paint floors across the capital region. The same owner from the first visit to handover.',
+    lead: 'We install parquet, sand wooden floors and paint interiors across Iceland. The same owner from the first visit to handover.',
     cta: 'Get a free quote',
     photoCaption: 'Oak parquet · Reykjavík area',
   },
@@ -342,8 +342,8 @@ const en: HomeContent = {
   },
   area: {
     label: 'Service area',
-    title: 'Across the whole capital region',
-    lead: 'Same van, same machines and the same craftsman, whether the job is in Vesturbær or up in Mosfellsbær.',
+    title: 'Flooring and painting across Iceland',
+    lead: 'We come to you. Send your location, photographs and a description of the work. We discuss scheduling, access and any travel costs before confirming the job.',
     places: [
       'Reykjavík',
       'Kópavogur',
@@ -381,13 +381,13 @@ const en: HomeContent = {
 
 const pl: HomeContent = {
   seo: {
-    title: 'Expert Parket og Mál | Układanie parkietu, cyklinowanie i malowanie w rejonie Reykjavíku',
+    title: 'Parkiet, cyklinowanie i malowanie na Islandii | Expert Parket',
     description:
-      'Układamy, cyklinujemy i malujemy podłogi w rejonie stołecznym Reykjavíku. Ten sam właściciel od pierwszych oględzin do odbioru. Darmowa wycena pod numerem 785 7079.',
+      'Układanie parkietu, cyklinowanie i malowanie wnętrz w całej Islandii. Zobacz realizacje i prześlij lokalizację oraz opis prac. Bezpłatna wycena: 785 7079.',
   },
   hero: {
     lines: ['Parkiet.', 'Cyklinowanie.', 'Malowanie.'],
-    lead: 'Układamy, cyklinujemy i malujemy podłogi w rejonie stołecznym. Ten sam właściciel od pierwszych oględzin do odbioru.',
+    lead: 'Układamy parkiet, cyklinujemy drewniane podłogi i malujemy wnętrza w całej Islandii. Ten sam właściciel od pierwszych oględzin do odbioru.',
     cta: 'Darmowa wycena',
     photoCaption: 'Parkiet dębowy · Rejon Reykjavíku',
   },
@@ -496,8 +496,8 @@ const pl: HomeContent = {
   },
   area: {
     label: 'Obszar usług',
-    title: 'Cały region stołeczny',
-    lead: 'Ten sam samochód, te same maszyny i ten sam fachowiec, czy praca jest w Vesturbær, czy w Mosfellsbær.',
+    title: 'Podłogi i malowanie w całej Islandii',
+    lead: 'Przyjeżdżamy do Ciebie. Prześlij lokalizację, zdjęcia i opis prac. Termin, dostęp i ewentualne koszty dojazdu omawiamy przed potwierdzeniem zlecenia.',
     places: [
       'Reykjavík',
       'Kópavogur',

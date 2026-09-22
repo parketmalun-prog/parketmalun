@@ -31,7 +31,7 @@ export default function BlogPost() {
     if (!post) return undefined
     const map: Partial<Record<Lang, string>> = {}
     for (const l of LANGS) {
-      map[l] = isTranslated(post, l) ? blogPostPath(l, post.translations[l].slug) : pathFor('blog', l)
+      if (isTranslated(post, l)) map[l] = blogPostPath(l, post.translations[l].slug)
     }
     return map
   }, [post])

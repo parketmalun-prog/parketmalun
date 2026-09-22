@@ -85,7 +85,7 @@ export function Seo({ title, description, noindex, canonicalPath, alternates, im
     // Rebuild hreflang alternates for the current page across all languages.
     document.head.querySelectorAll('link[rel="alternate"][hreflang]').forEach((el) => el.remove())
     if (!noindex) {
-      for (const l of LANGS) {
+      for (const l of LANGS.filter((l) => !alternates || alternates[l])) {
         const link = document.createElement('link')
         link.setAttribute('rel', 'alternate')
         link.setAttribute('hreflang', HTML_LANG[l])
@@ -95,7 +95,7 @@ export function Seo({ title, description, noindex, canonicalPath, alternates, im
       const xDefault = document.createElement('link')
       xDefault.setAttribute('rel', 'alternate')
       xDefault.setAttribute('hreflang', 'x-default')
-      xDefault.setAttribute('href', SITE_URL + pathIn(DEFAULT_LANG))
+      xDefault.setAttribute('href', SITE_URL + (alternates ? alternates[DEFAULT_LANG] ?? canonicalPath ?? pathIn(lang) : pathIn(DEFAULT_LANG)))
       document.head.appendChild(xDefault)
     }
   }, [title, description, lang, pathname, noindex, canonicalPath, alternates, image, imageAlt, type])

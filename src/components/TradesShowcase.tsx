@@ -5,6 +5,7 @@ import { imgSources } from '@/lib/img'
 import { useLang, useUi } from '@/i18n/context'
 import { TextLink } from './TextLink'
 import type { ServiceKey } from '@/data/site'
+import { serviceRoute } from '@/data/site'
 
 /**
  * TradesShowcase: the pinned trades gallery (reference elicyon.com).
@@ -328,7 +329,7 @@ export function TradesShowcase({
                 <div className="container-x absolute inset-x-0 bottom-0 flex items-end justify-end pb-24 sm:pb-8 sm:pr-24 lg:pb-12">
                   <div className="text-right">
                     <h3 className="font-display text-xl font-bold leading-tight text-cream lg:text-2xl">{s.name}</h3>
-                    <TextLink to={path('services', s.key)} dark className="mt-3 inline-block">
+                    <TextLink to={path(serviceRoute[s.key])} dark className="mt-3 inline-block">
                       {t.common.readMore}
                     </TextLink>
                   </div>

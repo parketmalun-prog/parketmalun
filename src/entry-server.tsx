@@ -4,6 +4,7 @@ import App from './App'
 import type { PageMap } from './routes'
 import Home from './pages/Home'
 import Services from './pages/Services'
+import ServiceDetail from './pages/ServiceDetail'
 import Portfolio from './pages/Portfolio'
 import Catalog from './pages/Catalog'
 import Blog from './pages/Blog'
@@ -43,6 +44,9 @@ const Stub = () => null
 const pages: PageMap = {
   home: Home,
   services: Services,
+  installation: ServiceDetail,
+  sanding: ServiceDetail,
+  painting: ServiceDetail,
   portfolio: Portfolio,
   catalog: Catalog,
   blog: Blog,

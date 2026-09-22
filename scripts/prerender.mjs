@@ -58,7 +58,9 @@ function imagePreload(src, media) {
 const manifest = JSON.parse(await readFile(join(dist, '.vite', 'manifest.json'), 'utf8'))
 
 /** Source file of a page component, keyed the way `pageLoaders` keys them. */
-const sourceFor = (page) => `src/pages/${page[0].toUpperCase()}${page.slice(1)}.tsx`
+const sourceFor = (page) => ['installation', 'sanding', 'painting'].includes(page)
+  ? 'src/pages/ServiceDetail.tsx'
+  : `src/pages/${page[0].toUpperCase()}${page.slice(1)}.tsx`
 
 /** A chunk plus everything it statically imports, deepest last, deduplicated. */
 function chunkWithImports(key, seen = new Set()) {
@@ -138,7 +140,6 @@ for (const route of PRERENDER_ROUTES) {
 // themselves use, so a domain change is one line in src/i18n/config.ts and
 // can never leave the sitemap pointing somewhere else than the canonicals.
 const SITE = SITE_URL
-const today = new Date().toISOString().slice(0, 10)
 const HREFLANG = { is: 'is', en: 'en', pl: 'pl' }
 
 /** Home first, then the rest: priority follows depth, not alphabetical order. */
@@ -160,10 +161,10 @@ const urls = PRERENDER_ROUTES.map((route) => {
   return [
     '  <url>',
     `    <loc>${abs(route.path)}</loc>`,
-    `    <lastmod>${route.lastModified ?? today}</lastmod>`,
+    ...(route.lastModified ? [`    <lastmod>${route.lastModified}</lastmod>`] : []),
     `    <priority>${priority(route.path)}</priority>`,
     alternates,
-    `    <xhtml:link rel="alternate" hreflang="x-default" href="${abs(route.alternates.is ?? '/')}"/>`,
+    `    <xhtml:link rel="alternate" hreflang="x-default" href="${abs(route.alternates.is ?? route.path)}"/>`,
     '  </url>',
   ].join('\n')
 }).join('\n')

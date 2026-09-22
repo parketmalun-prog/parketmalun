@@ -6,6 +6,7 @@ import {
 } from '@/data/services'
 import { useContent, useLang, useUi } from '@/i18n/context'
 import { Seo } from '@/components/Seo'
+import { serviceRoute } from '@/data/site'
 import { PhotoSlot } from '@/components/PhotoSlot'
 import { photos } from '@/data/photos'
 import { imgSources } from '@/lib/img'
@@ -155,7 +156,8 @@ export default function Services() {
                 </ul>
 
                 <div className="pt-9">
-                  <TextLink to={path('contact')}>{s.cta}</TextLink>
+                  <TextLink to={path(serviceRoute[s.key])}>{s.title}</TextLink>
+                  <div className="mt-5"><TextLink to={path('contact')}>{s.cta}</TextLink></div>
                 </div>
               </article>
             ))}

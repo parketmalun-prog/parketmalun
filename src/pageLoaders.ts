@@ -17,6 +17,9 @@ import type { PageKey } from './routes'
 export const pageLoaders: Record<PageKey, () => Promise<{ default: ComponentType }>> = {
   home: () => import('./pages/Home'),
   services: () => import('./pages/Services'),
+  installation: () => import('./pages/ServiceDetail'),
+  sanding: () => import('./pages/ServiceDetail'),
+  painting: () => import('./pages/ServiceDetail'),
   portfolio: () => import('./pages/Portfolio'),
   catalog: () => import('./pages/Catalog'),
   blog: () => import('./pages/Blog'),

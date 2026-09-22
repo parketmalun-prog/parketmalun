@@ -23,7 +23,7 @@ export const publishedPosts: Post[] = [
 
 **Verð á parketslípun fer eftir flatarmáli, ástandi viðarins, viðgerðum og yfirborðsmeðferð.** Til að bera tilboð saman þarftu heildarverð fyrir sama verkumfang. Fermetraverð eitt og sér segir ekki hvort kantslípun, efni, listar og frágangur séu innifalin.
 
-Hjá Expert Parket og Mál færðu frítt verðtilboð í [parketslípun á höfuðborgarsvæðinu](/thjonusta#slipun). Endanlegt verð þarf að byggjast á mati á gólfinu. Því gefum við hér leiðbeiningar um kostnaðinn, fremur en eitt fermetraverð sem gæti átt illa við þitt heimili.
+Hjá Expert Parket og Mál færðu frítt verðtilboð í [parketslípun á höfuðborgarsvæðinu](/parketslipun). Endanlegt verð þarf að byggjast á mati á gólfinu. Því gefum við hér leiðbeiningar um kostnaðinn, fremur en eitt fermetraverð sem gæti átt illa við þitt heimili.
 
 Ef þú ert að skipuleggja framkvæmdir fyrir flutning, skaltu kanna bæði verktímann og hvenær húsgögn mega fara aftur inn. Það er ekki endilega sami dagurinn.
 
@@ -130,7 +130,7 @@ Slípun fjarlægir gamla yfirborðsmeðferð og getur opnað möguleika á nýju
 
 ## Fáðu tilboð í parketslípun á höfuðborgarsvæðinu
 
-Expert Parket og Mál sinnir parketslípun, parketlögn og málun í Reykjavík og á höfuðborgarsvæðinu. Skoðaðu [myndir úr verkefnum okkar](/verkefni) og [þjónustuna](/thjonusta#slipun) áður en þú velur næstu skref.
+Expert Parket og Mál sinnir parketslípun, parketlögn og málun í Reykjavík og á höfuðborgarsvæðinu. Skoðaðu [myndir úr verkefnum okkar](/verkefni) og [þjónustuna](/parketslipun) áður en þú velur næstu skref.
 
 Í verðbeiðninni er gott að nefna sveitarfélag, áætlaða fermetra, fjölda herbergja, ástand gólfsins og hvenær þú vilt láta vinna verkið. Taktu einnig fram hvort húsgögn séu í rýminu og hvort gólfhiti sé til staðar.
 
@@ -149,7 +149,7 @@ Expert Parket og Mál sinnir parketslípun, parketlögn og málun í Reykjavík 
 
 **The cost depends on the floor area, timber condition, repairs and chosen finish.** Compare the total price for the same scope of work. A price per square metre does not tell you whether edges, materials, skirting and cleanup are included.
 
-Expert Parket og Mál offers free quotes for [floor sanding in Reykjavík and the capital area](/en/services#slipun). A final price needs an assessment of the floor. This guide explains the cost factors rather than advertising a single rate that may not fit your home.
+Expert Parket og Mál offers free quotes for [floor sanding in Reykjavík and the capital area](/en/floor-sanding). A final price needs an assessment of the floor. This guide explains the cost factors rather than advertising a single rate that may not fit your home.
 
 If you are renovating before moving in, check both the working schedule and the date when furniture can return. They may be different dates.
 
@@ -256,7 +256,7 @@ Removing the old finish can open up new colour options. Results depend on the sp
 
 ## Request a floor sanding quote in Reykjavík and the capital area
 
-Expert Parket og Mál provides floor sanding, parquet installation and painting in Reykjavík and the capital area. Browse [our project photographs](/en/projects) and [sanding service](/en/services#slipun) as you plan the work.
+Expert Parket og Mál provides floor sanding, parquet installation and painting in Reykjavík and the capital area. Browse [our project photographs](/en/projects) and [sanding service](/en/floor-sanding) as you plan the work.
 
 Include your municipality, approximate floor area, room count, floor condition and preferred timing in your enquiry. Mention furniture and underfloor heating too.
 
@@ -275,7 +275,7 @@ Include your municipality, approximate floor area, room count, floor condition a
 
 **Cena zależy od powierzchni, stanu drewna, napraw i wybranego wykończenia.** Porównuj całkowity koszt tego samego zakresu prac. Sama stawka za metr kwadratowy nie mówi, czy obejmuje krawędzie, materiały, listwy i sprzątanie.
 
-Expert Parket og Mál oferuje bezpłatną wycenę [cyklinowania w Reykjavíku i regionie stołecznym](/pl/uslugi#slipun). Ostateczna cena wymaga oceny podłogi. Dlatego wyjaśniamy składniki kosztu, zamiast podawać jedną stawkę, która może nie pasować do Twojego mieszkania.
+Expert Parket og Mál oferuje bezpłatną wycenę [cyklinowania w Reykjavíku i regionie stołecznym](/pl/cyklinowanie). Ostateczna cena wymaga oceny podłogi. Dlatego wyjaśniamy składniki kosztu, zamiast podawać jedną stawkę, która może nie pasować do Twojego mieszkania.
 
 Jeśli remontujesz przed przeprowadzką, sprawdź zarówno termin zakończenia prac, jak i dzień, w którym można wnieść meble. Nie zawsze jest to ta sama data.
 
@@ -382,7 +382,7 @@ Usunięcie starej powłoki może pozwolić na zmianę koloru. Efekt zależy od g
 
 ## Zamów wycenę w Reykjavíku i regionie stołecznym
 
-Expert Parket og Mál zajmuje się cyklinowaniem, układaniem parkietu i malowaniem w Reykjavíku oraz regionie stołecznym. Zobacz [zdjęcia naszych realizacji](/pl/realizacje) i [opis cyklinowania](/pl/uslugi#slipun).
+Expert Parket og Mál zajmuje się cyklinowaniem, układaniem parkietu i malowaniem w Reykjavíku oraz regionie stołecznym. Zobacz [zdjęcia naszych realizacji](/pl/realizacje) i [opis cyklinowania](/pl/cyklinowanie).
 
 W zapytaniu podaj miejscowość, przybliżony metraż, liczbę pomieszczeń, stan podłogi i preferowany termin. Wspomnij o meblach oraz ogrzewaniu podłogowym.
 

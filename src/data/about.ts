@@ -17,24 +17,24 @@ export const aboutSeo: Record<Lang, SeoText> = {
   is: {
     title: 'Um okkur | Expert Parket og Mál | Eigandinn leggur gólfið sjálfur',
     description:
-      'Expert Parket og Mál ehf. er rekið af einum fagmanni sem leggur parket, slípar gólf og málar á höfuðborgarsvæðinu sjálfur. Frí skoðun og skriflegt tilboð, sími 785 7079.',
+      'Expert Parket og Mál ehf. leggur parket, slípar gólf og málar um allt Ísland eftir samkomulagi. Hafðu samband um verkið og fáðu skriflegt tilboð. Sími 785 7079.',
   },
   en: {
     title: 'About us | Expert Parket og Mál | The owner lays the floor himself',
     description:
-      'Expert Parket og Mál ehf. is run by one craftsman who lays parquet, sands floors and paints across the capital region himself. Free site visit and a written quote, phone 785 7079.',
+      'Expert Parket og Mál ehf. installs parquet, sands floors and paints across Iceland by arrangement. Discuss your project and request a written quote. Call 785 7079.',
   },
   pl: {
     title: 'O nas | Expert Parket og Mál | Właściciel sam układa podłogę',
     description:
-      'Expert Parket og Mál ehf. prowadzi jeden fachowiec, który sam układa parkiety, cyklinuje podłogi i maluje w regionie stołecznym. Bezpłatne oględziny i pisemna wycena, telefon 785 7079.',
+      'Expert Parket og Mál ehf. układa parkiety, cyklinuje podłogi i maluje w całej Islandii po uzgodnieniu. Opisz projekt i poproś o pisemną wycenę. Telefon 785 7079.',
   },
 }
 
 export const about: Record<Lang, About> = {
   is: {
     titleLines: ['Eigandinn leggur', 'gólfið sjálfur'],
-    lead: 'Expert Parket og Mál ehf. leggur parket, slípar gólf og málar á höfuðborgarsvæðinu, alltaf með sama fagmanninn í verkinu frá fyrstu skoðun að verklokum.',
+    lead: 'Expert Parket og Mál ehf. leggur parket, slípar gólf og málar um allt Ísland, alltaf með sama fagmanninn í verkinu frá fyrstu skoðun að verklokum.',
     story: {
       label: 'Sagan',
       photoCaption: 'Eigandinn að störfum',
@@ -120,7 +120,7 @@ export const about: Record<Lang, About> = {
   },
   en: {
     titleLines: ['The owner lays', 'the floor himself'],
-    lead: 'Expert Parket og Mál ehf. lays parquet, sands floors and paints across the capital region, always with the same craftsman on the job from the first visit to handover.',
+    lead: 'Expert Parket og Mál ehf. lays parquet, sands floors and paints across Iceland, always with the same craftsman on the job from the first visit to handover.',
     story: {
       label: 'The story',
       photoCaption: 'The owner at work',
@@ -206,7 +206,7 @@ export const about: Record<Lang, About> = {
   },
   pl: {
     titleLines: ['Właściciel sam', 'układa podłogę'],
-    lead: 'Expert Parket og Mál ehf. układa parkiety, cyklinuje podłogi i maluje w regionie stołecznym, zawsze z tym samym fachowcem na miejscu, od pierwszych oględzin do odbioru.',
+    lead: 'Expert Parket og Mál ehf. układa parkiety, cyklinuje podłogi i maluje w całej Islandii, zawsze z tym samym fachowcem na miejscu, od pierwszych oględzin do odbioru.',
     story: {
       label: 'Historia',
       photoCaption: 'Właściciel przy pracy',

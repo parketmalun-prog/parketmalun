@@ -5,6 +5,8 @@ import { ui } from '@/i18n/ui'
 import { site } from '@/data/site'
 import { home } from '@/data/home'
 import { servicesSeo } from '@/data/services'
+import { serviceDetails } from '@/data/serviceDetails'
+import { serviceKeys, serviceRoute } from '@/data/site'
 import { portfolioSeo } from '@/data/portfolio'
 import { catalogSeo } from '@/data/catalog'
 import { about, aboutSeo } from '@/data/about'
@@ -55,7 +57,7 @@ const SHARE_CARD = `${SITE_URL}/og-card.jpg`
 function organisation(): object {
   return {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
+    '@type': 'HomeAndConstructionBusiness',
     '@id': `${SITE_URL}/#business`,
     name: site.legalName,
     telephone: `+354 ${site.phone}`,
@@ -63,7 +65,7 @@ function organisation(): object {
     url: SITE_URL,
     logo: LOGO,
     image: SHARE_CARD,
-    areaServed: 'Höfuðborgarsvæðið',
+    areaServed: { '@type': 'Country', name: 'Iceland' },
     // Registration details as entered in fyrirtaekjaskra, see site.ts.
     taxID: site.kennitala,
     vatID: site.vsk,
@@ -84,7 +86,7 @@ function organisation(): object {
       },
     ],
     priceRange: '$$',
-    sameAs: [site.facebook],
+    sameAs: [site.facebook, site.instagram],
   }
 }
 
@@ -101,12 +103,13 @@ function breadcrumb(lang: Lang, name: string, path: string): object {
 
 function servicesSchema(lang: Lang): object[] {
   const names = ui[lang].serviceFull
-  return (['parket', 'slipun', 'malun'] as const).map((key) => ({
+  return serviceKeys.map((key) => ({
     '@context': 'https://schema.org',
     '@type': 'Service',
     name: names[key],
+    url: abs(pathFor(serviceRoute[key], lang)),
     provider: { '@id': `${SITE_URL}/#business` },
-    areaServed: 'Höfuðborgarsvæðið',
+    areaServed: { '@type': 'Country', name: 'Iceland' },
     serviceType: names[key],
   }))
 }
@@ -130,6 +133,10 @@ function seoFor(key: RouteKey, lang: Lang): { title: string; description: string
       return home[lang].seo
     case 'services':
       return servicesSeo[lang]
+    case 'installation':
+    case 'sanding':
+    case 'painting':
+      return serviceDetails[lang][key]
     case 'portfolio':
       return portfolioSeo[lang]
     case 'catalog':
@@ -154,6 +161,9 @@ function seoFor(key: RouteKey, lang: Lang): { title: string; description: string
 const FIXED_KEYS: RouteKey[] = [
   'home',
   'services',
+  'installation',
+  'sanding',
+  'painting',
   'portfolio',
   'catalog',
   'blog',
@@ -166,11 +176,19 @@ const FIXED_KEYS: RouteKey[] = [
 ]
 
 function extraSchema(key: RouteKey, lang: Lang, path: string): object[] {
+  // ServiceDetail renders its own schema in SSR and during browser navigation.
+  if (key === 'installation' || key === 'sanding' || key === 'painting') return []
   const label = key === 'home' ? null : ui[lang].nav[key as 'services'] ?? seoFor(key, lang).title
   const crumbs = label ? [breadcrumb(lang, label, path)] : []
   switch (key) {
     case 'home':
-      return [organisation()]
+      return [organisation(), {
+        '@context': 'https://schema.org', '@type': 'WebSite',
+        '@id': `${SITE_URL}/#website`, url: `${SITE_URL}/`,
+        name: site.name, alternateName: 'ExpertParket',
+        inLanguage: LANGS.map((lang) => HTML_LANG[lang]),
+        publisher: { '@id': `${SITE_URL}/#business` },
+      }]
     case 'services':
       return [...crumbs, ...servicesSchema(lang)]
     case 'about':
@@ -217,9 +235,9 @@ export const PRERENDER_ROUTES: PrerenderRoute[] = [
           imageAlt: tr.coverAlt,
           lastModified: new Date(post.updatedAt).toISOString().slice(0, 10),
           alternates: Object.fromEntries(
-            LANGS.map((l) => [
+            LANGS.filter((l) => isTranslated(post, l)).map((l) => [
               l,
-              isTranslated(post, l) ? blogPostPath(l, post.translations[l].slug) : pathFor('blog', l),
+              blogPostPath(l, post.translations[l].slug),
             ]),
           ),
           // BlogPost renders its schema in the article for SSR and in-app visits.
@@ -237,12 +255,12 @@ export function headTags(route: PrerenderRoute): string {
   const esc = (value: string) =>
     value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
-  const alternates = LANGS.map(
+  const alternates = LANGS.filter((l) => route.alternates[l]).map(
     (l) =>
       `<link rel="alternate" hreflang="${HTML_LANG[l]}" href="${abs(route.alternates[l] ?? pathFor('home', l))}">`,
   )
   alternates.push(
-    `<link rel="alternate" hreflang="x-default" href="${abs(route.alternates.is ?? '/')}">`,
+    `<link rel="alternate" hreflang="x-default" href="${abs(route.alternates.is ?? route.path)}">`,
   )
 
   const otherLocales = LANGS.filter((l) => l !== route.lang).map(

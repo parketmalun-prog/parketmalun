@@ -48,17 +48,17 @@ export const servicesSeo: Record<Lang, SeoText> = {
   is: {
     title: 'Þjónusta | Parketlögn, parketslípun og málun | Expert Parket og Mál',
     description:
-      'Parketlögn á undirbúið undirlag, slípun með rykfríum vélum og málun í sömu verkferð. Skriflegt verðtilboð eftir fría skoðun á höfuðborgarsvæðinu.',
+      'Parketlögn, parketslípun og málun innanhúss um allt Ísland. Skoðaðu þjónustuna og sendu staðsetningu, myndir og lýsingu á verkinu til að fá tilboð.',
   },
   en: {
     title: 'Services | Parquet laying, floor sanding and painting | Expert Parket og Mál',
     description:
-      'Parquet laid on properly prepared subfloors, dust-free sanding and painting in the same visit. Written quote after a free visit in the Reykjavík area.',
+      'Parquet installation, floor sanding and interior painting across Iceland. Explore each service and send your location, photographs and job details for a quote.',
   },
   pl: {
     title: 'Usługi | Układanie parkietu, cyklinowanie i malowanie | Expert Parket og Mál',
     description:
-      'Parkiet układany na przygotowanym podłożu, bezpyłowe cyklinowanie i malowanie podczas tych samych prac. Pisemna wycena po darmowych oględzinach w rejonie Reykjavíku.',
+      'Układanie parkietu, cyklinowanie i malowanie wnętrz w całej Islandii. Poznaj usługi i prześlij lokalizację, zdjęcia oraz opis prac do wyceny.',
   },
 }
 
@@ -91,7 +91,7 @@ export const services: Record<Lang, Service[]> = {
       ],
       includes: [
         'Slípun í 3 til 4 umferðum, 40 til 120 korn',
-        'Rykfríar vélar með beinu sogi',
+        'Slípivélar með beinu ryksogi',
         'Kantslípun að veggjum og hornum',
         'Viðgerðir á rispum og minni skemmdum',
         'Lakk, olía eða hvíttun, matt eða silkimatt',
@@ -144,7 +144,7 @@ export const services: Record<Lang, Service[]> = {
       ],
       includes: [
         'Sanding in 3 to 4 passes, 40 to 120 grit',
-        'Dust-free machines with direct extraction',
+        'Sanding machines with direct dust extraction',
         'Edge sanding to walls and corners',
         'Repairs of scratches and minor damage',
         'Lacquer, oil or whitening, matt or silk',
@@ -197,7 +197,7 @@ export const services: Record<Lang, Service[]> = {
       ],
       includes: [
         'Szlifowanie w 3 do 4 przejściach, ziarno 40 do 120',
-        'Maszyny bezpyłowe z bezpośrednim odsysaniem',
+        'Maszyny z bezpośrednim odsysaniem pyłu',
         'Szlifowanie krawędzi przy ścianach i w rogach',
         'Naprawy rys i drobnych uszkodzeń',
         'Lakier, olej lub bielenie, mat lub półmat',

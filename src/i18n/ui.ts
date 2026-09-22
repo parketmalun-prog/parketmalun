@@ -73,7 +73,7 @@ const is = {
   blog: {
     title: 'Fréttir og fróðleikur',
     lead: 'Stuttar greinar um parket, slípun og málun. Það sem við lendum í á verkstað og það sem við mælum með.',
-    seoTitle: 'Fréttir | Expert Parket og Mál',
+    seoTitle: 'Ráð um parket og málun | Expert Parket og Mál',
     seoDescription: 'Greinar um parketlögn, parketslípun og málun frá Expert Parket og Mál.',
     readMore: 'Lesa greinina',
     back: 'Til baka í fréttir',
@@ -87,7 +87,7 @@ const is = {
     labelPhone: 'Sími',
     labelEmail: 'Netfang',
     labelArea: 'Svæði',
-    areaValue: 'Allt höfuðborgarsvæðið',
+    areaValue: 'Allt Ísland, eftir samkomulagi',
     sendAnother: 'Senda aðra fyrirspurn',
     selectService: 'Veldu þjónustu',
     mailtoSubjectPrefix: 'Fyrirspurn frá',
@@ -96,7 +96,7 @@ const is = {
     mailtoProduct: 'Vara',
   },
   footer: {
-    blurb: 'Parketlögn, slípun og málun á höfuðborgarsvæðinu. Frítt verðtilboð.',
+    blurb: 'Parketlögn, parketslípun og málun innanhúss um allt Ísland. Frítt verðtilboð.',
     hoursTitle: 'Opnunartími',
     hoursWeek: 'Mán til Fös: 08:00 til 18:00',
     hoursWeekend: 'Lau og Sun: lokað',
@@ -122,7 +122,7 @@ const is = {
     line1: 'Segðu okkur frá',
     line2: 'gólfinu þínu.',
     support:
-      'Frítt verðtilboð, við hringjum til baka innan virks dags og vinnum um allt höfuðborgarsvæðið.',
+      'Frítt verðtilboð í verk um allt Ísland. Sendu staðsetningu, stærð rýmis og lýsingu á því sem þarf að gera.',
   },
   notFound: {
     seoTitle: 'Síða fannst ekki | Expert Parket og Mál',
@@ -199,7 +199,7 @@ const en: Ui = {
   blog: {
     title: 'News and know-how',
     lead: 'Short articles about parquet, sanding and painting. What we run into on site and what we recommend.',
-    seoTitle: 'Blog | Expert Parket og Mál',
+    seoTitle: 'Flooring and Painting Advice | Expert Parket og Mál',
     seoDescription: 'Articles about parquet laying, floor sanding and painting from Expert Parket og Mál.',
     readMore: 'Read the article',
     back: 'Back to the blog',
@@ -213,7 +213,7 @@ const en: Ui = {
     labelPhone: 'Phone',
     labelEmail: 'Email',
     labelArea: 'Area',
-    areaValue: 'The whole capital region',
+    areaValue: 'Throughout Iceland, by arrangement',
     sendAnother: 'Send another message',
     selectService: 'Choose a service',
     mailtoSubjectPrefix: 'Enquiry from',
@@ -222,7 +222,7 @@ const en: Ui = {
     mailtoProduct: 'Product',
   },
   footer: {
-    blurb: 'Parquet laying, sanding and painting across the capital region. Free quote.',
+    blurb: 'Parquet installation, floor sanding and interior painting across Iceland. Free quote.',
     hoursTitle: 'Opening hours',
     hoursWeek: 'Mon to Fri: 08:00 to 18:00',
     hoursWeekend: 'Sat and Sun: closed',
@@ -247,7 +247,7 @@ const en: Ui = {
     line1: 'Tell us about',
     line2: 'your floor.',
     support:
-      'Free quote, we call back within a working day and work across the whole capital region.',
+      'Free quotes for projects across Iceland. Include your location, room size and a description of the work.',
   },
   notFound: {
     seoTitle: 'Page not found | Expert Parket og Mál',
@@ -322,7 +322,7 @@ const pl: Ui = {
   blog: {
     title: 'Aktualności i porady',
     lead: 'Krótkie artykuły o parkiecie, cyklinowaniu i malowaniu. To, na co trafiamy na budowie i to, co polecamy.',
-    seoTitle: 'Blog | Expert Parket og Mál',
+    seoTitle: 'Porady o parkietach i malowaniu | Expert Parket og Mál',
     seoDescription: 'Artykuły o układaniu parkietu, cyklinowaniu i malowaniu od Expert Parket og Mál.',
     readMore: 'Przeczytaj artykuł',
     back: 'Powrót do bloga',
@@ -336,7 +336,7 @@ const pl: Ui = {
     labelPhone: 'Telefon',
     labelEmail: 'E-mail',
     labelArea: 'Obszar',
-    areaValue: 'Cały region stołeczny',
+    areaValue: 'Cała Islandia, po uzgodnieniu',
     sendAnother: 'Wyślij kolejne zapytanie',
     selectService: 'Wybierz usługę',
     mailtoSubjectPrefix: 'Zapytanie od',
@@ -345,7 +345,7 @@ const pl: Ui = {
     mailtoProduct: 'Produkt',
   },
   footer: {
-    blurb: 'Układanie, cyklinowanie i malowanie w regionie stołecznym. Bezpłatna wycena.',
+    blurb: 'Układanie parkietu, cyklinowanie i malowanie wnętrz w całej Islandii. Bezpłatna wycena.',
     hoursTitle: 'Godziny otwarcia',
     hoursWeek: 'Pon do Pt: 08:00 do 18:00',
     hoursWeekend: 'Sob i Niedz: nieczynne',
@@ -370,7 +370,7 @@ const pl: Ui = {
     line1: 'Opowiedz nam o',
     line2: 'swojej podłodze.',
     support:
-      'Bezpłatna wycena, oddzwaniamy w ciągu dnia roboczego i pracujemy w całym regionie stołecznym.',
+      'Bezpłatna wycena prac w całej Islandii. Podaj lokalizację, wielkość pomieszczenia i opis potrzebnych prac.',
   },
   notFound: {
     seoTitle: 'Nie znaleziono strony | Expert Parket og Mál',

@@ -38,17 +38,17 @@ export const contactSeo: Record<Lang, SeoText> = {
   is: {
     title: 'Hafðu samband | Frítt verðtilboð | Expert Parket og Mál',
     description:
-      'Frítt og óskuldbindandi verðtilboð í parketlögn, slípun eða málun á höfuðborgarsvæðinu. Sími 785 7079, opið mán til fös 08:00 til 18:00. Við svörum samdægurs á virkum dögum.',
+      'Fáðu tilboð í parketlögn, parketslípun eða málun um allt Ísland. Sendu staðsetningu og lýsingu á verkinu eða hringdu í 785 7079. Mán til fös 08:00 til 18:00.',
   },
   en: {
     title: 'Contact | Free quote | Expert Parket og Mál',
     description:
-      'Free, no obligation quote for parquet laying, floor sanding or painting across the capital region. Phone 785 7079, open Mon to Fri 08:00 to 18:00. We reply the same working day.',
+      'Request a quote for parquet installation, floor sanding or painting across Iceland. Send your location and job details or call 785 7079, Mon to Fri 08:00 to 18:00.',
   },
   pl: {
     title: 'Kontakt | Bezpłatna wycena | Expert Parket og Mál',
     description:
-      'Bezpłatna i niezobowiązująca wycena układania parkietu, cyklinowania lub malowania w regionie stołecznym. Telefon 785 7079, czynne pon do pt 08:00 do 18:00. Odpowiadamy tego samego dnia roboczego.',
+      'Poproś o wycenę układania parkietu, cyklinowania lub malowania w całej Islandii. Prześlij lokalizację i opis prac lub zadzwoń: 785 7079, pon do pt 08:00 do 18:00.',
   },
 }
 
