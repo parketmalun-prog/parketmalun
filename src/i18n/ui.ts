@@ -19,7 +19,7 @@ const is = {
     contact: 'Hafðu samband',
   },
   topbar: {
-    hours: 'Mán til Fös 08:00 til 18:00',
+    hours: 'Mán til Lau 08:00 til 18:00',
   },
   a11y: {
     pagination: 'Síður',
@@ -98,8 +98,8 @@ const is = {
   footer: {
     blurb: 'Parketlögn, parketslípun og málun innanhúss um allt Ísland. Frítt verðtilboð.',
     hoursTitle: 'Opnunartími',
-    hoursWeek: 'Mán til Fös: 08:00 til 18:00',
-    hoursWeekend: 'Lau og Sun: lokað',
+    hoursWeek: 'Mán til Lau: 08:00 til 18:00',
+    hoursWeekend: 'Sun: lokað',
     colCompany: 'Fyrirtækið',
     colContact: 'Samskipti',
     linkCatalog: 'Vöruúrval',
@@ -145,7 +145,7 @@ const en: Ui = {
     contact: 'Contact',
   },
   topbar: {
-    hours: 'Mon to Fri 08:00 to 18:00',
+    hours: 'Mon to Sat 08:00 to 18:00',
   },
   a11y: {
     pagination: 'Pagination',
@@ -224,8 +224,8 @@ const en: Ui = {
   footer: {
     blurb: 'Parquet installation, floor sanding and interior painting across Iceland. Free quote.',
     hoursTitle: 'Opening hours',
-    hoursWeek: 'Mon to Fri: 08:00 to 18:00',
-    hoursWeekend: 'Sat and Sun: closed',
+    hoursWeek: 'Mon to Sat: 08:00 to 18:00',
+    hoursWeekend: 'Sun: closed',
     colCompany: 'Company',
     colContact: 'Contact',
     linkCatalog: 'Flooring',
@@ -268,7 +268,7 @@ const pl: Ui = {
     contact: 'Kontakt',
   },
   topbar: {
-    hours: 'Pon do Pt 08:00 do 18:00',
+    hours: 'Pon do Sob 08:00 do 18:00',
   },
   a11y: {
     pagination: 'Paginacja',
@@ -347,8 +347,8 @@ const pl: Ui = {
   footer: {
     blurb: 'Układanie parkietu, cyklinowanie i malowanie wnętrz w całej Islandii. Bezpłatna wycena.',
     hoursTitle: 'Godziny otwarcia',
-    hoursWeek: 'Pon do Pt: 08:00 do 18:00',
-    hoursWeekend: 'Sob i Niedz: nieczynne',
+    hoursWeek: 'Pon do Sob: 08:00 do 18:00',
+    hoursWeekend: 'Niedz: nieczynne',
     colCompany: 'Firma',
     colContact: 'Kontakt',
     linkCatalog: 'Parkiety',

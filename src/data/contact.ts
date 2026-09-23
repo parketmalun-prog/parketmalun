@@ -38,17 +38,17 @@ export const contactSeo: Record<Lang, SeoText> = {
   is: {
     title: 'Hafðu samband | Frítt verðtilboð | Expert Parket og Mál',
     description:
-      'Fáðu tilboð í parketlögn, parketslípun eða málun um allt Ísland. Sendu staðsetningu og lýsingu á verkinu eða hringdu í 785 7079. Mán til fös 08:00 til 18:00.',
+      'Fáðu tilboð í parketlögn, parketslípun eða málun um allt Ísland. Sendu staðsetningu og lýsingu á verkinu eða hringdu í 785 7079. Mán til lau 08:00 til 18:00.',
   },
   en: {
     title: 'Contact | Free quote | Expert Parket og Mál',
     description:
-      'Request a quote for parquet installation, floor sanding or painting across Iceland. Send your location and job details or call 785 7079, Mon to Fri 08:00 to 18:00.',
+      'Request a quote for parquet installation, floor sanding or painting across Iceland. Send your location and job details or call 785 7079, Mon to Sat 08:00 to 18:00.',
   },
   pl: {
     title: 'Kontakt | Bezpłatna wycena | Expert Parket og Mál',
     description:
-      'Poproś o wycenę układania parkietu, cyklinowania lub malowania w całej Islandii. Prześlij lokalizację i opis prac lub zadzwoń: 785 7079, pon do pt 08:00 do 18:00.',
+      'Poproś o wycenę układania parkietu, cyklinowania lub malowania w całej Islandii. Prześlij lokalizację i opis prac lub zadzwoń: 785 7079, pon do sob 08:00 do 18:00.',
   },
 }
 
