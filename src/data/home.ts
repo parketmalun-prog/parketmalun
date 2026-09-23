@@ -73,7 +73,7 @@ type HomeContent = {
 
 const is: HomeContent = {
   seo: {
-    title: 'Parketlögn, parketslípun og málun | Expert Parket á Íslandi',
+    title: 'Expert Parket og Mál | Parketlögn og parketslípun á Íslandi',
     description:
       'Parketlögn, parketslípun og málun innanhúss um allt Ísland. Skoðaðu verkefnin okkar og sendu staðsetningu og lýsingu á verkinu. Frítt tilboð í síma 785 7079.',
   },
