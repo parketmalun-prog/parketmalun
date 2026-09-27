@@ -73,9 +73,9 @@ type HomeContent = {
 
 const is: HomeContent = {
   seo: {
-    title: 'Expert Parket og Mál | Parketlögn og parketslípun á Íslandi',
+    title: 'Parketlögn og parketslípun á Íslandi | Expert Parket',
     description:
-      'Parketlögn, parketslípun og málun innanhúss um allt Ísland. Skoðaðu verkefnin okkar og sendu staðsetningu og lýsingu á verkinu. Frítt tilboð í síma 785 7079.',
+      'Parketlögn, parketslípun og málun í Reykjavík, Hafnarfirði og um allt Ísland. Nýtt parket, lökkun og olíuburður. Fáðu frítt tilboð í síma 785 7079.',
   },
   hero: {
     lines: ['Parket.', 'Slípun.', 'Málun.'],
@@ -85,8 +85,8 @@ const is: HomeContent = {
   },
   services: {
     label: 'Þjónusta',
-    title: 'Þrjár sérgreinar',
-    lead: 'Parketlögn, parketslípun og málun. Sama teymið frá fyrstu skoðun að verklokum.',
+    title: 'Parketlögn og parketslípun á Íslandi',
+    lead: 'Við leggjum nýtt parket, slípum viðargólf og málum innanhúss. Þjónusta í Reykjavík, Hafnarfirði og um allt Ísland. Veldu þjónustu eða sendu okkur myndir og fermetrafjölda til að fá tilboð.',
     items: [
       {
         key: 'parket',
@@ -96,7 +96,7 @@ const is: HomeContent = {
       {
         key: 'slipun',
         name: 'Parketslípun',
-        line: 'Slípað í þrepum, 40 til 120 korn, með rykfríum vélum. Olía eða lakk eftir vali.',
+        line: 'Við metum ástand gólfsins og slípum með vélum tengdum ryksogi. Olía eða lakk eftir vali.',
       },
       {
         key: 'malun',
@@ -227,9 +227,9 @@ const is: HomeContent = {
 
 const en: HomeContent = {
   seo: {
-    title: 'Parquet, Floor Sanding & Painting in Iceland | Expert Parket',
+    title: 'Parquet Installation & Floor Sanding in Iceland | Expert Parket',
     description:
-      'Parquet installation, wood floor sanding and interior painting across Iceland. See our projects and send your location and job details. Free quote: 785 7079.',
+      'Parquet installation, floor sanding and interior painting in Reykjavík and across Iceland. Herringbone floors, oil and lacquer finishes. Get a free quote.',
   },
   hero: {
     lines: ['Parquet.', 'Sanding.', 'Painting.'],
@@ -239,8 +239,8 @@ const en: HomeContent = {
   },
   services: {
     label: 'Services',
-    title: 'Three trades',
-    lead: 'Parquet laying, floor sanding and painting. The same team from the first visit to handover.',
+    title: 'Parquet installation and floor sanding in Iceland',
+    lead: 'We install parquet, restore wooden floors and paint interiors. Serving Reykjavík, Hafnarfjörður and all of Iceland. Explore a service or send photographs and your floor area to request a quote.',
     items: [
       {
         key: 'parket',
@@ -250,7 +250,7 @@ const en: HomeContent = {
       {
         key: 'slipun',
         name: 'Floor sanding',
-        line: 'Sanded in stages, 40 to 120 grit, with dust-free machines. Oil or lacquer finish.',
+        line: 'We assess your floor and sand with dust extraction. Oil or lacquer finish to suit the wood and its use.',
       },
       {
         key: 'malun',
@@ -381,9 +381,9 @@ const en: HomeContent = {
 
 const pl: HomeContent = {
   seo: {
-    title: 'Parkiet, cyklinowanie i malowanie na Islandii | Expert Parket',
+    title: 'Układanie parkietu i cyklinowanie na Islandii | Expert Parket',
     description:
-      'Układanie parkietu, cyklinowanie i malowanie wnętrz w całej Islandii. Zobacz realizacje i prześlij lokalizację oraz opis prac. Bezpłatna wycena: 785 7079.',
+      'Układanie parkietu, cyklinowanie i malowanie w Reykjavíku i całej Islandii. Jodełka, lakierowanie i olejowanie podłóg. Bezpłatna wycena: 785 7079.',
   },
   hero: {
     lines: ['Parkiet.', 'Cyklinowanie.', 'Malowanie.'],
@@ -393,8 +393,8 @@ const pl: HomeContent = {
   },
   services: {
     label: 'Usługi',
-    title: 'Trzy specjalności',
-    lead: 'Układanie parkietu, cyklinowanie i malowanie. Ten sam zespół od pierwszych oględzin po odbiór.',
+    title: 'Układanie parkietu i cyklinowanie na Islandii',
+    lead: 'Układamy parkiet, odnawiamy drewniane podłogi i malujemy wnętrza. Pracujemy w Reykjavíku, Hafnarfjörður i całej Islandii. Wybierz usługę lub prześlij zdjęcia i metraż, aby otrzymać wycenę.',
     items: [
       {
         key: 'parket',
@@ -404,7 +404,7 @@ const pl: HomeContent = {
       {
         key: 'slipun',
         name: 'Cyklinowanie',
-        line: 'Szlifowanie etapami, ziarno 40 do 120, maszynami bezpyłowymi. Olej lub lakier do wyboru.',
+        line: 'Oceniamy stan podłogi i szlifujemy z odsysaniem pyłu. Olej lub lakier dobieramy do drewna i sposobu użytkowania.',
       },
       {
         key: 'malun',

@@ -4,6 +4,8 @@ import { imgSources } from '@/lib/img'
 import { useContent, useLang, useUi } from '@/i18n/context'
 import { Seo } from '@/components/Seo'
 import { PhotoSlot } from '@/components/PhotoSlot'
+import { Button } from '@/components/Button'
+import { serviceRoute } from '@/data/site'
 import { TextLink } from '@/components/TextLink'
 import { BeforeAfter } from '@/components/BeforeAfter'
 import { Closer } from '@/components/Closer'
@@ -80,31 +82,33 @@ export default function Home() {
         </h1>
       </section>
 
-      {/* ============ INTERLUDE: the gallery's introduction ============
-          A quiet cream landing between the hero photograph and the pinned
-          gallery (reference: elicyon.com's OUR PROJECTS plate): the title
-          staggered across two lines in light capitals, one line of copy,
-          the link. Without it the two photographs collided edge to edge. */}
-      <section className="bg-cream">
-        <div className="container-x py-24 text-center lg:py-32">
-          <h2 className="mx-auto w-fit text-left font-display text-[clamp(2.2rem,5vw,4rem)] font-light uppercase leading-[1.12] tracking-[0.05em] text-espresso">
-            {content.services.title.split(' ').length > 1 ? (
-              <>
-                <span className="block">{content.services.title.split(' ')[0]}</span>
-                <span className="block pl-[1.6em]">
-                  {content.services.title.split(' ').slice(1).join(' ')}
-                </span>
-              </>
-            ) : (
-              content.services.title
-            )}
-          </h2>
-          <p className="mx-auto mt-8 max-w-[40ch] text-[15px] leading-relaxed text-taupe">
-            {content.services.lead}
-          </p>
-          <div className="mt-8">
-            <TextLink to={path('services')}>{t.common.viewAllServices}</TextLink>
+      {/* Clear service navigation before the animated gallery. */}
+      <section className="bg-cream" aria-labelledby="home-services-title">
+        <div className="container-x py-16 md:py-24 lg:py-28">
+          <div className="grid items-start gap-8 lg:grid-cols-2 lg:gap-16">
+            <h2 id="home-services-title" className="max-w-[18ch] font-display text-[clamp(2rem,4.5vw,3.75rem)] font-light leading-[1.12] tracking-[-0.02em] text-espresso">
+              {content.services.title}
+            </h2>
+            <div>
+              <p className="max-w-[54ch] text-base leading-relaxed text-walnut md:text-lg">
+                {content.services.lead}
+              </p>
+              <div className="mt-7 flex flex-wrap items-center gap-6">
+                <Button to={path('contact')}>{content.hero.cta}</Button>
+                <TextLink to={path('services')}>{t.common.viewAllServices}</TextLink>
+              </div>
+            </div>
           </div>
+          <nav aria-label={content.services.label} className="mt-12 grid gap-4 md:grid-cols-3">
+            {content.services.items.map((service) => (
+              <div key={service.key} className="bg-sand/45 p-6 lg:p-8">
+                <h3 className="font-display text-2xl font-semibold text-espresso">
+                  <TextLink to={path(serviceRoute[service.key])}>{service.name}</TextLink>
+                </h3>
+                <p className="mt-4 max-w-[42ch] text-sm leading-relaxed text-walnut">{service.line}</p>
+              </div>
+            ))}
+          </nav>
         </div>
       </section>
 

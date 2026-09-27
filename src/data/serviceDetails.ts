@@ -15,7 +15,7 @@ type Detail = {
 export const serviceDetails: Record<Lang, Record<ServiceRoute, Detail>> = {
   is: {
     installation: {
-      title: 'Parketlögn á Íslandi | Expert Parket og Mál',
+      title: 'Parketlögn í Reykjavík og um allt Ísland | Expert Parket',
       description: 'Parketlögn, síldarbein og frágangur gólflista. Expert Parket og Mál tekur að sér verk um allt Ísland. Sendu staðsetningu og fermetrafjölda og fáðu tilboð.',
       heading: 'Parketlögn á Íslandi',
       lead: 'Við leggjum parket á heimilum og í atvinnuhúsnæði. Undirlag, lagningarmynstur og frágangur eru metin saman áður en verkið hefst.',
@@ -31,7 +31,7 @@ export const serviceDetails: Record<Lang, Record<ServiceRoute, Detail>> = {
       ],
     },
     sanding: {
-      title: 'Parketslípun og lökkun á Íslandi | Expert Parket',
+      title: 'Parketslípun í Reykjavík og um allt Ísland | Expert Parket',
       description: 'Parketslípun, lökkun og olíuburður um allt Ísland. Fáðu mat á slitnu viðargólfi og tilboð eftir ástandi, stærð og áferð. Sími 785 7079.',
       heading: 'Parketslípun og yfirborðsmeðferð',
       lead: 'Slitið viðargólf getur oft nýst áfram. Við metum hvort það þoli slípun og ræðum viðgerðir og yfirborðsmeðferð áður en unnið er í gólfinu.',
