@@ -320,14 +320,16 @@ export const photoManifest: Record<string, PhotoMeta> = {
     ]
   },
   "/photos/real-contact.jpg": {
-    "h": 1200,
+    "h": 333,
     "w": 900,
     "widths": [
       320,
       640,
       900,
       960,
-      1050
+      1050,
+      1440,
+      1920
     ]
   },
   "/photos/real-hero-wide.jpg": {
@@ -353,14 +355,15 @@ export const photoManifest: Record<string, PhotoMeta> = {
     ]
   },
   "/photos/real-home-break.jpg": {
-    "h": 1200,
+    "h": 507,
     "w": 900,
     "widths": [
       320,
       640,
       900,
       960,
-      1200
+      1200,
+      1440
     ]
   },
   "/photos/real-pano-1.jpg": {

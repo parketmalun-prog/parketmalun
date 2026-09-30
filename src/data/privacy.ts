@@ -13,9 +13,9 @@ export type PrivacyContent = LegalContent
  * api/kontakt.ts, src/lib/analytics.ts, src/lib/db and api/translate.ts.
  */
 const UPDATED: Record<Lang, string> = {
-  is: 'Síðast uppfært: 8. september 2026',
-  en: 'Last updated: 8 September 2026',
-  pl: 'Ostatnia aktualizacja: 8 września 2026',
+  is: 'Síðast uppfært: 30. september 2026',
+  en: 'Last updated: 30 September 2026',
+  pl: 'Ostatnia aktualizacja: 30 września 2026',
 }
 
 export const privacy: Record<Lang, PrivacyContent> = {
@@ -120,7 +120,7 @@ export const privacy: Record<Lang, PrivacyContent> = {
       {
         heading: 'Myndir á vefnum',
         paragraphs: [
-          'Hluti ljósmyndanna á vefnum er af verkum Expert Parket og Mál ehf. Þær sýna rými sem við höfum unnið í og, á einstaka mynd, okkur sjálf við vinnu. Aðrar myndir, meðal annars á forsíðu og í vöruúrvali, eru til myndskreytingar: þær sýna viðartegundir og lagnamynstur en ekki tiltekin verk okkar. Hvorki heimilisföng né fólk utan fyrirtækisins er sýnt á neinni mynd.',
+          'Hluti ljósmyndanna á vefnum er af verkum Expert Parket og Mál ehf. Þær sýna rými sem við höfum unnið í og, á einstaka mynd, okkur sjálf við vinnu. Aðrar myndir, meðal annars á forsíðu, í vöruúrvali, á forsíðu greinar um parketval og sem bakgrunnur við fyrirspurnarform, eru til myndskreytingar. Sumar þeirra eru búnar til með gervigreind. Þær sýna viðartegundir og lagnamynstur en ekki tiltekin verk okkar. Hvorki heimilisföng né fólk utan fyrirtækisins er sýnt á neinni mynd.',
         ],
       },
       {
@@ -232,7 +232,7 @@ export const privacy: Record<Lang, PrivacyContent> = {
       {
         heading: 'Images on this site',
         paragraphs: [
-          'Part of the photographs on this site are of work by Expert Parket og Mál ehf. They show rooms we have worked in and, in a few frames, ourselves at work. The other pictures, on the home page and in the catalogue, are there to illustrate: they show wood types and laying patterns, not particular jobs of ours. No photograph on the site shows an address or a person outside the company.',
+          'Part of the photographs on this site are of work by Expert Parket og Mál ehf. They show rooms we have worked in and, in a few frames, ourselves at work. Other images, including those on the home page, in the catalogue, on the parquet-choice article cover and behind the enquiry form, are illustrative. Some are AI-generated. They show wood types and laying patterns, not particular jobs of ours. No image on the site shows an address or a person outside the company.',
         ],
       },
       {
@@ -344,7 +344,7 @@ export const privacy: Record<Lang, PrivacyContent> = {
       {
         heading: 'Zdjęcia w serwisie',
         paragraphs: [
-          'Część zdjęć w serwisie przedstawia prace firmy Expert Parket og Mál ehf. Pokazują one pomieszczenia, w których pracowaliśmy, a na kilku ujęciach nas samych przy pracy. Pozostałe zdjęcia, na stronie głównej i w katalogu, mają charakter poglądowy: pokazują gatunki drewna i wzory układania, a nie konkretne nasze realizacje. Żadne zdjęcie w serwisie nie pokazuje adresu ani osoby spoza firmy.',
+          'Część zdjęć w serwisie przedstawia prace firmy Expert Parket og Mál ehf. Pokazują one pomieszczenia, w których pracowaliśmy, a na kilku ujęciach nas samych przy pracy. Inne obrazy, między innymi na stronie głównej, w katalogu, na okładce artykułu o wyborze parkietu i w tle formularza, mają charakter poglądowy. Niektóre powstały z użyciem AI. Pokazują gatunki drewna i wzory układania, a nie konkretne nasze realizacje. Żaden obraz w serwisie nie pokazuje adresu ani osoby spoza firmy.',
         ],
       },
       {

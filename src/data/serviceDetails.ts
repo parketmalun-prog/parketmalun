@@ -16,9 +16,9 @@ export const serviceDetails: Record<Lang, Record<ServiceRoute, Detail>> = {
   is: {
     installation: {
       title: 'Parketlögn í Reykjavík og um allt Ísland | Expert Parket',
-      description: 'Parketlögn, síldarbein og frágangur gólflista. Expert Parket og Mál tekur að sér verk um allt Ísland. Sendu staðsetningu og fermetrafjölda og fáðu tilboð.',
+      description: 'Parketlögn og síldarbeinaparket í Reykjavík, Kópavogi og víðar á Íslandi. Undirlag, gólflistar og frágangur. Sendu myndir og fáðu tilboð.',
       heading: 'Parketlögn á Íslandi',
-      lead: 'Við leggjum parket á heimilum og í atvinnuhúsnæði. Undirlag, lagningarmynstur og frágangur eru metin saman áður en verkið hefst.',
+      lead: 'Við leggjum nýtt parket á heimilum og í atvinnuhúsnæði í Reykjavík, á höfuðborgarsvæðinu og víðar. Undirlag, lagningarmynstur og frágangur eru metin saman áður en verkið hefst.',
       sections: [
         { title: 'Undirlagið kemur fyrst', body: 'Ójöfnur og raki geta haft áhrif á nýtt gólf. Við metum undirlagið og hvort þurfi að fjarlægja eldra gólfefni eða jafna yfirborðið. Ef gólfhiti er til staðar þarf val á parketi, undirlagi og lagningaraðferð að fylgja leiðbeiningum framleiðanda.' },
         { title: 'Plankar, síldarbein og frágangur', body: 'Val á mynstri breytir bæði útliti og vinnu við lögn. Við ræðum stefnu borðanna, skurði við dyr og tengingar milli herbergja. Gólflistar, þröskuldar og nauðsynlegar þensluraufar eru hluti af skipulagningu verksins.' },
@@ -32,9 +32,9 @@ export const serviceDetails: Record<Lang, Record<ServiceRoute, Detail>> = {
     },
     sanding: {
       title: 'Parketslípun í Reykjavík og um allt Ísland | Expert Parket',
-      description: 'Parketslípun, lökkun og olíuburður um allt Ísland. Fáðu mat á slitnu viðargólfi og tilboð eftir ástandi, stærð og áferð. Sími 785 7079.',
+      description: 'Parketslípun og gólfslípun í Reykjavík og víðar á Íslandi. Við metum slitlag, viðgerðir, lökkun og olíuburð. Sendu myndir og fáðu tilboð.',
       heading: 'Parketslípun og yfirborðsmeðferð',
-      lead: 'Slitið viðargólf getur oft nýst áfram. Við metum hvort það þoli slípun og ræðum viðgerðir og yfirborðsmeðferð áður en unnið er í gólfinu.',
+      lead: 'Slitið viðargólf getur oft nýst áfram. Við metum hvort það þoli gólfslípun og ræðum viðgerðir, lökkun eða olíuburð áður en unnið er í gólfinu.',
       sections: [
         { title: 'Mat á gólfinu áður en slípað er', body: 'Tegund gólfs, þykkt slitlags og fyrri slípun skipta máli. Djúpar skemmdir, laus borð eða rakablettir geta kallað á viðgerðir eða skipti á einstökum borðum. Ekki er hægt að lofa að allir blettir hverfi við slípun.' },
         { title: 'Slípun, lakk eða olía', body: 'Við notum slípivélar með ryksogi og vinnum einnig kanta og horn. Ryksog dregur úr dreifingu ryks en rýmið þarf samt að undirbúa. Val á lakki eða olíu fer eftir æskilegu útliti, notkun og því viðhaldi sem hentar þér.' },
@@ -47,10 +47,10 @@ export const serviceDetails: Record<Lang, Record<ServiceRoute, Detail>> = {
       ],
     },
     painting: {
-      title: 'Málun innanhúss á Íslandi | Expert Parket og Mál',
-      description: 'Málun veggja, lofta og lista ásamt undirbúningi og frágangi. Verk um allt Ísland, einnig með parketvinnu. Hafðu samband og fáðu tilboð.',
+      title: 'Málun innanhúss í Reykjavík | Expert Parket og Mál',
+      description: 'Málun innanhúss í Reykjavík, Kópavogi og Hafnarfirði. Við málum veggi, loft og lista, spörtlum og verjum gólf. Sendu myndir og fáðu tilboð.',
       heading: 'Málun innanhúss',
-      lead: 'Við málum veggi, loft og lista og undirbúum fletina áður en málað er. Hægt er að skipuleggja málun og parketvinnu saman.',
+      lead: 'Við málum veggi, loft og lista í Reykjavík, á höfuðborgarsvæðinu og víðar um Ísland. Við undirbúum fletina áður en málað er og getum skipulagt málun og parketvinnu saman.',
       sections: [
         { title: 'Undirbúningur veggja og lofta', body: 'Við skoðum ástand flata, göt, sprungur og eldri málningu. Spörtlun, slípun og grunnun ráðast af undirlaginu. Raki eða skemmdir sem eiga sér aðra orsök þurfa mat áður en málað er yfir.' },
         { title: 'Áferð, litir og verndun rýmis', body: 'Gljástig og þvottþol skipta máli fyrir daglega notkun. Við ræðum hvaða fleti á að mála og hvernig verja á gólf, húsgögn og aðliggjandi svæði. Ef parketvinna er hluti af verkinu er verkáætlunin samræmd svo frágangur verði varinn.' },
@@ -166,7 +166,7 @@ export const serviceDetails: Record<Lang, Record<ServiceRoute, Detail>> = {
 }
 
 export const serviceLabels = {
-  is: { included: 'Innifalið eftir umfangi verks', faq: 'Spurt um þjónustuna', related: 'Önnur þjónusta', work: 'Skoða verkefni', guide: 'Lesa um kostnað og undirbúning slípunar', area: 'Verk um allt Ísland', areaBody: 'Við tökum að okkur verkefni um allt Ísland, meðal annars á höfuðborgarsvæðinu, Reykjanesi og landsbyggðinni. Sendu staðsetningu með fyrirspurninni. Við förum yfir aðgengi, tímasetningu og ferðakostnað ef við á áður en verk er staðfest.' },
+  is: { included: 'Innifalið eftir umfangi verks', faq: 'Spurt um þjónustuna', related: 'Önnur þjónusta', work: 'Skoða verkefni', guide: 'Lesa um kostnað og undirbúning slípunar', area: 'Verk um allt Ísland', areaBody: 'Við tökum að okkur verkefni í Reykjavík, Kópavogi, Hafnarfirði, Garðabæ og Mosfellsbæ, auk Reykjaness og annarra landshluta. Sendu staðsetningu með fyrirspurninni. Við förum yfir aðgengi, tímasetningu og ferðakostnað ef við á áður en verk er staðfest.' },
   en: { included: 'Scope agreed for your project', faq: 'Questions about the service', related: 'Related services', work: 'See our projects', guide: 'Read the sanding cost and preparation guide', area: 'Projects across Iceland', areaBody: 'We take on projects throughout Iceland, including the Reykjavík capital region, Reykjanes and other regions. Include the location in your enquiry. Access, scheduling and any travel costs are discussed before confirming the work.' },
   pl: { included: 'Zakres ustalany dla Twojego projektu', faq: 'Pytania o usługę', related: 'Pozostałe usługi', work: 'Zobacz realizacje', guide: 'Przeczytaj poradnik o cenie i przygotowaniu do cyklinowania', area: 'Prace w całej Islandii', areaBody: 'Przyjmujemy zlecenia w całej Islandii, w tym w regionie Reykjavíku, na Reykjanes i w pozostałych regionach. Podaj lokalizację w zapytaniu. Dostęp, termin i ewentualne koszty dojazdu omawiamy przed potwierdzeniem prac.' },
 } satisfies Record<Lang, Record<string, string>>

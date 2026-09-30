@@ -8,30 +8,31 @@ our own work") can be checked file by file. Update it whenever a file in
 Last audit: 8 September 2026. Revised 9 September 2026, when the client
 asked for the stock photography back on the home page and the catalogue.
 Revised 16 September 2026 with generated illustrations for the sanding guide.
+Revised 30 September 2026 with a generated article cover and contact background.
 
 ## Photographs in `public/photos` (shipped)
 
 The site uses company photographs, licensed stock and clearly identified
 editorial illustrations.
 
-### The company's own work (`real-*.jpg`)
+### The company's own work (most `real-*.jpg` files)
 
 Expert Parket og Mál ehf.'s own photographs of its own jobs, received from
 the client as WhatsApp batches on 22 August 2026. EXIF and GPS were stripped
 and the files re-encoded by `scripts/optimize-photos.py`. Rights: the
-company's own.
+company's own. `real-home-break.jpg` and `real-contact.jpg` retain their
+existing URLs for compatibility but now contain generated editorial images;
+they are listed separately below.
 
 | file | what it shows | used on |
 |---|---|---|
 | real-hero.jpg, real-hero-wide.jpg | laid oak floor | portfolio |
 | real-pano-1 to real-pano-5.jpg | five finished floors | portfolio |
 | real-before.jpg, real-after.jpg | the same floor before and after sanding | portfolio |
-| real-home-break.jpg | finished room | portfolio |
 | real-service-parket / slipun / malun.jpg | the craftsman at work, one per trade | services, portfolio |
 | real-pf-1.jpg, real-pf-break.jpg | finished floor, primer at the window | portfolio |
 | real-work-malun-2.jpg, real-work-malun-3.jpg | painting jobs | portfolio |
 | real-about-owner.jpg, real-about-work.jpg | the owner, the owner at work | about |
-| real-contact.jpg | finished room | contact |
 
 Further real photographs that no page uses sit in `photos-library/`, same
 origin and rights.
@@ -57,6 +58,23 @@ recorded in `docs/BLOG-IMAGE-PROMPTS-2026-09-16.md`.
 
 The previous `real-after.jpg`, `real-service-slipun.jpg` and
 `real-about-work.jpg` remain available for the site’s other pages.
+
+### AI-generated editorial images, 30 September 2026
+
+At the client's request, two photographs that looked unsuitable for the
+article and the shared contact section were replaced with generated images.
+The URLs are unchanged so existing article records continue to resolve.
+
+| file | what it shows | used on |
+|---|---|---|
+| real-home-break.jpg | urban apartment with an oak herringbone floor and neighboring houses | parquet-choice article cover |
+| real-contact.jpg | urban apartment with oak plank flooring and neighboring houses | shared contact section background |
+
+These are illustrative images, not photographs of the company's work. The
+article cover has a visible caption in all three site languages. Original PNG
+masters and the prompts are kept in `photos-library/generated-2026-09-30/`
+and `docs/IMAGE-PROMPTS-2026-09-30.md` respectively. Responsive WebP variants
+accompany the JPEG fallbacks.
 
 ### Stock, restored 9 September 2026
 

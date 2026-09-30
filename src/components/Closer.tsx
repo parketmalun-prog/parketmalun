@@ -49,7 +49,7 @@ export function Closer({ withForm = true }: { withForm?: boolean }) {
     <section className="relative overflow-hidden bg-espresso text-cream">
       {/* The photograph drifts against the scroll (client, 2026-09-01). */}
       <ParallaxPhoto src={photos.contact} />
-      <div className="absolute inset-0 bg-espresso/75" aria-hidden />
+      <div className="absolute inset-0 bg-espresso/60" aria-hidden />
       <div className="container-x relative z-10 pb-12 pt-10 sm:pb-14 sm:pt-12">
         <div className="grid grid-cols-12 items-center gap-x-4 gap-y-8 pt-8 md:gap-x-6">
           <div className="col-span-12 lg:col-span-6">

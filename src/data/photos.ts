@@ -9,7 +9,8 @@ import type { ServiceKey } from './site'
  * - REAL project photography (WhatsApp batches from 22.08, labelled by
  *   trade, EXIF and GPS stripped, re-encoded) carries the pages that exist
  *   to PROVE the work: the portfolio grouped by service, the Services page
- *   craft shots, About and Contact.
+ *   craft shots and About. The shared contact closer now uses an editorial
+ *   generated background; its legacy URL remains stable for deployed pages.
  *
  * Catalog grain slivers stay stock for a different reason: they must show
  * the named species (hnota/eik/askur/fura) and the client's jobs are oak.
@@ -89,6 +90,7 @@ export const photos = {
   portfolioBreak: '/photos/real-pf-break.jpg',
   aboutOwner: '/photos/real-about-owner.jpg',
   aboutWork: '/photos/real-about-work.jpg',
+  /** Editorial background for the shared contact closer (not a job photo). */
   contact: '/photos/real-contact.jpg',
 
   /** Catalog material strip, keyed by the SAMPLES wood names. Stock. */

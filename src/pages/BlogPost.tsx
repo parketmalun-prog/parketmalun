@@ -15,6 +15,22 @@ import { imgSources } from '@/lib/img'
 import { articleSchema } from '@/lib/articleSchema'
 import { site } from '@/data/site'
 
+const editorialCover = '/photos/real-home-break.jpg'
+const editorialCoverCopy: Record<Lang, { alt: string; caption: string }> = {
+  is: {
+    alt: 'Ljóst eikargólf með síldarbeinamynstri í stofu, hús sjást út um glugga. Hugmyndamynd.',
+    caption: 'Hugmyndamynd búin til með gervigreind; hún sýnir ekki tiltekið verk fyrirtækisins.',
+  },
+  en: {
+    alt: 'Light oak herringbone floor in a living room with neighboring houses outside. Illustrative image.',
+    caption: 'AI-generated illustration; this is not a specific company project.',
+  },
+  pl: {
+    alt: 'Jasny dębowy parkiet w jodełkę w salonie z widokiem na sąsiednie domy. Obraz poglądowy.',
+    caption: 'Obraz poglądowy wygenerowany przez AI; nie przedstawia konkretnej realizacji firmy.',
+  },
+}
+
 /** One article. The slug in the URL is the slug of the language being read. */
 export default function BlogPost() {
   const { slug = '' } = useParams()
@@ -63,6 +79,9 @@ export default function BlogPost() {
   const tr = post.translations[lang]
   const minutes = readingMinutes(tr.body)
   const cover = imgSources(post.cover ?? undefined)
+  const isEditorialCover = post.cover === editorialCover
+  const coverAlt = isEditorialCover ? editorialCoverCopy[lang].alt : tr.coverAlt || tr.title
+  const coverCaption = isEditorialCover ? editorialCoverCopy[lang].caption : tr.coverAlt
   const headings = articleHeadings(tr.body)
   const contentsLabel = { is: 'Í þessari grein', en: 'In this guide', pl: 'W tym poradniku' }[lang]
 
@@ -74,7 +93,7 @@ export default function BlogPost() {
         canonicalPath={blogPostPath(lang, tr.slug)}
         alternates={alternates}
         image={post.cover ?? undefined}
-        imageAlt={tr.coverAlt}
+        imageAlt={coverAlt}
         type="article"
       />
 
@@ -109,12 +128,12 @@ export default function BlogPost() {
               sizes="(min-width: 1440px) 1320px, 100vw"
               width={cover.width}
               height={cover.height}
-              alt={tr.coverAlt || tr.title}
+              alt={coverAlt}
               fetchpriority="high"
               decoding="async"
               className="aspect-[16/9] w-full rounded-lg border border-line object-cover"
             />
-            {tr.coverAlt ? <figcaption className="cap-label pt-3">{tr.coverAlt}</figcaption> : null}
+            {coverCaption ? <figcaption className="cap-label pt-3">{coverCaption}</figcaption> : null}
           </figure>
         ) : null}
 

@@ -46,9 +46,9 @@ export const servicesIntro: Record<Lang, Intro> = {
 
 export const servicesSeo: Record<Lang, SeoText> = {
   is: {
-    title: 'Þjónusta | Parketlögn, parketslípun og málun | Expert Parket og Mál',
+    title: 'Parketlögn, parketslípun og málun | Expert Parket',
     description:
-      'Parketlögn, parketslípun og málun innanhúss um allt Ísland. Skoðaðu þjónustuna og sendu staðsetningu, myndir og lýsingu á verkinu til að fá tilboð.',
+      'Parketlögn, parketslípun og málun innanhúss í Reykjavík og um allt Ísland. Skoðaðu þjónustuna og sendu myndir og staðsetningu til að fá tilboð.',
   },
   en: {
     title: 'Services | Parquet laying, floor sanding and painting | Expert Parket og Mál',
