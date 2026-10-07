@@ -6,6 +6,7 @@ import { site } from '@/data/site'
 import { home } from '@/data/home'
 import { servicesSeo } from '@/data/services'
 import { serviceDetails } from '@/data/serviceDetails'
+import { installationUpdated } from '@/data/installation'
 import { serviceKeys, serviceRoute } from '@/data/site'
 import { portfolioSeo } from '@/data/portfolio'
 import { catalogSeo } from '@/data/catalog'
@@ -212,6 +213,7 @@ export const PRERENDER_ROUTES: PrerenderRoute[] = [
         lang,
         title: seo.title,
         description: seo.description,
+        ...(key === 'installation' ? { lastModified: installationUpdated } : {}),
         alternates: Object.fromEntries(LANGS.map((l) => [l, pathFor(key, l)])),
         jsonLd: extraSchema(key, lang, path),
       }

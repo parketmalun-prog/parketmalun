@@ -15,19 +15,22 @@ type Detail = {
 export const serviceDetails: Record<Lang, Record<ServiceRoute, Detail>> = {
   is: {
     installation: {
-      title: 'Parketlögn í Reykjavík og um allt Ísland | Expert Parket',
-      description: 'Parketlögn og síldarbeinaparket í Reykjavík, Kópavogi og víðar á Íslandi. Undirlag, gólflistar og frágangur. Sendu myndir og fáðu tilboð.',
-      heading: 'Parketlögn á Íslandi',
-      lead: 'Við leggjum nýtt parket á heimilum og í atvinnuhúsnæði í Reykjavík, á höfuðborgarsvæðinu og víðar. Undirlag, lagningarmynstur og frágangur eru metin saman áður en verkið hefst.',
+      title: 'Parketlögn í Reykjavík: verð og tilboð | Expert Parket',
+      description: 'Parketlögn í Reykjavík, Kópavogi og um Ísland. Plankar og síldarbein, undirbúningur og listar. Sjáðu hvað ræður verði og fáðu frítt tilboð í parketlögn.',
+      heading: 'Parketlögn í Reykjavík og víðar á Íslandi',
+      lead: 'Við leggjum parket á heimilum og í atvinnuhúsnæði í Reykjavík, Kópavogi, Hafnarfirði og víðar um Ísland. Gólfefni, undirlag, mynstur og frágangur eru metin saman. Sendu okkur myndir og fermetrafjölda og fáðu frítt tilboð í parketlögn.',
       sections: [
         { title: 'Undirlagið kemur fyrst', body: 'Ójöfnur og raki geta haft áhrif á nýtt gólf. Við metum undirlagið og hvort þurfi að fjarlægja eldra gólfefni eða jafna yfirborðið. Ef gólfhiti er til staðar þarf val á parketi, undirlagi og lagningaraðferð að fylgja leiðbeiningum framleiðanda.' },
         { title: 'Plankar, síldarbein og frágangur', body: 'Val á mynstri breytir bæði útliti og vinnu við lögn. Við ræðum stefnu borðanna, skurði við dyr og tengingar milli herbergja. Gólflistar, þröskuldar og nauðsynlegar þensluraufar eru hluti af skipulagningu verksins.' },
-        { title: 'Verð á parketlögn', body: 'Fermetrafjöldi einn segir ekki alla söguna. Verðið fer einnig eftir ástandi undirlags, gólfefni, mynstri, fjölda herbergja og frágangi. Sendu myndir, staðsetningu og áætlaða stærð. Í tilboðinu þarf að koma fram hvað er innifalið, svo sem efni, undirbúningur og ferðakostnaður ef við á.' },
+        { title: 'Val á parketi fyrir rýmið', body: 'Við bjóðum eikarparket í plönkum, fiskibeini og chevron í vöruúrvalinu okkar. Ræðum notkun rýmisins, áferð og umhirðu áður en efnið er valið. Ef þú hefur þegar keypt gólfefni skaltu senda vöruheiti og upplýsingar svo hægt sé að meta lagningaraðferð og undirbúning.' },
       ],
       faq: [
+        { q: 'Hvað kostar parketlögn á fermetra?', a: 'Verðið fer eftir gólfefni, mynstri, ástandi undirlags og frágangi. Fermetraverð án verklýsingar segir ekki hvort efni, afrif, jöfnun og listar séu innifalin. Við metum umfangið og gerum tilboð fyrir þitt verk.' },
         { q: 'Leggið þið síldarbeinaparket?', a: 'Já. Við leggjum bæði planka og síldarbein. Mynstur, gólfefni og undirlag eru metin áður en endanlegt tilboð er gert.' },
         { q: 'Má leggja parket yfir gólfhita?', a: 'Það fer eftir parketinu og hitakerfinu. Við skoðum upplýsingar um gólfefnið og fylgjum kröfum framleiðanda um hita, raka og lagningu.' },
         { q: 'Hvað þarf að senda til að fá tilboð?', a: 'Sendu staðsetningu, áætlaðan fermetrafjölda, myndir af rýminu og hvaða gólfefni eða mynstur þú hefur í huga. Láttu einnig vita hvort fjarlægja eigi eldra gólf.' },
+        { q: 'Er parketið sjálft innifalið í verðinu?', a: 'Það þarf að koma skýrt fram í tilboðinu. Við getum rætt val á parketi úr vöruúrvalinu og lögn þess saman. Ef efnið er þegar til þarf að staðfesta tegund, magn og hvort það henti aðstæðum.' },
+        { q: 'Hvað tekur langan tíma að leggja parket?', a: 'Verktími ræðst af flatarmáli, herbergjafjölda, undirbúningi og lagningaraðferð. Bið eftir þurrkun undirlags eða herðingu líms getur bæst við vinnudagana. Fáðu verkáætlun og staðfestingu á því hvenær má færa húsgögn inn áður en þú ákveður flutningadag.' },
       ],
     },
     sanding: {
@@ -65,19 +68,22 @@ export const serviceDetails: Record<Lang, Record<ServiceRoute, Detail>> = {
   },
   en: {
     installation: {
-      title: 'Parquet Installation in Iceland | Expert Parket',
-      description: 'Parquet and herringbone installation, subfloor preparation and skirting. Projects across Iceland. Send your location, floor area and photos for a quote.',
-      heading: 'Parquet installation in Iceland',
-      lead: 'We install parquet in homes and commercial spaces. Subfloor condition, laying pattern and finishing details are assessed together before work starts.',
+      title: 'Parquet Installation Reykjavík: Cost & Quotes | Expert Parket',
+      description: 'Parquet and herringbone installation in Reykjavík and across Iceland. Compare preparation, fitting and finishing costs. Send photos for a free quote.',
+      heading: 'Parquet installation in Reykjavík and across Iceland',
+      lead: 'We install parquet in homes and commercial spaces in Reykjavík, Kópavogur, Hafnarfjörður and elsewhere in Iceland. Flooring, subfloor, pattern and finishing details are assessed together. Send photographs and the approximate area for a free installation quote.',
       sections: [
         { title: 'Start with the subfloor', body: 'Uneven surfaces and moisture can affect a new floor. We assess whether existing flooring needs removal or the base needs levelling. Where underfloor heating is present, the flooring, underlay and installation method must meet the manufacturer’s requirements.' },
         { title: 'Planks, herringbone and finishing details', body: 'The pattern affects both the appearance and the work involved. We discuss board direction, cuts around doorways and transitions between rooms. Skirting, thresholds and expansion gaps are included in planning the installation.' },
-        { title: 'What affects installation cost', body: 'Floor area is only one factor. Subfloor condition, flooring material, pattern, room layout and finishing details also affect the price. Send photographs, your location and approximate area. The quote should state what is included, such as materials, preparation and any travel costs.' },
+        { title: 'Choose flooring for the room', body: 'Our range includes oak planks, herringbone and chevron. Discuss room use, finish and care before choosing the material. If you already have flooring, send the product name and details so the installation method and preparation can be assessed.' },
       ],
       faq: [
+        { q: 'How much does parquet installation cost per square metre?', a: 'The cost depends on the flooring, pattern, subfloor and finishing details. A rate without a scope does not tell you whether materials, removal, levelling and skirting are included. We assess the work and prepare a quote for your project.' },
         { q: 'Do you install herringbone parquet?', a: 'Yes. We install planks and herringbone. The pattern, flooring and subfloor are assessed before a final quote is prepared.' },
         { q: 'Can parquet be fitted over underfloor heating?', a: 'It depends on the flooring and heating system. We check the product information and follow the manufacturer’s temperature, moisture and installation requirements.' },
         { q: 'What should I send for a quote?', a: 'Send your location, approximate floor area, room photographs and the flooring or pattern you have in mind. Tell us whether old flooring needs removing.' },
+        { q: 'Does the price include the flooring itself?', a: 'The quotation should state this explicitly. We can discuss flooring from our range together with its installation. If you already have the material, its type, quantity and suitability need confirming.' },
+        { q: 'How long does parquet installation take?', a: 'Area, room layout, preparation and installation method determine the working time. Subfloor drying or adhesive curing may add waiting time. Agree the schedule and when furniture can return before booking a moving date.' },
       ],
     },
     sanding: {
@@ -115,19 +121,22 @@ export const serviceDetails: Record<Lang, Record<ServiceRoute, Detail>> = {
   },
   pl: {
     installation: {
-      title: 'Układanie parkietu na Islandii | Expert Parket',
-      description: 'Układanie parkietu i jodełki, przygotowanie podłoża oraz montaż listew w całej Islandii. Prześlij lokalizację, metraż i zdjęcia, aby otrzymać wycenę.',
-      heading: 'Układanie parkietu na Islandii',
-      lead: 'Układamy parkiet w domach i lokalach użytkowych. Przed rozpoczęciem oceniamy podłoże, wzór ułożenia i szczegóły wykończenia.',
+      title: 'Układanie parkietu Reykjavík: cena i wycena | Expert Parket',
+      description: 'Układanie parkietu i jodełki w Reykjavíku i całej Islandii. Przygotowanie podłoża, montaż, listwy i koszty. Wyślij zdjęcia po bezpłatną wycenę.',
+      heading: 'Układanie parkietu w Reykjavíku i całej Islandii',
+      lead: 'Układamy parkiet w domach i lokalach użytkowych w Reykjavíku, Kópavogur, Hafnarfjörður i innych częściach Islandii. Wspólnie oceniamy materiał, podłoże, wzór i wykończenie. Prześlij zdjęcia i przybliżony metraż po bezpłatną wycenę montażu.',
       sections: [
         { title: 'Najpierw podłoże', body: 'Nierówności i wilgoć mogą wpływać na nową podłogę. Oceniamy potrzebę usunięcia starej okładziny lub wyrównania podłoża. Przy ogrzewaniu podłogowym parkiet, podkład i sposób montażu muszą spełniać wymagania producenta.' },
         { title: 'Deski, jodełka i wykończenie', body: 'Wzór wpływa na wygląd oraz nakład pracy. Omawiamy kierunek desek, docinki przy drzwiach i przejścia między pomieszczeniami. Listwy, progi i szczeliny dylatacyjne uwzględniamy przy planowaniu montażu.' },
-        { title: 'Co wpływa na cenę montażu', body: 'Metraż to tylko jeden z czynników. Liczą się też stan podłoża, materiał, wzór, układ pomieszczeń i wykończenie. Prześlij zdjęcia, lokalizację i przybliżony metraż. Wycena powinna określać zakres materiałów, przygotowania i ewentualnych kosztów dojazdu.' },
+        { title: 'Dobór parkietu do pomieszczenia', body: 'W naszej ofercie są dębowe deski, jodełka i chevron. Przed wyborem omawiamy przeznaczenie pomieszczenia, wykończenie i pielęgnację. Jeśli masz już materiał, prześlij nazwę i dane produktu, aby można było ocenić sposób montażu i przygotowanie podłoża.' },
       ],
       faq: [
+        { q: 'Ile kosztuje układanie parkietu za metr kwadratowy?', a: 'Cena zależy od materiału, wzoru, podłoża i wykończenia. Sama stawka nie określa, czy obejmuje parkiet, demontaż, wyrównanie i listwy. Oceniamy zakres prac i przygotowujemy wycenę konkretnego zlecenia.' },
         { q: 'Czy układacie parkiet w jodełkę?', a: 'Tak, układamy deski i jodełkę. Przed ostateczną wyceną oceniamy wzór, materiał i podłoże.' },
         { q: 'Czy parkiet można ułożyć na ogrzewaniu podłogowym?', a: 'Zależy to od materiału i systemu grzewczego. Sprawdzamy dane produktu oraz wymagania producenta dotyczące temperatury, wilgotności i montażu.' },
         { q: 'Co przesłać do wyceny?', a: 'Lokalizację, przybliżony metraż, zdjęcia i wybrany materiał lub wzór. Napisz też, czy trzeba usunąć starą podłogę.' },
+        { q: 'Czy cena obejmuje sam parkiet?', a: 'Powinno to być wyraźnie określone w ofercie. Możemy omówić wybór parkietu z naszego katalogu razem z montażem. Jeśli masz już materiał, trzeba potwierdzić jego rodzaj, ilość i przydatność do danych warunków.' },
+        { q: 'Jak długo trwa układanie parkietu?', a: 'Czas pracy zależy od powierzchni, układu pomieszczeń, przygotowania i sposobu montażu. Schnięcie podłoża lub utwardzanie kleju może wymagać dodatkowego czasu. Przed ustaleniem przeprowadzki uzgodnij harmonogram i termin wniesienia mebli.' },
       ],
     },
     sanding: {

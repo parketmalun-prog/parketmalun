@@ -13,6 +13,8 @@ import { Button } from '@/components/Button'
 import { TextLink } from '@/components/TextLink'
 import { FaqAccordion } from '@/components/FaqAccordion'
 import { Closer } from '@/components/Closer'
+import { InstallationGuide } from '@/components/InstallationGuide'
+import { installationContent } from '@/data/installation'
 
 const sandingGuideSlug = {
   is: 'parketslipun-verd-timi-undirbuningur',
@@ -73,6 +75,13 @@ export default function ServiceDetail() {
               <Button to={path('contact')}>{service.cta}</Button>
               <Button href={`tel:${site.phoneRaw}`} variant="outline">{site.phone}</Button>
             </div>
+            {key === 'parket' && (
+              <nav aria-label={detail.heading} className="mt-7 flex flex-wrap gap-x-6 gap-y-3 text-sm">
+                <Link to="#verd" className="u-link">{installationContent[lang].nav.price}</Link>
+                <Link to="#verk" className="u-link">{installationContent[lang].nav.work}</Link>
+                <Link to="#tilbod" className="u-link">{installationContent[lang].nav.quote}</Link>
+              </nav>
+            )}
           </div>
           <PhotoSlot src={photos.craft[key]} alt={service.title} aspect="4/3" tone="sand" priority sizes="(min-width: 1024px) 45vw, 100vw" />
         </div>
@@ -92,12 +101,16 @@ export default function ServiceDetail() {
           <ul className="mt-5 list-disc space-y-3 pl-5 leading-relaxed text-ink/80">
             {service.includes.map((item) => <li key={item}>{item}</li>)}
           </ul>
-          <TextLink to={path('portfolio')} className="mt-8 inline-block">{labels.work}</TextLink>
-          {key === 'parket' && <TextLink to={path('catalog')} className="mt-5 inline-block">{t.footer.linkCatalog}</TextLink>}
-          {key === 'slipun' && <TextLink to={blogPostPath(lang, sandingGuideSlug[lang])} className="mt-5 inline-block">{labels.guide}</TextLink>}
-          {key === 'malun' && <TextLink to={blogPostPath(lang, paintingCostPost.translations[lang].slug)} className="mt-5 inline-block">{paintingCostPost.translations[lang].title}</TextLink>}
+          <div className="mt-8 flex flex-col items-start gap-5">
+            <TextLink to={path('portfolio')}>{labels.work}</TextLink>
+            {key === 'parket' && <TextLink to={path('catalog')}>{t.footer.linkCatalog}</TextLink>}
+            {key === 'slipun' && <TextLink to={blogPostPath(lang, sandingGuideSlug[lang])}>{labels.guide}</TextLink>}
+            {key === 'malun' && <TextLink to={blogPostPath(lang, paintingCostPost.translations[lang].slug)}>{paintingCostPost.translations[lang].title}</TextLink>}
+          </div>
         </aside>
       </section>
+
+      {key === 'parket' && <InstallationGuide />}
 
       <section className="bg-espresso py-14 text-cream md:py-20">
         <div className="container-x">
