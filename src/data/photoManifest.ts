@@ -529,5 +529,15 @@ export const photoManifest: Record<string, PhotoMeta> = {
       960,
       1440
     ]
+  },
+  "/photos/blog-malun-ibudar-verd-2026.jpg": {
+    "w": 1440,
+    "h": 810,
+    "widths": [
+      320,
+      640,
+      960,
+      1440
+    ]
   }
 }

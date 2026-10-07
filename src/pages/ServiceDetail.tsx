@@ -6,6 +6,7 @@ import type { ServiceRoute } from '@/data/serviceDetails'
 import { services } from '@/data/services'
 import { site, serviceKeys, serviceRoute } from '@/data/site'
 import { photos } from '@/data/photos'
+import { paintingCostPost } from '@/data/posts/paintingCost'
 import { Seo } from '@/components/Seo'
 import { PhotoSlot } from '@/components/PhotoSlot'
 import { Button } from '@/components/Button'
@@ -94,6 +95,7 @@ export default function ServiceDetail() {
           <TextLink to={path('portfolio')} className="mt-8 inline-block">{labels.work}</TextLink>
           {key === 'parket' && <TextLink to={path('catalog')} className="mt-5 inline-block">{t.footer.linkCatalog}</TextLink>}
           {key === 'slipun' && <TextLink to={blogPostPath(lang, sandingGuideSlug[lang])} className="mt-5 inline-block">{labels.guide}</TextLink>}
+          {key === 'malun' && <TextLink to={blogPostPath(lang, paintingCostPost.translations[lang].slug)} className="mt-5 inline-block">{paintingCostPost.translations[lang].title}</TextLink>}
         </aside>
       </section>
 

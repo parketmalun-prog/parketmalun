@@ -66,6 +66,7 @@ export interface PostTranslation {
   seoTitle: string
   seoDescription: string
   coverAlt?: string
+  coverCaption?: string
 }
 
 /** Where an enquiry stands, so nothing sits unanswered by accident. */

@@ -81,7 +81,7 @@ export default function BlogPost() {
   const cover = imgSources(post.cover ?? undefined)
   const isEditorialCover = post.cover === editorialCover
   const coverAlt = isEditorialCover ? editorialCoverCopy[lang].alt : tr.coverAlt || tr.title
-  const coverCaption = isEditorialCover ? editorialCoverCopy[lang].caption : tr.coverAlt
+  const coverCaption = isEditorialCover ? editorialCoverCopy[lang].caption : tr.coverCaption || tr.coverAlt
   const headings = articleHeadings(tr.body)
   const contentsLabel = { is: 'Í þessari grein', en: 'In this guide', pl: 'W tym poradniku' }[lang]
 

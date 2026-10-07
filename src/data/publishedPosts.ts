@@ -1,7 +1,9 @@
 import type { Post } from '@/lib/db/types'
+import { paintingCostPost } from './posts/paintingCost'
 
 /** Articles published with the website. Edit here and deploy, independently of browser storage. */
 export const publishedPosts: Post[] = [
+  paintingCostPost,
   {
     id: 'parketslipun-verd-timi-2026',
     status: 'published',
