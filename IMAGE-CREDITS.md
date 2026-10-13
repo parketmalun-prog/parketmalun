@@ -9,6 +9,7 @@ Last audit: 8 September 2026. Revised 9 September 2026, when the client
 asked for the stock photography back on the home page and the catalogue.
 Revised 16 September 2026 with generated illustrations for the sanding guide.
 Revised 30 September 2026 with a generated article cover and contact background.
+Revised 13 October 2026: all published blog articles use company photographs.
 
 ## Photographs in `public/photos` (shipped)
 
@@ -36,6 +37,24 @@ they are listed separately below.
 
 Further real photographs that no page uses sit in `photos-library/`, same
 origin and rights.
+
+### Blog photography, 13 October 2026
+
+The client requested natural, real photography for the blog. Every published
+article now uses existing company job photographs from the collection above,
+with translated descriptive alt text and provenance captions. No photograph
+was generated or altered for this update.
+
+| file | used on |
+|---|---|
+| real-pano-2.jpg | parquet installation cost guide cover |
+| real-after.jpg | sanding or replacement guide cover, sanding guide body |
+| real-service-slipun.jpg | sanding cost guide cover and body |
+| real-work-malun-2.jpg | painting cost guide cover |
+
+The generated blog illustrations listed below remain archived in the
+repository but are no longer referenced by any published article. The shared
+contact background remains as documented below.
 
 ### AI-generated editorial illustrations, 16 September 2026
 

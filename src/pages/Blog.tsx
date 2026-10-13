@@ -13,6 +13,7 @@ import { readingMinutes } from '@/lib/markdown'
 import { imgSources } from '@/lib/img'
 import { photos } from '@/data/photos'
 import { hashCode } from '@/lib/ids'
+import { serviceKeys, serviceRoute } from '@/data/site'
 
 /** Posts per page; page controls appear once the archive outgrows this. */
 const PAGE_SIZE = 6
@@ -37,7 +38,7 @@ function coverFor(key: string, cover: string | null) {
  * column once the client has published more than a pageful.
  */
 export default function Blog() {
-  const { lang } = useLang()
+  const { lang, path } = useLang()
   const t = useUi()
   const [page, setPage] = useState(0)
   const listRef = useRef<HTMLUListElement>(null)
@@ -63,6 +64,12 @@ export default function Blog() {
           className="font-display text-[clamp(2.75rem,7vw,6rem)] font-bold leading-[0.94] tracking-[-0.02em] text-espresso"
         />
         <p className="max-w-[52ch] pt-6 text-lg leading-relaxed text-espresso-700">{t.blog.lead}</p>
+        <nav aria-label={t.nav.services} className="flex flex-wrap gap-x-7 gap-y-3 pt-7">
+          {serviceKeys.map((key) => (
+            <Link key={key} to={path(serviceRoute[key])} className="u-link">{t.serviceFull[key]}</Link>
+          ))}
+          <Link to={path('contact')} className="u-link">{t.nav.contact}</Link>
+        </nav>
       </section>
 
       <section className="container-x pb-16 pt-12 md:pt-16">

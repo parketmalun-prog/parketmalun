@@ -7,6 +7,8 @@ import { services } from '@/data/services'
 import { site, serviceKeys, serviceRoute } from '@/data/site'
 import { photos } from '@/data/photos'
 import { paintingCostPost } from '@/data/posts/paintingCost'
+import { installationCostPost } from '@/data/posts/installationCost'
+import { sandOrReplacePost } from '@/data/posts/sandOrReplace'
 import { Seo } from '@/components/Seo'
 import { PhotoSlot } from '@/components/PhotoSlot'
 import { Button } from '@/components/Button'
@@ -104,6 +106,8 @@ export default function ServiceDetail() {
           <div className="mt-8 flex flex-col items-start gap-5">
             <TextLink to={path('portfolio')}>{labels.work}</TextLink>
             {key === 'parket' && <TextLink to={path('catalog')}>{t.footer.linkCatalog}</TextLink>}
+            {key === 'parket' && <TextLink to={blogPostPath(lang, installationCostPost.translations[lang].slug)}>{installationCostPost.translations[lang].title}</TextLink>}
+            {(key === 'parket' || key === 'slipun') && <TextLink to={blogPostPath(lang, sandOrReplacePost.translations[lang].slug)}>{sandOrReplacePost.translations[lang].title}</TextLink>}
             {key === 'slipun' && <TextLink to={blogPostPath(lang, sandingGuideSlug[lang])}>{labels.guide}</TextLink>}
             {key === 'malun' && <TextLink to={blogPostPath(lang, paintingCostPost.translations[lang].slug)}>{paintingCostPost.translations[lang].title}</TextLink>}
           </div>

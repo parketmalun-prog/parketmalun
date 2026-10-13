@@ -4,10 +4,10 @@ export const paintingCostPost: Post = {
   id: 'malun-ibudar-verd-2026',
   status: 'published',
   sourceLang: 'is',
-  cover: '/photos/blog-malun-ibudar-verd-2026.jpg',
+  cover: '/photos/real-work-malun-2.jpg',
   tags: ['Málun'],
   createdAt: Date.UTC(2026, 9, 7, 13),
-  updatedAt: Date.UTC(2026, 9, 7, 13),
+  updatedAt: Date.UTC(2026, 9, 13, 9),
   publishedAt: Date.UTC(2026, 9, 7, 13),
   translations: {
     is: {
@@ -16,8 +16,8 @@ export const paintingCostPost: Post = {
       excerpt: 'Stærð íbúðarinnar segir ekki hvað þarf að mála. Hér færðu skýrt dæmi um efniskostnað, leiðbeiningar um mælingar og lista yfir það sem á að fylgja tilboði í málun.',
       seoTitle: 'Hvað kostar að mála íbúð? Verð 2026 | Expert Parket',
       seoDescription: 'Hvað kostar málun íbúðar á Íslandi? Sjáðu dæmi um efniskostnað, útreikning á fermetrum og hvað tilboð á að innihalda. Fáðu frítt tilboð í málun.',
-      coverAlt: 'Ljósir nýmálaðir veggir í íbúð með eikarparketi, gólfhlífum og málningaráhöldum.',
-      coverCaption: 'Hugmyndamynd búin til með gervigreind. Hún sýnir ekki tiltekið verk Expert Parket og Mál.',
+      coverAlt: 'Málningarvinna með rúllum á vinnusvæði, úr verkefnasafni Expert Parket og Mál.',
+      coverCaption: 'Ljósmynd úr verkefnasafni Expert Parket og Mál.',
       body: `## Hvað ræður verði á málun íbúðar?
 
 **Verð á málun innanhúss ræðst af flatarmáli veggja og lofta, undirvinnu, efnisvali og frágangi.** Tvær jafn stórar íbúðir geta því kostað mismikið í málun. Skráð stærð íbúðar er ekki það sama og stærð flatanna sem á að mála.
@@ -121,8 +121,8 @@ Sendu **staðsetningu, áætlaðar stærðir, myndir af flötunum og óskatíma*
       excerpt: 'Floor area alone cannot price a painting job. See a real paint-cost example, learn how to measure the surfaces and check what a complete quote should include.',
       seoTitle: 'Apartment painting cost in Iceland 2026 | Expert Parket',
       seoDescription: 'Planning to paint an apartment in Iceland? Compare preparation, materials and labour, see a paint-price example and request a free interior painting quote.',
-      coverAlt: 'Freshly painted neutral apartment walls, oak flooring, protective coverings and painting tools.',
-      coverCaption: 'AI-generated illustration. It does not depict a specific Expert Parket og Mál project.',
+      coverAlt: 'Painters using rollers on site, from the Expert Parket og Mál project portfolio.',
+      coverCaption: 'Photograph from the Expert Parket og Mál project portfolio.',
       body: `## What determines the cost of painting an apartment?
 
 **Interior painting cost depends on wall and ceiling area, preparation, materials and finishing details.** Apartments with the same floor area can need very different amounts of work. The size on a property listing is not the area that will be painted.
@@ -226,8 +226,8 @@ Send **your location, approximate dimensions, surface photographs and preferred 
       excerpt: 'Metraż mieszkania nie określa powierzchni do malowania. Zobacz przykład ceny farby, sposób obliczania powierzchni i listę elementów kompletnej wyceny.',
       seoTitle: 'Malowanie mieszkania na Islandii: cena 2026 | Expert Parket',
       seoDescription: 'Ile kosztuje malowanie mieszkania na Islandii? Przykład ceny farby, pomiar powierzchni i zakres robót. Poproś o bezpłatną wycenę malowania wnętrz.',
-      coverAlt: 'Jasne, świeżo pomalowane ściany mieszkania, dębowy parkiet, osłony podłogi i narzędzia malarskie.',
-      coverCaption: 'Ilustracja wygenerowana przez AI. Nie przedstawia konkretnej realizacji Expert Parket og Mál.',
+      coverAlt: 'Malowanie ścian wałkami na miejscu realizacji, z portfolio Expert Parket og Mál.',
+      coverCaption: 'Fotografia z portfolio realizacji Expert Parket og Mál.',
       body: `## Od czego zależy cena malowania mieszkania?
 
 **Koszt malowania wnętrz zależy od powierzchni ścian i sufitów, przygotowania podłoża, materiałów oraz wykończenia.** Dwa mieszkania o takim samym metrażu mogą wymagać zupełnie innego nakładu pracy. Powierzchnia podana w ogłoszeniu nie jest powierzchnią do malowania.
