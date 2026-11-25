@@ -2,9 +2,11 @@ import type { Post } from '@/lib/db/types'
 import { paintingCostPost } from './posts/paintingCost'
 import { installationCostPost } from './posts/installationCost'
 import { sandOrReplacePost } from './posts/sandOrReplace'
+import { herringbonePatternsPost } from './posts/herringbonePatterns'
 
 /** Articles published with the website. Edit here and deploy, independently of browser storage. */
 export const publishedPosts: Post[] = [
+  herringbonePatternsPost,
   installationCostPost,
   sandOrReplacePost,
   paintingCostPost,

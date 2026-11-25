@@ -10,6 +10,7 @@ asked for the stock photography back on the home page and the catalogue.
 Revised 16 September 2026 with generated illustrations for the sanding guide.
 Revised 30 September 2026 with a generated article cover and contact background.
 Revised 13 October 2026: all published blog articles use company photographs.
+Revised 25 November 2026: three company photographs added for the herringbone and chevron article.
 
 ## Photographs in `public/photos` (shipped)
 
@@ -50,6 +51,7 @@ was generated or altered for this update.
 | real-pano-2.jpg | parquet installation cost guide cover |
 | real-after.jpg | sanding or replacement guide cover, sanding guide body |
 | real-service-slipun.jpg | sanding cost guide cover and body |
+| real-blog-sildarbein.jpg, real-blog-chevron.jpg, real-blog-sildarbein-lakk.jpg | herringbone and chevron article, cover and body |
 | real-work-malun-2.jpg | painting cost guide cover |
 
 The generated blog illustrations listed below remain archived in the

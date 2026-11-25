@@ -9,6 +9,36 @@
 export type PhotoMeta = { w: number; h: number; widths: number[] }
 
 export const photoManifest: Record<string, PhotoMeta> = {
+  "/photos/real-blog-chevron.jpg": {
+    "h": 1200,
+    "w": 900,
+    "widths": [
+      320,
+      640,
+      960,
+      1200
+    ]
+  },
+  "/photos/real-blog-sildarbein.jpg": {
+    "h": 1200,
+    "w": 900,
+    "widths": [
+      320,
+      640,
+      960,
+      1200
+    ]
+  },
+  "/photos/real-blog-sildarbein-lakk.jpg": {
+    "h": 1200,
+    "w": 900,
+    "widths": [
+      320,
+      640,
+      960,
+      1200
+    ]
+  },
   "/photos/after-floor.jpg": {
     "h": 600,
     "w": 900,
